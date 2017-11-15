@@ -1,0 +1,60 @@
+<!--
+### The succint progress measure algorithm
+The fact that the succinct progress measures form a solution of the separation problem was not known before this post, to the best of the author's knowledge.
+It does not seem to follow directly from the [original paper](https://arxiv.org/abs/1702.05051).
+We prove it by extending the proof above.
+
+We construct a (deterministic) safe automaton recognising a language $L$ solving the separation problem.
+The states of the automaton are $d/2$-tuples of binary words such that the total length is at most $\log(n)$,
+they are numbered $1,3,\ldots,d-1$.
+For a tuple $x$ and a priority $p$, we let $x(p)$ denote the $p$ component of $x$.
+The initial state is the tuple containing only $\varepsilon$, written $x_0$.
+We order binary strings as follows: 
+$$ 
+0 s < \varepsilon \qquad ; \qquad \varepsilon <\ 1 s \qquad ; \qquad b s <\ b s' \Longleftrightarrow s <\ s'.
+$$
+
+We extend this order into a lexicographical order for tuples, written $\le$ and $<$ for the strict version.
+For a tuple $x$ and a priority $p$, we define $x_{| \ge p}$ the tuple restricted to the components larger than $p$.
+
+The transition function is as follows: from the tuple $x$, reading a vertex $v$ of priority $p$:
+* if $p$ is even, then the new tuple is the smallest $x'$ such that $x_{\| \ge p} \le x'_{\| \ge p}$,
+* if $p$ is odd, then the new tuple is the smallest $x'$ such that $x_{\| \ge p} < x'_{\| \ge p}$.
+
+The automaton is safe: all states are accepting, and if a transition is undefined the automaton rejects.
+
+For a word $w$ and a tuple $x$, we let $\delta(x,w)$ denote the tuple reached after reading $w$ from $x$, if defined.
+Then, $\delta(w)$ is $\delta(x_0,w)$.
+
+**Lemma:**
+1. $\text{AllEvenCycles} \subseteq L$
+2. $L \cap \text{AllOddCycles} = \emptyset$
+
+**Proof:**
+We start by proving the second item: it follows from the observation that if $w$ is an odd cycle with maximal priority $p$, then $x_{| \ge p} < \delta(x,w)_{| \ge p}$.
+This is stated as such in the [original paper](https://arxiv.org/abs/1702.05051).
+Indeed, consider a cycle $w = v_1 v_2 \cdots v_k v_1$, and assume that $v_1$ has priority $p$, odd and maximal in the cycle.
+Then we have
+$$
+x_{| \ge p} < \delta(x, v_1)_{| \ge p} \le \cdots \le \delta(x, v_1 \cdots v_k)_{| \ge p} \le \delta(x, w)_{| \ge p}.
+$$
+
+Consider now the largest priority appearing infinitely many times, and assume it is odd: there are infinitely many odd cycles with this priority, 
+and from some point on they induce an increase in the corresponding tuple, which eventually results in the automaton rejecting.
+
+We now prove the first item. 
+It follows from the following invariant: for every $w \in V^*$ which is not rejected by the automaton, $w$ has a suffix of the form $w_{d-1} \cdots w_3 w_1$, where 
+for $p \in \set{1,3,\ldots,d-1}$, the priority $p$ appears at least $V[\delta(w)(p)]$ times, and no larger priority appears in $w_p$.
+The function $V$ is defined as follows: $V[\varepsilon] = 0$, then $V[s]$ is the value of $s$ in binary plus one. For instance, $V[10] = 2 + 1 = 3$.
+
+Assume the invariant holds for $w$, and we read a vertex $v$ of priority $p$, there are two cases:
+* if $p$ is even, we construct the suffix $w_{d-1} \cdots (w_{p+1} v)$ of $w v$, *i.e.* the new word for $p+1$ is $w_{p+1} v$.
+* if $p$ is odd, we construct the suffix $w_{d-1} \cdots (w_p v)$ of $w v$, *i.e.* the new word for $p$ is $w_{p+1} v$. 
+The priority $p$ appears at least $\delta(wv)(p) = \delta(w)(p) + 1$ times.
+
+This completes the proof of the invariant. Now, we argue that if a word is rejected by the automaton, then it contains an odd cycle,
+which is the contrapositive of the first item. Let $wv$ such that $w$ is accepted and $wv$ is rejected.
+Assume that $v$ has priority $p$, this implies that $\delta(w)(p) = n$. It follows that in $w_p w_{p-1} \cdots w_1 v$ the priority $p$ appears at least $n+1$ times,
+and no larger priority appears. Since there are $n$ vertices, some vertex repeats twice, forming an odd cycle.
+-->
+
