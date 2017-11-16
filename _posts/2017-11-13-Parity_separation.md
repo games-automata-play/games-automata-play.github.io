@@ -157,7 +157,7 @@ There exists a function $\enc$ taking as input a function $\mu : V \to \set{0,\l
 and outputting a function $\enc(\mu) : V \to S_{n,d}$ such that:
 
 for $\mu$, $v, v'$, we have 
-$$\enc(\mu)(v') \le \end(\delta(\mu,v))(v'),$$
+$$\enc(\mu)(v') \le \enc(\delta(\mu,v))(v'),$$
 and if $v$ has priority $p$,
 * if $p$ is even, then $$\enc(\mu)(v)_{\mid p} \le \enc(\mu')(v)_{\mid p},$$
 * if $p$ is odd, then $$\enc(\mu)(v)_{\mid p} < \enc(\mu')(v)_{\mid p}.$$
