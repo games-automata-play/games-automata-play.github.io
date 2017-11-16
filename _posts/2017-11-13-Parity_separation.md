@@ -132,7 +132,7 @@ We do not know of any non-convoluted way to prove one property using the other.
 
 
 ### <a name="succinct_progress">The succinct progress measure algorithm</a>
-The fact that the succinct progress measures form a solution of the separation problem was not known before this post, to the best of the author's knowledge.
+The fact that the succinct progress measures form a solution of the separation problem was not explicitely stated before this post, to the best of the author's knowledge.
 
 Before constructing the automaton, we give some intuitions.
 The small progress measure algorithm manipulates functions $\mu : V \to \set{0,\ldots,n}^{\frac{d}{2}}$, 
@@ -142,7 +142,7 @@ Hence we can encode them in a more succinct way supporting *only* this feature.
 
 Let $k = \lceil \log(n) \rceil$ and $S_{n,d}$ the set of $\frac{d}{2}$-tuples of binary strings whose total length is at most $k$.
 The components are numbered $1,3,\ldots,d-1$.
-For a tuple $x$ and a priority $p$, we let $x(p)$ denote the $p$ component of $x$ and $x_{\mid p}$ the tuple restricted to the components larger than $p$.
+For a tuple $x$ and a priority $p$, we let $x(p)$ denote the $p$ component of $x$ and $x_{\mid p}$ the tuple restricted to the components larger than or equal to $p$.
 We order binary strings as follows: 
 $$ 
 0 s < \varepsilon \qquad ; \qquad \varepsilon <\ 1 s \qquad ; \qquad b s <\ b s' \Longleftrightarrow s <\ s'.
@@ -154,10 +154,13 @@ The following lemma is the key technical tool of the [original paper](https://ar
 
 **Lemma (specialised succinct tree coding).**
 There exists a function $\enc$ taking as input a function $\mu : V \to \set{0,\ldots,n}^{\frac{d}{2}}$
-and outputting a function $u : V \to S_{n,d}$ such that the ordered trees are preserved:
-for $v,v'$ and $p$, we have $$\mu(v)_{\mid p} \le \mu(v')_{\mid p}$$ if, and only if, $$u(v)_{\mid p} \le u(v')_{\mid p}$$.
+and outputting a function $\enc(\mu) : V \to S_{n,d}$ such that:
 
-
+for $\mu$, $v, v'$, we have 
+$$\enc(\mu)(v') \le \end(\delta(\mu,v))(v'),$$
+and if $v$ has priority $p$,
+* if $p$ is even, then $$\enc(\mu)(v)_{\mid p} \le \enc(\mu')(v)_{\mid p},$$
+* if $p$ is odd, then $$\enc(\mu)(v)_{\mid p} < \enc(\mu')(v)_{\mid p}.$$
 
 We construct a (deterministic) safe automaton recognising a language $L$ solving the separation problem.
 The set states of the automaton is $S_{n,d}$.
@@ -186,9 +189,19 @@ Consider now the largest priority appearing infinitely many times, and assume it
 and from some point on they induce an increase in the corresponding tuple, which eventually results in the automaton rejecting.
 
 We now prove the first item. 
-It follows from the following observation: 
-let $\mu : V \to \set{0,\ldots,n}^{\frac{d}{2}}$, we have
+It follows from this observation: 
+let $\mu : V \to \set{0,\ldots,n}^{\frac{d}{2}}$ and a vertex $v$, we have
 $$\deltasucc(\enc(\mu),v) \le \enc(\delta(\mu,v)).$$
+
+<!--
+This is a purely symbolic proof, which follows  Assume that $v$ has priority $p$, and let us consider the case where $p$ is even.
+It is enough to show that for all $v'$, we have 
+$$\enc(\mu)(v')_{\mid p} \le \enc(\delta(\mu,v))(v')_{\mid p}.$$
+This is equivalent to 
+$$\mu(v')_{\mid p} \le \delta(\mu,v)(v')_{\mid p},$$
+which holds by definition of $\delta$.
+The same proof applies to the case where $p$ is odd, with strict inequalities.
+-->
 
 This implies that $\deltasucc(w) \le \enc(\delta(w))$.
 Hence if $w$ is accepted by the automaton using small progress measures, then it is accepted by the automaton using succinct progress measures,
@@ -222,10 +235,4 @@ The transition function is as follows: from the tuple $x$, reading a vertex $v$ 
 	* if either $i$ or $j$ is defined, the new tuple is obtaining by inserting $p$ in $\max(i,j)$ and emptying all smaller registers,
 	* if neither $i$ nor $j$ are defined, then reject.
 
-
-<!--
-### The succinct progress measure algorithm
-The fact that the succinct progress measures form a solution of the separation problem is not known, to the best of the author's knowledge.
-It does not seem to follow directly from the [original paper](https://arxiv.org/abs/1702.05051).
--->
 
