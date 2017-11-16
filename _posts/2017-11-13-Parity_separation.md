@@ -159,8 +159,8 @@ and outputting a function $\enc(\mu) : V \to S_{n,d}$ such that:
 for $\mu$, $v, v'$, we have 
 $$\enc(\mu)(v') \le \enc(\delta(\mu,v))(v'),$$
 and if $v$ has priority $p$,
-* if $p$ is even, then $$\enc(\mu)(v)_{\mid p} \le \enc(\mu)(v)_{\mid p},$$
-* if $p$ is odd, then $$\enc(\mu)(v)_{\mid p} < \enc(\mu)(v)_{\mid p}.$$
+* if $p$ is even, then $$\enc(\mu)(v')_{\mid p} \le \enc(\delta(\mu,v))(v')_{\mid p},$$
+* if $p$ is odd, then $$\enc(\mu)(v)_{\mid p} < \enc(\delta(\mu,v))(v')_{\mid p}.$$
 
 We construct a (deterministic) safe automaton recognising a language $L$ solving the separation problem.
 The set states of the automaton is $S_{n,d}$.
