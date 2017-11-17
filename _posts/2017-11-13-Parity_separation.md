@@ -64,7 +64,7 @@ The fact that the small progress measures form a solution of the separation prob
 [Permissive strategies: from parity games to safety games](www.labri.fr/perso/igw/Papers/igw-perm.ps).
 By essentially I mean that the separation problem is hinted at in the conclusion, but the definitions of $\text{AllEvenCycles}$ and $\text{AllOddCycles}$ do not appear.
 
-We give here a different proof; it is not fair to say that it is simpler, nor better. It is simply *different*.
+The proof we give here is not a direct adaptation of their proof. It is not fair to say that it is simpler, nor better. It is simply *different*.
 
 We construct a (deterministic) safe automaton recognising a language $L$ solving the separation problem.
 The states of the automaton are $d/2$-tuples of integers in $[n] = \set{0,\ldots,n}$,
