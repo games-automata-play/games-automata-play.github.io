@@ -11,6 +11,7 @@ MathJax.Hub.Config({
     Macros: {
       enc: "{\\text{enc}}",
       deltasucc: "{\\delta_{\\text{succ}}}",
+      last: "{\\text{last}}",
     }
   }
 });
@@ -66,7 +67,7 @@ They indeed hint at the separation problem in the conclusion.
 We give here a different proof; it is not fair to say that it is simpler, nor better. It is simply *different*.
 
 We construct a (deterministic) safe automaton recognising a language $L$ solving the separation problem.
-The states of the automaton are $d/2$-tuples of integers in the range $0,\ldots,n$,
+The states of the automaton are $d/2$-tuples of integers in $[n] = \set{0,\ldots,n}$,
 they are numbered $1,3,\ldots,d-1$.
 For a tuple $x$ and a priority $p$, we let $x(p)$ denote the $p$ component of $x$.
 The initial state is the tuple containing only $0$, written $x_0$.
@@ -116,11 +117,11 @@ The original proof of correctness of the small progress measure algorithm differ
 
 For all games with $n$ vertices and $d$ priorities, 
 Eve wins, if, and only if, 
-there exists a progress measure, which is a function $\mu : V \to \set{0,\ldots,n}^{\frac{d}{2}}$ such that for all $v$ of priority $p$:
+there exists a progress measure, which is a (partial) function $\mu : V \to [n]^{\frac{d}{2}}$ such that for all $v$ of priority $p$:
 * if $v$ belongs to Eve, there exists $(v,v') \in E$ such that 
-$$\mu(v)_{\mid p} \le \delta(\mu(v),v')_{\mid p},$$
+$$\mu(v)_{\mid p} \le \mu(v')_{\mid p},$$
 * if $v$ belongs to Adam, for all $(v,v') \in E$ we have 
-$$\mu(v)_{\mid p} \le \delta(\mu(v),v')_{\mid p}.$$
+$$\mu(v)_{\mid p} \le \mu(v')_{\mid p}.$$
 
 We see this as a **global** property, as opposed to the **local** (and dynamic) property $\text{AllEvenCycles} \subseteq L$.
 We do not know of any non-convoluted way to prove one property using the other.
@@ -135,8 +136,8 @@ We do not know of any non-convoluted way to prove one property using the other.
 The fact that the succinct progress measures form a solution of the separation problem was not explicitely stated before this post, to the best of the author's knowledge.
 
 Before constructing the automaton, we give some intuitions.
-The small progress measure algorithm manipulates functions $\mu : V \to \set{0,\ldots,n}^{\frac{d}{2}}$, 
-which can be seen as trees of depth $\frac{d}{2}$ and branching directions $\set{0,\ldots,n}$, where the leaves are labeled by vertices.
+The small progress measure algorithm manipulates functions $\mu : V \to [n]^{\frac{d}{2}}$, 
+which can be seen as trees of depth $\frac{d}{2}$ and branching directions $[n]$, where the leaves are labeled by vertices.
 The *key* observation of Jurdzi&#324;ski and Lazi&#263; is that these trees are *only* used for lexicographic comparisons.
 Hence we can encode them in a more succinct way supporting *only* this feature.
 
@@ -151,16 +152,15 @@ $$
 We extend this order into a lexicographical order for tuples, written $\le$ and $<$ for the strict version.
 
 The following lemma is the key technical tool of the [original paper](https://arxiv.org/abs/1702.05051).
+We state here a specialised form, fitting only the purposes of this post.
 
-**Lemma (specialised succinct tree coding).**
-There exists a function $\enc$ taking as input a function $\mu : V \to \set{0,\ldots,n}^{\frac{d}{2}}$
+**Lemma (succinct tree coding).**
+There exists a function $\enc$ taking as input a function $\mu : V \to [n]^{\frac{d}{2}}$
 and outputting a function $\enc(\mu) : V \to S_{n,d}$ such that:
 
-for $\mu$, $v, v'$, we have 
-$$\enc(\mu)(v') \le \enc(\delta(\mu,v))(v'),$$
-and if $v$ has priority $p$,
-* if $p$ is even, then $$\enc(\mu)(v)_{\mid p} \le \enc(\delta(\mu,v))(v)_{\mid p},$$
-* if $p$ is odd, then $$\enc(\mu)(v)_{\mid p} < \enc(\delta(\mu,v))(v)_{\mid p}.$$
+for $\mu$, $v, v'$, if $v$ has priority $p$, we have
+if $$\mu(v)_{\mid p} \le \mu(v')_{\mid p}$$, then $$\enc(\mu)(v)_{\mid p} \le \enc(\mu)(v')_{\mid p},$$
+and the same for strict inequalities.
 
 We construct a (deterministic) safe automaton recognising a language $L$ solving the separation problem.
 The set states of the automaton is $S_{n,d}$.
@@ -188,12 +188,30 @@ it follows from the observation that if $w$ is an odd cycle, then $x_{\mid p} < 
 Consider now the largest priority appearing infinitely many times, and assume it is odd: there are infinitely many odd cycles with this priority, 
 and from some point on they induce an increase in the corresponding tuple, which eventually results in the automaton rejecting.
 
-We now prove the first item. 
-It follows from this observation: 
-let $\mu : V \to \set{0,\ldots,n}^{\frac{d}{2}}$ and a vertex $v$, we have
-$$\deltasucc(\enc(\mu),v) \le \enc(\delta(\mu,v)).$$
+We now prove the first item. Recall that:
+* $$\delta : [n]^{\frac{d}{2}} \times V \to [n]^{\frac{d}{2}}$$, inducing $$\delta : V^* \to [n]^{\frac{d}{2}}$$,
+* $$\deltasucc : S_{n,d} \times V \to S_{n,d}$$, inducing $$\deltasucc : V^* \to S_{n,d}$$.
+
+We define $\delta^* : (V \to n^{\frac{d}{2}}) \times V \to (V \to n^{\frac{d}{2}})$ as follows:
+
+$\delta(\mu,v)(v') = \mu(v')$ if $v' \neq v$, and $\delta(\mu(v),v')$ otherwise.
+
+This induces a function $\delta^* : V^* \to (V \to n^{\frac{d}{2}})$.
+
+We claim that for a function $\mu : V \to [n]^{\frac{d}{2}}$ and two vertices $v,v'$, we have
+$$\deltasucc(\enc(\mu)(v'),v) \le \enc(\delta^*(\mu,v))(v').$$
+
+Indeed, if $v$ has priority $p$, then it follows from the inequality (strict if $p$ is odd)
+$$\mu(v')_{\mid p} \le \delta^*(\mu,v)(v')_{\mid p},$$
+which holds by definition of $\delta^*$.
 
 <!--
+\delta(w_v)$, where $w_v$ is the longest prefix of $w$ finishing in $v$.
+
+We need to extend the definition of $\deltasucc$: let $m : V \to S_{n,d}$,
+define $\deltasucc(m,v) : V \to S_{n,d}$ by
+$$\deltasucc(m,v)(v') = m(v')$$ if $v' \neq v$ and $$\deltasucc(m,v)(v) = \deltasucc(m(v),v)$$.
+
 This is a purely symbolic proof, which follows  Assume that $v$ has priority $p$, and let us consider the case where $p$ is even.
 It is enough to show that for all $v'$, we have 
 $$\enc(\mu)(v')_{\mid p} \le \enc(\delta(\mu,v))(v')_{\mid p}.$$
@@ -203,7 +221,7 @@ which holds by definition of $\delta$.
 The same proof applies to the case where $p$ is odd, with strict inequalities.
 -->
 
-This implies that $\deltasucc(w) \le \enc(\delta(w))$.
+This implies that $\deltasucc(w) \le \enc(\delta^*(w))(\last(w))$, where $\last(w)$ is the last vertex in $w$.
 Hence if $w$ is accepted by the automaton using small progress measures, then it is accepted by the automaton using succinct progress measures,
 which concludes the proof.
 
