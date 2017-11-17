@@ -60,9 +60,9 @@ Since solving a safety done can be done in linear time, this gives an algorithm 
 
 
 ### <a name="small_progress">The small progress measure algorithm</a>
-The fact that the small progress measures form a solution of the separation problem is due to Julien Bernet, David Janin, and Igor Walukiewicz, in the paper 
+The fact that the small progress measures form a solution of the separation problem was essentially shown by Julien Bernet, David Janin, and Igor Walukiewicz, in the paper 
 [Permissive strategies: from parity games to safety games](www.labri.fr/perso/igw/Papers/igw-perm.ps).
-They indeed hint at the separation problem in the conclusion.
+By essentially I mean that the separation problem is hinted at in the conclusion, but the definitions of $\text{AllEvenCycles}$ and $\text{AllOddCycles}$ do not appear.
 
 We give here a different proof; it is not fair to say that it is simpler, nor better. It is simply *different*.
 
@@ -205,22 +205,6 @@ Indeed, if $v$ has priority $p$, then it follows from the inequality (strict if 
 $$\mu(v')_{\mid p} \le \delta^*(\mu,v)(v')_{\mid p},$$
 which holds by definition of $\delta^*$.
 
-<!--
-\delta(w_v)$, where $w_v$ is the longest prefix of $w$ finishing in $v$.
-
-We need to extend the definition of $\deltasucc$: let $m : V \to S_{n,d}$,
-define $\deltasucc(m,v) : V \to S_{n,d}$ by
-$$\deltasucc(m,v)(v') = m(v')$$ if $v' \neq v$ and $$\deltasucc(m,v)(v) = \deltasucc(m(v),v)$$.
-
-This is a purely symbolic proof, which follows  Assume that $v$ has priority $p$, and let us consider the case where $p$ is even.
-It is enough to show that for all $v'$, we have 
-$$\enc(\mu)(v')_{\mid p} \le \enc(\delta(\mu,v))(v')_{\mid p}.$$
-This is equivalent to 
-$$\mu(v')_{\mid p} \le \delta(\mu,v)(v')_{\mid p},$$
-which holds by definition of $\delta$.
-The same proof applies to the case where $p$ is odd, with strict inequalities.
--->
-
 This implies that $\deltasucc(w) \le \enc(\delta^*(w))(\last(w))$, where $\last(w)$ is the last vertex in $w$.
 Hence if $w$ is accepted by the automaton using small progress measures, then it is accepted by the automaton using succinct progress measures,
 which concludes the proof.
@@ -237,7 +221,7 @@ which concludes the proof.
 ### <a name="power_counting">The power counting algorithm</a>
 The second point has been worked out by Miko&#322;aj Boja&#324;czyk and Wojtek Czerwi&#324;ski in their lecture notes
 [An automata toolbox](https://www.mimuw.edu.pl/~bojan/20172018-2/advanced-topics-in-automata-20172018-jezyki-automaty-i-obliczenia-2).
-Unfortunately, they make the assumption that $n = d$. We explain how to adapt the construction of the automaton. The proof applies *mutatis mutandis*.
+They make the assumption that $n = d$. We explain how to adapt the construction of the automaton. The proof applies *mutatis mutandis*.
 
 We construct a (deterministic) safe automaton recognising a language $L$ solving the separation problem.
 Let $k$ such that $2^k > n$, *i.e.* $k = \lceil \log(n) \rceil + 1$. 
