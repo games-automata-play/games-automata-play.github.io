@@ -9,8 +9,8 @@ title: Your New Jekyll Site
     {% for post in site.posts %}
       <li>
       	<span class="date">{{ post.date | date_to_string }}</span>
-	<p> by <span class="author">{{ post.author }}</span> </p>
       	<h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+        <span class="date">{{ post.author }}</span>
       	<p class="description">{% if post.description %}{{ post.description  | strip_html | strip_newlines | truncate: 120 }}{% else %}{{ post.content | strip_html | strip_newlines | truncate: 120 }}{% endif %}</p>
       </li>
     {% endfor %}
