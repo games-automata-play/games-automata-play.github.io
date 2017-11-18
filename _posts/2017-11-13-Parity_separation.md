@@ -178,7 +178,7 @@ The extra technical bit in this post is the following lemma, showing the interpl
 **Lemma (succinct tree coding and update).**
 For $\mu$, $v,v'$, with $v$ of priority $p$,
 * if $p$ is even, then $$\enc(\mu)(v') \le_p \enc(\delta(\mu,v))(v'),$$
-* if $p$ is odd, then $$\enc(\mu)(v') <\_p \enc(\delta(\mu,v))(v').$$
+* if $p$ is odd, then $$\enc(\mu)(v') <\_p\  \enc(\delta(\mu,v))(v').$$
 
 **Proof:**
 We sketch the proof. 
