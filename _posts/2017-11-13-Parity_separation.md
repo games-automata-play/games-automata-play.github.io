@@ -201,7 +201,13 @@ This induces a function $\delta^* : V^* \to (V \to n^{\frac{d}{2}})$.
 We claim that for a function $\mu : V \to [n]^{\frac{d}{2}}$ and two vertices $v,v'$, we have
 $$\deltasucc(\enc(\mu)(v'),v) \le \enc(\delta^*(\mu,v))(v').$$
 
-Indeed, if $v$ has priority $p$, then it follows from the inequality (strict if $p$ is odd)
+Indeed, let us say that $v$ has priority $p$. We start with the case where $p$ is even; the case where $p$ is odd is the same,
+with strict inequalities.
+By definition $$\deltasucc(\enc(\mu)(v'),v)$$ is the smallest $x$ in $S_{n,d}$ such that
+$$\enc(\mu)(v')_{\mid p} \le x_{\mid p}.$$
+It follows that to prove the inequality above it is enough to show that
+$$\enc(\mu)(v')_{\mid p} \le \enc(\delta^*(\mu,v))(v')_{\mid p}.$$
+By definition of the encoding, this is implied by
 $$\mu(v')_{\mid p} \le \delta^*(\mu,v)(v')_{\mid p},$$
 which holds by definition of $\delta^*$.
 
