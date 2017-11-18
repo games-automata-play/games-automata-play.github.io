@@ -225,7 +225,7 @@ which concludes the proof.
 
 
 ### <a name="power_counting">The power counting algorithm</a>
-The second point has been worked out by Miko&#322;aj Boja&#324;czyk and Wojtek Czerwi&#324;ski in their lecture notes
+The last point has been worked out by Miko&#322;aj Boja&#324;czyk and Wojtek Czerwi&#324;ski in their lecture notes
 [An automata toolbox](https://www.mimuw.edu.pl/~bojan/20172018-2/advanced-topics-in-automata-20172018-jezyki-automaty-i-obliczenia-2).
 They make the assumption that $n = d$. We explain how to adapt the construction of the automaton. The proof applies *mutatis mutandis*.
 
