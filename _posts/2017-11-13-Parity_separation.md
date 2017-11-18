@@ -71,28 +71,30 @@ The states of the automaton are $d/2$-tuples of integers in $[n] = \set{0,\ldots
 they are numbered $1,3,\ldots,d-1$.
 For a tuple $x$ and a priority $p$, we let $x(p)$ denote the $p$ component of $x$.
 The initial state is the tuple containing only $0$, written $x_0$.
-We order tuples lexicographically, and use the notation $x_{\mid p}$ for the tuple with components larger than or equal to $p$. 
+We order tuples lexicographically; more precisely, we let $$\le_p$$ denote the lexicographic order restricted to the components larger than or equal to $p$,
+and $<\_p$ the strict version. The order $\le_p$ is called the $p$-order.
 The transition function is as follows: from the tuple $x$, reading a vertex $v$ of priority $p$, the next tuple $x'$
 is the smallest satisfying: 
-* if $p$ is even, then $x_{\mid p} \le x'_{\mid p}$,
-* if $p$ is odd, then $x_{\mid p} < x'_{\mid p}$.
+* if $p$ is even, then $x \le_p x'$,
+* if $p$ is odd, then $x <\_p x'$.
 
 A more mechanistic definition is as follows: 
 * if $p$ is even, then the new tuple is the same as $x$, but all priorities smaller than $p$ are reset to $0$,
 * if $p$ is odd, then the new tuple is the same as $x$, but the $p$ component is incremented by $1$ and all priorities smaller than $p$ are reset to $0$.
 If a component cannot be incremented, it is reset, and the component just above is incremented. If no components can be incremented, the automaton rejects.
 
-The automaton is safe: all states are accepting, and if a transition is undefined, the automaton rejects.
-
+Formally, the transition function is $$\delta : [n]^{\frac{d}{2}} \times V \to [n]^{\frac{d}{2}}$$, inducing $$\delta : V^* \to [n]^{\frac{d}{2}}$$.
 For a word $w$ and a tuple $x$, we let $\delta(x,w)$ denote the tuple reached after reading $w$ from $x$, if defined.
 Then, $\delta(w)$ is $\delta(x_0,w)$.
+
+The automaton is safe: all states are accepting, and if a transition is undefined, the automaton rejects.
 
 **Lemma:**
 1. $\text{AllEvenCycles} \subseteq L$
 2. $L \cap \text{AllOddCycles} = \emptyset$
 
 **Proof:**
-We start by proving the second item: it follows from the well known observation that if $w$ is an odd cycle, then $x_{\mid p} < \delta(x,w)_{\mid p}$.
+We start by proving the second item: it follows from the well known observation that if $w$ is an odd cycle, then $x <\_p \delta(x,w)$.
 Indeed, along the cycle the $p$ component is either not touched, when a lower priority is visited, or incremented.
 Consider now the largest priority appearing infinitely many times, and assume it is odd: there are infinitely many odd cycles with this priority, 
 and from some point on they induce an increase in the corresponding tuple, which eventually results in the automaton rejecting.
@@ -119,9 +121,9 @@ For all games with $n$ vertices and $d$ priorities,
 Eve wins, if, and only if, 
 there exists a progress measure, which is a (partial) function $\mu : V \to [n]^{\frac{d}{2}}$ such that for all $v$ of priority $p$:
 * if $v$ belongs to Eve, there exists $(v,v') \in E$ such that 
-$$\mu(v)_{\mid p} \le \mu(v')_{\mid p},$$
+$$\mu(v) \le_p \mu(v'),$$
 * if $v$ belongs to Adam, for all $(v,v') \in E$ we have 
-$$\mu(v)_{\mid p} \le \mu(v')_{\mid p}.$$
+$$\mu(v) \le_p \mu(v').$$
 
 We see this as a **global** property, as opposed to the **local** (and dynamic) property $\text{AllEvenCycles} \subseteq L$.
 We do not know of any non-convoluted way to prove one property using the other.
@@ -143,35 +145,62 @@ Hence we can encode them in a more succinct way supporting *only* this feature.
 
 Let $k = \lceil \log(n) \rceil$ and $S_{n,d}$ the set of $\frac{d}{2}$-tuples of binary strings whose total length is at most $k$.
 The components are numbered $1,3,\ldots,d-1$.
-For a tuple $x$ and a priority $p$, we let $x(p)$ denote the $p$ component of $x$ and $x_{\mid p}$ the tuple restricted to the components larger than or equal to $p$.
+For a tuple $x$ and a priority $p$, we let $x(p)$ denote the $p$ component of $x$.
 We order binary strings as follows: 
 $$ 
 0 s < \varepsilon \qquad ; \qquad \varepsilon <\ 1 s \qquad ; \qquad b s <\ b s' \Longleftrightarrow s <\ s'.
 $$
 
-We extend this order into a lexicographical order for tuples, written $\le$ and $<$ for the strict version.
+We extend this order into a lexicographical order for tuples; more precisely we let $$\le_p$$ denote the lexicographic order restricted to the components larger than or equal to $p$,
+and $<\_p$ the strict version. The order $\le_p$ is called the $p$-order.
 
 The following lemma is the key technical tool of the [original paper](https://arxiv.org/abs/1702.05051).
-We state here a specialised form, fitting only the purposes of this post.
 
 **Lemma (succinct tree coding).**
 There exists a function $\enc$ taking as input a function $\mu : V \to [n]^{\frac{d}{2}}$
-and outputting a function $\enc(\mu) : V \to S_{n,d}$ such that:
-
+and outputting a function $\enc(\mu) : V \to S_{n,d}$ such that all $p$-orders are preserved:
 for $\mu$, $v, v'$ and a priority $p$, we have
-if $$\mu(v)_{\mid p} \le \mu(v')_{\mid p}$$, then $$\enc(\mu)(v)_{\mid p} \le \enc(\mu)(v')_{\mid p},$$
-and the same for strict inequalities.
+$$\mu(v) \le_p \mu(v')$$ if, anf only if, $$\enc(\mu)(v) \le_p \enc(\mu)(v').$$
+
+**Proof:**
+We sketch the proof, which works by induction on $d$ and $n$.
+Choose a branching direction $i \in [n]$ such that:
+* the set $V_{<}$ of vertices $v$ such that $\mu(v)(d-1) <\ i$ has size at most $\frac{n}{2}$, and
+* the set $V_{>}$ of vertices $v$ such that $\mu(v)(d-1) >\ i$ has size at most $\frac{n}{2}$.
+
+Let $V_{=}$ the set of vertices such that $\mu(v)(d-1) = i$.
+By induction hypothesis, we obtain encodings for the subtrees with leaves $V_{<}$ and $V_{>}$, 
+as well as the subtree of direction $i$ (which has depth one less) whose leaves are $V_{=}$.
+The encoding is obtained by prefixing the encoding for $V_{<}$ by $0$ and the encoding for $V_{>}$ by $1$, keeping the encoding for $V_{=}$ unchanged.
+
+The extra technical bit in this post is the following lemma, showing the interplay between succinct tree coding and updating.
+
+**Lemma (succinct tree coding and update).**
+For $\mu$, $v,v'$, with $v$ of priority $p$,
+we have $$\enc(\mu)(v') \le_p \enc(\delta(\mu,v))(v')$$.
+
+**Proof:**
+We sketch the proof. 
+In the case where $p$ is even, the $p$-orders of $\mu$ and $\delta(\mu,v)$ are identical, so when applying the succinct encoding,
+the branching directions down to $p$ chosen for $\delta(\mu,v)$ and for $\mu$ are the same, which implies the result.
+
+If $p$ is odd, the $p$-orders slightly differ: $v$ is shifted to the right.
+This implies that when applying the succinct encoding, the branching directions down to $p$ 
+chosen for $\delta(\mu,v)$ is greater than or equal to the one chosen for $\mu$.
+
 
 We construct a (deterministic) safe automaton recognising a language $L$ solving the separation problem.
 The set states of the automaton is $S_{n,d}$.
 The initial state is the tuple containing only $\varepsilon$, written $x_0$.
 The transition function is defined exactly as for small progress measures: from the tuple $x$, reading a vertex $v$ of priority $p$, the next tuple $x'$
 is the smallest satisfying: 
-* if $p$ is even, then $x_{\mid p} \le x'_{\mid p}$,
-* if $p$ is odd, then $x_{\mid p} < x'_{\mid p}$.
+* if $p$ is even, then $x \le_p x'$,
+* if $p$ is odd, then $x <\_p x'$.
 
 A more mechanistic point of view can be derived from this definition. Because of the condition that the total number of bits is $\log(n)$,
 this is a bit tedious, see the [original paper](https://arxiv.org/abs/1702.05051).
+
+Formally, the transition function is $$\deltasucc : S_{n,d} \times V \to S_{n,d}$$, inducing $$\deltasucc : V^* \to S_{n,d}$$.
 
 The automaton is safe: all states are accepting, and if a transition is undefined the automaton rejects.
 
@@ -184,19 +213,16 @@ Then, $\deltasucc(w)$ is $\deltasucc(x_0,w)$.
 
 **Proof:**
 We start by proving the second item: the proof is exactly as in the case of small progress measures, 
-it follows from the observation that if $w$ is an odd cycle, then $x_{\mid p} < \deltasucc(x,w)_{\mid p}$.
+it follows from the observation that if $w$ is an odd cycle, then $x <\_p \deltasucc(x,w)$.
 Consider now the largest priority appearing infinitely many times, and assume it is odd: there are infinitely many odd cycles with this priority, 
 and from some point on they induce an increase in the corresponding tuple, which eventually results in the automaton rejecting.
 
-We now prove the first item. Recall that:
-* $$\delta : [n]^{\frac{d}{2}} \times V \to [n]^{\frac{d}{2}}$$, inducing $$\delta : V^* \to [n]^{\frac{d}{2}}$$,
-* $$\deltasucc : S_{n,d} \times V \to S_{n,d}$$, inducing $$\deltasucc : V^* \to S_{n,d}$$.
+We now prove the first item.
 
-We define $\delta^* : (V \to n^{\frac{d}{2}}) \times V \to (V \to n^{\frac{d}{2}})$ as follows:
-
+Recall that $$\delta : [n]^{\frac{d}{2}} \times V \to [n]^{\frac{d}{2}}.$$
+We define $\delta^* : (V \to [n]^{\frac{d}{2}}) \times V \to (V \to [n]^{\frac{d}{2}})$ as follows:
 $\delta(\mu,v)(v') = \mu(v')$ if $v' \neq v$, and $\delta(\mu(v),v')$ otherwise.
-
-This induces a function $\delta^* : V^* \to (V \to n^{\frac{d}{2}})$.
+This induces a function $\delta^* : V^* \to (V \to [n]^{\frac{d}{2}})$.
 
 We claim that for a function $\mu : V \to [n]^{\frac{d}{2}}$ and two vertices $v,v'$, we have
 $$\deltasucc(\enc(\mu)(v'),v) \le \enc(\delta^*(\mu,v))(v').$$
@@ -204,12 +230,10 @@ $$\deltasucc(\enc(\mu)(v'),v) \le \enc(\delta^*(\mu,v))(v').$$
 Indeed, let us say that $v$ has priority $p$. We start with the case where $p$ is even; the case where $p$ is odd is the same,
 with strict inequalities.
 By definition $$\deltasucc(\enc(\mu)(v'),v)$$ is the smallest $x$ in $S_{n,d}$ such that
-$$\enc(\mu)(v')_{\mid p} \le x_{\mid p}.$$
+$$\enc(\mu)(v') \le_p x.$$
 It follows that to prove the inequality above it is enough to show that
-$$\enc(\mu)(v')_{\mid p} \le \enc(\delta^*(\mu,v))(v')_{\mid p}.$$
-By definition of the encoding, this is implied by
-$$\mu(v')_{\mid p} \le \delta^*(\mu,v)(v')_{\mid p},$$
-which holds by definition of $\delta^*$.
+$$\enc(\mu)(v') \le_p \enc(\delta^*(\mu,v))(v'),$$
+which is precisely the statement of the lemma above.
 
 This implies that $\deltasucc(w) \le \enc(\delta^*(w))(\last(w))$, where $\last(w)$ is the last vertex in $w$.
 Hence if $w$ is accepted by the automaton using small progress measures, then it is accepted by the automaton using succinct progress measures,
