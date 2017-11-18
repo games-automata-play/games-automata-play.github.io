@@ -158,7 +158,7 @@ We state here a specialised form, fitting only the purposes of this post.
 There exists a function $\enc$ taking as input a function $\mu : V \to [n]^{\frac{d}{2}}$
 and outputting a function $\enc(\mu) : V \to S_{n,d}$ such that:
 
-for $\mu$, $v, v'$, if $v$ has priority $p$, we have
+for $\mu$, $v, v'$ and a priority $p$, we have
 if $$\mu(v)_{\mid p} \le \mu(v')_{\mid p}$$, then $$\enc(\mu)(v)_{\mid p} \le \enc(\mu)(v')_{\mid p},$$
 and the same for strict inequalities.
 
