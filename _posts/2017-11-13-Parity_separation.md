@@ -163,31 +163,53 @@ for $\mu$, $v, v'$ and a priority $p$, we have
 $$\mu(v) \le_p \mu(v')$$ if, anf only if, $$\enc(\mu)(v) \le_p \enc(\mu)(v').$$
 
 **Proof:**
-We sketch the proof, which works by induction on $d$ and $n$.
-Choose a branching direction $i \in [n]$ such that:
+This is the [original proof](https://arxiv.org/abs/1702.05051) by induction on $n$ and $d$. 
+In this proof it is more convenient to talk about trees than functions.
+
+Let $\mu$ be a tree with $n$ leaves and depth $d$.
+Choose the smallest branching direction $i \in [n]$ such that:
 * the set $V_{<}$ of vertices $v$ such that $\mu(v)(d-1) <\ i$ has size at most $\frac{n}{2}$, and
 * the set $V_{>}$ of vertices $v$ such that $\mu(v)(d-1) >\ i$ has size at most $\frac{n}{2}$.
 
 Let $V_{=}$ the set of vertices such that $\mu(v)(d-1) = i$.
-By induction hypothesis, we obtain encodings for the subtrees with leaves $V_{<}$ and $V_{>}$, 
-as well as the subtree of direction $i$ (which has depth one less) whose leaves are $V_{=}$.
-The encoding is obtained by prefixing the encoding for $V_{<}$ by $0$ and the encoding for $V_{>}$ by $1$, keeping the encoding for $V_{=}$ unchanged.
+We consider three subtrees:
+* the subtree with leaves $V_{<}$,
+* the subtree with leaves $V_{>}$,
+* the subtree with leaves $V_{=}$ rooted in the node $i$.
+
+By induction hypothesis, we obtain encodings for these tree subtrees.
+The encoding for the original tree is obtained by prefixing the encoding for $V_{<}$ by $0$ and the encoding for $V_{>}$ by $1$, 
+encoding $i$ by $\varepsilon$ and keeping the encoding for $V_{=}$ unchanged.
+We say that $t$ is (succinctly) encoded by cutting along direction $i$.
+
 
 The extra technical bit in this post is the following lemma, showing the interplay between succinct tree coding and updating.
+Recall that $$\delta : [n]^{\frac{d}{2}} \times V \to [n]^{\frac{d}{2}}.$$
+
+We define $\delta^* : (V \to [n]^{\frac{d}{2}}) \times V \to (V \to [n]^{\frac{d}{2}})$ as follows:
+$\delta(\mu,v)(v') = \mu(v')$ if $v' \neq v$, and $\delta(\mu(v),v')$ otherwise.
+This induces a function $\delta^* : V^* \to (V \to [n]^{\frac{d}{2}})$.
 
 **Lemma (succinct tree coding and update).**
 For $\mu$, $v,v'$, with $v$ of priority $p$,
+We have $$\enc(\mu)(v') \le_p \enc(\delta(\mu,v))(v').$$
+
+<!--
 * if $p$ is even, then $$\enc(\mu)(v') \le_p \enc(\delta(\mu,v))(v'),$$
-* if $p$ is odd, then $$\enc(\mu)(v') <\_p\  \enc(\delta(\mu,v))(v').$$
+* if $p$ is odd, then $\enc(\mu)(v') <\_{p}  \enc(\delta(\mu,v))(v').$
+-->
 
 **Proof:**
-We sketch the proof. 
-In the case where $p$ is even, the $p$-orders of $\mu$ and $\delta(\mu,v)$ are identical, so when applying the succinct encoding,
-the branching directions down to $p$ chosen for $\delta(\mu,v)$ and for $\mu$ are the same, which implies the result.
+We succinctly encode in parallel $\mu$ and $\delta(\mu,v)$, and reason by induction on the depth, starting from $d-1$ down to $p$.
 
-If $p$ is odd, the $p$-orders slightly differ: $v$ is shifted to the right.
-This implies that when applying the succinct encoding, the branching directions down to $p$ 
-chosen for $\delta(\mu,v)$ is greater than or equal to the one chosen for $\mu$.
+We first observe that if $\mu$ is cut along direction $i$ and $\delta(\mu,v)$ along direction $j$, then $i \le j$,
+since the only difference between $\mu$ and $\delta(\mu,v)$ is that $v$ has been pushed to the right in $\delta(\mu,v)$.
+Now there are two cases:
+* either $v'$ belongs to the same subtrees in both encodings, *i.e.* for instance in the subtree with leaves $V_{<}$ in both cases, then we continue by induction in this subtree.
+* or $v'$ belongs to $V_{<}$ for $\mu$ and $V_{=}$ or $V_{>}$ for $\delta(\mu,v)$ (similar case: $v'$ belongs to $V_{=}$ for $\mu$ and $V_{>}$ for $\delta(\mu,v)$), 
+which implies that $\enc(\mu)(v') <\_{p}  \enc(\delta(\mu,v))(v').$
+
+If we go past depth $p$, then $\enc(\mu)(v') =\_{p}  \enc(\delta(\mu,v))(v').$
 
 
 We construct a (deterministic) safe automaton recognising a language $L$ solving the separation problem.
@@ -219,17 +241,10 @@ Consider now the largest priority appearing infinitely many times, and assume it
 and from some point on they induce an increase in the corresponding tuple, which eventually results in the automaton rejecting.
 
 We now prove the first item.
-
-Recall that $$\delta : [n]^{\frac{d}{2}} \times V \to [n]^{\frac{d}{2}}.$$
-We define $\delta^* : (V \to [n]^{\frac{d}{2}}) \times V \to (V \to [n]^{\frac{d}{2}})$ as follows:
-$\delta(\mu,v)(v') = \mu(v')$ if $v' \neq v$, and $\delta(\mu(v),v')$ otherwise.
-This induces a function $\delta^* : V^* \to (V \to [n]^{\frac{d}{2}})$.
-
 We claim that for a function $\mu : V \to [n]^{\frac{d}{2}}$ and two vertices $v,v'$, we have
 $$\deltasucc(\enc(\mu)(v'),v) \le \enc(\delta^*(\mu,v))(v').$$
 
-Indeed, let us say that $v$ has priority $p$. We start with the case where $p$ is even; the case where $p$ is odd is the same,
-with strict inequalities.
+Indeed, let us say that $v$ has priority $p$.
 By definition $$\deltasucc(\enc(\mu)(v'),v)$$ is the smallest $x$ in $S_{n,d}$ such that
 $$\enc(\mu)(v') \le_p x.$$
 It follows that to prove the inequality above it is enough to show that
