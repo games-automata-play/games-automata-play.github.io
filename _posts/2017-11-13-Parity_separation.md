@@ -30,6 +30,7 @@ We define three languages:
 A language $L$ over finite words is **(topologically) closed** if for all words $u$ not in $L$, for all words $v$, we have that $uv$ is not in $L$.
 They are sometimes called *safe*, because they are recognised by *safe* automata: all states are accepting (with possibly undefined transitions).
 A closed language $L$ over finite words induces a language over infinite words, also written $L$, which is the set of infinite words such that all prefixes belong to $L$.
+Since $\text{AllEvenCycles}$ and $\text{AllOddCycles}$ are both closed, we will see them either as languages over finite words or infinite words.
  
 The separation problem reads: find a closed regular language $L \subseteq V^*$ such that
 
@@ -56,45 +57,48 @@ Since solving a safety done can be done in linear time, this gives an algorithm 
 2. the [succinct progress measure](#succinct_progress) of Jurdzi&#324;ski and Lazi&#263; is a solution of the separation problem with $\|L\| = O(n^{\log(d)})$,
 3. the [power counting](#power_counting) of Calude et al is a solution of the separation problem with $\|L\| = O(n^{\log(d)})$.
 
+## <a name="automaton">Constructing a totally ordered safe deterministic automaton</a>
 We can be a bit more precise: the three techniques can be seen as constructing a deterministic safe automaton with the following properties:
-the set of states $Q$ is equipped with a total order $\le$, and the transition function is $\delta : Q \times [1,d] \to Q$ such that:
-1. the initial state $q_0$ is the maximal state,
-2. $\delta(q,d) = q_0$,
-3. if $p,p'$ are odd priorities and $p <\ p'$, then $\delta(q,p') \le \delta(q,p)$,
-4. the automaton accepts $(d-1)^n$, where $(d-1)^n$ is a sequence of length $n$ of the maximal odd priority $d-1$,
-5. if $w$ is an odd loop, then $q > \delta(q,w)$.
+the set of states $Q$ is equipped with a total order $\le$, and the transition function is $\delta : Q \times [1,d] \to Q$ 
+(instead of $\delta : Q \times V \to Q$, *i.e.* the transition only depends on the priority) such that:
+1. $\delta(q,d) = q_0$,
+2. if $p,p'$ are odd priorities and $p <\ p'$, then $\delta(q,p') \le \delta(q,p)$,
+3. the automaton accepts $(d-1)^n$, where $(d-1)^n$ is a sequence of length $n$ of the maximal odd priority $d-1$,
+4. if $w$ is an odd loop, then $q > \delta(q,w)$.
 
-The initial state and the transition function induce $\delta : [1,d]^* \to Q$.
-For a word $w$ and a state $q$, we let $\delta(q,w)$ denote the state reached after reading $w$ from $q$, if defined.
-Then, $\delta(q)$ is $\delta(q_0,w)$.
+We used the following notations:
+* the initial state and the transition function induce $\delta : [1,d]^* \to Q$,
+* for a word $w$ and a state $q$, we let $\delta(q,w)$ denote the state reached after reading $w$ from $q$, if defined.
+
 Let $L$ be the language recognised by such an automaton.
 
 **Lemma:**
-* Property 1,2, and 3 imply that for a finite word $w \in \text{AllEvenCycles}$, we have $\delta(w) \ge \delta((d-1)^n)$.
-* Property 1,2, 3, and 4 imply that $\text{AllEvenCycles} \subseteq L$.
-* Property 5 implies that $L \cap \text{AllOddCycles} = \emptyset$, and even that $L \subseteq \text{Parity}$.
+* Property 1 and 2 imply that for a finite word $w \in \text{AllEvenCycles}$, we have $\delta(w) \ge \delta((d-1)^n)$.
+* Property 1,2, and 3 imply that $\text{AllEvenCycles} \subseteq L$.
+* Property 4 implies that $L \cap \text{AllOddCycles} = \emptyset$, and even that $L \subseteq \text{Parity}$.
 
 **Proof:**
 We show the first item by induction on $d$. We distinguish two cases:
 * If the maximal priority $d$ is even, then $w$ can be factorised into $w = w_1 v_1 w_2 v_2 \cdots$ such that the $v_i$'s have priority $d$ 
 and the $w_i$'s use priorities less than $d$. The $w_i$'s are in $\text{AllEvenCycles}$, so by induction hypothesis $\delta(w_i) \ge \delta((d-1)^n)$. 
-It follows from the properties 1 and 2 that $\delta(w) \ge \delta((d-1)^n)$.
+It follows from property 1 that $\delta(w) \ge \delta((d-1)^n)$.
 * If the maximal priority $d$ is odd, then $w$ can be factorised into $w = w_1 v_1 w_2 v_2 \cdots$ such that the $v_i$'s have priority $d$ 
 and the $w_i$'s use priorities less than $d$. In this case the vertices in $w_i$'s are pairwise disjoint, and the $v_i$'s do not repeat.
 The $w_i$'s are in $\text{AllEvenCycles}$, so by induction hypothesis $\delta(w_i) \ge \delta((d-2)^{n_i})$, with $n_i$ the number of different vertices in $w_i$.
-The sum of the number of $v_i$'s and the cumulated number of vertices in the $w_i$'s is at most $n$, so thanks to property 3 we have $\delta(w) \ge \delta(d^n)$.
+The sum of the number of $v_i$'s and the cumulated number of vertices in the $w_i$'s is at most $n$, so thanks to property 2 we have $\delta(w) \ge \delta(d^n)$.
+
+The second item is a direct consequence of the first item and property 3.
 
 We show the third item. Let $w$ be an infinite word not satisfying the parity condition: the largest priority appearing infinitely many times is odd, inducing infinitely many odd cycles, 
-which eventually results in the automaton rejecting.
+which results in an infinite decreasing chain of states thanks to property 4, hence the automaton eventually rejects.
 
 ### <a name="small_progress">The small progress measure algorithm</a>
 The fact that the small progress measures form a solution of the separation problem was essentially shown by Julien Bernet, David Janin, and Igor Walukiewicz, in the paper 
 [Permissive strategies: from parity games to safety games](www.labri.fr/perso/igw/Papers/igw-perm.ps).
 By essentially I mean that the separation problem is hinted at in the conclusion, but the definitions of $\text{AllEvenCycles}$ and $\text{AllOddCycles}$ do not appear.
+The result we give here is not a direct consequence of theirs, and the proof is also different.
 
-The proof we give here is not a direct adaptation of their proof. It is not fair to say that it is simpler, nor better. It is simply *different*.
-
-We construct a (deterministic) safe automaton recognising a language $L$ solving the separation problem.
+We construct a deterministic safe automaton recognising a language $L$ solving the separation problem.
 The states of the automaton are $d/2$-tuples of integers in $[0,n] = \set{0,\ldots,n}$,
 they are numbered $d-1,d-3,\ldots,3,1$.
 For a tuple $q$ and a priority $p$, we let $q(p)$ denote the $p$ component of $q$.
@@ -114,7 +118,7 @@ A more mechanistic point of view can be derived: from the state $q$, reading a p
 If the $p$ component of $q$ is $0$, then it is reset to $n$, and the component just below is decremented. If no component can be decremented, the automaton rejects.
 
 **Lemma:**
-The small progress measure automaton satisfies the properties 1 to 5.
+The small progress measure automaton satisfies the properties 1 to 4 defined [above](#automaton)
 
 Each property is easily checked.
 
@@ -129,20 +133,11 @@ Assume the invariant holds for $w$, and we read a vertex $v$ of priority $p$, th
 * if $p$ is odd, we construct the suffix $w_{d-1} \cdots (w_p v)$ of $w v$, *i.e.* the new word for $p$ is $w_{p+1} v$. 
 The priority $p$ appears at least $\delta(wv)(p) = \delta(w)(p) + 1$ times.
 
-<!--
-The original proof of correctness of the small progress measure algorithm differs for the first item. It shows the following **global** property:
-
-For all games with $n$ vertices and $d$ priorities, 
-Eve wins, if, and only if, 
-there exists a progress measure, which is a (partial) function $\mu : V \to [0,n]^{\frac{d}{2}}$ such that for all $v$ of priority $p$:
-* if $v$ belongs to Eve, there exists $(v,v') \in E$ such that 
-$$\mu(v) \le_p \mu(v'),$$
-* if $v$ belongs to Adam, for all $(v,v') \in E$ we have 
-$$\mu(v) \le_p \mu(v').$$
-
-We see this as a **global** property, as opposed to the **local** (and dynamic) property $\text{AllEvenCycles} \subseteq L$.
-We do not know of any non-convoluted way to prove one property using the other.
--->
+This completes the proof of the invariant. Now, we argue that if a word is rejected by the automaton, then it contains an odd cycle,
+which is the contrapositive of $\text{AllEvenCycles} \subseteq L$. 
+Let $wv$ such that $w$ is accepted and $wv$ is rejected.
+Assume that $v$ has priority $p$, this implies that $\delta(w)(p) = n$. It follows that in $w_p w_{p-1} \cdots w_1 v$ the priority $p$ appears at least $n+1$ times,
+and no larger priority appears. Since there are $n$ vertices, some vertex repeats twice, forming an odd cycle.
 
 
 
@@ -150,86 +145,41 @@ We do not know of any non-convoluted way to prove one property using the other.
 
 
 ### <a name="succinct_progress">The succinct progress measure algorithm</a>
-The fact that the succinct progress measures form a solution of the separation problem was not explicitely stated before this post, to the best of the author's knowledge.
-
-<!--
-Before constructing the automaton, we give some intuitions.
-The small progress measure algorithm manipulates functions $\mu : V \to [0,n]^{\frac{d}{2}}$, 
-which can be seen as trees of depth $\frac{d}{2}$ and branching directions $[0,n]$, where the leaves are labeled by vertices.
-The *key* observation of Jurdzi&#324;ski and Lazi&#263; is that these trees are *only* used for lexicographic comparisons.
-Hence we can encode them in a more succinct way supporting *only* this feature.
--->
-
-Let $k = \lceil \log(n) \rceil$ and $S_{n,d}$ the set of $\frac{d}{2}$-tuples of binary strings whose total length is at most $k$.
-The components are numbered $d-1,d-3,\ldots,3,1$.
-For a state $q$ and a priority $p$, we let $q(p)$ denote the $p$ component of $q$.
-We order binary strings as follows: 
-$$ 
-0 s < \varepsilon \qquad ; \qquad \varepsilon <\ 1 s \qquad ; \qquad b s <\ b s' \Longleftrightarrow s <\ s'.
-$$
-
-We extend this order into a lexicographical order for states; more precisely we let $$\le_p$$ denote the lexicographic order restricted to the components larger than or equal to $p$,
-and $<\_p$ the strict version. The order $\le_p$ is called the $p$-order.
-
-<!--
-The following lemma is the key technical tool of the [original paper](https://arxiv.org/abs/1702.05051).
-
-**Lemma (succinct tree coding).**
-There exists a function $\enc$ taking as input a function $\mu : V \to [0,n]^{\frac{d}{2}}$
-and outputting a function $\enc(\mu) : V \to S_{n,d}$ such that all $p$-orders are preserved:
-for $\mu$, $v, v'$ and a priority $p$, we have
-$$\mu(v) \le_p \mu(v')$$ if, anf only if, $$\enc(\mu)(v) \le_p \enc(\mu)(v').$$
-
-**Proof:**
-This is the [original proof](https://arxiv.org/abs/1702.05051) by induction on $n$ and $d$. 
-In this proof it is more convenient to talk about trees than functions.
-
-Let $\mu$ be a tree with $n$ leaves and depth $d$.
-Choose the smallest branching direction $i \in [0,n]$ such that:
-* the set $V_{<}$ of vertices $v$ such that $\mu(v)(d-1) <\ i$ has size at most $\frac{n}{2}$, and
-* the set $V_{>}$ of vertices $v$ such that $\mu(v)(d-1) >\ i$ has size at most $\frac{n}{2}$.
-
-Let $V_{=}$ the set of vertices such that $\mu(v)(d-1) = i$.
-We consider three subtrees:
-* the subtree with leaves $V_{<}$,
-* the subtree with leaves $V_{>}$,
-* the subtree with leaves $V_{=}$ rooted in the node $i$.
-
-By induction hypothesis, we obtain encodings for these tree subtrees.
-The encoding for the original tree is obtained by prefixing the encoding for $V_{<}$ by $0$ and the encoding for $V_{>}$ by $1$, 
-encoding $i$ by $\varepsilon$ and keeping the encoding for $V_{=}$ unchanged.
-We say that $t$ is (succinctly) encoded by cutting along direction $i$.
-
-
-The extra technical bit in this post is the following lemma, showing the interplay between succinct tree coding and updating.
-Recall that $$\delta : [0,n]^{\frac{d}{2}} \times V \to [0,n]^{\frac{d}{2}}.$$
-
-We define $\delta^* : (V \to [0,n]^{\frac{d}{2}}) \times V \to (V \to [0,n]^{\frac{d}{2}})$ as follows:
-$\delta(\mu,v)(v') = \mu(v')$ if $v' \neq v$, and $\delta(\mu(v),v')$ otherwise.
-This induces a function $\delta^* : V^* \to (V \to [0,n]^{\frac{d}{2}})$.
--->
-
+The fact that the succinct progress measures form a solution of the separation problem was not known before this post, to the best of the author's knowledge.
 
 We construct a deterministic safe automaton recognising a language $L$ solving the separation problem.
-The set states of the automaton is $S_{n,d}$.
-The initial state is the tuple containing only $\varepsilon$, written $x_0$.
+The set states of the automaton is $S_{n,d}$, the set of $\frac{d}{2}$-tuples of binary strings whose total length is at most $\lceil \log(n) \rceil$.
+The components are numbered $d-1,d-3,\ldots,3,1$.
+For a state $q$ and a priority $p$, we let $q(p)$ denote the $p$ component of $q$.
+
+Fix an (arbitrary) total order on binary strings; in the [original paper](https://arxiv.org/abs/1702.05051) the choice is somehow imposed
+by the succinct encoding lemma, here it does not matter.
+Without loss of generality, let us assume that $\varepsilon$ is the maximal element.
+We extend this order into a lexicographic order for states.
+We also let $$\le_p$$ denote the lexicographic order restricted to the components larger than or equal to $p$,
+and $<\_p$ the strict version. The order $\le_p$ is called the $p$-order.
+
+The initial state is the tuple containing only $\varepsilon$, written $q_0$.
+
 The transition function is defined exactly as for small progress measures: from the state $q$, reading a priority $p$, the next state $q'$
 is the smallest satisfying: 
 * if $p$ is even, then $q \ge_p q'$,
 * if $p$ is odd, then $q >\_p q'$.
 
-A more mechanistic point of view can be derived from this definition. Because of the condition that the total number of bits is $\log(n)$,
-this is a bit tedious, see the [original paper](https://arxiv.org/abs/1702.05051).
+A more mechanistic point of view can be derived from this definition. Because of the condition that the total number of bits is $\log(n)$
+and of the choice of the total order on binary strings, this is a bit tedious, see the [original paper](https://arxiv.org/abs/1702.05051).
 
+<!--
 Formally, the transition function is $$\deltasucc : S_{n,d} \times V \to S_{n,d}$$, inducing $$\deltasucc : V^* \to S_{n,d}$$.
 
 The automaton is safe: all states are accepting, and if a transition is undefined the automaton rejects.
 
 For a word $w$ and a tuple $x$, we let $\deltasucc(x,w)$ denote the tuple reached after reading $w$ from $x$, if defined.
 Then, $\deltasucc(w)$ is $\deltasucc(x_0,w)$.
+-->
 
 **Lemma:**
-The small progress measure automaton satisfies the properties 1 to 5.
+The small progress measure automaton satisfies the properties 1 to 4 defined [above](#automaton).
 
 Each property is easily checked.
 
@@ -243,9 +193,10 @@ Each property is easily checked.
 
 
 ### <a name="power_counting">The power counting algorithm</a>
-The last point has been worked out by Miko&#322;aj Boja&#324;czyk and Wojtek Czerwi&#324;ski in their lecture notes
+The fact that the power counting technique gives rise to a solution of the separation problem has been worked out by Miko&#322;aj Boja&#324;czyk and Wojtek Czerwi&#324;ski in their lecture notes
 [An automata toolbox](https://www.mimuw.edu.pl/~bojan/20172018-2/advanced-topics-in-automata-20172018-jezyki-automaty-i-obliczenia-2).
-They make the assumption that $n = d$. We explain how to adapt the construction of the automaton. The proof applies *mutatis mutandis*.
+They make the assumption that $n = d$. We explain how to adapt the construction of the automaton, 
+and *very soon* we will explain why this automaton satisfies the properties 1 to 4  defined [above](#automaton), giving an alternative proof.
 
 We construct a (deterministic) safe automaton recognising a language $L$ solving the separation problem.
 Let $k$ such that $2^k > n$, *i.e.* $k = \lceil \log(n) \rceil + 1$. 
