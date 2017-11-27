@@ -20,7 +20,7 @@ MathJax.Hub.Config({
 namely the small progress measure algorithm of Jurdzi&#324;ski, the succinct progress measure algorithm of Jurdzi&#324;ski and Lazi&#263;,
 and the power counting algorithm of Calude et al, can be seen as solutions of a separation problem.</p>
 
-Let $V$ be a set of $n$ vertices and $d$ a number of priorities (without loss of generality $d$ is even), we consider a priority function $V \to \set{1,\ldots} = [1,d]$.
+Let $V$ be a set of $n$ vertices and $d$ a number of priorities (without loss of generality $d$ is even), we consider a priority function $V \to \set{1,\ldots,d} = [1,d]$.
 A cycle is a word $v \cdots v$. It is even is the maximal priority is even, and odd otherwise. 
 We define three languages:
 * $\text{Parity} \subseteq V^\omega$: the maximal priority appearing infinitely many times is even,
@@ -57,14 +57,14 @@ Since solving a safety done can be done in linear time, this gives an algorithm 
 2. the [succinct progress measure](#succinct_progress) of Jurdzi&#324;ski and Lazi&#263; is a solution of the separation problem with $\|L\| = O(n^{\log(d)})$,
 3. the [power counting](#power_counting) of Calude et al is a solution of the separation problem with $\|L\| = O(n^{\log(d)})$.
 
-## <a name="automaton">Constructing a totally ordered safe deterministic automaton</a>
+### <a name="automaton">Constructing a totally ordered safe deterministic automaton</a>
 We can be a bit more precise: the three techniques can be seen as constructing a deterministic safe automaton with the following properties:
 the set of states $Q$ is equipped with a total order $\le$, and the transition function is $\delta : Q \times [1,d] \to Q$ 
 (instead of $\delta : Q \times V \to Q$, *i.e.* the transition only depends on the priority) such that:
-1. $\delta(q,d) = q_0$,
+1. $\delta(q,d) = q_0$, the initial state,
 2. if $p,p'$ are odd priorities and $p <\ p'$, then $\delta(q,p') \le \delta(q,p)$,
 3. the automaton accepts $(d-1)^n$, where $(d-1)^n$ is a sequence of length $n$ of the maximal odd priority $d-1$,
-4. if $w$ is an odd loop, then $q > \delta(q,w)$.
+4. if $w$ is a finite word whose largest priority is odd, then $q > \delta(q,w)$.
 
 We used the following notations:
 * the initial state and the transition function induce $\delta : [1,d]^* \to Q$,
@@ -89,8 +89,9 @@ The sum of the number of $v_i$'s and the cumulated number of vertices in the $w_
 
 The second item is a direct consequence of the first item and property 3.
 
-We show the third item. Let $w$ be an infinite word not satisfying the parity condition: the largest priority appearing infinitely many times is odd, inducing infinitely many odd cycles, 
-which results in an infinite decreasing chain of states thanks to property 4, hence the automaton eventually rejects.
+We show the third item. Let $w$ be an infinite word not satisfying the parity condition: the largest priority appearing infinitely many times is odd, 
+inducing infinitely many consecutive words whose largest priority is odd, 
+which results in a decreasing chain of states thanks to property 4, hence the automaton eventually rejects.
 
 ### <a name="small_progress">The small progress measure algorithm</a>
 The fact that the small progress measures form a solution of the separation problem was essentially shown by Julien Bernet, David Janin, and Igor Walukiewicz, in the paper 
@@ -115,10 +116,10 @@ is the largest satisfying:
 A more mechanistic point of view can be derived: from the state $q$, reading a priority $p$, the next state $q'$ is such that: 
 * if $p$ is even, $q'$ is the same as $q$, but all priorities smaller than $p$ are reset to $n$,
 * if $p$ is odd, $q'$ is the same as $q$, but the $p$ component is decremented by $1$ and all priorities smaller than $p$ are reset to $n$.
-If the $p$ component of $q$ is $0$, then it is reset to $n$, and the component just below is decremented. If no component can be decremented, the automaton rejects.
+If the $p$ component of $q$ is $0$, then the component just below is decremented, and so on. If no component can be decremented, the automaton rejects.
 
 **Lemma:**
-The small progress measure automaton satisfies the properties 1 to 4 defined [above](#automaton)
+The small progress measure automaton satisfies the properties 1 to 4 defined [above](#automaton).
 
 Each property is easily checked.
 
@@ -166,7 +167,7 @@ is the smallest satisfying:
 * if $p$ is even, then $q \ge_p q'$,
 * if $p$ is odd, then $q >\_p q'$.
 
-A more mechanistic point of view can be derived from this definition. Because of the condition that the total number of bits is $\log(n)$
+A more mechanistic point of view can be derived from this definition. Because of the condition that the total number of bits is $\lceil \log(n) \rceil$
 and of the choice of the total order on binary strings, this is a bit tedious, see the [original paper](https://arxiv.org/abs/1702.05051).
 
 <!--
@@ -195,21 +196,31 @@ Each property is easily checked.
 ### <a name="power_counting">The power counting algorithm</a>
 The fact that the power counting technique gives rise to a solution of the separation problem has been worked out by Miko&#322;aj Boja&#324;czyk and Wojtek Czerwi&#324;ski in their lecture notes
 [An automata toolbox](https://www.mimuw.edu.pl/~bojan/20172018-2/advanced-topics-in-automata-20172018-jezyki-automaty-i-obliczenia-2).
-They make the assumption that $n = d$. We explain how to adapt the construction of the automaton, 
-and *very soon* we will explain why this automaton satisfies the properties 1 to 4  defined [above](#automaton), giving an alternative proof.
+They make the assumption that $n = d$. 
+We explain how to adapt the construction of the automaton, and show that it satisfies the properties 1 to 4  defined [above](#automaton), giving an alternative proof.
 
-We construct a (deterministic) safe automaton recognising a language $L$ solving the separation problem.
-Let $k$ such that $2^k > n$, *i.e.* $k = \lceil \log(n) \rceil + 1$. 
-The states of the automaton are $k$-tuples whose values are either priorities or undefined, written $\bot$.
-The components of a $k$-tuple are numbered $0,1,\ldots,k-1$ and called registers. 
-Note that there are $(d + 1)^k = O(d^{\log(n)}) = O(n^{\log(d)})$ states. 
-For a tuple $x$ and a register $i$, we let $x(i)$ denote the content of the register $i$ in $x$.
-The initial state is the tuple containing only $\bot$, written $x_0$.
-The transition function is as follows: from the tuple $x$, reading a vertex $v$ of priority $p$:
-* if $p$ is even, let $i$ be the largest nonempty register that stores a value $<\ p$, the new tuple is obtaining by inserting $p$ in $i$ and emptying all smaller registers
+We construct a deterministic safe automaton recognising a language $L$ solving the separation problem.
+Let $k$ such that $2^k > n$, *i.e.* $k = \lfloor \log(n) \rfloor + 1$. 
+The states of the automaton are non-increasing $k$-tuples whose values are priorities up to $d-1$ or empty, written $\bot$.
+Here by non-increasing we mean for the natural order, excluding $\bot$.
+The components of a $k$-tuple are numbered $k-1,\ldots,1,0$.
+Note that there are $d^k = O(d^{\log(n)}) = O(n^{\log(d)})$ states. 
+For a state $q$ and a component $i$, we let $q(i)$ denote the component $i$ in $q$.
+
+We use the order $\bot \succ d-2 \succ \cdots \succ 2 \succ 1 \succ 3 \succ \cdots \succ d-1$,
+which is extended to a lexicographic order on states.
+
+The initial state is the tuple containing only $\bot$, written $q_0$.
+The transition function is as follows: from the state $q$, reading a priority $p$:
+* if $p$ is even, let $i$ be the rightmost non-empty component that stores a value $<\ p$, the new state is obtaining by inserting $p$ in $i$ and resetting all smaller registers to $\bot$
 (if there is no such $i$ then do nothing),
-* if $p$ is odd, let $i$ be the largest nonempty register that stores a value $<\ p$ and $j$ be the smallest register than is empty or stores an even number, then
-	* if either $i$ or $j$ is defined, the new tuple is obtaining by inserting $p$ in $\max(i,j)$ and emptying all smaller registers,
+* if $p$ is odd, let $i$ be the rightmost non-empty component that stores a value $<\ p$ and $j$ be the leftmost component that stores an even number or is empty, then
+	* if either $i$ or $j$ is defined, the new state is obtained by inserting $p$ in $\max(i,j)$ and resetting all smaller registers to $\bot$,
 	* if neither $i$ nor $j$ are defined, then reject.
 
+**Lemma:**
+The power counting automaton satisfies the properties 1 to 4 defined [above](#automaton).
+
+Each property is easily checked. The identification of $d$ and $\bot$ is a small simplification, which makes property 1 holds.
+Properties 2 and 4 require rolling up the sleeves but there is no technical difficulty.
 
