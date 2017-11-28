@@ -57,19 +57,19 @@ Since solving a safety done can be done in linear time, this gives an algorithm 
 2. the [succinct progress measure](#succinct_progress) of Jurdzi&#324;ski and Lazi&#263; is a solution of the separation problem with $\|L\| = O(n^{\log(d)})$,
 3. the [power counting](#power_counting) of Calude et al is a solution of the separation problem with $\|L\| = O(n^{\log(d)})$.
 
-### <a name="automaton">Constructing a totally ordered safe deterministic automaton</a>
+### <a name="automaton">Constructing a totally ordered deterministic safe automaton</a>
 We can be a bit more precise: the three techniques can be seen as constructing a deterministic safe automaton with the following properties.
-For the priorities $[1,d]$, the automaton is $$(Q_d,q_{0,d},\delta : Q_d \times [1,d] \to Q_d)$$.
+The automaton is $$(Q,q_0,\delta : Q \times [1,d] \to Q)$$.
 (Note that the transitions only depend on the priorities, not on the vertices themselves.) 
-The sets of states $Q_d$ satisfy
+The sets of states $Q$ contains an increasing chain of sets
 $$
-Q_2 \subseteq Q_4 \subseteq Q_6 \subseteq \cdots
+Q_2 \subseteq Q_4 \subseteq Q_6 \subseteq \cdots \subseteq Q.
 $$
-Let $Q$ be the union of all these sets, it is equipped with a total order $\le$ such that the states in $Q_2$ are smaller than the states in $Q_4$, and so on.
-The transition function is $\delta : Q \times \mathbb{N} \to Q$ such that for $q \in Q_d$ and $p \in [1,d]$, we have $\delta(q,p) \in Q_d$.
-For a fixed $d$, we define the following properties.
-1. we have $\delta(q,d) = q_{0,d}$, the initial state,
-2. if $p,p'$ are odd priorities and $p <\ p'$, then $\delta(q,p') \le \delta(q,p)$,
+The set $Q$ is equipped with a total order $\le$ such that the states in $Q_2$ are smaller than the states in $Q_4$, and so on.
+The transition function is $\delta : Q \times \mathbb{N} \to Q$ such that for $p$ even, $q \in Q_p$ and $p' \in [1,p]$, we have $\delta(q,p) \in Q_p$.
+We define the following properties.
+1. for $p$ even and $q \in Q_p$ we have $\delta(q,p) = q_0$, the initial state,
+2. for $q \in Q$, if $p,p'$ are odd priorities and $p <\ p'$, then $\delta(q,p') \le \delta(q,p)$,
 3. the automaton accepts $(d-1)^n$, where $(d-1)^n$ is a sequence of length $n$ of the maximal odd priority $d-1$,
 4. if $w$ is a finite word whose first letter is the largest priority in $w$ and is odd, then $q > \delta(q,w)$.
 
