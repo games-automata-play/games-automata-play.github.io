@@ -63,7 +63,7 @@ We fix a $(n,h)$-universal tree $T$.
 The value iteration algorithm constructs a labeling $\mu : V \to L(T)$ as in the theorem above.
 The first labeling assigns all vertices to the maximal (i.e., leftmost) leaf in $T$.
 At each step, the value iteration algorithm picks a vertex $v$, and checks whether the local conditions defined in conditions 2. and 3. are satisfied by $\mu$ for $v$.
-If they are not, the value of $v$ is decreased by the minimal possible amount to satisfy them, giving rise to $\lift_v(\mu)$.
+If they are not, the value of $\mu(v)$ is decreased by the minimal possible amount to satisfy them, giving rise to $\lift_v(\mu)$.
 If this is not possible, $\mu(v)$ is left undefined (losing).
 
 The correctness follows from the two observations: let $\mu_*$ be a labeling as in the theorem above,
