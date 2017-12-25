@@ -11,6 +11,7 @@ MathJax.Hub.Config({
     Macros: {
       enc: "{\\text{enc}}",
       deltasucc: "{\\delta_{\\text{succ}}}",
+      last: "{\\text{last}}",
     }
   }
 });
@@ -20,7 +21,7 @@ MathJax.Hub.Config({
 namely the small progress measure algorithm of Jurdzi&#324;ski, the succinct progress measure algorithm of Jurdzi&#324;ski and Lazi&#263;,
 and the power counting algorithm of Calude et al, can be seen as solutions of a separation problem.</p>
 
-Let $V$ be a set of $n$ vertices and $d$ a number of priorities (without loss of generality $d$ is even), we consider a priority function $V \to \set{1,\ldots,d} = [1,d]$.
+Let $V$ be a set of $n$ vertices and $d$ a number of priorities (without loss of generality $d$ is even), we consider a priority function $V \to \set{1,\ldots,d}$.
 A cycle is a word $v \cdots v$. It is even is the maximal priority is even, and odd otherwise. 
 We define three languages:
 * $\text{Parity} \subseteq V^\omega$: the maximal priority appearing infinitely many times is even,
@@ -30,7 +31,6 @@ We define three languages:
 A language $L$ over finite words is **(topologically) closed** if for all words $u$ not in $L$, for all words $v$, we have that $uv$ is not in $L$.
 They are sometimes called *safe*, because they are recognised by *safe* automata: all states are accepting (with possibly undefined transitions).
 A closed language $L$ over finite words induces a language over infinite words, also written $L$, which is the set of infinite words such that all prefixes belong to $L$.
-Since $\text{AllEvenCycles}$ and $\text{AllOddCycles}$ are both closed, we will see them either as languages over finite words or infinite words.
  
 The separation problem reads: find a closed regular language $L \subseteq V^*$ such that
 
@@ -57,84 +57,50 @@ Since solving a safety done can be done in linear time, this gives an algorithm 
 2. the [succinct progress measure](#succinct_progress) of Jurdzi&#324;ski and Lazi&#263; is a solution of the separation problem with $\|L\| = O(n^{\log(d)})$,
 3. the [power counting](#power_counting) of Calude et al is a solution of the separation problem with $\|L\| = O(n^{\log(d)})$.
 
-### <a name="automaton">Constructing a totally ordered deterministic safe automaton</a>
-We can be a bit more precise: the three techniques can be seen as constructing a deterministic safe automaton with the following properties.
-The automaton is $$(Q,q_0,\delta : Q \times [1,d] \to Q)$$.
-(Note that the transitions only depend on the priorities, not on the vertices themselves.) 
-The sets of states $Q$ contains an increasing chain of sets
-$$
-Q_2 \subseteq Q_4 \subseteq Q_6 \subseteq \cdots \subseteq Q.
-$$
-The set $Q$ is equipped with a total order $\le$ such that the states in $Q_2$ are smaller than the states in $Q_4$, and so on.
-The transition function is $\delta : Q \times \mathbb{N} \to Q$ such that for $p$ even, $q \in Q_p$ and $p' \in [1,p]$, we have $\delta(q,p) \in Q_p$.
-We define the following properties.
-1. for $p$ even and $q \in Q_p$ we have $\delta(q,p) = q_0$, the initial state,
-2. for $q \in Q$, if $p,p'$ are odd priorities and $p <\ p'$, then $\delta(q,p') \le \delta(q,p)$,
-3. the automaton accepts $(d-1)^n$, where $(d-1)^n$ is a sequence of length $n$ of the maximal odd priority $d-1$,
-4. if $w$ is a finite word whose first letter is the largest priority in $w$ and is odd, then $q > \delta(q,w)$.
 
-We used the following notations:
-* the initial state and the transition function induce $\delta : [1,d]^* \to Q$,
-* for a word $w$ and a state $q$, we let $\delta(q,w)$ denote the state reached after reading $w$ from $q$, if defined.
-
-Let $L$ be the language recognised by such an automaton.
-
-**Lemma:**
-* Property 1 and 2 imply that for a finite word $w \in \text{AllEvenCycles}$, we have $\delta(w) \ge \delta((d-1)^n)$.
-* Property 1,2, and 3 imply that $\text{AllEvenCycles} \subseteq L$.
-* Property 4 implies that $L \cap \text{AllOddCycles} = \emptyset$, and even that $L \subseteq \text{Parity}$.
-
-**Proof:**
-We show the first item by induction on $d$. We distinguish two cases:
-* If the maximal priority $d$ is even, then $w$ can be factorised into $w = w_1 v_1 w_2 v_2 \cdots$ such that the $v_i$'s have priority $d$ 
-and the $w_i$'s use priorities less than $d$. The $w_i$'s are in $\text{AllEvenCycles}$, so by induction hypothesis $\delta(w_i) \ge \delta((d-1)^n)$. 
-It follows from property 1 that $\delta(w) \ge \delta((d-1)^n)$.
-* If the maximal priority $d$ is odd, then $w$ can be factorised into $w = w_1 v_1 w_2 v_2 \cdots$ such that the $v_i$'s have priority $d$ 
-and the $w_i$'s use priorities less than $d$. In this case the vertices in $w_i$'s are pairwise disjoint, and the $v_i$'s do not repeat.
-The $w_i$'s are in $\text{AllEvenCycles}$, so by induction hypothesis $\delta(w_i) \ge \delta((d-2)^{n_i})$, with $n_i$ the number of different vertices in $w_i$.
-Thanks to property 2 we have $\delta(w_i) \ge \delta(d^{n_i})$.
-The sum of the number of $v_i$'s and the cumulated number of vertices in the $w_i$'s is at most $n$, so $\delta(w) \le \delta(d^n)$.
-
-The second item is a direct consequence of the first item and property 3.
-
-We show the third item. Let $w$ be an infinite word not satisfying the parity condition: the largest priority appearing infinitely many times is odd, 
-inducing infinitely many consecutive words which start by an odd largest priority, 
-which results in a decreasing chain of states thanks to property 4, hence the automaton eventually rejects.
 
 ### <a name="small_progress">The small progress measure algorithm</a>
 The fact that the small progress measures form a solution of the separation problem was essentially shown by Julien Bernet, David Janin, and Igor Walukiewicz, in the paper 
 [Permissive strategies: from parity games to safety games](www.labri.fr/perso/igw/Papers/igw-perm.ps).
 By essentially I mean that the separation problem is hinted at in the conclusion, but the definitions of $\text{AllEvenCycles}$ and $\text{AllOddCycles}$ do not appear.
-The result we give here is not a direct consequence of theirs, and the proof is also different.
 
-We construct a deterministic safe automaton recognising a language $L$ solving the separation problem.
-The states of the automaton are $d/2$-tuples of integers in $[0,n] = \set{0,\ldots,n}$,
-they are numbered $d-1,d-3,\ldots,3,1$.
-For a tuple $q$ and a priority $p$, we let $q(p)$ denote the $p$ component of $q$.
-The states are totally ordered by the lexicographic order.
-The initial state is the maximal element, *i.e.* the tuple containing only $n$, written $q_0$.
+The proof we give here is not a direct adaptation of their proof. It is not fair to say that it is simpler, nor better. It is simply *different*.
 
-To define the transition function, we define the $p$-orders: for a priority $p$, we let $$\le_p$$ denote the lexicographic order restricted to the components larger than or equal to $p$,
-and $<\_p$ the strict version.
-The transition function is as follows: from the state $q$, reading a priority $p$, the next state $q'$
-is the largest satisfying: 
-* if $p$ is even, then $q \ge_p q'$,
-* if $p$ is odd, then $q >\_p q'$.
+We construct a (deterministic) safe automaton recognising a language $L$ solving the separation problem.
+The states of the automaton are $d/2$-tuples of integers in $[n] = \set{0,\ldots,n}$,
+they are numbered $1,3,\ldots,d-1$.
+For a tuple $x$ and a priority $p$, we let $x(p)$ denote the $p$ component of $x$.
+The initial state is the tuple containing only $0$, written $x_0$.
+We order tuples lexicographically; more precisely, we let $$\le_p$$ denote the lexicographic order restricted to the components larger than or equal to $p$,
+and $<\_p$ the strict version. The order $\le_p$ is called the $p$-order.
+The transition function is as follows: from the tuple $x$, reading a vertex $v$ of priority $p$, the next tuple $x'$
+is the smallest satisfying: 
+* if $p$ is even, then $x \le_p x'$,
+* if $p$ is odd, then $x <\_p x'$.
 
-A more mechanistic point of view can be derived: from the state $q$, reading a priority $p$, the next state $q'$ is such that: 
-* if $p$ is even, $q'$ is the same as $q$, but all priorities smaller than $p$ are reset to $n$,
-* if $p$ is odd, $q'$ is the same as $q$, but the $p$ component is decremented by $1$ and all priorities smaller than $p$ are reset to $n$.
-If the $p$ component of $q$ is $0$, then the component just below is decremented, and so on. If no component can be decremented, the automaton rejects.
+A more mechanistic definition is as follows: 
+* if $p$ is even, then the new tuple is the same as $x$, but all priorities smaller than $p$ are reset to $0$,
+* if $p$ is odd, then the new tuple is the same as $x$, but the $p$ component is incremented by $1$ and all priorities smaller than $p$ are reset to $0$.
+If a component cannot be incremented, it is reset, and the component just above is incremented. If no components can be incremented, the automaton rejects.
+
+Formally, the transition function is $$\delta : [n]^{\frac{d}{2}} \times V \to [n]^{\frac{d}{2}}$$, inducing $$\delta : V^* \to [n]^{\frac{d}{2}}$$.
+For a word $w$ and a tuple $x$, we let $\delta(x,w)$ denote the tuple reached after reading $w$ from $x$, if defined.
+Then, $\delta(w)$ is $\delta(x_0,w)$.
+
+The automaton is safe: all states are accepting, and if a transition is undefined, the automaton rejects.
 
 **Lemma:**
-The small progress measure automaton satisfies the properties 1 to 4 defined [above](#automaton).
+1. $\text{AllEvenCycles} \subseteq L$
+2. $L \cap \text{AllOddCycles} = \emptyset$
 
-Each property is easily checked.
+**Proof:**
+We start by proving the second item: it follows from the well known observation that if $w$ is an odd cycle, then $x <\_p \delta(x,w)$.
+Indeed, along the cycle the $p$ component is either not touched, when a lower priority is visited, or incremented.
+Consider now the largest priority appearing infinitely many times, and assume it is odd: there are infinitely many odd cycles with this priority, 
+and from some point on they induce an increase in the corresponding tuple, which eventually results in the automaton rejecting.
 
-**Remark.**
-We give another simple and instructive proof that $\text{AllEvenCycles} \subseteq L$, which is also different than the technical developments of 
-[the original paper](www.labri.fr/perso/igw/Papers/igw-perm.ps).
-This follows from the following invariant: for every $w \in V^*$ which is not rejected by the automaton, $w$ has a suffix of the form $w_{d-1} \cdots w_3 w_1$, where 
+We now prove the first item. 
+It follows from the following invariant: for every $w \in V^*$ which is not rejected by the automaton, $w$ has a suffix of the form $w_{d-1} \cdots w_3 w_1$, where 
 for $p \in \set{1,3,\ldots,d-1}$, the priority $p$ appears at least $\delta(w)(p)$ times, and no larger priority appears in $w_p$.
 
 Assume the invariant holds for $w$, and we read a vertex $v$ of priority $p$, there are two cases:
@@ -143,10 +109,25 @@ Assume the invariant holds for $w$, and we read a vertex $v$ of priority $p$, th
 The priority $p$ appears at least $\delta(wv)(p) = \delta(w)(p) + 1$ times.
 
 This completes the proof of the invariant. Now, we argue that if a word is rejected by the automaton, then it contains an odd cycle,
-which is the contrapositive of $\text{AllEvenCycles} \subseteq L$. 
-Let $wv$ such that $w$ is accepted and $wv$ is rejected.
+which is the contrapositive of the first item. Let $wv$ such that $w$ is accepted and $wv$ is rejected.
 Assume that $v$ has priority $p$, this implies that $\delta(w)(p) = n$. It follows that in $w_p w_{p-1} \cdots w_1 v$ the priority $p$ appears at least $n+1$ times,
 and no larger priority appears. Since there are $n$ vertices, some vertex repeats twice, forming an odd cycle.
+
+
+**Remark.**
+The original proof of correctness of the small progress measure algorithm differs for the first item. It shows the following **global** property:
+
+For all games with $n$ vertices and $d$ priorities, 
+Eve wins, if, and only if, 
+there exists a progress measure, which is a (partial) function $\mu : V \to [n]^{\frac{d}{2}}$ such that for all $v$ of priority $p$:
+* if $v$ belongs to Eve, there exists $(v,v') \in E$ such that 
+$$\mu(v) \le_p \mu(v'),$$
+* if $v$ belongs to Adam, for all $(v,v') \in E$ we have 
+$$\mu(v) \le_p \mu(v').$$
+
+We see this as a **global** property, as opposed to the **local** (and dynamic) property $\text{AllEvenCycles} \subseteq L$.
+We do not know of any non-convoluted way to prove one property using the other.
+
 
 
 
@@ -154,81 +135,74 @@ and no larger priority appears. Since there are $n$ vertices, some vertex repeat
 
 
 ### <a name="succinct_progress">The succinct progress measure algorithm</a>
-The fact that the succinct progress measures form a solution of the separation problem was not known before this post, to the best of the author's knowledge.
+The fact that the succinct progress measures form a solution of the separation problem was not explicitely stated before this post, to the best of the author's knowledge.
 
-We construct a deterministic safe automaton recognising a language $L$ solving the separation problem.
-The set states of the automaton is $S_{n,d}$, the set of $\frac{d}{2}$-tuples of binary strings whose total length is at most $\lceil \log(n) \rceil$.
-The components are numbered $d-1,d-3,\ldots,3,1$.
-For a state $q$ and a priority $p$, we let $q(p)$ denote the $p$ component of $q$.
+Before constructing the automaton, we give some intuitions.
+The small progress measure algorithm manipulates functions $\mu : V \to [n]^{\frac{d}{2}}$, 
+which can be seen as trees of depth $\frac{d}{2}$ and branching directions $[n]$, where the leaves are labeled by vertices.
+The *key* observation of Jurdzi&#324;ski and Lazi&#263; is that these trees are *only* used for lexicographic comparisons.
+Hence we can encode them in a more succinct way supporting *only* this feature.
 
-Fix an (arbitrary) total order on binary strings; in the [original paper](https://arxiv.org/abs/1702.05051) the choice is somehow imposed
-by the succinct encoding lemma, here it does not matter.
-Without loss of generality, let us assume that $\varepsilon$ is the maximal element.
-We extend this order into a lexicographic order for states.
-We also let $$\le_p$$ denote the lexicographic order restricted to the components larger than or equal to $p$,
+Let $k = \lceil \log(n) \rceil$ and $S_{n,d}$ the set of $\frac{d}{2}$-tuples of binary strings whose total length is at most $k$.
+The components are numbered $1,3,\ldots,d-1$.
+For a tuple $x$ and a priority $p$, we let $x(p)$ denote the $p$ component of $x$.
+We order binary strings as follows: 
+$$ 
+0 s < \varepsilon \qquad ; \qquad \varepsilon <\ 1 s \qquad ; \qquad b s <\ b s' \Longleftrightarrow s <\ s'.
+$$
+
+We extend this order into a lexicographical order for tuples; more precisely we let $$\le_p$$ denote the lexicographic order restricted to the components larger than or equal to $p$,
 and $<\_p$ the strict version. The order $\le_p$ is called the $p$-order.
 
-The initial state is the tuple containing only $\varepsilon$, written $q_0$.
+The following lemma is the key technical tool of the [original paper](https://arxiv.org/abs/1702.05051).
 
-The transition function is defined exactly as for small progress measures: from the state $q$, reading a priority $p$, the next state $q'$
+**Lemma (succinct tree coding).**
+There exists a function $\enc$ taking as input a function $\mu : V \to [n]^{\frac{d}{2}}$
+and outputting a function $\enc(\mu) : V \to S_{n,d}$ such that all $p$-orders are preserved:
+for $\mu$, $v, v'$ and a priority $p$, we have
+$$\mu(v) \le_p \mu(v')$$ if, anf only if, $$\enc(\mu)(v) \le_p \enc(\mu)(v').$$
+
+We construct a (deterministic) safe automaton recognising a language $L$ solving the separation problem.
+The set states of the automaton is $S_{n,d}$.
+The initial state is the tuple containing only $\varepsilon$, written $x_0$.
+The transition function is defined exactly as for small progress measures: from the tuple $x$, reading a vertex $v$ of priority $p$, the next tuple $x'$
 is the smallest satisfying: 
-* if $p$ is even, then $q \ge_p q'$,
-* if $p$ is odd, then $q >\_p q'$.
+* if $p$ is even, then $x \le_p x'$,
+* if $p$ is odd, then $x <\_p x'$.
 
-A more mechanistic point of view can be derived from this definition. Because of the condition that the total number of bits is $\lceil \log(n) \rceil$
-and of the choice of the total order on binary strings, this is a bit tedious, see the [original paper](https://arxiv.org/abs/1702.05051).
+A more mechanistic point of view can be derived from this definition. Because of the condition that the total number of bits is $\log(n)$,
+this is a bit tedious, see the [original paper](https://arxiv.org/abs/1702.05051).
 
-<!--
 Formally, the transition function is $$\deltasucc : S_{n,d} \times V \to S_{n,d}$$, inducing $$\deltasucc : V^* \to S_{n,d}$$.
 
 The automaton is safe: all states are accepting, and if a transition is undefined the automaton rejects.
 
 For a word $w$ and a tuple $x$, we let $\deltasucc(x,w)$ denote the tuple reached after reading $w$ from $x$, if defined.
 Then, $\deltasucc(w)$ is $\deltasucc(x_0,w)$.
--->
 
 **Lemma:**
-The small progress measure automaton satisfies the properties 1 to 4 defined [above](#automaton).
-
-Each property is easily checked.
-
-
-
-
-
-
-
+1. $\text{AllEvenCycles} \subseteq L$
+2. $L \cap \text{AllOddCycles} = \emptyset$
 
 
 
 ### <a name="power_counting">The power counting algorithm</a>
-The fact that the power counting technique gives rise to a solution of the separation problem has been worked out by Miko&#322;aj Boja&#324;czyk and Wojtek Czerwi&#324;ski in their lecture notes
+The last point has been worked out by Miko&#322;aj Boja&#324;czyk and Wojtek Czerwi&#324;ski in their lecture notes
 [An automata toolbox](https://www.mimuw.edu.pl/~bojan/20172018-2/advanced-topics-in-automata-20172018-jezyki-automaty-i-obliczenia-2).
-They make the assumption that $n = d$. 
-We explain how to adapt the construction of the automaton, and show that it satisfies the properties 1 to 4  defined [above](#automaton), giving an alternative proof.
-The automaton is sligthly simplified, as we do not use undefined components.
+They make the assumption that $n = d$. We explain how to adapt the construction of the automaton. The proof applies *mutatis mutandis*.
 
-We construct a deterministic safe automaton recognising a language $L$ solving the separation problem.
-Let $k$ such that $2^k > n$, *i.e.* $k = \lfloor \log(n) \rfloor + 1$. 
-The states of the automaton are non-increasing $k$-tuples whose values are priorities.
-Here by non-increasing we mean for the natural order.
-The components of a $k$-tuple are numbered $k-1,\ldots,1,0$.
-Note that there are $d^k = O(d^{\log(n)}) = O(n^{\log(d)})$ states. 
-For a state $q$ and a component $i$, we let $q(i)$ denote the component $i$ in $q$.
-
-We use the order $d \succ d-2 \succ \cdots \succ 2 \succ 1 \succ 3 \succ \cdots \succ d-1$,
-which is extended to a lexicographic order on states.
-
-The initial state is the tuple containing only $d$, written $q_0$.
-The transition function is as follows: from the state $q$, reading a priority $p$:
-* if $p$ is even, let $i$ be the largest component that stores a value $<\ p$, the new state is obtaining by inserting $p$ in $i$ and resetting all smaller registers to $d$
+We construct a (deterministic) safe automaton recognising a language $L$ solving the separation problem.
+Let $k$ such that $2^k > n$, *i.e.* $k = \lceil \log(n) \rceil + 1$. 
+The states of the automaton are $k$-tuples whose values are either priorities or undefined, written $\bot$.
+The components of a $k$-tuple are numbered $0,1,\ldots,k-1$ and called registers. 
+Note that there are $(d + 1)^k = O(d^{\log(n)}) = O(n^{\log(d)})$ states. 
+For a tuple $x$ and a register $i$, we let $x(i)$ denote the content of the register $i$ in $x$.
+The initial state is the tuple containing only $\bot$, written $x_0$.
+The transition function is as follows: from the tuple $x$, reading a vertex $v$ of priority $p$:
+* if $p$ is even, let $i$ be the largest nonempty register that stores a value $<\ p$, the new tuple is obtaining by inserting $p$ in $i$ and emptying all smaller registers
 (if there is no such $i$ then do nothing),
-* if $p$ is odd, let $i$ be the largest component that stores a value $<\ p$ and $j$ be the smallest component that stores an even number or is empty, then
-	* if either $i$ or $j$ is defined, the new state is obtained by inserting $p$ in $\max(i,j)$ and resetting all smaller registers to $d$,
+* if $p$ is odd, let $i$ be the largest nonempty register that stores a value $<\ p$ and $j$ be the smallest register than is empty or stores an even number, then
+	* if either $i$ or $j$ is defined, the new tuple is obtaining by inserting $p$ in $\max(i,j)$ and emptying all smaller registers,
 	* if neither $i$ nor $j$ are defined, then reject.
 
-**Lemma:**
-The power counting automaton satisfies the properties 1 to 4 defined [above](#automaton).
-
-Each property is easily checked. Properties 2 and 4 require rolling up the sleeves but there is no technical difficulty.
 
