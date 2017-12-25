@@ -42,7 +42,7 @@ We consider labelings of trees by vertices. The labels are on the leaves of the 
 Hence a labeling is a partial function $\mu : V \to L(T)$, where $L(T)$ is the set of leaves of $T$.
 
 > **Theorem:** 
-Let $T$ be a universal tree, there exists a labeling $\mu : V \to L(T)$ such that: 
+Let $T$ be a $(n,d/2)$-universal tree, there exists a labeling $\mu : V \to L(T)$ such that: 
 * $\mu(v)$ is defined if, and only if, Eve wins from $v$,
 * if $v \in V_E$ has priority $p$, then there exists $(v,v') \in E$ such that $\mu(v) \ge_p \mu(v')$, strict if $p$ odd,
 * if $v \in V_A$ has priority $p$, then for all $(v,v') \in E$ we have $\mu(v) \ge_p \mu(v')$, strict if $p$ odd.
@@ -50,6 +50,8 @@ Let $T$ be a universal tree, there exists a labeling $\mu : V \to L(T)$ such tha
 **Proof:**
 This is a rephrasing of Jurdzi&#324;ski's original proof for the small progress measure algorithm.
 The existence is proved by analysing Zielonka's algorithm, which will be described in a later post.
+Indeed, the algorithm yields a labeling $\mu : V \to [1,n]^{d/2}$ satisfying the properties above. 
+This induces a tree with at most $n$ leaves and height $d/2$, hence it embeds into $T$, implying that it also satisfies the properties above.
 The fact that such a tree witnesses winning relies on the observation that the last two properties rule out odd cycles in the underlying positional strategy.
 
 
