@@ -33,6 +33,11 @@ We say that a tree $T$ is $(n,h)$-universal if all trees with at most $n$ leaves
 
 An example of a $(n,h$)-universal tree is the complete tree of height $h$ with each node of degree $n$. It has $n^h$ leaves.
 
+<figure>
+	<img src="{{ '/images/tree.svg' | prepend: site.baseurl }}" alt=""> 
+	<figcaption>The naive $(5,2)$-universal tree has 25 branches.</figcaption>
+</figure>
+
 #### Tree labeling as winning witnesses
 
 Consider a parity game $G$ with $n$ vertices and using priorities in $[1,d]$ (without loss of generality $d$ is even).
@@ -83,5 +88,18 @@ There exists a $(n,h)$-universal tree with $n^h$ leaves.
 > **Theorem:** (Jurdzi&#324;ski and Lazi&#263;)
 There exists a $(n,h)$-universal tree with $n^{\log(h)}$ leaves.
 
+<figure>
+	<img src="{{ '/images/tree_succinct.svg' | prepend: site.baseurl }}" alt=""> 
+	<figcaption>The succinct $(5,2)$-universal tree of Jurdzi&#324;ski and Lazi&#263; has 17 branches.</figcaption>
+</figure>
+
 **Question:** What is the size of the smallest $(n,h)$-universal tree? If it is polynomial in $n$ and $h$ and such a tree is constructible in polynomial time, 
 then this gives rise to a polynomial time algorithm for parity games.
+
+Below we show the smallest $(5,2)$-universal tree. It has 11 leaves, which is less than the naive one (25 branches) and the succinct one (17 branches).
+
+<figure>
+	<img src="{{ '/images/tree_optimal.svg' | prepend: site.baseurl }}" alt=""> 
+	<figcaption>The smallest $(5,2)$-universal tree has 11 leaves.</figcaption>
+</figure>
+
