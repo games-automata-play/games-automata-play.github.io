@@ -25,7 +25,9 @@ MathJax.Hub.Config({
 </script>
 
 <p class="intro"><span class="dropcap">T</span>his post revisits Muller and Schupp's backward approach to prove the positionality of parity games.
-The argument is simple and beautiful; credits go to Thomas Colcombet for this presentation.
+The argument is simple and beautiful; credits go to Thomas Colcombet for this presentation.</p>
+
+<p>
 We discussed the technical details of the construction informally together, and Thomas gave me a draft he wrote. 
 Unhappy that I didn't write the draft myself, I wrote down my own version of the construction.
 It turned out to be technically [identical](https://en.wikipedia.org/wiki/Pierre_Menard,_Author_of_the_Quixote). 
