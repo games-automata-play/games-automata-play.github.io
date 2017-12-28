@@ -41,8 +41,7 @@ The positional strategy plays assuming this worst case; if the preference order 
 ensuring the parity condition.
 </p>
 
-We fix $\G$ a game with finite outdegree, $v_0$ a starting vertex, $\Omega : V \to \priority$ a priority function,
-and $\sigma$ a winning strategy for Eve, i.e. ensuring $\Parity(\Omega)$.
+We fix $\G$ a game with finite outdegree, $v_0$ a starting vertex and $\sigma$ a winning strategy for Eve, i.e. ensuring $\Parity$.
 
 #### Ordering histories
 
@@ -65,7 +64,7 @@ we say that $X \lexstrict Y$ if there exists $n \in \N$ such that
 $n \in Y \setminus X$ and $X \cap \set{0,\ldots,n-1} = Y \cap \set{0,\ldots,n-1}$.
 
 We define the order $\preceq$ over for finite histories;
-intuitively speaking, $p \preceq q$ reads: $p$ is worse than $q$ with respect to $\Parity(\Omega)$.
+intuitively speaking, $p \preceq q$ reads: $p$ is worse than $q$ with respect to $\Parity$.
 We first define $\preceq_d$ by induction on the maximal priority $d$:
 * If $d = 0$, then $p \preceq_d\ q$ if $\|p\| \le \|q\|$.
 * If $d$ is odd, then $p \preceq_d\ q$ if 
@@ -121,7 +120,7 @@ minimal with respect to $\preceq$ among all such plays.
 The property is clearly preserved by this construction.
 
 > **Theorem:**
-The strategy $\sigma'$ ensures $\Parity(\Omega)$.
+The strategy $\sigma'$ ensures $\Parity$.
 
 **Proof:**
 Consider a play $\pi = v_0 v_1 \ldots$ consistent with $\sigma'$.
@@ -139,7 +138,7 @@ Here we rely on the fact above.
 Thanks to the lemma above, the sequence $(\pi_n)\nN$ contains a subsequence indexed by $I \subseteq \N$
 which converges to an infinite play, written $\pi_\infty$.
 Observe that since for all $n \in I$, the finite play $\pi_n$ is consistent with $\sigma$,
-the limit $\pi_\infty$ is consistent with $\sigma$ hence satisfies $\Parity(\Omega)$.
+the limit $\pi_\infty$ is consistent with $\sigma$ hence satisfies $\Parity$.
 
 <figure>
 	<img src="{{ '/images/construction.svg' | prepend: site.baseurl }}" alt=""> 
@@ -151,10 +150,10 @@ We conclude using the following lemma.
 > **Lemma:**
 Let $\pi = v_0 v_1 \ldots$ be an infinite play and $(\pi_n)\nN$ be a sequence of finite plays, such that:
 * $(\pi_n)\nN$ converges to an infinite play $\pi_\infty$,
-* $\pi_\infty$ satisfies $\Parity(\Omega)$,
+* $\pi_\infty$ satisfies $\Parity$,
 * for all $n$, $\pi_{n+1} \preceq \pi_n \cdot \pi[\|\pi_n+1\|,\ldots,\|\pi_{n+1}\|]$.
 <br/>
-Then $\pi$ satisfies $\Parity(\Omega)$.
+Then $\pi$ satisfies $\Parity$.
 
 **Proof:**
 We proceed by induction on the maximal priority $d$.
@@ -166,7 +165,7 @@ There are two cases:
 * Either $d$ appears infinitely many times in $\pi_\infty$.
 We show the following property: 
 
-For every $k$ such that $\Omega(\pi_\infty)(k) = d$, there exists $k' \ge k$ such that $\Omega(\pi)(k') = d$.
+For every $k$ such that $c(\pi_\infty)(k) = d$, there exists $k' \ge k$ such that $c(\pi)(k') = d$.
 
 Consider such a $k$ and $\pi_n$ that coincides with $\pi_\infty$ on the first $k$ positions.
 Since $\pi_n \preceq \pi[0,\ldots,n]$, by definition
@@ -175,7 +174,7 @@ Observe that $\max(\xi_d(\pi_n)) \ge k$ since $k \in \xi_d(\pi_n)$,
 so $\max(\xi_d(\pi[0,\ldots,n])) \ge k$, and the conclusion follows.
 
 It follows that $d$ appears infinitely many times in $\pi$,
-so $\pi$ satisfies $\Parity(\Omega)$.
+so $\pi$ satisfies $\Parity$.
 
 * Or $d$ appears finitely many times in $\pi_\infty$.
 We conclude by induction hypothesis, considering the sequence $(\tr_d(\pi_n))\nN$.
@@ -183,7 +182,7 @@ We conclude by induction hypothesis, considering the sequence $(\tr_d(\pi_n))\nN
 *Second case:* $d$ is odd.
 We show the following property: 
 
-For every $n$, for every $k \ge n$ such that $\Omega(\pi(k)) = d$, there exists $k' \ge n$ such that $\Omega(\pi_\infty(k')) = d$.
+For every $n$, for every $k \ge n$ such that $c(\pi(k)) = d$, there exists $k' \ge n$ such that $c(\pi_\infty(k')) = d$.
 
 Consider such $k$ and $k$ and $n_0,n_1$ such that $\pi_{n_0}$ coincides with $\pi_\infty$ on the first $n$ positions,
 and $\pi_{n_1}$ coincides with $\pi_\infty$ on the first $k$ positions.
@@ -192,11 +191,11 @@ We have $\pi_{n_1} \preceq \pi_{n_0} \cdot \pi[n_0+1,\ldots,n_1]$,
 so 
 $$\xi_d(\pi_{n_0} \cdot \pi[n_0+1,\ldots,n_1]) \lex \xi_d(\pi_{n_1}).$$
 
-Since $\Omega(\pi(k)) = d$, there exists $k' \le k$ such that $\Omega(\pi_{n_1}(k')) = d$.
+Since $c(\pi(k)) = d$, there exists $k' \le k$ such that $c(\pi_{n_1}(k')) = d$.
 Since $\pi_{n_0}$ and $\pi_{n_1}$ both coincide with $\pi_\infty$ on the first $n$ positions,
 there are equal up to this position, so $k' > n$.
 Since $\pi_{n_1}$ coincide with $\pi_\infty$ on the first $k$ positions, 
-it follows that $\Omega(\pi_\infty(k')) = d$.
+it follows that $c(\pi_\infty(k')) = d$.
 
 Since $d$ appears finitely many times in $\pi_\infty$,
 it implies that $d$ appears finitely many times in $\pi$.
