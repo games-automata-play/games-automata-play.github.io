@@ -30,7 +30,7 @@ The argument is simple and beautiful; credits go to Thomas Colcombet for this pr
 <p>
 We discussed the technical details of the construction informally together, and Thomas gave me a draft he wrote. 
 Unhappy that I didn't write the draft myself, I wrote down my own version of the construction.
-It turned out to be technically [identical](https://en.wikipedia.org/wiki/Pierre_Menard,_Author_of_the_Quixote). 
+It turned out to be technically <a href="https://en.wikipedia.org/wiki/Pierre_Menard,_Author_of_the_Quixote">identical</a>.
 This post features additional explanations and unhelpful drawings.</p>
 
 <p>
