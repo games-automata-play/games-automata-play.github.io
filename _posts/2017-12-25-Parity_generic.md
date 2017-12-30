@@ -124,3 +124,8 @@ Below we show the smallest $(5,2)$-universal tree. It has 11 leaves, which is le
 	<figcaption>The smallest $(5,2)$-universal tree has 11 leaves.</figcaption>
 </figure>
 
+**Remark:** Let k be the size of the smallest $(n,h)$-universal tree. We claim that $k \log(k) \ge n (\log(n) + \log(h))$.
+Indeed, there are $h^{n-1}$ trees with $n$ leaves and height $h$, and there are $\binom{k}{n}$ embeddings of trees with $n$ leaves into a tree with $k$ leaves.
+The inequality above follows from large upper bounds on the binomial coefficient.
+It is very weak, for instance it does not rule out the existence of $(n,h)$-universal trees with $nh$ leaves, which seems very hard to achieve.
+
