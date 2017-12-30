@@ -16,20 +16,28 @@ MathJax.Hub.Config({
 </script>
 
 <p class="intro"><span class="dropcap">T</span>his post presents a generic value iteration algorithm for parity games
-parametrised by "universal trees". As special cases this extends the small progress measure of Jurdzi&#324;ski 
+parametrised by universal trees. As special cases this extends the small progress measure of Jurdzi&#324;ski 
 and the succinct progress measure of Jurdzi&#324;ski and Lazi&#263;.
 The complexity of the algorithm is the size of the universal tree, motivating constructing small universal trees.</p>
 
 #### Universal trees
 
+<p>
 We fix two parameters: $n$, which will be the number of leaves, and $h$, which will be the height.
+</p>
 
+<p>
 The trees we consider have unbounded degree and the branching is totally ordered, meaning that each node may have arbitrarily many children and the children of a node are totally ordered.
+</p>
 
+<p>
 We say that a tree embeds into another if the first one can be obtained by removing nodes from the second.
 We say that a tree $T$ is $(n,h)$-universal if all trees with at most $n$ leaves each of depth exactly $h$ embed into $T$.
+</p>
 
+<p>
 An example of a $(n,h$)-universal tree is the complete tree of height $h$ with each node of degree $n$. It has $n^h$ leaves.
+</p>
 
 <figure>
 	<img src="{{ '/images/tree.svg' | prepend: site.baseurl }}" alt=""> 
@@ -70,7 +78,7 @@ For all $(n,d/2)$-universal tree $T$, there exists a labeling $\mu : V \to L(T) 
 
 **Proof:**
 This is a rephrasing of Jurdzi&#324;ski's original proof for the small progress measure algorithm.
-The existence is proved by analysing Zielonka's algorithm, which will be described in a later post.
+The existence is proved by analysing Zielonka's algorithm, which is explained in [this later post]({{ '/blog/Zielonka' | prepend: site.baseurl }}).
 
 Indeed, the algorithm yields a labeling $\mu : V \to [1,n]^{d/2}$ satisfying the properties above.
 We see $[1,n]^{d/2}$ as a leaf in the naive universal tree above, given by its path from the root.
