@@ -22,7 +22,7 @@ namely the small progress measure algorithm of Jurdzi&#324;ski, the succinct pro
 and the power counting algorithm of Calude et al, can be seen as solutions of a separation problem.</p>
 
 Let $V$ be a set of $n$ vertices and $d$ a number of priorities (without loss of generality $d$ is even), we consider a priority function $V \to \set{1,\ldots,d}$.
-A cycle is a word $v \cdots v$. It is even is the maximal priority is even, and odd otherwise. 
+A cycle is a word $v \cdots v$. It is even if the maximal priority is even, and odd otherwise. 
 We define three languages:
 * $\text{Parity} \subseteq V^\omega$: the maximal priority appearing infinitely many times is even,
 * $\text{AllEvenCycles} \subseteq V^\omega$: all cycles are even,
