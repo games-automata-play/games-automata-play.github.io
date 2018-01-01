@@ -58,7 +58,7 @@ We consider labelings of trees by vertices. The labels are on the leaves of the 
 Hence a labeling is a function $\mu : V \to L(T) \cup \\{\bot\\}$, where $L(T)$ is the set of leaves of $T$.
 
 It induces a set of orders on vertices: for $p \in [1,d]$ and $v,v'$ two vertices, we have $v \ge_p v'$ if
-the node at level $p/2$ (levels are counted from the bottom up) on the branch from the root to $x$ is to the left of the node at the same level on the branch from the root to $x'$.
+the ancestor at level $p/2$ of $v$ is to the left of the ancestor at the same level of $v'$ (levels are counted from the bottom up).
 The element $\bot$ is the smallest element for all orders $\ge_p$.
 The strict version is $>\_p$. 
 A picture is worth a thousand words:
