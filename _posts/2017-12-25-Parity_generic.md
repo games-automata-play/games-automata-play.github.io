@@ -40,12 +40,12 @@ An example of a $(n,h$)-universal tree is the complete tree of height $h$ with e
 </p>
 
 <figure>
-	<img src="{{ '/images/tree.svg' | prepend: site.baseurl }}" alt=""> 
+	<img src="{{ '/images/tree.png' | prepend: site.baseurl }}" alt=""> 
 	<figcaption>The naive $(5,2)$-universal tree has 25 branches.</figcaption>
 </figure>
 
 <figure>
-	<img src="{{ '/images/embedding_example.svg' | prepend: site.baseurl }}" alt=""> 
+	<img src="{{ '/images/embedding_example.png' | prepend: site.baseurl }}" alt=""> 
 	<figcaption>A tree with $5$ leaves and height $2$, and one possible embedding into the universal tree above.</figcaption>
 </figure>
 
@@ -64,7 +64,7 @@ The strict version is $>\_p$.
 A picture is worth a thousand words:
 
 <figure>
-	<img src="{{ '/images/example_tree.svg' | prepend: site.baseurl }}" alt=""> 
+	<img src="{{ '/images/example_tree.png' | prepend: site.baseurl }}" alt=""> 
 	<figcaption>$u >_1 v >_1 w$ and $u =_3 v >_3 w$.</figcaption>
 </figure>
 
@@ -118,7 +118,7 @@ There exists a $(n,h)$-universal tree with $n^h$ leaves.
 There exists a $(n,h)$-universal tree with $n^{\log(h)}$ leaves.
 
 <figure>
-	<img src="{{ '/images/tree_succinct.svg' | prepend: site.baseurl }}" alt=""> 
+	<img src="{{ '/images/tree_succinct.png' | prepend: site.baseurl }}" alt=""> 
 	<figcaption>The succinct $(5,2)$-universal tree of Jurdzi&#324;ski and Lazi&#263; has 17 branches.</figcaption>
 </figure>
 
@@ -128,7 +128,7 @@ then this gives rise to a polynomial time algorithm for parity games.
 Below we show the smallest $(5,2)$-universal tree. It has 11 leaves, which is less than the naive one (25 branches) and the succinct one (17 branches).
 
 <figure>
-	<img src="{{ '/images/tree_optimal.svg' | prepend: site.baseurl }}" alt=""> 
+	<img src="{{ '/images/tree_optimal.png' | prepend: site.baseurl }}" alt=""> 
 	<figcaption>The smallest $(5,2)$-universal tree has 11 leaves.</figcaption>
 </figure>
 

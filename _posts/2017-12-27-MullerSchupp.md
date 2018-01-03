@@ -85,7 +85,7 @@ $$\left\{
 Now define $\preceq$ as $\preceq_d$.
 
 <figure>
-	<img src="{{ '/images/order.svg' | prepend: site.baseurl }}" alt=""> 
+	<img src="{{ '/images/order.png' | prepend: site.baseurl }}" alt=""> 
 	<figcaption>In both cases $p \preceq q$</figcaption>
 </figure>
 
@@ -141,7 +141,7 @@ Observe that since for all $n \in I$, the finite play $\pi_n$ is consistent with
 the limit $\pi_\infty$ is consistent with $\sigma$ hence satisfies $\Parity$.
 
 <figure>
-	<img src="{{ '/images/construction.svg' | prepend: site.baseurl }}" alt=""> 
+	<img src="{{ '/images/construction.png' | prepend: site.baseurl }}" alt=""> 
 	<figcaption>Illustration of the construction</figcaption>
 </figure>
 
@@ -202,6 +202,6 @@ it implies that $d$ appears finitely many times in $\pi$.
 As above, we conclude by induction hypothesis, considering the sequence $(\tr_d(\pi_n))\nN$.
 
 <figure>
-	<img src="{{ '/images/odd.svg' | prepend: site.baseurl }}" alt=""> 
+	<img src="{{ '/images/odd.png' | prepend: site.baseurl }}" alt=""> 
 	<figcaption>Illustration of the odd case</figcaption>
 </figure>
