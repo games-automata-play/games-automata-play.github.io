@@ -38,7 +38,7 @@ The separation problem reads: find a closed regular language $L \subseteq V^*$ s
 > 2. $L \cap \text{AllOddCycles} = \emptyset$
 
 <figure>
-	<img src="{{ '/images/separation2.png' | prepend: site.baseurl }}" alt=""> 
+	<img src="{{ '/images/separation.png' | prepend: site.baseurl }}" alt=""> 
 	<figcaption>The separation problem</figcaption>
 </figure>
 
