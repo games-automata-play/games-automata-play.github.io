@@ -24,6 +24,7 @@ The complexity of the algorithm is the size of the universal tree, motivating co
 
 <p>
 We fix two parameters: $n$, which will be the number of leaves, and $h$, which will be the height.
+All trees we height $h$, and more precisely all the leaves have depth exactly $h$.
 </p>
 
 <p>
@@ -32,6 +33,7 @@ The trees we consider have unbounded degree and the branching is totally ordered
 
 <p>
 We say that a tree embeds into another if the first one can be obtained by removing nodes from the second.
+Note that since all trees we consider have height $h$, the root of the first tree is mapped to the root of the second tree.
 We say that a tree $T$ is $(n,h)$-universal if all trees with at most $n$ leaves each of depth exactly $h$ embed into $T$.
 </p>
 
@@ -117,23 +119,58 @@ There exists a $(n,h)$-universal tree with $n^h$ leaves.
 > **Theorem:** (Jurdzi&#324;ski and Lazi&#263;)
 There exists a $(n,h)$-universal tree with $n^{\log(h)}$ leaves.
 
-<figure>
-	<img src="{{ '/images/tree_succinct.png' | prepend: site.baseurl }}" alt=""> 
-	<figcaption>The succinct $(5,2)$-universal tree of Jurdzi&#324;ski and Lazi&#263; has 17 branches.</figcaption>
-</figure>
-
 **Question:** What is the size of the smallest $(n,h)$-universal tree? If it is polynomial in $n$ and $h$ and such a tree is constructible in polynomial time, 
 then this gives rise to a polynomial time algorithm for parity games.
 
-Below we show the smallest $(5,2)$-universal tree. It has 11 leaves, which is less than the naive one (25 branches) and the succinct one (17 branches).
+Below we show the smallest $(5,2)$-universal tree. It has 11 leaves, which is less than the naive one (25 branches).
 
 <figure>
 	<img src="{{ '/images/tree_optimal.png' | prepend: site.baseurl }}" alt=""> 
 	<figcaption>The smallest $(5,2)$-universal tree has 11 leaves.</figcaption>
 </figure>
 
-**Remark:** Let k be the size of the smallest $(n,h)$-universal tree. We claim that $k \log(k) \ge n (\log(n) + \log(h))$.
-Indeed, there are $h^{n-1}$ trees with $n$ leaves and height $h$, and there are $\binom{n}{k}$ embeddings of trees with $n$ leaves into a tree with $k$ leaves.
-The inequality above follows from large upper bounds on the binomial coefficient.
-It is very weak, for instance it does not rule out the existence of $(n,h)$-universal trees with $nh$ leaves, which seems very hard to achieve.
+**Upper bound:** 
+The construction we present here is a streamlined version of Jurdzi&#324;ski's and Lazi&#263;'s.
+It is very marginally smaller.
 
+We construct an $(n,h)$-universal tree with $f(n,h)$ leaves by induction, 
+where
+
+$$f(n,h) = f(n,h-1) + f(\lfloor n/2 \rfloor,h) + f(n - 1 - \lfloor n/2 \rfloor,h)$$
+
+$$f(n,1) = n ;\qquad f(h,1) = 1$$
+
+<figure>
+	<img src="{{ '/images/smallest_tree_construction.png' | prepend: site.baseurl }}" alt=""> 
+	<figcaption>The inductive construction.</figcaption>
+</figure>
+
+To construct the $(n,h)$-universal tree $T$, let:
+* $T_\text{middle}$ a $(n,h-1)$-universal tree;
+* $T_\text{left}$ a $(\lfloor n/2 \rfloor,h)$-universal tree;
+* $T_\text{right}$ a $(n - 1 - \lfloor n/2 \rfloor,h)$-universal tree.
+
+Now construct $T$ as in the drawing above.
+
+We argue that it is $(n,h)$-universal.
+Consider a $(n,h)$-tree $t$. 
+The question is where to cut in the middle. 
+Let $v_1,\ldots,v_m$ be the children of the root of $t$, and let $n(v_i)$ be the number of leaves below $v_i$. 
+Choose the unique $v_p$ such that 
+
+$$n(v_1) + \cdots + n(v_{p-1}) \le \lfloor n/2 \rfloor$$
+
+and
+
+$$n(v_{p+1}) + \cdots + n(v_m) \le n - 1 - \lfloor n/2 \rfloor.$$
+
+To embed $t$ into $T$, map $v_p$ to the root of $T_\text{middle}$, and then proceed by induction.
+
+
+**Lower bound:** We can show that any $(n,h)$-universal tree has at least $g(n,h)$ leaves by induction, where
+
+$$g(n,h) = \sum_{d = 1}^n g(\lfloor n / d \rfloor,h-1)$$
+
+$$g(n,1) = n ;\qquad g(h,1) = 1$$
+
+This will be posted here someday...
