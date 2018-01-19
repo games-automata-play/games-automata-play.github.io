@@ -24,11 +24,11 @@ The complexity of the algorithm is the size of the universal tree, motivating co
 
 <p>
 We fix two parameters: $n$, which will be the number of leaves, and $h$, which will be the height.
-All trees we height $h$, and more precisely all the leaves have depth exactly $h$.
+All trees we consider have height $h$, and more precisely all the leaves have depth exactly $h$.
 </p>
 
 <p>
-The trees we consider have unbounded degree and the branching is totally ordered, meaning that each node may have arbitrarily many children and the children of a node are totally ordered.
+We look at totally ordered trees with unbounded degree, meaning that each node may have arbitrarily many children and the children of a node are totally ordered.
 </p>
 
 <p>
