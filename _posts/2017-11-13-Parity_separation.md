@@ -71,17 +71,19 @@ The states of the automaton are $d/2$-tuples of integers in $[n] = \set{0,\ldots
 they are numbered $1,3,\ldots,d-1$.
 For a tuple $x$ and a priority $p$, we let $x(p)$ denote the $p$ component of $x$.
 The initial state is the tuple containing only $0$, written $x_0$.
+<!--
 We order tuples lexicographically; more precisely, we let $$\le_p$$ denote the lexicographic order restricted to the components larger than or equal to $p$,
 and $<\_p$ the strict version. The order $\le_p$ is called the $p$-order.
 The transition function is as follows: from the tuple $x$, reading a vertex $v$ of priority $p$, the next tuple $x'$
 is the smallest satisfying: 
 * if $p$ is even, then $x \le_p x'$,
 * if $p$ is odd, then $x <\_p x'$.
+-->
 
-A more mechanistic definition is as follows: 
+The transition function is as follows: from the tuple $x$, reading a vertex $v$ of priority $p$, the next tuple $x'$ is as follows: 
 * if $p$ is even, then the new tuple is the same as $x$, but all priorities smaller than $p$ are reset to $0$,
 * if $p$ is odd, then the new tuple is the same as $x$, but the $p$ component is incremented by $1$ and all priorities smaller than $p$ are reset to $0$.
-If a component cannot be incremented, it is reset, and the component just above is incremented. If no components can be incremented, the automaton rejects.
+If the $p$ component cannot be incremented (because it has value $n$), the automaton rejects.
 
 Formally, the transition function is $$\delta : [n]^{\frac{d}{2}} \times V \to [n]^{\frac{d}{2}}$$, inducing $$\delta : V^* \to [n]^{\frac{d}{2}}$$.
 For a word $w$ and a tuple $x$, we let $\delta(x,w)$ denote the tuple reached after reading $w$ from $x$, if defined.
