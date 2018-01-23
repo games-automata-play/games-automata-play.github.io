@@ -71,13 +71,16 @@ The states of the automaton are $d/2$-tuples of integers in $[n] = \set{0,\ldots
 they are numbered $1,3,\ldots,d-1$.
 For a tuple $x$ and a priority $p$, we let $x(p)$ denote the $p$ component of $x$.
 The initial state is the tuple containing only $0$, written $x_0$.
+
 <!--
+
 We order tuples lexicographically; more precisely, we let $$\le_p$$ denote the lexicographic order restricted to the components larger than or equal to $p$,
 and $<\_p$ the strict version. The order $\le_p$ is called the $p$-order.
 The transition function is as follows: from the tuple $x$, reading a vertex $v$ of priority $p$, the next tuple $x'$
 is the smallest satisfying: 
 * if $p$ is even, then $x \le_p x'$,
 * if $p$ is odd, then $x <\_p x'$.
+
 -->
 
 The transition function is as follows: from the tuple $x$, reading a vertex $v$ of priority $p$, the next tuple $x'$ is as follows: 
