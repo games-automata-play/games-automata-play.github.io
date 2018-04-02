@@ -5,7 +5,7 @@ date:       2018-04-02 9:00:00
 author:     Nathana&euml;l Fijalkow
 ---
 
-<p class="intro"><span class="dropcap">W</span>e state and prove the fundamental theorem of statistical learning, which says that a class of functions is learnable
+<p class="intro"><span class="dropcap">W</span>e state and prove the fundamental theorem of statistical learning, which says that a class of functions is learnable,
 if and only if it has finite VC dimension.</p>
 
 This post uses all the notations of the [previous post]({{ '/blog/VC' | prepend: site.baseurl }}).
@@ -84,28 +84,8 @@ We say that an hypothesis $h$ generalises if $$|L_{D,f}(h) - L_{S,f}(h) |$$ is s
 $$E_{S \sim D^m} \left[ |L_{D,f}(h) - L_{S,f}(h) | \right] \le R_H(2m)$$.
 
 **Proof:**
-By definition $$L_{D,f}(h) = E_{x \sim D} [L_f(h,x)]$$ and 
-$$L_{S,f}(h) = \frac{1}{m} \sum_{i = 1}^m L_f(h,x_i)$$.
+COMING SOON
 
-To compare these two quantities we first make them look similar:
-observe that $$L_{D,f}(h) = E_{S' \sim D^m} [L_{S,f}(h)]$$.
-We write $$S' = (x'_i)_{i \in [1,m]}$$.
-
-Thanks to triangle inequality we obtain an upper bound in
-$$E_{S,S' \sim D^m} \left[ |L_{S,f}(h) - L_{S',f}(h)| \right] = E_{S,S' \sim D^m} \left[ \frac{1}{m} |\sum_{i = 1}^m L_{f}(h,x_i) - L_{f}(h,x'_i)| \right]$$.
-
-Recall that the goal is to upper bound by the Rademacher complexity.
-Note that for a given $$\sigma \in \left\{-1,+1\right\}^{2m}$$, the above quantity is equal to
-$$E_{S,S' \sim D^m} \left[ \frac{1}{m} |\sum_{i = 1}^m \sigma_i (L_{f}(h,x_i) - L_{f}(h,x'_i))| \right]$$.
-
-Hence this is equal to
-$$E_{S,S' \sim D^m} \left[ E_{\sigma} \left[ \frac{1}{m} |\sum_{i = 1}^m \sigma_i (L_{f}(h,x_i) - L_{f}(h,x'_i))| \right] \right]$$,
-
-which is smaller than $$R_H(2m)$$.
-This concludes the proof of this lemma.
-
-
-****
 
 We now combine this with Massart's Theorem (see the [previous post]({{ '/blog/VC' | prepend: site.baseurl }})),
 yielding 
