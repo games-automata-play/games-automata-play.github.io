@@ -74,14 +74,15 @@ The first ingredient is Sauer's lemma.
 $$\tau_H(m) \le \sum_{i = 0}^d \binom{m}{i} = O(m^d)$$.
 
 There are different proofs of Sauer's lemma, some of them are very beautiful.
+My favourite is [the second one in this lecture notes](https://www.cse.buffalo.edu/~hungngo/classes/2010/711/lectures/sauer.pdf).
 Note that it is a purely combinatorial statement.
 
 The main technical piece of work to be done is to obtain generalization bounds using Rademacher complexity.
 What is a generalization bound? It's an inequality relating the empirical loss, i.e. $L_{S,f}(h)$, and the actual loss, i.e. $L_{D,f}(h)$.
-We say that an hypothesis $h$ generalises if $$|L_{D,f}(h) - L_{S,f}(h) |$$ is small.
+We say that an hypothesis $h$ generalises if $$L_{D,f}(h) - L_{S,f}(h)$$ is small.
 
 > **Lemma:**
-$$E_{S \sim D^m} \left[ |L_{D,f}(h) - L_{S,f}(h) | \right] \le R_H(2m)$$.
+$$E_{S \sim D^m} \left[ L_{D,f}(h) - L_{S,f}(h) \right] \le R_H(2m)$$.
 
 **Proof:**
 By definition $$L_{D,f}(h) = E_{x \sim D} [L_f(h,x)]$$ and 
@@ -91,21 +92,22 @@ To compare these two quantities we first make them look similar:
 observe that $$L_{D,f}(h) = E_{S' \sim D^m} [L_{S,f}(h)]$$.
 We write $$S' = (x'_i)_{i \in [1,m]}$$.
 
-Thanks to triangle inequality we obtain an upper bound in
-$$E_{S,S' \sim D^m} \left[ |L_{S,f}(h) - L_{S',f}(h)| \right] = E_{S,S' \sim D^m} \left[ \frac{1}{m} |\sum_{i = 1}^m L_{f}(h,x_i) - L_{f}(h,x'_i)| \right]$$.
+We obtain
+$$E_{S,S' \sim D^m} \left[ L_{S,f}(h) - L_{S',f}(h) \right] = E_{S,S' \sim D^m} \left[ \frac{1}{m} \sum_{i = 1}^m L_{f}(h,x_i) - L_{f}(h,x'_i) \right]$$.
 
 Recall that the goal is to upper bound by the Rademacher complexity.
 Note that for a given $$\sigma \in \left\{-1,+1\right\}^{2m}$$, the above quantity is equal to
-$$E_{S,S' \sim D^m} \left[ \frac{1}{m} |\sum_{i = 1}^m \sigma_i (L_{f}(h,x_i) - L_{f}(h,x'_i))| \right]$$.
+$$E_{S,S' \sim D^m} \left[ \frac{1}{m} \sum_{i = 1}^m \sigma_i (L_{f}(h,x_i) - L_{f}(h,x'_i)) \right]$$,
+because if $\sigma_i = -1$, this amounts to swapping $x_i$ and $x'_i$ in $S$ and $S'$.
 
 Hence this is equal to
-$$E_{S,S' \sim D^m} \left[ E_{\sigma} \left[ \frac{1}{m} |\sum_{i = 1}^m \sigma_i (L_{f}(h,x_i) - L_{f}(h,x'_i))| \right] \right]$$,
+$$E_{S,S' \sim D^m} \left[ E_{\sigma} \left[ \frac{1}{m} \sum_{i = 1}^m \sigma_i (L_{f}(h,x_i) - L_{f}(h,x'_i)) \right] \right]$$,
 
 which is smaller than $$R_H(2m)$$.
 This concludes the proof of this lemma.
 
 
-****
+#### Proof wrap up
 
 We now combine this with Massart's Theorem (see the [previous post]({{ '/blog/VC' | prepend: site.baseurl }})),
 yielding 
@@ -125,3 +127,4 @@ $$P_{S \sim D^m} \left( L_{D,f}(h) \le \varepsilon \right) \le 1 - \delta$$
 for $m$ chosen as above.
 Hence $H$ is PAC-learnable.
 Note that we did not say anything about how to construct an ERM algorithm.
+
