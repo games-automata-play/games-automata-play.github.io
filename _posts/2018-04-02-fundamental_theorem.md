@@ -35,7 +35,9 @@ This is a simple application of Markov's inequality: $$P(X \ge a) \le \frac{E[X]
 
 We write $U$ for the uniform distribution over $Y$.
 
-An algorithm is a function $A$ outputting $$A(S,f) : Y \to \left\{0,1\right\}$$.
+An algorithm is a function $A$ taking as input the labelled samples and outputting $$A(S,f) : Y \to \left\{0,1\right\}$$.
+We show that any algorithm fails on at least one function. To this end we draw a function uniformly at random,
+and show that on expectations the algorithm cannot do too well.
 
 > **Lemma:**
 In the following quantity, we draw a function $$f : Y \to \left\{0,1\right\}$$ uniformly at random.
@@ -49,11 +51,13 @@ We lower bound it by
 
 $$\underbrace{P_{x \sim U} (x \notin S)}_{\ge \frac{1}{2}} \cdot E_{x \sim U} \left[ A(S,f)(x) \neq f(x) \mid x \notin S \right]$$.
 
-Remark that 
+We plug in the second term and remark that 
 
 $$E_f \left[ E_{S \sim U^m} \left[ E_{x \sim U} \left[ A(S,f)(x) \neq f(x) \mid x \notin S \right] \right] \right] = \frac{1}{2}$$,
 
-which concludes the proof of this lemma.
+since for $x \notin S$ the value of $f(x)$ is either $1$ or $0$ each with probability $\frac{1}{2}$.
+
+This concludes the proof of this lemma.
 
 
 We now wrap up the proof of the no free lunch theorem.
