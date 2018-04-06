@@ -86,7 +86,7 @@ What is a generalization bound? It's an inequality relating the empirical loss, 
 We say that an hypothesis $h$ generalises if $$L_{D,f}(h) - L_{S,f}(h)$$ is small.
 
 > **Lemma:**
-$$E_{S \sim D^m} \left[ L_{D,f}(h) - L_{S,f}(h) \right] \le R_H(2m)$$.
+$$E_{S \sim D^m} \left[ L_{D,f}(h) - L_{S,f}(h) \right] \le 2 R_H(2m)$$.
 
 **Proof:**
 By definition $$L_{D,f}(h) = E_{x \sim D} [L_f(h,x)]$$ and 
@@ -100,15 +100,16 @@ We obtain
 $$E_{S,S' \sim D^m} \left[ L_{S,f}(h) - L_{S',f}(h) \right] = E_{S,S' \sim D^m} \left[ \frac{1}{m} \sum_{i = 1}^m L_{f}(h,x_i) - L_{f}(h,x'_i) \right]$$.
 
 Recall that the goal is to upper bound by the Rademacher complexity.
-Note that for a given $$\sigma \in \left\{-1,+1\right\}^{2m}$$, the above quantity is equal to
-$$E_{S,S' \sim D^m} \left[ \frac{1}{m} \sum_{i = 1}^m \sigma_i (L_{f}(h,x_i) - L_{f}(h,x'_i)) \right]$$,
-because if $\sigma_i = -1$, this amounts to swapping $x_i$ and $x'_i$ in $S$ and $S'$.
+We claim that the quantity above is equal to
 
-Hence this is equal to
-$$E_{S,S' \sim D^m} \left[ E_{\sigma} \left[ \frac{1}{m} \sum_{i = 1}^m \sigma_i (L_{f}(h,x_i) - L_{f}(h,x'_i)) \right] \right]$$,
+$$E_{\sigma,\sigma' \in \left\{-1,+1\right\}} E_{S,S' \sim D^m} \left[ \frac{1}{m} \sum_{i = 1}^m \sigma_i L_{f}(h,x_i) - \sigma'_i L_{f}(h,x'_i)) \right]$$
 
-which is smaller than $$R_H(2m)$$.
-This concludes the proof of this lemma.
+Indeed, for each $i$ there are four cases:
+* either $\sigma_i = \sigma'_i = +1$, then this is the term as in the quantity above,
+* or $\sigma_i = \sigma'_i = -1$, this is the term as in the quantity above once $x_i$ and $x'_i$ are swapped in $S$ and $S'$,
+* the other two terms cancel out ($\sigma_i = +1$ and $\sigma'_i = -1$ with $\sigma_i = -1$ and $\sigma'_i = +1$). 
+
+This quantity is smaller than $$R_H(2m)$$, which concludes the proof of this lemma.
 
 
 #### Proof wrap up
