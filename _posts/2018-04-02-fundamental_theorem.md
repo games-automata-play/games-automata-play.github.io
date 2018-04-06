@@ -102,7 +102,7 @@ $$E_{S,S' \sim D^m} \left[ L_{S,f}(h) - L_{S',f}(h) \right] = E_{S,S' \sim D^m} 
 Recall that the goal is to upper bound by the Rademacher complexity.
 We claim that the quantity above is equal to
 
-$$E_{\sigma,\sigma' \in \left\{-1,+1\right\}} E_{S,S' \sim D^m} \left[ \frac{1}{m} \sum_{i = 1}^m \sigma_i L_{f}(h,x_i) - \sigma'_i L_{f}(h,x'_i)) \right]$$
+$$E_{\sigma,\sigma' \in \left\{-1,+1\right\}^m} E_{S,S' \sim D^m} \left[ \frac{1}{m} \sum_{i = 1}^m \sigma_i L_{f}(h,x_i) - \sigma'_i L_{f}(h,x'_i)) \right]$$
 
 Indeed, for each $i$ there are four cases:
 * either $\sigma_i = \sigma'_i = +1$, then this is the term as in the quantity above,
