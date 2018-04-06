@@ -104,25 +104,25 @@ We claim that the quantity above is equal to
 
 $$E_{\sigma,\sigma' \in \left\{-1,+1\right\}^m} E_{S,S' \sim D^m} \left[ \frac{1}{m} \sum_{i = 1}^m \sigma_i L_{f}(h,x_i) - \sigma'_i L_{f}(h,x'_i)) \right]$$
 
-Indeed, for each $i$ there are four cases:
+Indeed, fix $\sigma$ and $\sigma'$. For each $i$ there are four cases:
 * either $\sigma_i = \sigma'_i = +1$, then this is the term as in the quantity above,
 * or $\sigma_i = \sigma'_i = -1$, this is the term as in the quantity above once $x_i$ and $x'_i$ are swapped in $S$ and $S'$,
 * the other two terms cancel out ($\sigma_i = +1$ and $\sigma'_i = -1$ with $\sigma_i = -1$ and $\sigma'_i = +1$). 
 
-This quantity is smaller than $$R_H(2m)$$, which concludes the proof of this lemma.
+This quantity is smaller than $$2 R_H(2m)$$, which concludes the proof of this lemma.
 
 
 #### Proof wrap up
 
 We now combine this with Massart's Theorem (see the [previous post]({{ '/blog/VC' | prepend: site.baseurl }})),
 yielding 
-$$E_{S \sim D^m} \left[ |L_{D,f}(h) - L_{S,f}(h) | \right] \le \sqrt{\frac{\log(\pi_H(2m))}{m}}$$.
+$$E_{S \sim D^m} \left[ |L_{D,f}(h) - L_{S,f}(h) | \right] \le 2 \sqrt{\frac{\log(\pi_H(2m))}{m}}$$.
 
 It follows using Markov's inequality that for $\delta > 0$,
-$$P_{S \sim D^m} \left( |L_{D,f}(h) - L_{S,f}(h) | \le \frac{1}{\delta} \sqrt{\frac{\log(\pi_H(2m))}{m}} \right) \le 1 - \delta$$.
+$$P_{S \sim D^m} \left( |L_{D,f}(h) - L_{S,f}(h) | \le \frac{2}{\delta} \sqrt{\frac{\log(\pi_H(2m))}{m}} \right) \le 1 - \delta$$.
 
 Thanks to Sauer's lemma, $\pi_H(2m)$ grows polynomially in $m$ (since $d$ is constant), so given $\varepsilon > 0$ and $\delta > 0$, one can choose $m$
-such that $$\frac{1}{\delta} \sqrt{\frac{\log(\pi_H(2m))}{m}} \le \varepsilon$$.
+such that $$\frac{2}{\delta} \sqrt{\frac{\log(\pi_H(2m))}{m}} \le \varepsilon$$.
 
 An Empirical Risk Minimisation (ERM) algorithm is one that outputs an hypothesis exactly matching the training set, 
 i.e. such that $L_{S,f}(A(S,f)) = 0$.
