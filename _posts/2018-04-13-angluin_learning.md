@@ -106,6 +106,6 @@ It follows that the total number of queries is:
 * $O(n^3)$ membership queries.
 
 > Note that the algorithm we presented here is based on the construction of the backward automaton (see the [previous post]({{ '/blog/fliess_theorem' | prepend: site.baseurl }})).
-A dual algorithm can be constructed using the forward automata, which is actually what is done in the [original paper](https://dl.acm.org/citation.cfm?id=337257).
+A dual algorithm can be constructed using the forward automaton, which is actually what is done in the [original paper](https://dl.acm.org/citation.cfm?id=337257).
 
 
