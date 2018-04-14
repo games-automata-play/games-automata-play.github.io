@@ -29,10 +29,10 @@ The scenario is Angluin's style learning: a master knows a function $$f : A^* \t
 > **Theorem:** (Beimel, Bergadano, Bshouty, Kushilevitz, Varricchio, 2000)
 Weighted automata are efficiently learnable using a perfect teacher.
 
-The algorithm maintains the following data:
-* A set $$X$$ of rows with $$\varepsilon \in X$$,
-* A set $$Y$$ of columns with $$\varepsilon \in Y$$,
-* The matrix $$H_f(X,Y)$$ guaranteed to have full rank.
+The algorithm maintains a set $$X$$ of rows with $$\varepsilon \in X$$ and a set $$Y$$ of columns with $$\varepsilon \in Y$$
+such that
+* $X$ and $Y$ have the same size,
+* the matrix $$H_f(X,Y)$$ guaranteed to have full rank.
 
 The first question is how to initialise the data, and then how to maintain it.
 For initialisation, start with an equivalence query asking whether the function is identically zero.
