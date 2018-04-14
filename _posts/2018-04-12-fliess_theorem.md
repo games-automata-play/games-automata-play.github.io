@@ -53,33 +53,67 @@ We conclude by noting that the rank of a sum of matrices is at most the sum of t
 ### Converse implication: construction of the minimal automaton
 
 We introduce some notations. For $X,Y$ two subsets of $A^*$, we let $H_f(X,Y)$ denote the submatrix of $H_f$ restricted to rows in $X$ and columns in $Y$.
+Observe the following equality: $$H_f(Xa,Y) = H_f(X,aY)$$.
+
+#### The backward automaton
 
 Without loss of generality let us assume that $f \neq 0$.
 It follows that $$H_f( \{\varepsilon\}, A^* ) \neq 0$$.
-
 We consider the family of vectors given by rows of $H_f$. Let us consider $X$ indexing a basis of this family; thanks to the previous assumption we can assume $\varepsilon \in X$.
 
 We construct an automaton $$\A$$ as follows. 
 * The set of states is $$X$$. 
 * The initial vector is $$e_1$$.
-* The transition is defined to satisfy $$H_f(X a, A^*) = \Delta(a) H_f(X, A^*)$$.
+* The transition is defined to satisfy $$H_f(X a, A^*) = \Delta(a) \cdot H_f(X, A^*)$$.
 * The final vector is $$H_f( X, \{\varepsilon\} )$$.
 
-To see that there exists $\Delta(a)$ such that $$H_f(X a, A^*) = \Delta(a) H_f(X, A^*)$$,
+To see that there exists $\Delta(a)$ such that $$H_f(X a, A^*) = \Delta(a) \cdot H_f(X, A^*)$$,
 let $x \in X$. We decompose $H_f(xa,A^*)$ on the basis $$\{H_f(x,A^*) \mid x \in X\}$$:
-there exists $$\Delta(a)(x,y) \in \R$$ such that
+there exists $$\Delta(a)(x,x') \in \R$$ such that
 
-$$H_f(xa,A^*) = \sum_{y \in X} \Delta(a)(x,y) \cdot H_f(y,A^*)$$.
+$$H_f(xa,A^*) = \sum_{x' \in X} \Delta(a)(x,x') \cdot H_f(x',A^*)$$.
 
+We now argue that $\A$ recognises $f$: we show by induction that $$\Delta(w) \cdot \eta = H_f(Xw, \{\varepsilon\})$$.
 
-We now argue that $\A$ recognises $f$: we show by induction that $$\Delta(w) \cdot \eta = H_f(Xw, \{\varepsilon\})$$,
-which is by definition.
-Indeed 
 $$\begin{array}{ccc}
-\Delta(aw) \eta & = & \Delta(a) \cdot \Delta(w) \cdot \eta \\
+\Delta(aw) \cdot \eta & = & \Delta(a) \cdot \Delta(w) \cdot \eta \\
 & = & \Delta(a) \cdot H_f(Xw, \{\varepsilon\}) \\
 & = & \Delta(a) \cdot H_f(X, \{w\}) \\
 & = & H_f(Xa, \{w\}) \\
 & = & H_f(Xwa, \{\varepsilon\})
 \end{array}$$
+
+Note that we used the equality $$H_f(X a, w) = \Delta(a) \cdot H_f(X, w)$$ for all words $$w \in A^*$$, which is the projection on the column $$w$$ of the equality defining $$\Delta(a)$$.
+
+This concludes the proof.
+For the sake of curiosity, we show that there exists a dual construction, which considers columns instead of rows.
+
+#### The forward automaton
+
+Since $$f \neq 0$$ it follows that $$H_f( A^*, \{\varepsilon\}) \neq 0$$.
+We consider the family of vectors given by columns of $H_f$. Let us consider $Y$ indexing a basis of this family; thanks to the previous assumption we can assume $\varepsilon \in Y$.
+
+We construct an automaton $$\A$$ as follows. 
+* The set of states is $$Y$$. 
+* The initial vector is $$H_f( \{\varepsilon\}, Y )$$.
+* The transition is defined to satisfy $$H_f(A^*, a Y) = H_f(A^*, Y) \cdot \Delta(a)$$.
+* The final vector is $$e_1$$.
+
+To see that there exists $\Delta(a)$ such that $$H_f(A^*, a Y) = H_f(A^*, Y) \cdot \Delta(a)$$,
+let $y \in Y$. We decompose $H_f(A^*, ay)$ on the basis $$\{H_f(A^*,y) \mid y \in Y\}$$:
+there exists $$\Delta(a)(y,y') \in \R$$ such that
+
+$$H_f(A^*, ay) = \sum_{y' \in Y} H_f(A^*,y') \cdot \Delta(a)(y,y')$$.
+
+We now argue that $\A$ recognises $f$: we show by induction that $$\alpha \cdot \Delta(w) = H_f( \{\varepsilon\}, wY)$$.
+
+$$\begin{array}{ccc}
+\alpha \cdot \Delta(wa) & = & \alpha \cdot \Delta(w) \cdot \Delta(a) \\
+& = & H_f(\{\varepsilon\}, wY) \cdot \Delta(a) \\
+& = & H_f(\{w\}, Y) \cdot \Delta(a) \\
+& = & H_f(\{wa\}, Y) \\
+& = & H_f(\{\varepsilon\}, waY)
+\end{array}$$
+
+Note that we used the equality $$H_f(w, a Y) = H_f(w, Y) \cdot \Delta(a)$$ for all words $$w \in A^*$$, which is the projection on the row $$w$$ of the equality defining $$\Delta(a)$$.
 
