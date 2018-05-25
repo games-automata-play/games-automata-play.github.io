@@ -124,6 +124,9 @@ We finish this post with an alternative abstract point of view.
 
 #### An abstract construction without choosing a basis
 
+(Thanks to Pierre Ohlmann for working this out with me!)
+<br/>
+
 Instead of constructing a weighted automaton, we build a representation, 
 which is given by a vector space $$V$$ of finite dimension (over the reals),
 a morphism $$\mu : A^* \to V$$ and $$\lambda : V \to \R$$.
