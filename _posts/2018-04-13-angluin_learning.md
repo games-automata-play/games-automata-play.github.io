@@ -36,8 +36,8 @@ such that
 
 The first question is how to initialise the data, and then how to maintain it.
 For initialisation, start with an equivalence query asking whether the function is identically zero.
-The master replies with a counter-example $y$, and we can construct the data for $$X = Y = \{\varepsilon,y\}$$ by asking three membership queries,
-namely $$f(\varepsilon), f(y)$$ and $$f(yy)$$. This matrix has rank $2$.
+The master replies with a counter-example $y$, and we can construct the data for $$X = \{\varepsilon\}, Y = \{y\}$$ by asking a membership query for $$f(y)$$. 
+This matrix has rank $1$.
 
 We now explain how to extend the data. This goes in two steps:
 * constructing an automaton and submitting it to the master,
