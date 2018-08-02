@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      Positional determinacy for parity games: forward approach
-date:       2018-04-14 9:00:00
+title:      Positional determinacy for parity games, a forward approach
+date:       2018-08-02 9:00:00
 author:     Nathana&euml;l Fijalkow
 ---
 
@@ -31,37 +31,51 @@ MathJax.Hub.Config({
 One may recognise it in the works of Emerson and Jutla (91) using modal mu-calculus, and also more explicitely in the works of Kupferman and Vardi (98).
 </p>
 
-<p>
-This algorithm is different from Zielonka's algorithm.
-One of the point of this post is to extract from this algorithm the notion of signatures, which is the key to the correctness proof for 
-the small progress measure algorithm of Jurdzi&#324;ski.
-</p>
-
-<p>
-The analysis of the algorithm will give us as a by-product determinacy, positional determinacy and the existence of signatures.
-Note that we do not assume anything here, the proofs are built from (almost) first principles.</p>
-
-<p>We fix some notations. Consider a finite parity game with $n$ vertices and priorities in $[1,d]$.
+We fix some notations. Consider a finite parity game with $n$ vertices and priorities in $[1,d]$.
 The parity condition is satisfied by a play if the **maximal** priority seen infinitely often is even,
 we write $\Parity_d$ to mean that the priorities range in $[1,d]$.
 The two players are Eve and Adam, she controls the vertices depicted by circles and he controls the vertices depicted by squares.
-We let $W_E(\Parity_d)$ denote the set of vertices from which Eve has a winning strategy, and $W_A(\Parity_d)$ for Adam.</p>
+We let $W_E(\Parity_d)$ denote the set of vertices from which Eve has a winning strategy, and $W_A(\Parity_d)$ for Adam.
 
-<p>For a set of vertices $U \subseteq V$, we let $\Pre(U) \subseteq V$ be the set of vertices from which Eve can ensure to reach $U$ in one step:
+For a set of vertices $U \subseteq V$, we let $\Pre(U) \subseteq V$ be the set of vertices from which Eve can ensure to reach $U$ in one step:
 $$\Pre(U) = \{u \in V_E \mid \exists (u,v) \in E,\ v \in U\} \cup \{u \in V_A \mid \forall (u,v) \in E,\ v \in U\}.$$
 We use $\overline{\Pre(U)}$ for the complement of $\Pre(U)$.
 The condition $\Reach(U)$ is satisfied by plays visiting $U$ at least once, and $\Safe(U)$ by plays never visiting $U$.
-We write $d$ for the set of vertices of priority $d$.</p>
+We write $V_d$ for the set of vertices of priority $d$.
 
-### Two recursive lemmas yield a proof of positionality
+### Two recursive lemmas
+
+The inductive statement is as follows: 
+we consider parity games with priorities in $[1,d]$ and two additional colours: $\Win$ and $\Lose$.
+The vertices with colours $\Win$ or $\Lose$ are terminal: when reaching a terminal vertex, 
+the game stops and one of the players is declared the winner.
+Formally, the objective is
+
+$$\left( \Parity_d \cup \Reach(\Win) \right) \cap \Safe(\Lose)$$
 
 > **Lemma:** 
 Assume that $d$ is even.
-$W_E(\Parity_d)$ is the greatest fixed point of the function $Y \mapsto W_E(\Parity_{d-1}\ \cup\ \Reach(d \cap \Pre(Y)))$
+$$W_E (\left( \Parity_d \cup \Reach(\Win) \right) \cap \Safe(\Lose) )$$ 
+is the greatest fixed point of the operator $Y \mapsto$
+$$W_E \left( 
+\begin{array}{c} 
+\Parity_{d-1} \cup \Reach \left[ \Win \cup (V_d \cap \Pre(Y)) \right] \\
+\cap \\
+\Safe \left[ \Lose \cup (V_d \cap \overline{\Pre(Y)}) \right] 
+\end{array} \right)
+$$
 
-In words: $W_E(\Parity_d)$ is the largest set of vertices $Y$ such that from $Y$ Eve has a strategy ensuring that 
+For the sake of the explanation and in the proof, we assume that $\Win = \Lose = \emptyset$.
+
+In words: 
+$W_E(\Parity_d)$ is the largest set of vertices $Y$ such that from $Y$ Eve has a strategy ensuring that 
 * either the priority $d$ is never seen, in which case the parity condition is satisfied with lower priorities,
 * or the priority $d$ is seen, in which case Eve can ensure to reach $Y$ in one step.
+
+<figure>
+	<img src="{{ '/images/even_parity.png' | prepend: site.baseurl }}" alt=""> 
+	<figcaption>The even case.</figcaption>
+</figure>
 
 **Proof:**
 The fact that $W_E(\Parity_d)$ contains the greatest fixed point follows from the observation that any fixed point $Y$ is contained in $W_E(\Parity_d)$.
@@ -77,11 +91,24 @@ which is easy to check.
 
 > **Lemma:** 
 Assume that $d$ is odd.
-$W_E(\Parity_d)$ is the least fixed point of the function $X \mapsto W_E(\Parity_{d-1} \cap \Safe(d \cap \overline{\Pre(X)}))$
+Then $W_E (\left( \Parity_d \cup \Reach(\Win) \right) \cap \Safe(\Lose) )$ is the least fixed point of the operator $X \mapsto$
+$$W_E \left( 
+\begin{array}{c} 
+\Parity_{d-1} \cup \Reach \left[ \Win \cup (V_d \cap \Pre(X)) \right] \\
+\cap \\
+\Safe \left[ \Lose \cup (V_d \cap \overline{\Pre(X)}) \right] 
+\end{array} \right)$$
+
+For the sake of the explanation and in the proof, we assume that $\Win = \Lose = \emptyset$.
 
 In words: $W_E(\Parity_d)$ is the smallest set of vertices $X$ such that from $X$ Eve has a strategy ensuring that 
 * either the priority $d$ is never seen, in which case the parity condition is satisfied with lower priorities,
 * or the priority $d$ is seen, in which case Eve can ensure to reach $X$ in one step.
+
+<figure>
+	<img src="{{ '/images/odd_parity.png' | prepend: site.baseurl }}" alt=""> 
+	<figcaption>The odd case.</figcaption>
+</figure>
 
 **Proof:**
 The fact that $W_E(\Parity_d)$ contains the least fixed point follows from the fact that it is itself a fixed point,
@@ -107,11 +134,32 @@ Indeed, the two claims are in some sense dual to each other (more precisely, thi
 We do not take this road, because it requires assuming determinacy of parity games, which we avoided in this presentation,
 and obtained as a corollary.
 
+### Finishing the proof
+
+We now explain how the two lemmas show that 
+if parity games with priorities in $[1,d-1]$ are positionally determined,
+then parity games with priorities in $[1,d]$ are positionally determined.
+Let
+
+$$W = W_E (\left( \Parity_d \cup \Reach(\Win) \right) \cap \Safe(\Lose) )$$
+
+Depending on the parity of $d$, either of the two lemmas show that
+
+$$W = W_E (\left( \Parity_{d-1} \cup \Reach(\Win') \right) \cap \Safe(\Lose') )$$
+
+with $\Win' = \Win \cup (V_d \cap \Pre(W))$ and $\Lose' = \Lose \cup (V_d \cap \overline{\Pre(W)})$
+
+Observe that the latter can be seen as a parity game with priorities in $[1,d-1]$,
+because vertices with priority $d$ have been added either to $\Win'$ or to $\Lose'$.
+Let $\sigma_{d-1}$ be a positional winning strategy in this game.
+The proof yields a positional winning strategy in the original game by taking the disjoint union of $\sigma_{d-1}$
+and of the (positional) strategy $\sigma_d$ ensuring from $V_d \cap \Pre(W)$ to reach $W$ in one step.
+This concludes the proof.
+
+<!--
 ### The algorithm
 
 To be continued!
-
-<!--
 
 <p>We construct two recursive procedures, which take as input a parity game with priorities in $[1,p]$ 
 and two additional colours: $\set{\Win,\Lose}$, and output the winning set for Eve.

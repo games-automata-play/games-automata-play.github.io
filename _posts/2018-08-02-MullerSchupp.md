@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      Positional determinacy for parity games: Muller and Schupp backward approach
-date:       2017-12-27 9:00:00
+title:      Positional determinacy for parity games, a backward approach by Muller and Schupp
+date:       2018-08-02 9:00:00
 author:     Nathana&euml;l Fijalkow
 ---
 
@@ -14,9 +14,9 @@ MathJax.Hub.Config({
       Parity: "{\\mathrm{Parity}}",
       N: "{\\mathbb{N}}",
       nN: "{_{n \\in \\mathbb{N}}}",
-      priority: "{\\{0,\\ldots,d\\}}",
-      lex: "{\\le_{\\mathrm{lex}}}",
-      lexstrict: "{<_{\\mathrm{lex}}}",
+      priority: "{[1,d]}",
+      lex: "{\\le_{\\mathrm{lex}} }",
+      lexstrict: "{<_{\\mathrm{lex}} }",
       tr: "{\\mathrm{tr}}",
       P: "{\\mathcal{P}}",
     }
@@ -41,7 +41,8 @@ The positional strategy plays assuming this worst case; if the preference order 
 ensuring the parity condition.
 </p>
 
-We fix $\G$ a chronological game with finite outdegree, $v_0$ a starting vertex and $\sigma$ a winning strategy for Eve, i.e. ensuring $\Parity$.
+We fix $\G$ a game with finite outdegree, $v_0$ a starting vertex and $\sigma$ a winning strategy for Eve, i.e. ensuring $\Parity$.
+The crucial assumption we make is that $\G$ is chronological: all paths from $v_0$ to a vertex $v$ have the same length.
 
 #### Ordering histories
 
@@ -51,7 +52,7 @@ $$\priority^\infty = \priority^* \cup \priority^\omega$$
 be the set of histories.
 It is equipped with the prefix distance, inducing a notion of limit for sequences of histories.
 
-The parity condition is satisfied by infinite histories such that the *maximal* priority appearing infinitely
+The parity condition is satisfied by infinite histories such that the **maximal** priority appearing infinitely
 often is even.
 
 For a history $p$, define $\tr_c(p)$ the suffix of $p$ that starts after the last occurrence of $c$.
@@ -107,7 +108,7 @@ Let $(p_n)\nN$ be a sequence of finite plays.
 Then it contains a converging subsequence.
 
 We define a positional strategy $\sigma'$ on all vertices reachable by $\sigma$.
-The definition is by induction on the rank, which is the length of the smallest path from $v_0$.
+The definition is by induction on the rank, which is the length of the path from $v_0$.
 For the definition to make sense we need to ensure the following property:
 for all vertices $v$ reachable by $\sigma'$, there exists a play ending in $v$
 consistent with both $\sigma$ and $\sigma'$.

@@ -21,11 +21,11 @@ what is the exact size of the smallest universal tree?
 
 <p>
 The motivation for studying universal trees comes from parity games. This post does not explain this connection at all, the goal is to present an open problem of purely combinatorial nature
-as I hope to appeal to my combinatorially-minded friends and colleagues.
+as I hope to appeal to my combinatorially-minded friends.
 </p>
 
-For the parity games afficionados, a short chronology:
-* Jurdzi&#324;ski and Lazi&#263; implicitly constructed a quasipolynomial universal tree in the [succinct progress measure algorithm of ](https://arxiv.org/abs/1702.05051)
+For the parity games aficionados, a short chronology:
+* Jurdzi&#324;ski and Lazi&#263; implicitly constructed a quasipolynomial universal tree in the [succinct progress measure algorithm](https://arxiv.org/abs/1702.05051)
 * I defined universal trees to show that it provides a [generic value iteration algorithm for parity games](https://arxiv.org/abs/1801.09618),
 and gave upper and lower bounds on the size of universal trees 
 * Czerwi&#324;ski, Daviaud, Jurdzi&#324;ski, Lazi&#263;, Parys, and myself later showed that a wide class of [automata-theoretic algorithms for solving parity games need to construct universal trees](https://arxiv.org/abs/1807.10546)
