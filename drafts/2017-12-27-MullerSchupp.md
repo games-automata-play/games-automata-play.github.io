@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      The backward approach of Muller and Schupp for positional determinacy
+title:      Positional determinacy for parity games: Muller and Schupp backward approach
 date:       2017-12-27 9:00:00
 author:     Nathana&euml;l Fijalkow
 ---
@@ -41,7 +41,7 @@ The positional strategy plays assuming this worst case; if the preference order 
 ensuring the parity condition.
 </p>
 
-We fix $\G$ a game with finite outdegree, $v_0$ a starting vertex and $\sigma$ a winning strategy for Eve, i.e. ensuring $\Parity$.
+We fix $\G$ a chronological game with finite outdegree, $v_0$ a starting vertex and $\sigma$ a winning strategy for Eve, i.e. ensuring $\Parity$.
 
 #### Ordering histories
 

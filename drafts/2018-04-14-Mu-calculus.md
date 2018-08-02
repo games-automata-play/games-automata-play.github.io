@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      A mu-calculus algorithm for parity games
+title:      Positional determinacy for parity games: forward approach
 date:       2018-04-14 9:00:00
 author:     Nathana&euml;l Fijalkow
 ---
@@ -27,8 +27,7 @@ MathJax.Hub.Config({
 });
 </script>
 
-<p class="intro"><span class="dropcap">T</span>his post constructs a recursive (exponential) algorithm for parity games.
-Evidence that it is good, it has been invented many times.
+<p class="intro"><span class="dropcap">T</span>his post gives a proof of positional determinacy for parity games.
 One may recognise it in the works of Emerson and Jutla (91) using modal mu-calculus, and also more explicitely in the works of Kupferman and Vardi (98).
 </p>
 

@@ -22,7 +22,7 @@ namely the small progress measure algorithm of Jurdzi&#324;ski, the succinct pro
 and the power counting algorithm of Calude et al, can be seen as solutions of a separation problem.</p>
 
 Let $V$ be a set of $n$ vertices and $d$ a number of priorities (without loss of generality $d$ is even), we consider a priority function $V \to \set{1,\ldots,d}$.
-A cycle is a word $v \cdots v$. It is even is the maximal priority is even, and odd otherwise. 
+A cycle is a word $v \cdots v$. It is even if the maximal priority is even, and odd otherwise. 
 We define three languages:
 * $\text{Parity} \subseteq V^\omega$: the maximal priority appearing infinitely many times is even,
 * $\text{AllEvenCycles} \subseteq V^\omega$: all cycles are even,
@@ -38,7 +38,7 @@ The separation problem reads: find a closed regular language $L \subseteq V^*$ s
 > 2. $L \cap \text{AllOddCycles} = \emptyset$
 
 <figure>
-	<img src="{{ '/images/separation2.png' | prepend: site.baseurl }}" alt=""> 
+	<img src="{{ '/images/separation.png' | prepend: site.baseurl }}" alt=""> 
 	<figcaption>The separation problem</figcaption>
 </figure>
 
@@ -71,17 +71,11 @@ The states of the automaton are $d/2$-tuples of integers in $[n] = \set{0,\ldots
 they are numbered $1,3,\ldots,d-1$.
 For a tuple $x$ and a priority $p$, we let $x(p)$ denote the $p$ component of $x$.
 The initial state is the tuple containing only $0$, written $x_0$.
-We order tuples lexicographically; more precisely, we let $$\le_p$$ denote the lexicographic order restricted to the components larger than or equal to $p$,
-and $<\_p$ the strict version. The order $\le_p$ is called the $p$-order.
-The transition function is as follows: from the tuple $x$, reading a vertex $v$ of priority $p$, the next tuple $x'$
-is the smallest satisfying: 
-* if $p$ is even, then $x \le_p x'$,
-* if $p$ is odd, then $x <\_p x'$.
 
-A more mechanistic definition is as follows: 
+The transition function is as follows: from the tuple $x$, reading a vertex $v$ of priority $p$, the next tuple $x'$ is as follows: 
 * if $p$ is even, then the new tuple is the same as $x$, but all priorities smaller than $p$ are reset to $0$,
 * if $p$ is odd, then the new tuple is the same as $x$, but the $p$ component is incremented by $1$ and all priorities smaller than $p$ are reset to $0$.
-If a component cannot be incremented, it is reset, and the component just above is incremented. If no components can be incremented, the automaton rejects.
+If the $p$ component cannot be incremented (because it has value $n$), the automaton rejects.
 
 Formally, the transition function is $$\delta : [n]^{\frac{d}{2}} \times V \to [n]^{\frac{d}{2}}$$, inducing $$\delta : V^* \to [n]^{\frac{d}{2}}$$.
 For a word $w$ and a tuple $x$, we let $\delta(x,w)$ denote the tuple reached after reading $w$ from $x$, if defined.
@@ -162,56 +156,6 @@ and outputting a function $\enc(\mu) : V \to S_{n,d}$ such that all $p$-orders a
 for $\mu$, $v, v'$ and a priority $p$, we have
 $$\mu(v) \le_p \mu(v')$$ if, anf only if, $$\enc(\mu)(v) \le_p \enc(\mu)(v').$$
 
-**Proof:**
-This is the [original proof](https://arxiv.org/abs/1702.05051) by induction on $n$ and $d$. 
-In this proof it is more convenient to talk about trees than functions.
-
-Let $\mu$ be a tree with $n$ leaves and depth $d$.
-Choose the smallest branching direction $i \in [n]$ such that:
-* the set $V_{<}$ of vertices $v$ such that $\mu(v)(d-1) <\ i$ has size at most $\frac{n}{2}$, and
-* the set $V_{>}$ of vertices $v$ such that $\mu(v)(d-1) >\ i$ has size at most $\frac{n}{2}$.
-
-Let $V_{=}$ the set of vertices such that $\mu(v)(d-1) = i$.
-We consider three subtrees:
-* the subtree with leaves $V_{<}$,
-* the subtree with leaves $V_{>}$,
-* the subtree with leaves $V_{=}$ rooted in the node $i$.
-
-By induction hypothesis, we obtain encodings for these tree subtrees.
-The encoding for the original tree is obtained by prefixing the encoding for $V_{<}$ by $0$ and the encoding for $V_{>}$ by $1$, 
-encoding $i$ by $\varepsilon$ and keeping the encoding for $V_{=}$ unchanged.
-We say that $t$ is (succinctly) encoded by cutting along direction $i$.
-
-
-The extra technical bit in this post is the following lemma, showing the interplay between succinct tree coding and updating.
-Recall that $$\delta : [n]^{\frac{d}{2}} \times V \to [n]^{\frac{d}{2}}.$$
-
-We define $\delta^* : (V \to [n]^{\frac{d}{2}}) \times V \to (V \to [n]^{\frac{d}{2}})$ as follows:
-$\delta(\mu,v)(v') = \mu(v')$ if $v' \neq v$, and $\delta(\mu(v),v')$ otherwise.
-This induces a function $\delta^* : V^* \to (V \to [n]^{\frac{d}{2}})$.
-
-**Lemma (succinct tree coding and update).**
-For $\mu$, $v,v'$, with $v$ of priority $p$,
-We have $$\enc(\mu)(v') \le_p \enc(\delta(\mu,v))(v').$$
-
-<!--
-* if $p$ is even, then $$\enc(\mu)(v') \le_p \enc(\delta(\mu,v))(v'),$$
-* if $p$ is odd, then $\enc(\mu)(v') <\_{p}  \enc(\delta(\mu,v))(v').$
--->
-
-**Proof:**
-We succinctly encode in parallel $\mu$ and $\delta(\mu,v)$, and reason by induction on the depth, starting from $d-1$ down to $p$.
-
-We first observe that if $\mu$ is cut along direction $i$ and $\delta(\mu,v)$ along direction $j$, then $i \le j$,
-since the only difference between $\mu$ and $\delta(\mu,v)$ is that $v$ has been pushed to the right in $\delta(\mu,v)$.
-Now there are two cases:
-* either $v'$ belongs to the same subtrees in both encodings, *i.e.* for instance in the subtree with leaves $V_{<}$ in both cases, then we continue by induction in this subtree.
-* or $v'$ belongs to $V_{<}$ for $\mu$ and $V_{=}$ or $V_{>}$ for $\delta(\mu,v)$ (similar case: $v'$ belongs to $V_{=}$ for $\mu$ and $V_{>}$ for $\delta(\mu,v)$), 
-which implies that $\enc(\mu)(v') <\_{p}  \enc(\delta(\mu,v))(v').$
-
-If we go past depth $p$, then $\enc(\mu)(v') =\_{p}  \enc(\delta(\mu,v))(v').$
-
-
 We construct a (deterministic) safe automaton recognising a language $L$ solving the separation problem.
 The set states of the automaton is $S_{n,d}$.
 The initial state is the tuple containing only $\varepsilon$, written $x_0$.
@@ -233,42 +177,6 @@ Then, $\deltasucc(w)$ is $\deltasucc(x_0,w)$.
 **Lemma:**
 1. $\text{AllEvenCycles} \subseteq L$
 2. $L \cap \text{AllOddCycles} = \emptyset$
-
-**Proof:**
-We start by proving the second item: the proof is exactly as in the case of small progress measures, 
-it follows from the observation that if $w$ is an odd cycle, then $x <\_p \deltasucc(x,w)$.
-Consider now the largest priority appearing infinitely many times, and assume it is odd: there are infinitely many odd cycles with this priority, 
-and from some point on they induce an increase in the corresponding tuple, which eventually results in the automaton rejecting.
-
-We now prove the first item.
-We claim that for a function $\mu : V \to [n]^{\frac{d}{2}}$ and two vertices $v,v'$, we have
-$$\deltasucc(\enc(\mu)(v'),v) \le \enc(\delta^*(\mu,v))(v').$$
-
-Indeed, let us say that $v$ has priority $p$.
-We first assume that $p$ is even.
-By definition $$\deltasucc(\enc(\mu)(v'),v)$$ is the smallest $x$ in $S_{n,d}$ such that
-$$\enc(\mu)(v') \le_p x.$$
-It follows that to prove the inequality above it is enough to show that
-$$\enc(\mu)(v') \le_p \enc(\delta^*(\mu,v))(v'),$$
-which is precisely the statement of the lemma above.
-
-We now assume that $p$ is odd.
-By definition $$\deltasucc(\enc(\mu)(v'),v)$$ is the smallest $x$ in $S_{n,d}$ such that
-$$\enc(\mu)(v') <\_{p}\ x.$$
-The lemma above states that
-$$\enc(\mu)(v') \le_p \enc(\delta^*(\mu,v))(v').$$
-AND????
-
-This implies that $\deltasucc(w) \le \enc(\delta^*(w))(\last(w))$, where $\last(w)$ is the last vertex in $w$.
-Hence if $w$ is accepted by the automaton using small progress measures, then it is accepted by the automaton using succinct progress measures,
-which concludes the proof.
-
-
-
-
-
-
-
 
 
 
