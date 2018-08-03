@@ -3,6 +3,7 @@ layout:     post
 title:      Positional determinacy for parity games, a forward approach
 date:       2018-08-02 9:00:00
 author:     Nathana&euml;l Fijalkow
+category:   Parity games
 ---
 
 <script type="text/x-mathjax-config">

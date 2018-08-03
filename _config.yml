@@ -14,6 +14,8 @@ paginate: 10
 navigation:
  - title: Home
    url: /index.html
+ - title: By categories
+   url: /category
  - title: About
    url: /about
 
