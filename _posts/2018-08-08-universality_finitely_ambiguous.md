@@ -34,6 +34,8 @@ Our proof is very similar.
 Recall that an automaton is $k$-ambiguous if for every word, there are **at most** $k$ **accepting** runs for $w$.
 Note that we consider only accepting runs; there might be more (non-accepting) runs.
 
+We let $n$ be the number of states of the automaton $\A$.
+
 ### The universality problem for unambiguous automata
 
 <!--
