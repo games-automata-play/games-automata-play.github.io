@@ -3,7 +3,7 @@ layout:     post
 title:      The universality problem for automata with bounded ambiguity 
 date:       2018-08-08 10:00:00
 author:     Nathana&euml;l Fijalkow and Ritam Raha
-category:   Weighted automata
+category:   Automata
 ---
 
 <script type="text/x-mathjax-config">
