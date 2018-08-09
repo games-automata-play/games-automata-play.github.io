@@ -32,7 +32,7 @@ A very classical objective is **Reachability**: given a set of vertices $F$, Eve
 
 This paper introduces **Generalized reachability** objectives: given a family of sets $F_1,\ldots,F_k$, Eve wins if she ensures that for each $i \in [1,k]$, **some** vertex from $F_i$ is reached **at least once** during the play. It is very important to note here that the order under which the sets are visited is not specified.
 
-As a first example, and to help intuition, generalized reachability games include the QBF problem.
+As a first example and to help intuition, we show that generalized reachability games include the QBF problem.
 Consider the QBF formula
 
 $$\forall x\ \exists y\ \forall z\ (x \vee \neg y) \wedge (\neg y \vee z)\ .$$
@@ -49,7 +49,7 @@ We are interested in two questions:
 * complexity of the following decision problem: given a generalized reachability game, determine wheter Eve has a winning strategy
 * for different subclasses, how much memory is required for constructing winning strategies for both players 
 
-The restriction we consider is the size of the sets $F_i$, in the same way as for QBF this means restricting the size of the clauses.
+The restriction we consider is the size of the sets $F_i$ which for QBF corresponds to restricting the size of the clauses.
 
 ### What is known
 
