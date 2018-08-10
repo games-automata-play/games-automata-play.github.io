@@ -46,7 +46,7 @@ A picture is worth a thousand words:
 
 <figure>
 	<img src="{{ '/images/example_tree.png' | prepend: site.baseurl }}" alt=""> 
-	<figcaption>Example of relations: $v_3 >_1 v_7 >_1 v_1$, $v_5 \ge_2 v_3 \ge_2 v_6$, and $v_4 >_3 v_2$.</figcaption>
+	<figcaption>Example of relations: $v_3 \vartriangleleft_1 v_7 \vartriangleleft_1 v_1$, $v_5 \vartriangleleft_2 v_4 \vartriangleleft_2 v_6$, and $v_4 \vartriangleleft_3 v_2$.</figcaption>
 </figure>
 
 Note that $\vartriangleleft_p$ is a total order, which is strict for $p$ odd and reflexive for $p$ even.
@@ -54,8 +54,8 @@ Note that $\vartriangleleft_p$ is a total order, which is strict for $p$ odd and
 > **Theorem:** 
 For all $(n,d/2)$-universal tree $T$, there exists a labeling $\mu : V \to L(T) \cup \\{\bot\\}$ such that
 * $\mu(v) \neq \bot$ if and only if Eve wins from $v$
-* if $v \in V_E$ has priority $p$, then there exists $(v,v') \in E$ such that $v \vartriangleleft_p v'$
-* if $v \in V_A$ has priority $p$, then for all $(v,v') \in E$ we have $v \vartriangleleft_p v'$
+* if $v \in V_E$ has priority $p$, then there exists $(v,v') \in E$ such that $v' \vartriangleleft_p v$
+* if $v \in V_A$ has priority $p$, then for all $(v,v') \in E$ we have $v' \vartriangleleft_p v$
 
 <!--
 **Proof:**
@@ -81,7 +81,7 @@ If this is not possible, $\mu(v)$ is assigned $\bot$ (losing).
 
 <figure>
 	<img src="{{ '/images/example_lifting.png' | prepend: site.baseurl }}" alt=""> 
-	<figcaption>Example of lifting $v_5$: it is pushed to the right in order to satisfy $v_5 \vartriangleleft_3 v_7$ and $v_5 \vartriangleleft_2 v_1$.</figcaption>
+	<figcaption>Example of lifting $v_5$: it is pushed to the right in order to satisfy $v_7 \vartriangleleft_3 v_5$ and $v_1 \vartriangleleft_2 v_5$.</figcaption>
 </figure>
 
 The correctness follows from the two observations: let $\mu_*$ be a labeling as in the theorem above, for the order $\vartriangleleft_1$:
