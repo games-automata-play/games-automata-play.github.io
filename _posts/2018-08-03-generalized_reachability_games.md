@@ -46,7 +46,7 @@ The clauses correspond to the sets $F_i$: here we have $F_1 = \\{x, \neg y\\}, F
 </figure>
 
 We are interested in two questions:
-* complexity of the following decision problem: given a generalized reachability game, determine wheter Eve has a winning strategy
+* complexity of the following decision problem: given a generalized reachability game, determine whether Eve has a winning strategy
 * for different subclasses, how much memory is required for constructing winning strategies for both players 
 
 The restriction we consider is the size of the sets $F_i$ which for QBF corresponds to restricting the size of the clauses.
