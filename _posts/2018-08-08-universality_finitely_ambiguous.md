@@ -78,7 +78,7 @@ The universality problem for unambiguous automata is in PTIME
 
 The crux is to show that the sequence
 
-$$\alpha(\ell) = \text{ number of words of length } \ell \text{ accepted by } A$$
+$$\alpha(\ell) = \text{ number of words of length } \ell \text{ accepted by } \A$$
 
 is a linear recurrence sequence (LRS) of order $n$.
 Recall that an LRS of order $k$ is a sequence $(u_\ell)_{\ell \in \N}$ such that
@@ -86,7 +86,7 @@ Recall that an LRS of order $k$ is a sequence $(u_\ell)_{\ell \in \N}$ such that
 $$u_\ell = X \cdot A^{\ell} \cdot Y$$
 
 where $A \in \R^{k \times k}$ and $X,Y \in \R^k$.
-For instance, the Fibonacci sequence $(0,1,1,2,3,5,8,13,\cdots)$ is
+For instance, the Fibonacci sequence $(0,1,1,2,3,5,8,13,\ldots)$ is
 
 $$F_\ell = (1\qquad 0) \cdot \left( \begin{array}{cc} 1 & 1 \\ 1 & 0 \end{array} \right)^{\ell} \cdot (0\qquad 1)$$
 
@@ -155,16 +155,18 @@ Nevertheless, we will show that the sequence
 
 $$\alpha(\ell) = \text{ number of words of length } \ell \text{ accepted by } \A$$
 
-is a linear recurrence sequence (LRS) of order $O(n^k)$.
+is a linear recurrence sequence (LRS) of order $n^{O(k)}$.
 
 For $p \le k$, denote
 $$\alpha_p(\ell) = \text{ number of words of length } \ell \text{ having exactly } p \text{ accepting runs over } \A$$
 
 We have $\alpha(\ell) = \sum_{p = 1}^k \alpha_p(\ell)$
-hence it suffices to show that each $(\alpha_p(\ell))_{\ell \in \N}$ is an LRS of order $O(n^k)$.
+hence it suffices to show that each $(\alpha_p(\ell))_{\ell \in \N}$ is an LRS of order $n^{O(k)}$.
 
-We construct an automaton $\A_p$ as follows.
-We fix a linear order on $Q$ and choose as set of states for $\A_p$ non-decreasing tuples of $Q$ of size at most $p$.
+We construct an automaton $\A_p$ as follows. 
+On a first approximation, we use the powerset construction capped to sets of size at most $p$.
+It is technically convenient for what follows to identify two runs of $\A_p$ which contain exactly the same runs of $\A$.
+To this end, we fix a linear order on $Q$ and choose as set of states for $\A_p$ non-decreasing tuples of $Q$ of size at most $p$.
 A state is final if it is a tuple of size exactly $p$ containing only accepting states of $\A$.
 Hence a word $w$ is accepted by $\A_p$ if and only if $w$ has **at least** $p$ accepting runs over $\A$.
 The automaton $\A_p$ has $O(n^p)$ states.
@@ -188,7 +190,7 @@ with $M$ upper triangular and invertible. Hence
 
 $$\alpha = M^{-1} ACC$$
 
-Thanks to the lemma above each $ACC_p$ is an LRS of order $O(n^k)$, which implies that each $\alpha_p$ as well.
+Thanks to the lemma above each $ACC_p$ is an LRS of order $n^{O(k)}$, which implies that each $\alpha_p$ as well.
 
 This yields a polynomial time algorithm similarly as for unambiguous automata.
 Note that this also implies that if $\A$ is $k$-ambiguous and not universal, 

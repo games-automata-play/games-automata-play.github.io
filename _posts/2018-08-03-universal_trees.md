@@ -159,11 +159,9 @@ so there is a gap.
 Which is the right formula, the lower or the upper bound? Turns out it is neither of them!
 
 Here is what I know:
-* the lower bound is not tight. A counter-example can be found for $h = 2$
-* the upper bound is tight for $h = 2$ (for $h = 1$ this is trivial, but for $h = 2$ there is a bit of work)
-* the upper bound is **not** tight for $h = 3$. 
-
-I briefly sketch a counter-example. Take $h = 3$ and $n = 10$. The upper bound construction uses as $T_\text{middle}$ a $(10,2)$-universal tree.
+* the lower bound is not tight. For $h = 2$ and $n = 5$, there are no universal trees of size $10$.
+* the upper bound is tight for $h = 2$ (there is a bit of work to check this)
+* the upper bound is **not** tight for $h = 3$. Take $h = 3$ and $n = 10$. The upper bound construction uses as $T_\text{middle}$ a $(10,2)$-universal tree.
 This is actually wasteful, because this tree can only be used to map trees whose root has a large degree (at least $5$), hence a smaller tree
 can be used for $T_\text{middle}$.
 
