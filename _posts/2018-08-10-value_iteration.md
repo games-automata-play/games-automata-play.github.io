@@ -52,7 +52,9 @@ A picture is worth a thousand words:
 Note that $\vartriangleleft_p$ is a total order, which is strict for $p$ odd and reflexive for $p$ even.
 
 > **Theorem:** 
-For all $(n,d/2)$-universal tree $T$, there exists a labeling $\mu : V \to L(T) \cup \\{\bot\\}$ such that
+Fix a $(n,d/2)$-universal tree $T$. 
+For all parity games with $n$ vertices and priorities in $[1,d]$, 
+there exists a labeling $\mu : V \to L(T) \cup \\{\bot\\}$ such that
 * $\mu(v) \neq \bot$ if and only if Eve wins from $v$
 * if $v \in V_E$ has priority $p$, then there exists $(v,v') \in E$ such that $v' \vartriangleleft_p v$
 * if $v \in V_A$ has priority $p$, then for all $(v,v') \in E$ we have $v' \vartriangleleft_p v$
