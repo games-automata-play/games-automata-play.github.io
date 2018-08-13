@@ -44,7 +44,7 @@ The size of a tree is its number of leaves.</p>
 
 <figure>
 	<img src="{{ '/images/tree.png' | prepend: site.baseurl }}" alt=""> 
-	<figcaption>A tree of size $11$ and height $2$.</figcaption>
+	<figcaption>A tree of size $11$ and height $2$</figcaption>
 </figure>
 
 <p>
@@ -54,7 +54,7 @@ We say that a tree $T$ is $(n,h)$-universal if all trees of size $n$ and height 
 
 <figure>
 	<img src="{{ '/images/embedding_example.png' | prepend: site.baseurl }}" alt=""> 
-	<figcaption>A tree of size $5$ and height $2$, and one possible embedding into the tree above.</figcaption>
+	<figcaption>A tree of size $5$ and height $2$, and one possible embedding into the tree above</figcaption>
 </figure>
 
 <p>
@@ -63,7 +63,7 @@ An example of a $(n,h$)-universal tree is the complete tree of height $h$ with e
 
 <figure>
 	<img src="{{ '/images/tree_naive.png' | prepend: site.baseurl }}" alt=""> 
-	<figcaption>The naive $(5,2)$-universal tree has size $25$.</figcaption>
+	<figcaption>The naive $(5,2)$-universal tree has size $25$</figcaption>
 </figure>
 
 > **Objective:** Construct small universal trees
@@ -91,7 +91,7 @@ $$f(n,1) = n ;\qquad f(h,1) = 1$$
 
 <figure>
 	<img src="{{ '/images/smallest_tree_construction.png' | prepend: site.baseurl }}" alt=""> 
-	<figcaption>The inductive construction.</figcaption>
+	<figcaption>The inductive construction</figcaption>
 </figure>
 
 To construct the $(n,h)$-universal tree $T$, let:
@@ -155,15 +155,25 @@ One can show that
 
 $$\frac{f(n)}{g(n)} = O(nh)$$
 
-so there is a gap.
+so there is a (reasonably small but still) gap.
 Which is the right formula, the lower or the upper bound? Turns out it is neither of them!
 
 Here is what I know:
-* the lower bound is not tight. For $h = 2$ and $n = 5$, there are no universal trees of size $10$.
+* the lower bound is not tight. For $h = 2$ and $n = 5$, there are no universal trees of size $10$, easily seen by necessary conditions (there must be a node with $5$ leaves
+and two other nodes with $2$ leaves).
 * the upper bound is tight for $h = 2$ (there is a bit of work to check this)
-* the upper bound is **not** tight for $h = 3$. Take $h = 3$ and $n = 10$. The upper bound construction uses as $T_\text{middle}$ a $(10,2)$-universal tree.
-This is actually wasteful, because this tree can only be used to map trees whose root has a large degree (at least $5$), hence a smaller tree
-can be used for $T_\text{middle}$.
+* the upper bound is **not** tight for $h = 3$. Take $h = 3$ and $n = 10$. The upper bound construction uses as $T_\text{middle}$ a $(10,2)$-universal tree, which is actually wasteful. 
+To see this, we do a case distinction, and find necessary conditions on the tree $T$ to use instead of $T_\text{middle}$.
+Consider a tree of height $3$ with $10$ leaves we want to embed and follow the construction of the proof, using the induction we embed a subtree $t$ rooted in some child of the root into $T$.
+Either the root of $t$ has degree at most $5$, and then it is enough to require that $T$ is $(5,2)$-universal,
+or it has degree at least $6$. 
+A case analysis reveals that the following tree $T$ satisfies the two conditions above, meaning it is $(5,2)$-universal and it embeds all trees with height $2$ and whose root has degree at least $6$.
+Interestingly, it is smaller than $T_\text{middle}$.
+
+<figure>
+	<img src="{{ '/images/counter_example.png' | prepend: site.baseurl }}" alt=""> 
+	<figcaption>Replace $T_\text{middle}$ by this tree to get a smaller $(10,3)$-universal tree</figcaption>
+</figure>
 
 > **Open question:** what is the exact size of the smallest $(n,h)$-universal tree?
 
