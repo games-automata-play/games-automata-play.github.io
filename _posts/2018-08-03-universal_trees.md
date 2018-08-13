@@ -156,12 +156,12 @@ One can show that
 $$\frac{f(n)}{g(n)} = O(nh)$$
 
 so there is a (reasonably small but still) gap.
-Which is the right formula, the lower or the upper bound? Turns out it is neither of them!
-
 Here is what I know:
 * the lower bound is not tight. For $h = 2$ and $n = 5$, there are no universal trees of size $10$, easily seen by necessary conditions (there must be a node with $5$ leaves
 and two other nodes with $2$ leaves).
 * the upper bound is tight for $h = 2$ (there is a bit of work to check this)
+
+<!--
 * the upper bound is **not** tight for $h = 3$. Take $h = 3$ and $n = 10$. The upper bound construction uses as $T_\text{middle}$ a $(10,2)$-universal tree, which is actually wasteful. 
 To see this, we do a case distinction, and find necessary conditions on the tree $T$ to use instead of $T_\text{middle}$.
 Consider a tree of height $3$ with $10$ leaves we want to embed and follow the construction of the proof, using the induction we embed a subtree $t$ rooted in some child of the root into $T$.
@@ -174,6 +174,7 @@ Interestingly, it is smaller than $T_\text{middle}$.
 	<img src="{{ '/images/counter_example.png' | prepend: site.baseurl }}" alt=""> 
 	<figcaption>Replace $T_\text{middle}$ by this tree to get a smaller $(10,3)$-universal tree</figcaption>
 </figure>
+-->
 
 > **Open question:** what is the exact size of the smallest $(n,h)$-universal tree?
 
