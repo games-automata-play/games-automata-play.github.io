@@ -30,6 +30,7 @@ The universality problem is PSPACE-complete for the class of all non-determinist
 In this note, we will prove that the problem is decidable in polynomial time if the automaton has fixed ambiguity.
 This result was proved in [this paper](https://epubs.siam.org/doi/pdf/10.1137/0214044). 
 Our proof is very similar.
+Most of the credit goes to Ritam Raha for rediscovering the proof, with the support and supervision of Nathan Lhote, Filip Mazowiecki, and Vincent Penelle.
 
 Recall that an automaton is $k$-ambiguous if for every word, there are **at most** $k$ **accepting** runs for $w$.
 Note that we consider only accepting runs; there might be more (non-accepting) runs.
