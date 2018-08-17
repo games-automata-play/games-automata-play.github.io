@@ -37,7 +37,7 @@ and gave upper and lower bounds on the size of universal trees
 We fix two parameters: $n$, which will be the number of leaves, and $h$, which will be the height.
 We look at totally ordered trees with unbounded degree, meaning that each node may have arbitrarily many children and the children of a node are totally ordered.
 The depth of a node is its distance to the root. 
-All trees we consider have height $h$, meaning that the nodes have depth at most $h$.
+For all trees we consider the leaves have the same depth, which is the height of the tree.
 The size of a tree is its number of leaves.
 </p>
 
@@ -135,8 +135,9 @@ We claim that the number of nodes at depth $h-1$
 of degree greater to or larger than $\delta$ is at least $g(\lfloor n / \delta \rfloor,h-1)$.
 
 Let $T_\delta$ be the subtree of $T$ obtained by
-* removing all leaves at depth $h$, and
-* removing the nodes at depth $h-1$ of degree less than $\delta$ (in $T$).
+* removing all leaves, and
+* removing the nodes at depth $h-1$ of degree less than $\delta$ in $T$.
+(Note that this can create new leaves, they are recursively removed.)
 
 The tree $T_\delta$ has height $h-1$.
 We argue that $T_\delta$ is $(\lfloor n / \delta \rfloor,h-1)$-universal.
