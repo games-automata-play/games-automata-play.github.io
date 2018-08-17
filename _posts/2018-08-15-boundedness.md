@@ -21,7 +21,7 @@ MathJax.Hub.Config({
 
 <p class="intro"><span class="dropcap">W</span>e prove that the boundedness problem for (min,plus)-automata is decidable.
 One of the main application of this result is that the star-heigh problem of regular expressions reduces to (a slight extension of) it.
-The main point is to present a very useful tool in action: Simon's factorisatio theorem.
+The main point is to present a very useful tool in action: Simon's factorisation theorem.
 This proof scheme has been used in many, many papers recently.</p>
 
 We consider (min,plus)-automata, meaning that an automaton $\A$ computes a function
@@ -160,7 +160,7 @@ In the remainder of this post we prove the converse more challenging implication
 
 ### Simon's factorisation theorem
 
-Imagine that we have some (min,plus)-automaton $\A$ and we are looking at $\A(w)$ for word $w$ (which we can think of as very long), for instance
+Imagine that we have some (min,plus)-automaton $\A$ and we are looking at $\A(w)$ for some word $w$ (which we can think of as very long), for instance
 
 $$(ab)^{300000}$$
 
@@ -176,8 +176,8 @@ the factorisation of $\phi(w)$ is a tree such that
 * each node is labeled by a pair $(M,u)$ where $M \in \M$ and $u \in A^*$
 * the leaves are labeled by $(\phi(a),a)$ for $a \in A$
 * reading the second component of the leaves from left to right yields the word $w$
-* the internal nodes are of two types: binary nodes and stabilisation nodes
-* a binary node has two children, let $(M_1,w_1)$ and $(M_2,w_2)$ be their labels, then the label of the node is $(M_1 \cdot M_2, w_1 w_2)$
+* the internal nodes are of two types: product nodes and stabilisation nodes
+* a product node has two children, let $(M_1,w_1)$ and $(M_2,w_2)$ be their labels, then the label of the node is $(M_1 \cdot M_2, w_1 w_2)$
 * a stabilisation node has $k \ge 3$ children, let $(M,w_i)$ be their labels, then $M$ is an idempotent of $\M$ (meaning $M^2 = M$) and
 the label of the node is $(M^\sharp, w_1 \cdots w_k)$
 
@@ -229,4 +229,6 @@ $$\begin{array}{ccc}
 & \le & 2^{d-1} \cdot W + 0 + 2^{d-1} \cdot W
 \end{array}$$
 
-We can now finish the proof of completeness: $\A$ is bounded by $2^K W$, where $K$ is the consant inherited from Simon's factorisation theorem.
+We can now finish the proof of completeness. 
+Since $\M_\A$ does not contain any unbounded witness, the previous lemma implies that $\A(w)$ is bounded by $2^K W$ 
+where $K$ is the consant inherited from Simon's factorisation theorem.

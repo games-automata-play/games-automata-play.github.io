@@ -35,12 +35,10 @@ and gave upper and lower bounds on the size of universal trees
 
 <p>
 We fix two parameters: $n$, which will be the number of leaves, and $h$, which will be the height.
-All trees we consider have height $h$, and more precisely all the leaves have depth exactly $h$.
-</p>
-
-<p>
 We look at totally ordered trees with unbounded degree, meaning that each node may have arbitrarily many children and the children of a node are totally ordered.
-The size of a tree is its number of leaves.</p>
+The depth of a node is its distance to the root. All trees we consider have height $h$, meaning that all the leaves have depth at most $h$.
+The size of a tree is its number of leaves.
+</p>
 
 <figure>
 	<img src="{{ '/images/tree.png' | prepend: site.baseurl }}" alt=""> 
@@ -103,7 +101,7 @@ Now construct $T$ as in the drawing above.
 
 We argue that it is $(n,h)$-universal.
 Consider a $(n,h)$-tree $t$. 
-The question is where to cut in the middle. 
+The question is which part will embed into $T_\text{left}, T_\text{middle}$, and $T_\text{right}$.
 Let $v_1,\ldots,v_m$ be the children of the root of $t$, and let $n(v_i)$ be the size of the tree rooted in $v_i$. 
 Choose the unique $v_p$ such that 
 
@@ -113,7 +111,10 @@ and
 
 $$n(v_{p+1}) + \cdots + n(v_m) \le n - 1 - \lfloor n/2 \rfloor.$$
 
-To embed $t$ into $T$, map $v_p$ to the root of $T_\text{middle}$, and then proceed by induction.
+To embed $t$ into $T$, proceed inductively
+* map $v_p$ to the root of $T_\text{middle}$
+* map the tree obtained by keeping the subtrees rooted in $v_1,\ldots,v_{p-1}$ to $T_\text{left}$
+* map the tree obtained by keeping the subtrees rooted in $v_{p+1},\ldots,v_m$ to $T_\text{right}$
 
 
 ### Lower bounds
@@ -132,8 +133,9 @@ Let $T$ be a $(n,h)$-universal tree, and $\delta \in [1,n]$.
 We claim that the number of nodes at depth $h-1$ 
 of degree greater to or larger than $\delta$ is at least $g(\lfloor n / \delta \rfloor,h-1)$.
 
-Let $T_\delta$ be the subtree of $T$ obtained by removing all leaves and all nodes at depth $h-1$
-of degree less than $\delta$: the leaves of the tree $T_\delta$ have height exactly $h-1$.
+Let $T_\delta$ be the subtree of $T$ obtained by removing the nodes at depth $h-1$ 
+of degree less than $\delta$ (in doing so, we also remove the leaves below such nodes).
+The leaves of the tree $T_\delta$ have depth at most $h-1$.
 
 We argue that $T_\delta$ is $(\lfloor n / \delta \rfloor,h-1)$-universal.
 Indeed, let $t$ be a tree with $\lfloor n / \delta \rfloor$ leaves all at depth $h-1$.
@@ -153,7 +155,7 @@ which concludes.
 
 One can show that 
 
-$$\frac{f(n)}{g(n)} = O(nh)$$
+$$\frac{f(n,h)}{g(n,h)} = O(nh)$$
 
 so there is a (reasonably small but still) gap.
 Here is what I know:
