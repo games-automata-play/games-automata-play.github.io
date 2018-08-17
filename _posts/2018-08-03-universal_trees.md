@@ -36,7 +36,8 @@ and gave upper and lower bounds on the size of universal trees
 <p>
 We fix two parameters: $n$, which will be the number of leaves, and $h$, which will be the height.
 We look at totally ordered trees with unbounded degree, meaning that each node may have arbitrarily many children and the children of a node are totally ordered.
-The depth of a node is its distance to the root. All trees we consider have height $h$, meaning that all the leaves have depth at most $h$.
+The depth of a node is its distance to the root. 
+All trees we consider have height $h$, meaning that the nodes have depth at most $h$.
 The size of a tree is its number of leaves.
 </p>
 
@@ -133,14 +134,15 @@ Let $T$ be a $(n,h)$-universal tree, and $\delta \in [1,n]$.
 We claim that the number of nodes at depth $h-1$ 
 of degree greater to or larger than $\delta$ is at least $g(\lfloor n / \delta \rfloor,h-1)$.
 
-Let $T_\delta$ be the subtree of $T$ obtained by removing the nodes at depth $h-1$ 
-of degree less than $\delta$ (in doing so, we also remove the leaves below such nodes).
-The leaves of the tree $T_\delta$ have depth at most $h-1$.
+Let $T_\delta$ be the subtree of $T$ obtained by
+* removing all leaves at depth $h$, and
+* removing the nodes at depth $h-1$ of degree less than $\delta$ (in $T$).
 
+The tree $T_\delta$ has height $h-1$.
 We argue that $T_\delta$ is $(\lfloor n / \delta \rfloor,h-1)$-universal.
-Indeed, let $t$ be a tree with $\lfloor n / \delta \rfloor$ leaves all at depth $h-1$.
+Indeed, let $t$ be a tree with $\lfloor n / \delta \rfloor$ leaves of height $h-1$.
 To each leaf of $t$ we append $\delta$ children, yielding the tree $t_+$ which has $\lfloor n / \delta \rfloor \cdot \delta \le n$ leaves 
-all at depth $h$.
+and height $h$.
 Since $T$ is $(n,h)$-universal, the tree $t_+$ embeds into $T$.
 Observe that the embedding induces an embedding of $t$ into $T_\delta$,
 since the leaves of $t$ have degree $\delta$ in $t_+$, hence are also in $T_\delta$.
