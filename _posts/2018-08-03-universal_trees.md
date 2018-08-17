@@ -139,6 +139,11 @@ Let $T_\delta$ be the subtree of $T$ obtained by
 * removing the nodes at depth $h-1$ of degree less than $\delta$ in $T$.
 (Note that this can create new leaves, they are recursively removed.)
 
+<figure>
+	<img src="{{ '/images/tree_delta.png' | prepend: site.baseurl }}" alt=""> 
+	<figcaption>Construction of $T_\delta$</figcaption>
+</figure>
+
 The tree $T_\delta$ has height $h-1$.
 We argue that $T_\delta$ is $(\lfloor n / \delta \rfloor,h-1)$-universal.
 Indeed, let $t$ be a tree with $\lfloor n / \delta \rfloor$ leaves of height $h-1$.
