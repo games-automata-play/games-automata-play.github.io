@@ -37,10 +37,10 @@ The following classes of sequences are equal.
 * sequences recognised by copyless cost register automata (CCRA)
 * sequences denoted by rational expressions
 * sequences recognised by polynomially ambiguous weighted automata (Poly-WA)
-* sequences whose formal series are sums of products of $\frac{\alpha X^P}{1 - \lambda X^N}$ for two rational numbers $\alpha,\lambda$ and two natural numbers $N,P$
 * linear recurrent sequences (LRS) whose eigenvalues are roots of rational numbers
 
 <!--
+* sequences whose formal series are sums of products of $\frac{\alpha X^P}{1 - \lambda X^N}$ for two rational numbers $\alpha,\lambda$ and two natural numbers $N,P$
 * sequences counting the number of solutions of Diophantine equations
 -->
 
@@ -152,7 +152,15 @@ $$
 \frac{1}{(1 - \lambda X^k)^N} = \sum_{n \ge 0} \binom{n + N - 1}{N} \lambda^n X^{k \cdot n}
 $$
 
-is in Rat, since $\binom{n + N - 1}{N}$ is a polynomial in $n$.
+Note that $\binom{n + N - 1}{N}$ is a polynomial in $n$ of degree at most $N$, 
+i.e. $\binom{n + N - 1}{N} = \sum_{p = 0}^N a_p n^p$.
+It follows that
+
+$$
+\frac{1}{(1 - \lambda X^k)^N} = \sum_{n \ge 0} \sum_{p = 0}^N a_p n^p \lambda^n X^{k \cdot n}
+$$
+
+is in Rat.
 
 ### Application: the Fibonacci sequence
 
