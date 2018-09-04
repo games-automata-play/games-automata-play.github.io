@@ -2,7 +2,7 @@
 layout:     post
 title:      A robust class of sequences 
 date:       2018-09-04 10:00:00
-author:     Nathana&euml;l Fijalkow and Corentin Barloy
+author:     Corentin Barloy and Nathana&euml;l Fijalkow
 category:   Weighted automata
 ---
 
@@ -157,10 +157,14 @@ i.e. $\binom{n + N - 1}{N} = \sum_{p = 0}^N a_p n^p$.
 It follows that
 
 $$
-\frac{1}{(1 - \lambda X^k)^N} = \sum_{n \ge 0} \sum_{p = 0}^N a_p n^p \lambda^n X^{k \cdot n}
+\frac{1}{(1 - \lambda X^k)^N} = \sum_{p = 0}^N\ a_p \cdot \sum_{n \ge 0} n^p \lambda^n X^{k \cdot n}
 $$
 
-is in Rat.
+It is then enough to prove that for each $p$ the sequence whose formal series is 
+
+$$\sum_{n \ge 0} n^p \lambda^n X^{k \cdot n}$$
+
+is in Rat. We leave this last (easy) step to the reader.
 
 ### Application: the Fibonacci sequence
 
@@ -171,7 +175,7 @@ To see this, observe that the formal series associated with the Fibonacci sequen
 
 $$\frac{X}{1-X-X^2}$$
 
-Thanks to that, we know that this series is not in Poly-WA. 
-Indeed, otherwise $\varphi^{-1}$ (the inverse of the golden ratio) would be the root of some $1 - \lambda X^k$, 
-which is false because every power of $\varphi^{-1}$ is irrational.
+Thanks to that, we know that this sequence is not in Poly-WA.
+Assume for the sake of contradiction that it is, then the formal series above would be written as sums of $\frac{P}{(1 - \lambda X^k)^N}$.
+Since $\varphi^{-1}$ (the inverse of the golden ratio) is a pole, it would be the root of some $1 - \lambda X^k$, which cannot be the case.
 
