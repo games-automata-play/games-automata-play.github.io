@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      A robust class of sequences 
-date:       2018-08-28 10:00:00
+date:       2018-09-04 10:00:00
 author:     Nathana&euml;l Fijalkow and Corentin Barloy
 category:   Weighted automata
 ---
