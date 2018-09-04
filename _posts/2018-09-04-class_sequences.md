@@ -27,7 +27,7 @@ We show that this class is robust by giving several characterizations, and tract
 The results presented here are mostly due to Corentin Barloy, who took a summer internship in LaBRI, Bordeaux, 
 under the supervision of Nathan Lhote, Filip Mazowiecki, Vincent Penelle, and myself.
 
-We consider sequences of rational numbers, as for instance the Fibonaccio sequence
+We consider sequences of rational numbers, as for instance the Fibonacci sequence
 $$
 0,1,1,2,3,5,8,13,\ldots
 $$
@@ -35,12 +35,12 @@ $$
 > **Theorem:**
 The following classes of sequences are equal.
 * sequences recognised by copyless cost register automata (CCRA)
-* sequences denoted by rational expressions
+* sequences denoted by rational expressions (Rat)
 * sequences recognised by polynomially ambiguous weighted automata (Poly-WA)
+* sequences whose formal series are sums of $\frac{P}{1 - \lambda X^N}$ where $P$ is a rational polynomial, $\lambda$ is a rational number, and $N$ a natural number
 * linear recurrent sequences (LRS) whose eigenvalues are roots of rational numbers
 
 <!--
-* sequences whose formal series are sums of products of $\frac{\alpha X^P}{1 - \lambda X^N}$ for two rational numbers $\alpha,\lambda$ and two natural numbers $N,P$
 * sequences counting the number of solutions of Diophantine equations
 -->
 
@@ -85,8 +85,8 @@ Both inclusions are not too hard to show although they require some technical ca
 
 We consider weighted automata for the semiring $(\Q,+,\times)$ over a one-letter alphabet.
 
-The ambiguity of an automaton is the function associates with $n$ the number of accepting runs of $a^n$. 
-An automaton is said to be polynomialy ambiguous if his ambiguity in bounded by a polynomial. 
+The ambiguity of an automaton is the function which associates with $n$ the number of accepting runs of $a^n$.
+An automaton is said to be polynomially ambiguous if its ambiguity is bounded by a polynomial. 
 We let Poly-WA be the set of sequences computed by polynomially ambiguous weighted automata.
 
 > **Theorem:**
@@ -107,7 +107,7 @@ The figure below shows how to recognise the arithmetic-geometric sequence with p
 ### Poly-WA $\subseteq$ Rat
 
 The first step is to decompose polynomially ambiguous automata into some normal form called chained loop.
-A weighted automaton is a chained loop if it has the shape depicted in the figure below.
+An automaton is a chained loop if it has the shape depicted in the figure below.
 Note that in particular it has a unique initial state and a unique final state.
 The loops can have arbitrary lengths but they are disjoint from one another.
 
@@ -117,7 +117,7 @@ The loops can have arbitrary lengths but they are disjoint from one another.
 </figure>
 
 > **Lemma:**
-Any polynomially ambiguous weighted automaton can be decomposed into a union of chained loops.
+Any polynomially ambiguous weighted automaton is equivalent to a union of chained loops.
 
 We skip the proof of this lemma.
 
@@ -134,10 +134,10 @@ where $\alpha$ is the product of the initial and the final weight and $\lambda$ 
 
 To conclude the proof of the theorem, meaning the inclusion Poly-WA $\subseteq$ Rat, 
 it would be enough to prove that every sequence whose formal series is of the form $\frac{\alpha}{1-\lambda X}$ belongs to Rat,
-and that class of formal series corresponding to sequences in Rat is closed under sum and Cauchy product.
+and that the class of formal series corresponding to sequences in Rat is closed under sum and Cauchy product.
 Unfortunately, the closure under Cauchy products is not clear.
 
-We sidestep this issue by realising that here we only do Cauchy products of formal series of the form $\frac{\alpha}{1-\lambda X}$.
+We sidestep this issue by observing that here we only do Cauchy products of formal series of the form $\frac{\alpha}{1-\lambda X}$.
 
 > **Lemma:**
 Cauchy products of formal series of the form $\frac{\alpha}{1-\lambda X}$ are of the form sums of $\frac{P}{(1 - \lambda X^k)^N}$ for $P$ a rational polynomial.
@@ -165,6 +165,9 @@ It is then enough to prove that for each $p$ the sequence whose formal series is
 $$\sum_{n \ge 0} n^p \lambda^n X^{k \cdot n}$$
 
 is in Rat. We leave this last (easy) step to the reader.
+
+From there one easily obtains the other two characterisations in terms of formal series
+or linear recurrent sequences whose eigenvalues are roots of rational numbers.
 
 ### Application: the Fibonacci sequence
 
