@@ -37,7 +37,7 @@ The following classes of sequences are equal.
 * sequences recognised by copyless cost register automata (CCRA)
 * sequences denoted by rational expressions (Rat)
 * sequences recognised by polynomially ambiguous weighted automata (Poly-WA)
-* sequences whose formal series are sums of $\frac{P}{1 - \lambda X^N}$ where $P$ is a rational polynomial, $\lambda$ is a rational number, and $N$ a natural number
+* sequences whose formal series are sums of $\frac{P}{(1 - \lambda X^k)^N}$ where $P$ is a rational polynomial, $\lambda$ is a rational number, and $k,N$ two natural numbers
 * linear recurrent sequences (LRS) whose eigenvalues are roots of rational numbers
 
 <!--
