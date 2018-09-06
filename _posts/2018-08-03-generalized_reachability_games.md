@@ -30,7 +30,7 @@ If you are not familiar with this framework please check out [the paper](https:/
 
 A very classical objective is **Reachability**: given a set of vertices $F$, Eve wins if she ensures that **some** vertex from $F$ is reached **at least once** during the play.
 
-This paper introduces **Generalized reachability** objectives: given a family of sets $F_1,\ldots,F_k$, Eve wins if she ensures that for each $i \in [1,k]$, **some** vertex from $F_i$ is reached **at least once** during the play. It is very important to note here that the order under which the sets are visited is not specified.
+This paper introduces **Generalized reachability** objectives: given a family of sets $F_1,\ldots,F_k$, Eve wins if she ensures that **for each** $i \in [1,k]$, **some** vertex from $F_i$ is reached **at least once** during the play. It is very important to note here that the order under which the sets are visited is not specified.
 
 As a first example and to help intuition, we show that generalized reachability games include the QBF problem.
 Consider the QBF formula
@@ -49,7 +49,7 @@ We are interested in two questions:
 * complexity of the following decision problem: given a generalized reachability game, determine whether Eve has a winning strategy
 * for different subclasses, how much memory is required for constructing winning strategies for both players 
 
-The restriction we consider is the size of the sets $F_i$ which for QBF corresponds to restricting the size of the clauses.
+The main restriction we consider is the size of the sets $F_i$ which for QBF corresponds to restricting the size of the clauses.
 
 ### What is known
 
@@ -69,9 +69,8 @@ The first two items are hardly surprising. The third one is more interesting, a 
 * When each set $F_i$ has size $1$, Adam needs exactly $2$ memory states, matching upper and lower bounds
 
 The first item for Adam is non-trivial, it relies on interesting observations related to the lattice underlying Adam's canonical memory structure.
-The number $\binom{k}{k/2}$ is the size of the largest antichain in the lattice of subets of $[1,k]$ for the inclusion.
+The number $\binom{k}{k/2}$ is the size of the largest antichain in the lattice of subsets of $[1,k]$ for the inclusion.
 Shameful advertising: this result was extended for all topologically closed objectives in [this paper](http://drops.dagstuhl.de/opus/volltexte/2014/4857/).
-
 
 ### The open question
 
