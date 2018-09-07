@@ -119,7 +119,8 @@ The loops can have arbitrary lengths but they are disjoint from one another.
 > **Lemma:**
 Any polynomially ambiguous weighted automaton is equivalent to a union of chained loops.
 
-We skip the proof of this lemma.
+We skip the proof of this lemma. The crux is that in a polynomially ambiguous automaton there cannot be two nested loops. 
+Hence an automaton is the union of all the chained loops it contains.
 
 Two chained loops can be concatenated and this forms another chained loop.
 This way, a chained loop can be seen as a concatenation of one-state automata.
@@ -142,7 +143,9 @@ We sidestep this issue by observing that here we only do Cauchy products of form
 > **Lemma:**
 Cauchy products of formal series of the form $\frac{\alpha}{1-\lambda X}$ are of the form sums of $\frac{P}{(1 - \lambda X^k)^N}$ for $P$ a rational polynomial.
 
-We skip the proof of this lemma.
+We skip the proof of this lemma. 
+The crux is to observe that $\frac{1}{PQ}$ for $P,Q$ two polynomials can be written as $\frac{A}{P} + \frac{B}{Q}$ for $A,B$ two polynomials,
+which follows from the fact that $\Q[X]$ has Euclidian division.
 
 We conclude.
 First, one can reduce to the case $\frac{1}{(1 - \lambda X^k)^N}$ using shifts.
