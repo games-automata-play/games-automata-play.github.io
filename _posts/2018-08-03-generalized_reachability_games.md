@@ -91,7 +91,7 @@ Strangely enough, $4$ seems to be the best we can do with this idea.
 The complexity can be anywhere between PTIME and PSPACE.
 
 > **Conjecture:** Adam needs at most $4$ memory states to win in a generalized reachability game where each $F_i$ has size $2$.
-This number reduces to $2$ is the game is acyclic.
+This number reduces to $2$ if the game is acyclic.
 
 This conjecture would imply a $\text{coNP}^{\text{NP}}$ algorithm: guess a strategy for Adam, compose it with the game, and solve the resulting one-player game.
 
