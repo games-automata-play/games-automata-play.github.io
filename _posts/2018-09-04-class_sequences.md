@@ -20,8 +20,8 @@ MathJax.Hub.Config({
 });
 </script>
 
-<p class="intro"><span class="dropcap">W</span>e introduce a subclass of linear recurrent sequences (LRS).
-We show that this class is robust by giving several characterizations, and tractable by showing that the Skolem and positivity problems are decidable.
+<p class="intro"><span class="dropcap">W</span>e introduce a subclass of linear recurrence sequences (LRS).
+We show that this class is robust by giving several characterisations, and tractable by showing that the Skolem and positivity problems are decidable.
 </p>
 
 The results presented here are mostly due to Corentin Barloy, who took a summer internship in LaBRI, Bordeaux, 
@@ -34,29 +34,11 @@ $$
 
 > **Theorem:**
 The following classes of sequences are equal.
-* sequences recognised by copyless cost register automata (CCRA)
 * sequences denoted by rational expressions (Rat)
 * sequences recognised by polynomially ambiguous weighted automata (Poly-WA)
-* sequences whose formal series are sums of $\frac{P}{(1 - \lambda X^k)^N}$ where $P$ is a rational polynomial, $\lambda$ is a rational number, and $k,N$ two natural numbers
+* sequences recognised by copyless cost register automata (CCRA)
+* sequences whose formal series are sums of $\frac{P}{(\lambda - X^k)^N}$ where $P$ is a rational polynomial, $\lambda$ is a rational number, and $k,N$ two natural numbers
 * linear recurrent sequences (LRS) whose eigenvalues are roots of rational numbers
-
-<!--
-* sequences counting the number of solutions of Diophantine equations
--->
-
-### Cost register automata
-
-CRA are deterministic automata with write-only registers. 
-Each transition updates the registers using addition and multiplication.
-Here is an example of a CRA over the alphabet $\{a,b\}$ computing the product of the number of $a$ and the number of $b$.
-<figure>
-	<img src="{{ '/images/CCRA.png' | prepend: site.baseurl }}" alt=""> 
-	<figcaption>A copyless cost register automaton (CCRA)</figcaption>
-</figure>
-
-A CRA is said to be copyless if in each update, each register is used at least once. 
-
-We let CCRA denote the class of sequences computed by copyless cost register automata over a one-letter alphabet.
 
 ### Rational expressions
 
@@ -69,17 +51,12 @@ where $a,b,c$ are rational numbers.
 
 The operators are:
 * $u + v$ is the component wise sum of sequences
-* $u \cdot v$ is component wise product of sequences
+* $u \cdot v$ is the component wise product of sequences
 * the shift $(a,u) = (a,u_0,u_1,\ldots)$ with $a$ a rational number
 * the shuffle $\langle u^1,u^2,\ldots,u^k \rangle = (u^1_0,u^2_0,\ldots,u^k_0,u^1_1,u^2_1,\ldots,u^k_1,u^1_2,\ldots)$ 
 
 We let Rat be the class of sequences denoted by rational expressions,
 in other words the smallest class of sequences containing arithmetic-geometric sequences and closed under sum, product, shift, and shuffle.
-
-> **Theorem:**
-CCRA = Rat
-
-Both inclusions are not too hard to show although they require some technical care.
 
 ### Polynomially ambiguous weighted automata
 
@@ -90,9 +67,9 @@ An automaton is said to be polynomially ambiguous if its ambiguity is bounded by
 We let Poly-WA be the set of sequences computed by polynomially ambiguous weighted automata.
 
 > **Theorem:**
-Poly-WA = Rat
+Rat = Poly-WA
 
-The remainder of this blog post sketches a proof of this (non-trivial) equivalence.
+Most of the remainder of this blog post sketches a proof of this (non-trivial) equivalence.
 
 ### Rat $\subseteq$ Poly-WA
 
@@ -184,4 +161,24 @@ $$\frac{X}{1-X-X^2}$$
 Thanks to that, we know that this sequence is not in Poly-WA.
 Assume for the sake of contradiction that it is, then the formal series above would be written as sums of $\frac{P}{(1 - \lambda X^k)^N}$.
 Since $\varphi^{-1}$ (the inverse of the golden ratio) is a pole, it would be the root of some $1 - \lambda X^k$, which cannot be the case.
+
+
+### Cost register automata
+
+CRA are deterministic automata with write-only registers. 
+Each transition updates the registers using addition and multiplication.
+Here is an example of a CRA over the alphabet $\{a,b\}$ computing the product of the number of $a$ and the number of $b$.
+<figure>
+	<img src="{{ '/images/CCRA.png' | prepend: site.baseurl }}" alt=""> 
+	<figcaption>A copyless cost register automaton (CCRA)</figcaption>
+</figure>
+
+A CRA is said to be copyless if in each update, each register is used at most once. 
+
+We let CCRA denote the class of sequences computed by copyless cost register automata over a one-letter alphabet.
+
+> **Theorem:**
+CCRA = Rat
+
+Both inclusions are not too hard to show although they require some technical care.
 
