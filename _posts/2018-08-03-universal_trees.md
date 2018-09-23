@@ -76,7 +76,7 @@ There exists a $(n,h)$-universal tree of size $f(n,h)$, where
 $$f(n,h) \le 2^{\lceil \log(n) \rceil} \binom{\lceil \log(n) \rceil + h - 1}{\lceil \log(n) \rceil}$$
 
 A generous upper bound on the expression above is $n^{O(\log(h))}$.
-A refined analysis reveals that the expression is polynomial in $n$ and $h$ if $h \le \log(n)$.
+A refined analysis reveals that the expression is polynomial in $n$ and $h$ if $h = 0(\log(n))$.
 
 The construction of Jurdzi&#324;ski and Lazi&#263; yields such a tree. 
 We present here a streamlined version, which is marginally better.
@@ -170,21 +170,6 @@ Here is what I know:
 * the lower bound is not tight. For $h = 2$ and $n = 5$, there are no universal trees of size $10$, easily seen by necessary conditions (there must be a node with $5$ leaves
 and two other nodes with $2$ leaves).
 * the upper bound is tight for $h = 2$ (there is a bit of work to check this)
-
-<!--
-* the upper bound is **not** tight for $h = 3$. Take $h = 3$ and $n = 10$. The upper bound construction uses as $T_\text{middle}$ a $(10,2)$-universal tree, which is actually wasteful. 
-To see this, we do a case distinction, and find necessary conditions on the tree $T$ to use instead of $T_\text{middle}$.
-Consider a tree of height $3$ with $10$ leaves we want to embed and follow the construction of the proof, using the induction we embed a subtree $t$ rooted in some child of the root into $T$.
-Either the root of $t$ has degree at most $5$, and then it is enough to require that $T$ is $(5,2)$-universal,
-or it has degree at least $6$. 
-A case analysis reveals that the following tree $T$ satisfies the two conditions above, meaning it is $(5,2)$-universal and it embeds all trees with height $2$ and whose root has degree at least $6$.
-Interestingly, it is smaller than $T_\text{middle}$.
-
-<figure>
-	<img src="{{ '/images/counter_example.png' | prepend: site.baseurl }}" alt=""> 
-	<figcaption>Replace $T_\text{middle}$ by this tree to get a smaller $(10,3)$-universal tree</figcaption>
-</figure>
--->
 
 > **Open question:** what is the exact size of the smallest $(n,h)$-universal tree?
 
