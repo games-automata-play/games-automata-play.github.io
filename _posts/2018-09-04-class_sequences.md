@@ -106,7 +106,7 @@ We represent them as a sum $\sum_n a_n X^n$, and use two operations on them: add
 
 Here are some key observations:
 * one-state automata exactly recognise formal series of the form $\frac{\alpha}{1 - \lambda X}$, 
-where $\alpha$ is the product of the initial and the final weight and $\lambda$ the sum of the weights in the loop,
+where $\alpha$ is the product of the initial and the final weight and $\lambda$ the product of the weights in the loop,
 * concatenation of chained loops corresponds to Cauchy products of their formal series,
 * union of automata corresponds to sums of their formal series.
 
