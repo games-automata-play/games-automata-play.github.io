@@ -21,7 +21,7 @@ MathJax.Hub.Config({
 </script>
 
 <p class="intro"><span class="dropcap">W</span>e introduce a subclass of linear recurrence sequences (LRS).
-We show that this class is robust by giving several characterisations, and tractable by showing that the Skolem and positivity problems are decidable.
+We show that this class is robust by giving several characterisations.
 </p>
 
 The results presented here are mostly due to Corentin Barloy, who took a summer internship in LaBRI, Bordeaux, 
@@ -33,21 +33,22 @@ $$
 $$
 
 > **Theorem:**
-The following classes of sequences are equal.
-* sequences denoted by rational expressions (Rat)
+The following classes of sequences are equal
+* sequences denoted by poly-rational expressions (Poly-Rat)
 * sequences recognised by polynomially ambiguous weighted automata (Poly-WA)
 * sequences recognised by copyless cost register automata (CCRA)
-* sequences whose formal series are sums of $\frac{P}{(\lambda - X^k)^N}$ where $P$ is a rational polynomial, $\lambda$ is a rational number, and $k,N$ two natural numbers
+* sequences whose formal series are of the form $\frac{P}{Q}$ where $P,Q$ are rational polynomials and the roots of $Q$ are roots of rational numbers
 * linear recurrent sequences (LRS) whose eigenvalues are roots of rational numbers
 
-### Rational expressions
+### Poly-Rational expressions
 
 We define a set of operators to denote sequences using expressions.
-The basic building blocks are arithmetic-geometric sequences, i.e. defined as
+We use two basic building blocks: arithmetic sequences and geometric sequences. 
+For instance a geometric sequence is defined by
 
-$$u_0 = a,\qquad u_{n+1} = b \cdot u_n + c$$
+$$u_0 = a,\qquad u_{n+1} = \lambda \cdot u_n$$
 
-where $a,b,c$ are rational numbers.
+where $a,\lambda$ are rational numbers.
 
 The operators are:
 * $u + v$ is the component wise sum of sequences
@@ -55,8 +56,8 @@ The operators are:
 * the shift $(a,u) = (a,u_0,u_1,\ldots)$ with $a$ a rational number
 * the shuffle $\langle u^1,u^2,\ldots,u^k \rangle = (u^1_0,u^2_0,\ldots,u^k_0,u^1_1,u^2_1,\ldots,u^k_1,u^1_2,\ldots)$ 
 
-We let Rat be the class of sequences denoted by rational expressions,
-in other words the smallest class of sequences containing arithmetic-geometric sequences and closed under sum, product, shift, and shuffle.
+We let Poly-Rat be the class of sequences denoted by rational expressions,
+in other words the smallest class of sequences containing arithmetic and geometric sequences and closed under sum, product, shift, and shuffle.
 
 ### Polynomially ambiguous weighted automata
 
@@ -67,21 +68,16 @@ An automaton is said to be polynomially ambiguous if its ambiguity is bounded by
 We let Poly-WA be the set of sequences computed by polynomially ambiguous weighted automata.
 
 > **Theorem:**
-Rat = Poly-WA
+Poly-Rat = Poly-WA
 
 Most of the remainder of this blog post sketches a proof of this (non-trivial) equivalence.
 
-### Rat $\subseteq$ Poly-WA
+### Poly-Rat $\subseteq$ Poly-WA
 
-We need to prove the closure of Poly-WA under sum (union of automata), product (product of automata), shift (adding a new initial state), and shuffle (multiplying by $\\{1,\ldots,k\\}$).
-The figure below shows how to recognise the arithmetic-geometric sequence with parameter $a,b,c$.
+This inclusion is rather easy, it requires to prove the closure of Poly-WA under sum (union of automata), product (product of automata), shift (adding a new initial state), 
+and shuffle (multiplying by $\\{1,\ldots,k\\}$).
 
-<figure>
-	<img src="{{ '/images/arithmetic-geometric.png' | prepend: site.baseurl }}" alt=""> 
-	<figcaption>A linearly ambiguous weighted automaton recognising the arithmetic-geometric sequence with parameter $a,b,c$</figcaption>
-</figure>
-
-### Poly-WA $\subseteq$ Rat
+### Poly-WA $\subseteq$ Poly-Rat
 
 The first step is to decompose polynomially ambiguous automata into some normal form called chained loop.
 An automaton is a chained loop if it has the shape depicted in the figure below.
@@ -110,9 +106,9 @@ where $\alpha$ is the product of the initial and the final weight and $\lambda$ 
 * concatenation of chained loops corresponds to Cauchy products of their formal series,
 * union of automata corresponds to sums of their formal series.
 
-To conclude the proof of the theorem, meaning the inclusion Poly-WA $\subseteq$ Rat, 
-it would be enough to prove that every sequence whose formal series is of the form $\frac{\alpha}{1-\lambda X}$ belongs to Rat,
-and that the class of formal series corresponding to sequences in Rat is closed under sum and Cauchy product.
+To conclude the proof of the theorem, meaning the inclusion Poly-WA $\subseteq$ Poly-Rat, 
+it would be enough to prove that every sequence whose formal series is of the form $\frac{\alpha}{1-\lambda X}$ belongs to Poly-Rat,
+and that the class of formal series corresponding to sequences in Poly-Rat is closed under sum and Cauchy product.
 Unfortunately, the closure under Cauchy products is not clear.
 
 We sidestep this issue by observing that here we only do Cauchy products of formal series of the form $\frac{\alpha}{1-\lambda X}$.
@@ -144,7 +140,7 @@ It is then enough to prove that for each $p$ the sequence whose formal series is
 
 $$\sum_{n \ge 0} n^p \lambda^n X^{k \cdot n}$$
 
-is in Rat. We leave this last (easy) step to the reader.
+is in Poly-Rat. We leave this last (easy) step to the reader.
 
 From there one easily obtains the other two characterisations in terms of formal series
 or linear recurrent sequences whose eigenvalues are roots of rational numbers.
@@ -178,7 +174,7 @@ A CRA is said to be copyless if in each update, each register is used at most on
 We let CCRA denote the class of sequences computed by copyless cost register automata over a one-letter alphabet.
 
 > **Theorem:**
-CCRA = Rat
+CCRA = Poly-Rat
 
 Both inclusions are not too hard to show although they require some technical care.
 
