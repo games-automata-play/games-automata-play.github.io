@@ -46,7 +46,7 @@ and $S_\A \in \R^{A^* \times Q}$ the formal series recognised by the weighted au
 
 We have
 
-$$H_f(u,v) = \sum_{q \in Q} P_\A(u,q) \cdot Q_\A(v,q)$$
+$$H_f(u,v) = \sum_{q \in Q} P_\A(u,q) \cdot S_\A(v,q)$$
 
 Hence we wrote $H_f$ as a sum of $Q$ terms, each of which is a product of a row vector with a column vector, hence has rank $1$.
 We conclude by noting that the rank of a sum of matrices is at most the sum of the ranks.
