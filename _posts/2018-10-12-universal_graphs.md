@@ -49,9 +49,6 @@ and she wins if she manages to play forever.
 Let $\G$ be a parity game and $\U$ a universal graph.
 Then Eve wins in $\G$ if and only if she wins in $\G \times \U$.
 
-This lemma can be used to algorithmically reduce parity games to safety games,
-yielding an algorithm whose complexity is proportional to the size of $\U$.
-
 **Proof:**
 Let us assume that Eve wins in $\G$, let $\sigma$ be a positional strategy in $\G$. 
 We consider the graph $\G[\sigma]$, by definition there exists a homomorphism from $\G[\sigma]$ to $\U$. 
@@ -74,6 +71,9 @@ The following quantities are equal
 
 We refer to [this post]({{ '/blog/universal_tree' | prepend: site.baseurl }}) for the definition of universal trees
 and [this post]({{ '/blog/parity_separation' | prepend: site.baseurl }}) for the definition of separating automata.
+
+Thanks to the upper and lower bounds for universal trees (see [this post]({{ '/blog/universal_tree' | prepend: site.baseurl }})) we know that the above quantity
+is quasi-polynomial.
 
 The equivalence between universal trees and separating automata was originally proved in [this paper](https://arxiv.org/abs/1807.10546).
 The innovations of the [new paper](https://arxiv.org/abs/1810.05106) is to use a different route, using universal graphs

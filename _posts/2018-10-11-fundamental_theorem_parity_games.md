@@ -35,7 +35,8 @@ The following statements are equivalent:
 * there exists a tree $t$ and a homomorphism $\phi : G \to t$
 * there exists a homomorphism $\psi : G \to T$
 
-This result is interesting on its own. For instance, it is an essential piece of the correctness proof for the value iteration algorithm (see the corresponding [post]({{ '/blog/value_iteration' | prepend: site.baseurl }})).
+This result is interesting on its own. 
+For instance, it is the basis ingredient of the value iteration algorithm (see the corresponding [post]({{ '/blog/value_iteration' | prepend: site.baseurl }})).
 
 We refer to this [technical report](https://arxiv.org/abs/1810.05106) for full details.
 
