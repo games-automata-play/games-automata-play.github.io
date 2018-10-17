@@ -25,8 +25,11 @@ MathJax.Hub.Config({
 <p class="intro"><span class="dropcap">T</span>his post proves a very important theorem about parity games, showing the interplay with (universal) trees.</p>
 
 The goal of this post is to prove the following result.
-This is the key technical point of a recent [joint work](https://arxiv.org/abs/1810.05106) with Thomas Colcombet proving that separating automata (see the corresponding [post]({{ '/blog/parity_separation' | prepend: site.baseurl }})) 
-have at least quasipolynomial size.
+This is the key technical point of a recent [joint work](https://arxiv.org/abs/1810.05106) with Thomas Colcombet proving that separating automata (see the corresponding [post]({{ '/blog/parity_separation' | prepend: site.baseurl }})) have at least quasipolynomial size.
+
+This theorem is an elaboration of the classic result about signature assignments or progress measures being witnesses of positional winning strategies in parity games 
+(see e.g. the [small progress measure treatment](https://link.springer.com/chapter/10.1007%2F3-540-46541-3_24)).
+The novelty here is to phrase this theorem using graph homomorphisms and universal trees, and giving a different argument using saturation.
 
 > **Theorem:**
 Let $G$ be a graph and $T$ a universal tree. 
@@ -149,7 +152,8 @@ and similarly for $(v',i,v) \in E$. If both cases would occur, this would induce
 
 The third and fourth items are clear.
 
-We now prove the implication $3 \implies 1$.
+
+We now rely on the above Lemma to prove the implication $1 \implies 2$.
 Consider a graph $G$ satisfying parity, 
 we construct a maximal graph $t$ satisfying parity by starting from $G$
 and throwing in new edges as long as the graph satisfies parity.
