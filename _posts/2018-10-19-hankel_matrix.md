@@ -52,16 +52,16 @@ A weighted context-free grammar is a context-free grammar (over words) which com
 Such a grammar defines a function $f : A^* \to \R$: the value of a derivation is the product of the weights of the rules, and the value of a word is the sum of the value of the runs.
 
 We know that the Hankel matrix for functions $f : A^* \to \R$ can be used to characterise functions recognised by weighted automata. 
-Unsurprisingly, weighted context-free grammars are more powerful, and the Hankel matrix as defined in this case does not contain enough information (it may have infinite rank although the function is defined by a context-free grammar).
+Unsurprisingly, weighted context-free grammars are more powerful, and the Hankel matrix as defined in this case does not contain enough information (it may have infinite rank although the function is defined by a weighted context-free grammar).
 
 The paper of [Bailly, Carreras, Luque, and Quattoni](https://www.cs.upc.edu/~aquattoni/AllMyPapers/emnlp_2013.pdf) presents a **wrong** Hankel-like theorem
 for weighted context-free grammars. We give here a counter-example.
 
 The idea is to consider functions $$f : (A^* \times A^*) \times A^* \to \R$$.
-For a weighted context-free grammar $G$, the definition of $f$ is
+For a weighted context-free grammar $G$ computing $[G]$, the definition of $f$ is
 
 $$
-f((x,y), z) = \sum_{A \text{ terminal of } G} f(S \to x A y) \cdot f(A \to z)
+f((x,y), z) = \sum_{A \text{ non-terminal of } G} [G](S \to x A y) \cdot [G](A \to z)
 $$
 
 Intuitively, we restrict the computations of $x z y$ to those having a cut in $z$.
@@ -75,13 +75,16 @@ $$H_f((x,y) , z) = f((x,y), z)$$
 The surprising claim is that this is **enough information** to recover the whole grammar. 
 **It is not**, and we give now a counter-example.
 
+More precisely, the wrong claim is that for any $$f : (A^* \times A^*) \times A^* \to \R$$,
+one can construct a weighted context-free grammar computing $f$ with the number of non-terminals being the rank of $$H_f$$.
+
 We start from the function $$g : Tree(A) \to \R$$ assigning $1$ to the following two trees, and $0$ to any other tree.
 
 <figure>
 	<img width="50%" src="{{ '/images/two_trees.png' | prepend: site.baseurl }}" alt=""> 
 </figure>
 
-The tree Hankel matrix has rank $6$. One can indeed construct a weighted tree automaton with $6$ states.
+The tree Hankel matrix has rank $6$. One can indeed construct a weighted tree automaton with $6$ states recognising $g$.
 We present it as a weighted context-free grammar using $6$ non-terminals.
 
 $$
