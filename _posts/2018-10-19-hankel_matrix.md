@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Minimising weighted context-free grammars 
+title:      Minimising weighted tree automata and context-free grammars 
 date:       2018-10-19 9:00:00
 author:     Nathana&euml;l Fijalkow
 category:   Weighted automata
@@ -20,11 +20,9 @@ MathJax.Hub.Config({
 });
 </script>
 
-<p class="intro"><span class="dropcap">W</span>e discuss two extensions of Fliess' theorem about minimising weighted tree automata and weighted context-free grammars.</p>
+<p class="intro"><span class="dropcap">W</span>e discuss an extension of Fliess' theorem for minimising weighted tree automata.</p>
 
 This post is somehow a follow-up of [this one]({{ '/blog/fliess_theorem' | prepend: site.baseurl }}), but it can be read independently.
-
-The goal is to present two different results, this time without proof (because they are formal and not so instructive).
 
 ### Minimising weighted tree automata
 
@@ -54,27 +52,61 @@ A weighted context-free grammar is a context-free grammar (over words) which com
 Such a grammar defines a function $f : A^* \to \R$: the value of a derivation is the product of the weights of the rules, and the value of a word is the sum of the value of the runs.
 
 We know that the Hankel matrix for functions $f : A^* \to \R$ can be used to characterise functions recognised by weighted automata. 
-Unsurprisingly, weighted context-free grammars are more powerful, and the Hankel matrix as defined in this case does not contain enough information.
+Unsurprisingly, weighted context-free grammars are more powerful, and the Hankel matrix as defined in this case does not contain enough information (it may have infinite rank although the function is defined by a context-free grammar).
 
-The idea of [Bailly, Carreras, Luque, and Quattoni](https://www.cs.upc.edu/~aquattoni/AllMyPapers/emnlp_2013.pdf) is to use more information.
-We consider functions $$f : (A^* \times A^*) \times A^* \to \R$$
+The paper of [Bailly, Carreras, Luque, and Quattoni](https://www.cs.upc.edu/~aquattoni/AllMyPapers/emnlp_2013.pdf) presents a **wrong** Hankel-like theorem
+for weighted context-free grammars. We give here a counter-example.
 
+The idea is to consider functions $$f : (A^* \times A^*) \times A^* \to \R$$.
 For a weighted context-free grammar $G$, the definition of $f$ is
 
 $$
 f((x,y), z) = \sum_{A \text{ terminal of } G} f(S \to x A y) \cdot f(A \to z)
 $$
 
-The idea is that we restrict the computations of $x z y$ to those having a cut in $z$.
+Intuitively, we restrict the computations of $x z y$ to those having a cut in $z$.
 In the same way as for tree automata, $(x,y)$ is a sort of context (although only its yield).
-The somehow surprising aspect of the theorem below is that this is **enough information** to recover the whole grammar.
 
 The Hankel matrix of such a function $$f$$ is a bi-infinite matrix 
 $$H_f \in \R^{(A^* \times A^*) \times A^*}$$ defined by 
 
 $$H_f((x,y) , z) = f((x,y), z)$$
 
-> **Theorem:** (Bailly, Carreras, Luque, and Quattoni 2013)
-* Any weighted context-free grammar recognising $f$ has at least $\rk(H_f)$ many states,
-* There exists a weighted context-free grammar recognising $f$ with $\rk(H_f)$ many states.
+The surprising claim is that this is **enough information** to recover the whole grammar. 
+**It is not**, and we give now a counter-example.
+
+We start from the function $$g : Tree(A) \to \R$$ assigning $1$ to the following two trees, and $0$ to any other tree.
+
+<figure>
+	<img width="50%" src="{{ '/images/two_trees.png' | prepend: site.baseurl }}" alt=""> 
+</figure>
+
+The tree Hankel matrix has rank $6$. One can indeed construct a weighted tree automaton with $6$ states.
+We present it as a weighted context-free grammar using $6$ non-terminals.
+
+$$
+\begin{array}{ccc}
+S & \to & [ab] [a] \\
+S & \to & [a] [ca] \\
+[ab] & \to & [a] [b] \\
+[ca] & \to & [c] [a] \\
+[a] & \to & a \\
+[b] & \to & b \\
+[c] & \to & c
+\end{array}
+$$
+
+If now we consider the function $$f : (A^* \times A^*) \times A^* \to \R$$ defined by
+
+$$f( (x,y), z) = \sum_{t \text{ tree yielding } (x,y),z} g(t)$$
+
+When looking at the Hankel matrix for the function $f$, it is almost exactly the same as the function $g$.
+The only difference is for the row $(a,a)$, which corresponds to the following two contexts.
+
+<figure>
+	<img width="50%" src="{{ '/images/two_contexts.png' | prepend: site.baseurl }}" alt=""> 
+</figure>
+
+Because of this, the Hankel matrix for $f$ has size $5$ (instead of $6$).
+However, there exists no weighted context-free grammar with $5$ non-terminals computing $f$.
 
