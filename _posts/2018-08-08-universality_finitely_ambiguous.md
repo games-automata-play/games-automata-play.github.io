@@ -65,6 +65,7 @@ $$ACC(\ell) = I \cdot \Delta^{\ell} \cdot F$$
 
 Recall that an automaton is $k$-ambiguous if for every word, there are **at most** $k$ **accepting** runs for $w$.
 Note that we consider only accepting runs; there might be more (non-accepting) runs.
+For $k = 1$ we speak of unambiguous automata instead of $1$-ambiguous automata: every accepted word has exactly one accepting run.
 
 > **Theorem:**
 The universality problem for unambiguous automata is in PTIME
