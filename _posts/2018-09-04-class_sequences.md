@@ -163,12 +163,13 @@ Since $\varphi^{-1}$ (the inverse of the golden ratio) is a pole, it would be th
 
 CRA are deterministic automata with write-only registers. 
 Each transition updates the registers using addition and multiplication.
+<!--
 Here is an example of a CRA over the alphabet $\{a,b\}$ computing the product of the number of $a$ and the number of $b$.
 <figure>
 	<img src="{{ '/images/CCRA.png' | prepend: site.baseurl }}" alt=""> 
 	<figcaption>A copyless cost register automaton (CCRA)</figcaption>
 </figure>
-
+-->
 A CRA is said to be copyless if in each update, each register is used at most once. 
 
 We let CCRA denote the class of sequences computed by copyless cost register automata over a one-letter alphabet.

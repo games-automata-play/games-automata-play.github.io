@@ -27,7 +27,7 @@ MathJax.Hub.Config({
 The goal of this post is to prove the following result.
 This is the key technical point of a recent [joint work](https://arxiv.org/abs/1810.05106) with Thomas Colcombet proving that separating automata (see the corresponding [post]({{ '/blog/parity_separation' | prepend: site.baseurl }})) have at least quasipolynomial size.
 
-This theorem is an elaboration of the classic result about signature assignments or progress measures being witnesses of positional winning strategies in parity games 
+This theorem is an elaboration of the classical result about signature assignments or progress measures being witnesses of positional winning strategies in parity games 
 (see e.g. the [small progress measure treatment](https://link.springer.com/chapter/10.1007%2F3-540-46541-3_24)).
 The novelty here is to phrase this theorem using graph homomorphisms and universal trees, and giving a different argument using saturation.
 
@@ -124,7 +124,7 @@ We identify trees and tree-like graphs through the two reciprocal transformation
 
 We are now ready to prove the main theorem.
 
-Note that since a tree is a tree-like graph, by ``homomorphism from a graph to a tree'' 
+Note that since a tree is a tree-like graph, by homomorphism from a graph to a tree
 we mean homorphisms from a graph to a tree-like graph, 
 which are structures over the same signature.
 
