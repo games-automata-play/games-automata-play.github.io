@@ -23,10 +23,15 @@ MathJax.Hub.Config({
 
 <p class="intro"><span class="dropcap">T</span>his post discusses a framework for reducing parity games to safety games by the construction of an automaton.</p>
 
-All three quasipolynomial time algorithms for parity games, 
+There are three quasipolynomial time algorithms for parity games, 
 namely the [statistics games](https://dl.acm.org/citation.cfm?id=3055409) of Calude, Jain, Khoussainov, Li, and Stephan, 
 the [succinct progress measure algorithm](https://arxiv.org/abs/1702.05051v3) of Jurdzi&#324;ski and Lazi&#263;,
-and the [register games](https://dl.acm.org/citation.cfm?doid=3209108.3209115) of Lehtinen can be understood within this framework.
+and the [register games](https://dl.acm.org/citation.cfm?doid=3209108.3209115) of Lehtinen.
+
+The separating automata framework is due to Boja&#324;czyk and Czerwi&#324;ski, who worked out in their lecture notes
+[An automata toolbox](https://www.mimuw.edu.pl/~bojan/20172018-2/advanced-topics-in-automata-20172018-jezyki-automaty-i-obliczenia-2).
+how to construct a separating automaton from the first algorithm.
+We note that they use a slightly different notion of separating automata; the notion presented here is weaker, in the sense that a separating automaton here is also one for Boja&#324;czyk and Czerwi&#324;ski.
 
 Some of the material presented in this paper is spelled out in full details in [this paper](https://arxiv.org/abs/1807.10546).
 This post does not depend on the other ones but is a good introduction to the next one on [universal graphs]({{ '/blog/universal_graphs' | prepend: site.baseurl }}).

@@ -39,7 +39,7 @@ We fix $n,d$ two parameters.
 > **Definition:** A graph is **universal** if it satisfies parity and 
 any graph of size $n$ satisfying parity can be mapped homomorphically into it.
 
-
+<!--
 We show that universal graphs can be used to construct a conceptually simple algorithm for parity games.
 Consider a game $\G$ and a universal graph $\U$, we construct a safety game $\G \times \U$ 
 where Eve chooses which edge to follow on the second component,
@@ -60,6 +60,7 @@ It follows that solving the parity game is equivalent to solving a safety game o
 Since solving a safety game can be done in linear time, this gives an algorithm whose running time is linear in $n$ and $\|\U\|$.
 
 If you have just read the post about [separating automata]({{ '/blog/parity_separation' | prepend: site.baseurl }}) what is above should sound very familiar.
+-->
 
 #### In the remainder of this post we prove the following theorem:
 
@@ -81,8 +82,8 @@ and the [fundamental theorem]({{ '/blog/fundamental_theorem_parity_games' | prep
 
 The outline is as follows.
 1. construction [from a universal graph to a universal tree](#graph_to_tree)
-2. construction [from a universal tree to a (deterministic) separating automaton](#tree_to_automaton)
-3. construction [from a (non-deterministic) separating automaton to a universal graph](#automaton_to_graph)
+2. construction [from a universal tree to a separating automaton](#tree_to_automaton)
+3. construction [from a separating automaton to a universal graph](#automaton_to_graph)
 
 ### <a name="graph_to_tree">Universal graph to universal tree</a>
 > **Lemma**
@@ -167,9 +168,5 @@ By definition $\phi(v) = \delta(\pi(\rho))$ for $\rho$ some path ending in $v$.
 Note that $\rho' = \rho \cdot (v,i,v')$ is a path ending in $v'$, so by definition $(\delta(\pi(\rho')),0,\phi(v')) \in E$.
 Since $\delta(\pi(\rho')) = \delta(\delta(\pi(\rho)),i)$ and $\phi(v) = \delta(\pi(\rho))$ we have $(\phi(v),i,\delta(\pi(\rho'))) \in E$.
 It follows thanks to the first property of trees that $(\phi(v),i,\phi(v')) \in E$.
-
-The proof goes through if $\A$ is non-deterministic with two adjustments
-* $\phi(v)$ is the maximum for the $E_0$ order over all states reachable through some path of $H$ ending in $v$
-* we do not have that $\phi(v) = \delta(\pi(\rho))$, but only that $\phi(v) \in \delta(\pi(\rho))$
 
 
