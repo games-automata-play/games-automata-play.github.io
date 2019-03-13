@@ -41,8 +41,8 @@ $$\A(a_1 \cdots a_n) = \alpha \cdot \underbrace{\Delta(a_1) \cdots \Delta(a_n)}_
 
 Let $\A$ be an automaton recognising $f$.
 
-Define $P_\A(\cdot,q) \in \R^{\Sigma^*}$ the formal series recognised by the weighted automaton $\A$ with $e_q$ as final vector,
-and $S_\A(\cdot,q) \in \R^{\Sigma^*}$ the formal series recognised by the weighted automaton $\A$ with $e_q$ as initial vector.
+Define $P_\A(\cdot,q) \in \R^{\Sigma^* }$ the formal series recognised by the weighted automaton $\A$ with $e_q$ as final vector,
+and $S_\A(\cdot,q) \in \R^{\Sigma^* }$ the formal series recognised by the weighted automaton $\A$ with $e_q$ as initial vector.
 
 We have
 
