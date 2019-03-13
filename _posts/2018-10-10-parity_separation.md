@@ -196,6 +196,6 @@ As explained in [this paper](https://arxiv.org/abs/1807.10546) one can construct
 I do not think this fully explains the approach of Lehtinen: there are three distinguishing features worth taking into account.
 * the intermediate automaton is a parity automaton (not a safety automaton)
 * in particular thanks to the previous point, the technique does not only apply to finite games
-* the automaton is non-deterministic, but in a weak sense good-for-games
+* the automaton is non-deterministic, but good for small games
 
 

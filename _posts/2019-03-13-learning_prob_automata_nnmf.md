@@ -34,7 +34,7 @@ Recall that for a formal series $$f : \Sigma^* \to \R$$, the following theorem i
 
 In this post we are interested in the (natural!) subclass of weighted automata called probabilistic automata: 
 the weights are interpreted as probabilities, so $$\Delta(a)$$ and $$\alpha$$ are probabilistic matrices, 
-meaning each row is a distribution over states (equivalently, is non-negative and has norm $1$), and $$\beta \in \\{0,1\\}^Q$$.
+meaning each row is a distribution over states (equivalently, is non-negative and has norm $1$), and $$\beta \in \{0,1\}^Q$$.
 
 
 The question we ask here is: if we assume that $f$ is given by a probabilistic automaton, can we learn $f$?

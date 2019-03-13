@@ -36,10 +36,10 @@ This notion is very specific to the parity condition, and does not extend to oth
 The other two notions, separating automata and universal graphs, are naturally extended in the following way.
 
 Why are these two notions interesting?
-* **Separating automata** yield a natural family of algorithms for solving games by reduction to safety games.
+* **Separating automata** yield a family of algorithms for solving games by reduction to safety games.
 Given the success story of solving parity games using separating automata, it is natural to ask whether one can use separating automata for constructing efficient algorithms
 for other types of games.
-* **Universal graphs** are a combinatorial notion, which is much easier to reason with than separating automata.
+* **Universal graphs** yield another family of algorithms for solving games by value iteration.
 
 We consider graphs and games whose edges are labelled by $C$, a set of labels.
 The size of a graph is its number of vertices.

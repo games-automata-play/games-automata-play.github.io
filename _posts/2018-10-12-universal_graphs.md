@@ -70,10 +70,10 @@ The following quantities are equal
 * The size of the smallest separating automaton
 * The size of the smallest universal graph
 
-We refer to [this post]({{ '/blog/universal_tree' | prepend: site.baseurl }}) for the definition of universal trees
+We refer to [this post]({{ '/blog/universal_trees' | prepend: site.baseurl }}) for the definition of universal trees
 and [this post]({{ '/blog/parity_separation' | prepend: site.baseurl }}) for the definition of separating automata.
 
-Thanks to the upper and lower bounds for universal trees (see [this post]({{ '/blog/universal_tree' | prepend: site.baseurl }})) we know that the above quantity
+Thanks to the upper and lower bounds for universal trees (see [this post]({{ '/blog/universal_trees' | prepend: site.baseurl }})) we know that the above quantity
 is quasi-polynomial.
 
 The equivalence between universal trees and separating automata was originally proved in [this paper](https://arxiv.org/abs/1807.10546).
@@ -133,9 +133,7 @@ would be an infinite increasing sequence of states.
 
 ### <a name="automaton_to_graph">Separating automaton to universal graph</a>
 Let $\A$ be a separating automaton. 
-We will do the proof assuming that $\A$ is deterministic, and later explain why it straightforwardly extend to non-deterministic automata.
-We write $\delta(u)$ for the state reached after reading the word $u$ in $\A$ from the initial state; 
-note that $\delta(u)$ might be undefined.
+We write $\delta(u)$ for the state reached after reading the word $u$ in $\A$ from the initial state; note that $\delta(u)$ might be undefined.
 Without loss of generality all states in $\A$ are reachable.
 We construct a graph $G$ as follows.
 The set of vertices is the set of states of $\A$, and $(v,i,v') \in E$ if $v' = \delta(v,i)$.
