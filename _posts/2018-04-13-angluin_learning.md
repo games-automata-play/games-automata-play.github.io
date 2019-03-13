@@ -25,8 +25,8 @@ MathJax.Hub.Config({
 This post uses all the notations of the [previous post]({{ '/blog/fliess_theorem' | prepend: site.baseurl }}),
 and the result presented here was proved in this [paper](https://dl.acm.org/citation.cfm?id=337257).
 
-The scenario is Angluin's style learning: a master knows a function $$f : A^* \to \R$$, and can answer two types of queries.
-* membership query: when asked about $w \in A^*$, the master replies with $$f(w)$$
+The scenario is Angluin's style learning: a master knows a function $$f : \Sigma^* \to \R$$, and can answer two types of queries.
+* membership query: when asked about $w \in \Sigma^*$, the master replies with $$f(w)$$
 * equivalence query: when asked whether $f = \A$ for a given weighted automaton, the master replies YES or gives a counter-example.
 
 > **Theorem:** (Beimel, Bergadano, Bshouty, Kushilevitz, Varricchio, 2000)
