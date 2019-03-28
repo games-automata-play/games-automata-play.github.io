@@ -97,7 +97,8 @@ $$
 
 Given a set of samples $S$, 
 we let $H_m(S)$ denote 
-$\{ L(S') : S' \text{ subsample of size } m \text{ of } S\}$
+
+$$\{ L(S') : S' \text{ subsample of size } m \text{ of } S\}$$
 
 > **Claim:**
 For all $f \in H$, for all samples $S$, there exists $f_1,\dots,f_k \in H_m(S) \subseteq H_m$ with $k = O(d^*)$ such that for all $x \in S$
