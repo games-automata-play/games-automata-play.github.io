@@ -44,7 +44,6 @@ for other types of games.
 We consider graphs and games whose edges are labelled by $C$, a set of labels.
 The size of a graph is its number of vertices.
 We fix $$W \subseteq C^\omega$$ a winning condition, and we make one assumption, called (half-)positionality of $W$:
-We say that a graph satisfies $W$ if all paths in the graph satisfy $W$.
 
 > **Assumption:** In any finite game, if Eve has a strategy ensuring $W$, then she has a positional strategy ensuring $W$.
 
@@ -58,6 +57,7 @@ The size of an automaton is its number of states.
 
 In the following we say that a path in a graph is accepted or rejected by an automaton; this is an abuse of language
 since what the automaton reads is only the labels of the corresponding path.
+We say that a graph satisfies $W$ if all paths in the graph satisfy $W$.
 
 > **Definition:** An automaton is **$$n$$-separating** if the two following properties hold.
 * For all graphs of size $n$ satisfying $W$, the automaton accepts all paths in the graph

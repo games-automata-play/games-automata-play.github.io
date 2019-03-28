@@ -203,7 +203,3 @@ Since $d$ appears finitely many times in $\pi_\infty$,
 it implies that $d$ appears finitely many times in $\pi$.
 As above, we conclude by induction hypothesis, considering the sequence $(\tr_d(\pi_n))\nN$.
 
-<figure>
-	<img src="{{ '/images/odd.png' | prepend: site.baseurl }}" alt=""> 
-	<figcaption>Illustration of the odd case</figcaption>
-</figure>
