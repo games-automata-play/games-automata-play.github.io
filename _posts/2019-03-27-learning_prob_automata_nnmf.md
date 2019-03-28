@@ -104,7 +104,7 @@ $$H_f = P_\A \cdot S_\A$$
 A few remarks are in order
 * without further assumptions, this implies that the rank of $H_f$ is at least $\|Q\|$, the number of states of $\A$
 * if $\A$ is non-negative, then this is a non-negative factorisation
-* if $\A$ is residual, then this is a residual factorisation (which has the implication that you guess)
+* if $\A$ is residual, then this is a residual factorisation
 
 #### The upper bound 
 
