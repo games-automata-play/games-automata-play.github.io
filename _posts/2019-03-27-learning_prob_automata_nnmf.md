@@ -130,7 +130,7 @@ To see that $\A$ recognises $f$ we do a simple induction on words.
 Note that if the factorisation is non-negative, then the automaton $\A$ is non-negative.
 Also, if $H_f$ is row stochastic, then $\A$ is (predictive) probabilistic,
 and with just a bit more work 
-if $H_f$ induces distribution for each length, then $\A$ is (generative) probabilistic.
+if $H_f$ induces a distribution for each length, then $\A$ is (generative) probabilistic.
 
 Let us get back to the general case where the factorisation is not assumed to be residual.
 It is not clear what can be said or how to construct an automaton, because rows of $W$ cannot be interpreted in $H_f$.
@@ -153,7 +153,7 @@ For the lower bound, the proof goes through, but I strongly suspect that the upp
 Does the restricted assumption for factorisation play a role here? I also suspect that the answer is no.
 
 Another line of inquiry is how much can the residual theorem be used for learning?
-It does yield algorithms for learning exactly as in [this post]({{ '/blog/angluin_learning' | prepend: site.baseurl }}), 
-but there are examples where the anchor words $w$ have exponential length.
-What can be done about this? Can we learn probabilistic residual automata using polynomially many membership and equivalence queries?
+It is not yet clear to me how to adapt the Angluin's style learning algorithm from [this post]({{ '/blog/angluin_learning' | prepend: site.baseurl }}).
+We know (thanks to Borja Balle and Joshua Moermans) that there are examples where the anchor words $w$ have exponential length.
+Can we learn probabilistic residual automata using polynomially many membership and equivalence queries?
 
