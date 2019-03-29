@@ -91,15 +91,15 @@ they say that the automaton must accept all words which contain only even cycles
 The point of our definition is that it is minimal, in the following sense.
 
 > **Lemma:**
-Let $\A$ be a deterministic safety automaton over the alphabet $C$ recognising a language $L$, then the following are equivalent 
-* for all games $G$ of size $n$, we have that Eve has a strategy ensuring $W$ if and only she has a strategy ensuring $L$
+Let $\A$ be an automaton over the alphabet $C$ recognising a language $L$, then the following are equivalent 
+* for all games $G$ of size $n$, Eve has a strategy ensuring $W$ if and only she has a strategy ensuring $L$
 * $\A$ is $n$-strongly separating
 
 ### Strong VS weak
 
 Why did we focus on the weak notion in all the previous posts? Well, simply because all the constructions we have yield weak-separating automata.
-Since weak-separating automata are also strong-separating, strong-separating automata may be smaller than weak-separating ones.
-But this never materialised, and we do not know of any (non-trivial) example of a strong-separating automaton which is not a weak-separating automaton.
+Weak-separating automata are also strong-separating. Strong-separating automata may be smaller than weak-separating ones, but this never materialised: 
+we do not know of any (non-trivial) example of a strong-separating automaton which is not a weak-separating automaton.
 
 What can be said about strong-separating automata? So far, not much. The correspondence with universal graph does not hold anymore, since universal graphs are indeed very asymmetric,
 and so far we could not find the right symmetric definition to match strong-separating automata.

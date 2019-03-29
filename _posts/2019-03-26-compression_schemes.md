@@ -26,14 +26,14 @@ we will focus here on the two implications related to compression schemes.
 
 ### Compression schemes
 
-A sample compression scheme of size $k$ consists of a compression function and a reconstruction function. 
-Given a finite set of samples the compression function returns a subsamples of size at most $k$ and some side information from a finite set.
-The reconstruction function uses the subsample to construct a hypothesis for the concept to be learned. 
+A sample compression scheme of size $k$ consists of a compression map and a reconstruction map. 
+Given a finite set of samples the compression map returns a subsamples of size at most $k$ and some side information from a finite set.
+The reconstruction map uses the subsample to construct a hypothesis.
 The reconstructed hypothesis is required to predict the correct label for all examples in the original sample set.
 
 Formally, a sample compression scheme is given by
-* A compression map $K : S^* \to S^k \times I$ mapping a sample in $S^*$ to a subsample of size $k$ and side information from a finite set $I$,
-* A reconstruction map $\rho : S^* \times I \to (X \to \{0,1\})$ mapping a small sample and side information to a hypothesis.
+* A compression map $K : S^{*} \to S^k \times I$ mapping a sample in $S^{*}$ to a subsample of size $k$ and side information from a finite set $I$,
+* A reconstruction map $\rho : S^{*} \times I \to (X \to \\{0,1\\})$ mapping a small sample and side information to a hypothesis.
 
 The requirement is that $\rho (K (S))$ is consistent with $S$.
 Two remarks
@@ -42,14 +42,14 @@ Two remarks
 
 ### A tool: dual class
 
-The dual class $H^*$ is the set of functions $f_x : H \to \{0,1\}$ for $x \in X$ defined by $f_x(h) = h(x)$.
+The dual class $H^{*}$ is the set of maps $f_x : H \to \\{0,1\\}$ for $x \in X$ defined by $f_x(h) = h(x)$.
 
 > **Fact:**
-If the VC dimension of $H$ is $d$, then the VC dimension of $H^*$ is at most $2^d$
+If the VC dimension of $H$ is $d$, then the VC dimension of $H^{*}$ is at most $2^d$
 
 Pascale Gourdeau gave an example showing that this bound is tight.
 
-We write $d^*$ for the VC dimension of $H^*$.
+We write $d^{*}$ for the VC dimension of $H^{*}$.
 
 ### The easy implication
 
@@ -83,9 +83,9 @@ $$| P_{x \sim D}(h(x) = 1) - \frac{| \{x \in S\ :\ h(x) = 1 \}|}{|S|} | < \varep
 
 This says that there exists a multiset $S$ which can be used to estimate $P_{x \sim D}(h(x) = 1)$ for any $h \in H$.
 We showed this in the proof that a class with finite VC dimension is PAC-learnable, and actually something even stronger:
-picking $S$ according to $D$ yields the following bounds with high probability.
+picking $S$ according to $D^m$ yields the following bounds with high probability, for $m$ large enough.
 
-Let $L : S^* \to H$ be a learning algorithm, mapping samples to hypothesis.
+Let $L : S^{*} \to H$ be a learning algorithm, mapping samples to hypothesis.
 Thanks to the first lemma with $\varepsilon = 1/3$, we get $m$ such that
 for all distributions $D$ on $X$ and hypothesis $f$ there exists $h \in H_m$ such that
 $\text{err}(D,f,h) \le 1/3$
@@ -95,17 +95,20 @@ $$
 H_m = \{ L(S) : S \text{ sample of size } m\}
 $$
 
-Given a set of samples $S$, 
-we let $H_m(S)$ denote 
+Given a sample $S$, 
+we let
 
-$$\{ L(S') : S' \text{ subsample of size } m \text{ of } S\}$$
+$$
+H_m(S) = \{ L(S') : S' \text{ subsample of size } m \text{ of } S\}
+$$
 
 > **Claim:**
-For all $f \in H$, for all samples $S$, there exists $f_1,\dots,f_k \in H_m(S) \subseteq H_m$ with $k = O(d^*)$ such that for all $x \in S$
+For all $f \in H$, for all samples $S$, there exists $f_1,\dots,f_k \in H_m(S) \subseteq H_m$ with $k = O(d^{*})$ such that for all $x \in S$
+we have 
 $$| \{ i\ :\ f_i(x) = f(x) \}| > k/2$$
 
-The interpretation is that to determine $f(x)$ it is enough to know $f_1(x),\dots,f_k(x)$, and to choose to majority answer.
-This will be the key to the reconstruction function in the compression scheme.
+The interpretation is that to determine $f(x)$ it is enough to know $f_1(x),\dots,f_k(x)$, and to choose the majority answer.
+This will be the key to the reconstruction map in the compression scheme.
 
 We prove the claim.
 Consider the following concurrent game, which depends on $f$ and $S$: 
@@ -116,12 +119,12 @@ for all distributions $D$ on $X$ there exists $h \in H_m(S)$ such that
 $P_{x \sim D}(f(x) = h(x)) \ge 2/3$.
 
 By the minmax theorem, this implies that the column player has a strategy to ensure $2/3$:
-there exists a distribution $D^*$ on $H_m(S)$ such that for every $x \in X$,
+there exists a distribution $D^{*}$ on $H_m(S)$ such that for every $x \in X$,
 
-$$P_{h \sim D^*}(f(x) = h(x)) \ge 2/3$$
+$$P_{h \sim D^{*}}(f(x) = h(x)) \ge 2/3$$
 
-We now apply the second lemma to $H^*$ restricted to the elements of $X$ appearing in $S$ with $\varepsilon = 1/8$ (note that $2/3 - 1/8 > 1/2$).
-This yields the existence of a set $f_1,\dots,f_k \in H_m(S)$ such that for every $x \in X$,
+We now apply the second lemma to $H^{*}$ restricted to the elements of $X$ appearing in $S$ with $\varepsilon = 1/8$ (note that $2/3 - 1/8 > 1/2$).
+This yields the existence of a set $f_1,\dots,f_k \in H_m(S)$ such that for every $x \in S$,
 
 $$| \{ i\ :\ f_i(x) = f(x) \}| > k/2$$
 
@@ -132,7 +135,7 @@ We can now define our compression scheme.
 **Compression**: given a sample $S$, we first use $L$ to find a consistent hypothesis $f = L(S)$. 
 Thanks to the claim above, there exists $f_1,\dots,f_k \in H_m(S)$, hence there exists subsamples $S_i$ of $S$ of size $m$ 
 such that $f_i = L(S_i)$. The compression scheme returns the union of the $S_i$, using the extra information to tell for each element of the union to each $S_i$ it belongs to.
-The total number of elements is $O(k m)$, which is $O(d d^*)$.
+The total number of elements is $O(k m)$, which is $O(d d^{*})$.
 
 **Reconstruction**: given the $S_i$, we first obtain the $f_i$ using $L$, 
 and then construct a hypothesis $f$ by majority vote: $f(x)$ is the majority answer among $f_1(x),\dots,f_k(x)$.
