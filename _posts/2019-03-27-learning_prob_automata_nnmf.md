@@ -142,8 +142,8 @@ We have proved the following.
 > **Theorem:**
 The non-negative residual rank of $H_f$ is equal to the size of the smallest non-negative residual weighted automaton recognising $f$.
 
-If furthermore $H_f$ is row stochastic, then this is equal to the size of the smallest probabilistic (predictive) residual automaton recognising $f$,
-and if $H_f$ induces a distribution for each length, then this is equal to the size of the smallest probabilistic (generative) residual automaton recognising $f$.
+If furthermore $H_f$ is row stochastic, then this is equal to the size of the smallest probabilistic (generative) residual automaton recognising $f$,
+and if $H_f$ induces a distribution for each length, then this is equal to the size of the smallest probabilistic (predictive) residual automaton recognising $f$.
 
 ### Open questions
 
