@@ -129,9 +129,8 @@ We construct a weighted automaton $$\A$$ as follows
 To see that $\A$ recognises $f$ we do a simple induction on words.
 
 Note that if the factorisation is non-negative, then the automaton $\A$ is non-negative.
-Also, if $H_f$ is row stochastic, then $\A$ is (predictive) probabilistic,
-and with just a bit more work 
-if $H_f$ induces a distribution for each length, then $\A$ is (generative) probabilistic.
+Also, if $H_f$ is row stochastic, then $\A$ is (generative) probabilistic,
+and with just a bit more work if $H_f$ induces a distribution for each length, then $\A$ is (predictive) probabilistic.
 
 Let us get back to the general case where the factorisation is not assumed to be residual.
 It is not clear what can be said or how to construct an automaton, because rows of $W$ cannot be interpreted in $H_f$.
