@@ -24,7 +24,8 @@ MathJax.Hub.Config({
 <p class="intro"><span class="dropcap">W</span>e discuss extensions of Fliess' theorem which says that the smallest weighted automaton for a function is exactly the rank of its Hankel matrix.
 The goal is to extend this theorem to subclasses of weighted automata such as probabilistic automata.</p>
 
-Many thanks to the Bellairs Barbados 2019 workshop on Learning and Verification for many discussions on these questions!
+Many thanks to the Bellairs Barbados 2019 workshop on Learning and Verification for many discussions on these questions,
+and in particular Borja Balle, Alexander Clark, Gerco van Heerdt, Pierre Ohlmann, and Joshua Moermans.
 
 We use the notations from [this post]({{ '/blog/fliess_theorem' | prepend: site.baseurl }}) about weighted automata and the Hankel matrix.
 
@@ -81,7 +82,7 @@ In this post we are interested in the following subclasses of weighted automata:
 which means that $f$ induces for each $n$ a distribution over words of length $n$
 * **probabilistic (generative)** automata: non-negative and for all states $q$, we have $$\sum_{a \in \Sigma, q' \in Q} \Delta(a)(q,q') + \beta(q) = 1$$ and $$\alpha$$ is a distribution over states
 which means that $f$ induces a distribution over words
-* **residual** automata: for all states $q$, there exists a word $w$ such that $$\alpha \Delta(w)$$ is the characteristic vector for $q$, i.e. its value is $0$ everywhere and $1$ in $q$.
+* **residual** automata: for all states $q$, there exists a word $w$ such that $$\alpha \Delta(w)$$ is $0$ everywhere and non-zero in $q$.
 We sometimes say that $w$ is an anchor for $q$
 
 The notion of anchored appears in [this paper](http://www.aclweb.org/anthology/Q16-1018) by Stratos, Collins and Hsu, called "Unsupervised Part-Of-Speech Tagging with Anchor Hidden Markov Models".
@@ -154,6 +155,8 @@ Does the restricted assumption for factorisation play a role here? I also suspec
 
 Another line of inquiry is how much can the residual theorem be used for learning?
 It is not yet clear to me how to adapt the Angluin's style learning algorithm from [this post]({{ '/blog/angluin_learning' | prepend: site.baseurl }}).
-We know (thanks to Borja Balle and Joshua Moermans) that there are examples where the anchor words $w$ have exponential length.
-Can we learn probabilistic residual automata using polynomially many membership and equivalence queries?
+Note that it is always possible to learn a weighted automaton using the previous algorithm, the goal here would be to directly learn a probabilistic automaton.
+One solution is to learn a weighted automaton (using polynomially many membership and equivalence queries) and then to turn it into a probabilistic one, 
+but can we do this efficiently (in terms of complexity)?
+We know (thanks to Borja Balle and Joshua Moermans) that there are examples where the anchor words have exponential length.
 
