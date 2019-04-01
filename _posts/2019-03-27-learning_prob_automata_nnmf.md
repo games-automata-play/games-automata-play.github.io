@@ -44,7 +44,7 @@ since here the central notion is matrix factorisation.
 Let $M$ be a matrix, say in $\R^{n \times m}$.
 A factorisation of $M$ of dimension $d$ is $M = AW$ where $A \in \R^{n \times d}$ and $W \in \R^{d \times m}$.
 One way to understand this is by looking at the rows of $M$: the factorisation $M = AW$ says that the rows of $M$ can be expressed as linear combinations of the rows of $W$.
-In other words, $W$ yields a basis for the vector space spanned by the rows of $W$.
+In other words, the rows of $M$ form a basis for the vector space spanned by the rows of $W$.
 
 We say that a factorisation is
 * **non-negative** if the entries of $A$ and $W$ are non-negative
@@ -157,5 +157,5 @@ It is not yet clear to me how to adapt the Angluin's style learning algorithm fr
 Note that it is always possible to learn a weighted automaton using the previous algorithm, the goal here would be to directly learn a probabilistic automaton.
 One solution is to learn a weighted automaton (using polynomially many membership and equivalence queries) and then to turn it into a probabilistic one, 
 but can we do this efficiently (in terms of complexity)?
-We know (thanks to Borja Balle and Joshua Moermans) that there are examples where the anchor words have exponential length.
+We know (thanks to Borja Balle and Joshua Moerman) that there are examples where the anchor words have exponential length.
 
