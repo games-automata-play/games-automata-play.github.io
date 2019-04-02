@@ -25,7 +25,7 @@ MathJax.Hub.Config({
 The goal is to extend this theorem to subclasses of weighted automata such as probabilistic automata.</p>
 
 Many thanks to the Bellairs Barbados 2019 workshop on Learning and Verification for many discussions on these questions,
-and in particular Borja Balle, Alexander Clark, Gerco van Heerdt, Pierre Ohlmann, and Joshua Moermans.
+and in particular Borja Balle, Alexander Clark, Gerco van Heerdt, Pierre Ohlmann, and Joshua Moerman.
 
 We use the notations from [this post]({{ '/blog/fliess_theorem' | prepend: site.baseurl }}) about weighted automata and the Hankel matrix.
 
@@ -44,7 +44,7 @@ since here the central notion is matrix factorisation.
 Let $M$ be a matrix, say in $\R^{n \times m}$.
 A factorisation of $M$ of dimension $d$ is $M = AW$ where $A \in \R^{n \times d}$ and $W \in \R^{d \times m}$.
 One way to understand this is by looking at the rows of $M$: the factorisation $M = AW$ says that the rows of $M$ can be expressed as linear combinations of the rows of $W$.
-In other words, the rows of $M$ form a basis for the vector space spanned by the rows of $W$.
+In other words, the rows of $M$ generate the vector space spanned by the rows of $W$.
 
 We say that a factorisation is
 * **non-negative** if the entries of $A$ and $W$ are non-negative
