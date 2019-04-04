@@ -49,7 +49,7 @@ If the VC dimension of $H$ is $d$, then the VC dimension of $H^{*}$ is at most $
 
 Pascale Gourdeau gave an example showing that this bound is tight.
 
-We write $d^*$ for the VC dimension of $H^*$.
+We write $$d^{*}$$ for the VC dimension of $$H^{*}$$.
 
 ### The easy implication
 
