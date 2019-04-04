@@ -32,8 +32,8 @@ The reconstruction map uses the subsample to construct a hypothesis.
 The reconstructed hypothesis is required to predict the correct label for all examples in the original sample set.
 
 Formally, a sample compression scheme is given by
-* A compression map $K : S^{*} \to S^k \times I$ mapping a sample in $S^{*}$ to a subsample of size $k$ and side information from a finite set $I$,
-* A reconstruction map $\rho : S^{*} \times I \to (X \to \\{0,1\\})$ mapping a small sample and side information to a hypothesis.
+* A compression map $K : S^* \to S^k \times I$ mapping a sample in $S^*$ to a subsample of size $k$ and side information from a finite set $I$,
+* A reconstruction map $\rho : S^* \times I \to (X \to \\{0,1\\})$ mapping a small sample and side information to a hypothesis.
 
 The requirement is that $\rho (K (S))$ is consistent with $S$.
 Two remarks
@@ -49,7 +49,7 @@ If the VC dimension of $H$ is $d$, then the VC dimension of $H^{*}$ is at most $
 
 Pascale Gourdeau gave an example showing that this bound is tight.
 
-We write $d^{*}$ for the VC dimension of $H^{*}$.
+We write $d^*$ for the VC dimension of $H^*$.
 
 ### The easy implication
 
