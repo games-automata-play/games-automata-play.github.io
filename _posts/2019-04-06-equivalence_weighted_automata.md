@@ -36,13 +36,13 @@ $$\A(a_1 \cdots a_n) = \alpha \cdot \underbrace{\Delta(a_1) \cdots \Delta(a_n)}_
 
 Probabilistic automata are a special case of weighted automata.
 
-> **Theorem:** (Schützenberger '87)
-The following problem can be solved in polynomial time: given two weighted automata $\A$ and $\B$, whether $\A = \B$, meaning for all words $w \in \Sigma^*$, we have $\A(w) = \B(w)$.
+> **Theorem:** (Schützenberger '61)
+The following problem can be solved in polynomial time: given two weighted automata $\A$ and $\B$, determine whether $\A = \B$, meaning for all words $w \in \Sigma^*$, we have $\A(w) = \B(w)$.
 
 As evidence that this is an important theorem, it has been rediscovered a number of times. 
 The techniques described here are close to the original ones, which where about minimising weighted automata.
 
-We simplify the problem by constructing a weighted automaton recognising the formal series $\A - \B$, which can easily be done and has size the sum of the two automata.
+We simplify the problem by constructing a weighted automaton recognising the formal series $\A - \B$: the automaton has size the sum of the two automata.
 The question reduces to whether $\A = 0$, where $\A$ is given by a weighted automaton.
 
 We let $\Delta(a)(s)$ denote the vector in $\R^Q$ whose entry for $s'$ is $\Delta(a)(s,s')$.
@@ -85,7 +85,7 @@ Assume that $X_{k+1} = X_k$. We already know that $X_{k+1} \supseteq X_{k+2}$, s
 Let $u$ in $X_{k+1}$, since $X_{k+1} = X_k$ we have that $u$ is in $X_k$, so by definition $u \cdot M$ is in $X_{k+1}^p$, which means that $u$ is in $X_{k+2}$.
 * This is a dimension argument: the sequence $(\text{dim}(X_k))_{k \in \N}$ is non-increasing, takes values in $[0,Q-1]$, and stabilises as soon as it hits twice the same value.
 Note that we **do** need the property above saying that once the same value is hit twice then the sequence stabilises. 
-There is a special place in hell for people who forget to prove that property.
+There is a special place in hell for people who forget to state (and prove) that property.
 * We first prove by induction on $k$ that $X_k$ is the set of $u \in \R^Q$ such that for all $w \in \Sigma^{\le k}$, we have $\alpha \cdot \Delta(w) \cdot u = 0$.
 Both the base and the inductive cases are easy.
 This readily implies that for all $w \in \Sigma^{\le k}, \A(w) = 0$ if and only if $\eta \in X_k$.
