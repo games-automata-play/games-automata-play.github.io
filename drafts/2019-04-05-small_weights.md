@@ -27,7 +27,7 @@ The following result (and its consequence) was pointed out to me by Stéphane Ga
 
 > **Theorem:** (Frank and Tardos '87)
 For every $w \in \Q^n$, there exists $v \in \Z^n$ such that
-* for all $b \in \Z^n$ such that $||b||_1 \le N$, we have $w \cdot b > 0$ if and only if $u \cdot v > 0$
+* for all $b \in \Z^n$ such that $||b||_1 \le N$, we have $w \cdot b > 0$ if and only if $v \cdot b > 0$
 * $||v||_\infty \le 2^{4n^3} N^{n+2}$
 
 Furthermore this is effective, one can construct $v$ in polynomial time.
@@ -41,7 +41,7 @@ where $m$ is the number of edges. In other words, the weights use a polynomial n
 Indeed, a weight function is $w : E \to \Q$, i.e. $w \in \Q^m$.
 Two weight functions are equivalent, meaning the induced mean payoff games have the same winner (when considering the mean payoff objective with threshold $0$),
 if for all cycles in the underlying graph, positivity is equivalent for the two weight functions.
-This is directly implied by saying that for all $b \in \Z^n$ such that $||b||_1 \le m$, we have $w \cdot b > 0$ if and only if $u \cdot v > 0$,
+This is directly implied by saying that for all $b \in \Z^n$ such that $||b||_1 \le m$, we have $w \cdot b > 0$ if and only if $v \cdot b > 0$,
 where $w,u$ are the weight functions.
 The result follows by applying the theorem above.
 
