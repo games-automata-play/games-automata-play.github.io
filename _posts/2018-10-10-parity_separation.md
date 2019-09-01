@@ -192,10 +192,14 @@ The transition function is as follows: from the tuple $x$, reading a vertex $v$ 
 
 ### <a name="registers">The registers</a>
 As explained in [this paper](https://arxiv.org/abs/1807.10546) one can construct some automaton, which we can used to obtain a separating automaton.
+However the automaton is non-deterministic, which means it does not fit the framework above.
+A better and cleaner way to understand this approach is to show that the automaton is **good for small games**; we refer to [this paper](https://link.springer.com/chapter/10.1007%2F978-3-030-17127-8_1) for more details.
 
+<!--
 I do not think this fully explains the approach of Lehtinen: there are three distinguishing features worth taking into account.
 * the intermediate automaton is a parity automaton (not a safety automaton)
 * in particular thanks to the previous point, the technique does not only apply to finite games
 * the automaton is non-deterministic, but good for small games
+-->
 
 

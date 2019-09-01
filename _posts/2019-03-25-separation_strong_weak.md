@@ -103,5 +103,7 @@ we do not know of any (non-trivial) example of a strong-separating automaton whi
 
 What can be said about strong-separating automata? So far, not much. The correspondence with universal graph does not hold anymore, since universal graphs are indeed very asymmetric,
 and so far we could not find the right symmetric definition to match strong-separating automata.
+[This paper](https://arxiv.org/abs/1902.07175) proves some lower bounds, but not for the full class of strong-separating automata.
+
 
 

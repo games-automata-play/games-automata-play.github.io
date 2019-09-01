@@ -16,8 +16,8 @@ MathJax.Hub.Config({
 });
 </script>
 
-<p class="intro"><span class="dropcap">T</span>his post introduces the notion of universal trees and poses an open problem:
-what is the exact size of the smallest universal tree?
+<p class="intro"><span class="dropcap">T</span>his post introduces the notion of universal trees, and shows upper and lower bounds.
+The bounds are almost matching, leaving an open problem: what is the exact size of the smallest universal tree?
 </p>
 
 <p>
@@ -25,11 +25,13 @@ The motivation for studying universal trees comes from parity games. This post d
 as I hope to appeal to my combinatorially-minded friends.
 </p>
 
+<!--
 For the parity games aficionados, a short chronology:
 * Jurdzi&#324;ski and Lazi&#263; implicitly constructed a quasipolynomial universal tree in the [succinct progress measure algorithm](https://arxiv.org/abs/1702.05051)
 * I defined universal trees to show that it provides a [generic value iteration algorithm for parity games](https://arxiv.org/abs/1801.09618),
 and gave upper and lower bounds on the size of universal trees 
 * Czerwi&#324;ski, Daviaud, Jurdzi&#324;ski, Lazi&#263;, Parys, and myself later showed that a wide class of [automata-theoretic algorithms for solving parity games need to construct universal trees](https://arxiv.org/abs/1807.10546)
+-->
 
 ### Definition
 
@@ -166,10 +168,7 @@ One can show that
 $$\frac{f(n,h)}{g(n,h)} = O(nh)$$
 
 so there is a (reasonably small but still) gap.
-Here is what I know:
-* the lower bound is not tight. For $h = 2$ and $n = 5$, there are no universal trees of size $10$, easily seen by necessary conditions (there must be a node with $5$ leaves
-and two other nodes with $2$ leaves).
-* the upper bound is tight for $h = 2$ (there is a bit of work to check this)
+The upper bound is tight for $h = 2$ (there is a bit of work to check this), but I do not know for larger values of 
 
 > **Open question:** what is the exact size of the smallest $(n,h)$-universal tree?
 
