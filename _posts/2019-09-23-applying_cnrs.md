@@ -69,7 +69,7 @@ For your information, here are mine (in French, sorry!):
 
 **Slides**. When I applied the format was 15mn presentation of your research plus 5mn presentation of your research project, with additional 15mn questions. This may change as well.
 The interview is very constructive, they will do their best to make you feel comfortable and shine. 
-Keep the following in mind: **the questions are asked by the reviewers are for the reviewers to have arguments to put you on the final list**.
+Keep the following in mind: **the questions are asked by the reviewers for them to have arguments to put you on the final list**.
 In other words, the reviewers are your supporters, and they have the duration of the interview to convince the rest of the panel to hire you.
 Questions are opportunities to show your understanding and ability to discuss research at different levels, both technical and non-technical.
 
