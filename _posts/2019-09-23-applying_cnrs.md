@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      Applying to CNRS
-date:       2019-09-01 9:00:00
+date:       2019-09-23 9:00:00
 author:     Nathana&euml;l Fijalkow
 category:   Research
 ---
