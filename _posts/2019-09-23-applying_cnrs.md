@@ -37,6 +37,12 @@ If you get there, CNRS will contact you to offer you a position (congratulations
 Each lab is asked to send a letter about which candidates they would be happy to hire. This is of course only a consultation, 
 but it is very important as it helps the section to see how you will in effect integrate the labs.
 
+**Academic age: CR or DR?**. CR is the junior position, DR the senior position. There are two separate competitions. 
+Typically CR positions are offered to researchers with PhD + 2/3y, and to DR with PhD + 7/12y. 
+Here I mean PhD graduation, but the official way of counting in CNRS is from the start of the PhD, so they typically hire CR about 7 years after they started their PhD.
+Especially for CR this is younger that most other countries, as CNRS is a full-time tenured research position (no teaching!).
+If you are hesitant about which track you should apply to, do not overthing it: apply to both, and the section will choose for you one of the two.
+
 **Documents**. You have to write two documents: "past" and "future". Past presents your research output so far, and Future explains which directions you would like to take if hired.
 There is no recommended format, but there are non-strict page limits (I think 6 to 10 pages).
 In my understanding, Past serves as evidence that you know what you are talking about and that you can present it to a wide audience in an accessible way.
@@ -96,5 +102,5 @@ Do not overdo it: if you do not fit, they will not buy your fake arguments, in w
 **Cross positions**. There are often positions of the form "Section X to Section Y", for instance "a computer scientist in a maths lab". 
 Look out for these, as if they are be a good fit for your profile then it's generally easier to get one of those.
 
-### Good luck!
+## Good luck!
 
