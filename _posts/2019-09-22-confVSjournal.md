@@ -47,8 +47,8 @@ To read more on the topic but with a different take, I suggest Moshe Vardi's opi
 see [Scalable Conferences](https://cacm.acm.org/magazines/2014/1/170871-scalable-conferences/fulltext)
 and [Divination by Program Committee](https://cacm.acm.org/magazines/2017/9/220429-divination-by-program-committee/fulltext).
 
+### Counter-arguments to the usual reasons for submitting to prestigious conferences.
 
-Counter-arguments to the usual reasons for submitting to prestigious conferences.
 Click on an argument to expand it.
 
 <details>
@@ -130,7 +130,8 @@ Click on an argument to expand it.
 	The actual publication may come much later, be a merge of different notes, and often is enriched by interactions stimulated by the arXiv paper.
 </details>
 
-Arguments in favour of submitting to journals rather than conferences.
+### Arguments in favour of submitting to journals rather than conferences.
+
 Click on an argument to expand it.
 
 <details>
