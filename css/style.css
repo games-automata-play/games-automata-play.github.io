@@ -677,13 +677,13 @@ html {
 
 body {
   font-family: "PT Serif", Georgia, Times, serif;
-  line-height: 1.75;
-  font-size: 112.5%;
+  line-height: 1.25;
+  font-size: 100%;
   color: #111;
   overflow-x: hidden;
   margin: 0; }
   body p, body ul {
-    margin: 0 0 2rem; }
+    margin: 0 0 1rem; }
 
 ::-moz-selection {
   background: seagreen;
@@ -698,7 +698,7 @@ img, video, audio, iframe, object {
 
 .container {
   max-width: 610px;
-  padding: 0 20px; }
+  padding: 0 10px; }
 
 /***************
 LINK STYLING

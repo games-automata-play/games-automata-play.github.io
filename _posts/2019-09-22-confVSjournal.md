@@ -49,14 +49,13 @@ and [Divination by Program Committee](https://cacm.acm.org/magazines/2017/9/2204
 
 
 Counter-arguments to the usual reasons for submitting to prestigious conferences
-<ul>
-	<li><a data-toggle="collapse" data-target="#visibility">I want my results to be visible and quickly accessible</a>
-	<div id="visibility" class="collapse">
+
+* <details><summary>I want my results to be visible and quickly accessible</summary>
 	Put your results on <a href="http://arxiv.org/">arXiv</a>. 
 	This is will give them a wide and immediate visibility. 
 	Everyone knows and uses arXiv, it is well referenced by scholar websites.
 	To strengthen that effect I often send my latest arXiv link to a few colleagues.
-	</div>
+</details>
 
 	<li><a data-toggle="collapse" data-target="#stamp">I need the stamp of approval from top conferences for my CV and being a member of my research community</a>
 	<div id="stamp" class="collapse">
@@ -112,7 +111,7 @@ Counter-arguments to the usual reasons for submitting to prestigious conferences
 	This argument relies on the idea that your research interactions are only or mostly through your conference publications. 
 	There are many other ways to share your research, as listed above: seminar talks, specialised workshops, week-long meetings, weeks-long research visits, and journal publications.
 	<br/>
-	I am tempted to add another one: I started writing a <a href="https://games-automata-play.github.io/">research blog</a>, and found that it is a useful platform for stimulating research interactions. 	
+	I am tempted to add another one: I started writing this research blog, and found that it is a useful platform for stimulating research interactions.
 	</div>
 
 
