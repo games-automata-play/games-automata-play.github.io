@@ -48,17 +48,21 @@ see [Scalable Conferences](https://cacm.acm.org/magazines/2014/1/170871-scalable
 and [Divination by Program Committee](https://cacm.acm.org/magazines/2017/9/220429-divination-by-program-committee/fulltext).
 
 
-Counter-arguments to the usual reasons for submitting to prestigious conferences
+Counter-arguments to the usual reasons for submitting to prestigious conferences.
+Click on an argument to expand it.
 
-* <details><summary>I want my results to be visible and quickly accessible</summary>
+<details>
+<summary>I want my results to be visible and quickly accessible</summary>
+
 	Put your results on <a href="http://arxiv.org/">arXiv</a>. 
 	This is will give them a wide and immediate visibility. 
 	Everyone knows and uses arXiv, it is well referenced by scholar websites.
 	To strengthen that effect I often send my latest arXiv link to a few colleagues.
 </details>
 
-	<li><a data-toggle="collapse" data-target="#stamp">I need the stamp of approval from top conferences for my CV and being a member of my research community</a>
-	<div id="stamp" class="collapse">
+<details>
+<summary>I need the stamp of approval from top conferences for my CV and being a member of my research community</summary>
+
 	This is an unfortunate truth, but this does not mean that it cannot be fought. 
 	The obstacle is just a community mindset. 
 	<br/>
@@ -72,10 +76,11 @@ Counter-arguments to the usual reasons for submitting to prestigious conferences
 	But this is only a first impression, which is quickly replaced by your research interactions, ability to present your results, discuss them, relate them to others, and engage in developping new ideas.
 	In the long run the correlation between your ability to get published in top conferences and your place in the community is not that clear. 
 	There are examples of all combinations: in particular, there are (fortunately not too many) researchers who have an impressive list of conference publications but whose research impact is debatable.
-	</div>
+</details>
 
-	<li><a data-toggle="collapse" data-target="#student">I want my students to thrive and get positions</a>
-	<div id="student" class="collapse">
+<details>
+<summary>I want my students to thrive and get positions</summary>
+
 	This is arguably the strongest point against not submitting to conferences. 
 	In some sense, this is the same point as above, but specialised to students.
 	The question is whether students can be successfully integrated into research communities, which includes getting jobs and grants, without conference publications on their CVs.
@@ -92,11 +97,11 @@ Counter-arguments to the usual reasons for submitting to prestigious conferences
 	I sympathise with this as I was there just a few years ago, but again: given the odds, what is better, a noisy shot at a prestigious conference or a more fair try at a journal?
 	<br/>
 	My second point is that many initiatives achieve more towards integrating a student to a research community than a long list of conference publications: involving them in research projects, inviting them to scientific events, and organising visits in other research groups. 
-	<br/>
-	</div>
+</details>
 
-	<li><a data-toggle="collapse" data-target="#informed">I want to be informed about the latest important results</a>
-	<div id="informed" class="collapse">
+<details>
+<summary>I want to be informed about the latest important results</summary>
+
 	Sign up for the daily or weekly <a href="https://arxiv.org/help/subscribe">arXiv alerting service</a> on your research interests.
 	This will be far more efficient than attending a conference for a broad coverage of the latest results.
 	<br/>
@@ -112,24 +117,24 @@ Counter-arguments to the usual reasons for submitting to prestigious conferences
 	There are many other ways to share your research, as listed above: seminar talks, specialised workshops, week-long meetings, weeks-long research visits, and journal publications.
 	<br/>
 	I am tempted to add another one: I started writing this research blog, and found that it is a useful platform for stimulating research interactions.
-	</div>
+</details>
 
+<details>
+<summary>I want to publish smaller results which are not yet ready for a journal publication</summary>
 
-	<li><a data-toggle="collapse" data-target="#small">I want to publish smaller results which are not yet ready for a journal publication</a>
-	<div id="small" class="collapse">
 	This is wrong.
 	We should aim at publising <b>less</b>, not more. For a simple reason: the more we publish, the less visible our results are, drowned in the number.
 	On the other hand, nothing prevents you from publishing small results on arXiv. 
 	If I have a result which I think is interesting but not yet a full-blown satisfactory answer, I write a short note and put it on arXiv. 
 	The actual publication may come much later, be a merge of different notes, and often is enriched by interactions stimulated by the arXiv paper.
-	</div>
-</ul>
+</details>
 
+Arguments in favour of submitting to journals rather than conferences.
+Click on an argument to expand it.
 
-Arguments in favour of submitting to journals rather than conferences
-<ul>
-	<li><a data-toggle="collapse" data-target="#reviews">Escape the unfair system of conference reviews</a>
-	<div id="reviews" class="collapse">
+<details>
+<summary>Escape the unfair system of conference reviews</summary>
+
 	My experiences both as author and as PC member have convinced me that the conference reviewing system is bad.
 	Although most PC members spend a lot of effort trying to evaluate articles, find expert reviewers, and select the best papers, the outcome is heavily biassed.
 	<br/>
@@ -138,10 +143,11 @@ Arguments in favour of submitting to journals rather than conferences
 	The scientific part is sometimes less important than pure presentation aspects. 
 	In a journal submission, would this be the case, the reviewer would ask for revisions and make useful suggestions for improvements. 
 	Conferences and their tight deadlines do not allow this simple process.
-	</div>
+</details>
 
-	<li><a data-toggle="collapse" data-target="#time">Avoid the huge waste of time in the conference system</a>
-	<div id="time" class="collapse">
+<details>
+<summary>Avoid the huge waste of time in the conference system</summary>
+
 	The first main time waste is in writing conference papers. 
 	I have spent way too much time trying to fit my research results into conference papers (page limits, style, story, take away message, and other stupid constraints). This is wrong. 
 	This is a normative approach killing creativity.
@@ -150,10 +156,11 @@ Arguments in favour of submitting to journals rather than conferences
 	The standard of conference reviews is way below that of journals; it is commonly understood that conference reviews are not bound to check proof details or even correctness.
 	<br/>
 	The time saved in not writing and reviewing conference papers can be reinvested in writing and reviewing for journals, which may also have the effect of making the journal publication process faster.
-	</div>
+</details>
 
-	<li><a data-toggle="collapse" data-target="#deadlines">Beat the untenable pace of conference deadlines</a>
-	<div id="deadlines" class="collapse">
+<details>
+<summary>Beat the untenable pace of conference deadlines</summary>
+
 	This is wrong that deadlines dictate when a paper must be ready. It encourages unpolished submissions, rushed proofs, and the practice of subdividing papers.
 	</div>
 
@@ -169,39 +176,43 @@ Arguments in favour of submitting to journals rather than conferences
 	The second is that this implies that the best results should be accessible and of interest to a wide community.
 	This implicit idea means that PC discussions are filled with rejection arguments of the kind "the ideas are hard to grasp for someone outside of the field", "the notions seem to be very specific to the problem solved in the paper", or even "it will be very hard to present the results to a wide audience".
 	As a consequence, a simple result easy to present in a few pages becomes more valuable than a technical and difficult one.
-	</div>
+</details>
 
-	<li><a data-toggle="collapse" data-target="#stress">Mitigate the stress of rejection</a>
-	<div id="stress" class="collapse">
+<details>
+<summary>Mitigate the stress of rejection</summary>
+
 	Submitting to conferences means regular notifications, and often rejections. Notification dates are stressful experiences, which personally affect me too much.
 	There is no need for that.
-	</div>
+</details>
 
-	<li><a data-toggle="collapse" data-target="#science">Write a scientific article, not a piece of advertisement</a>
-	<div id="science" class="collapse">
+<details>
+<summary>Write a scientific article, not a piece of advertisement</summary>
+
 	Because of the format and the competition, conference publications tend to contain less science and more advertisement: as little technical details as possible, no proofs, no deeper explanations.
 	The journal paper is the place where the science is carefully explained, all aspects are considered, and all details are explored.
 	On a scientific level, this has a much greater value.
-	</div>
+</details>
 
-	<li><a data-toggle="collapse" data-target="#attending">Attending prestigious general conferences is not that productive</a>
-	<div id="attending" class="collapse">
+<details>
+<summary>Attending prestigious general conferences is not that productive</summary>
+
 	In some of the top general conferences I may be able to understand about 30% of the talks (rough estimates).
 	What is the point? 
-	</div>
+</details>
 
-	<li><a data-toggle="collapse" data-target="#environment">Consider environmental issues</a>
-	<div id="environment" class="collapse">
+<details>
+<summary>Consider environmental issues</summary>
+
 	Travelling around the world for a few days to present a paper is not good for the environment.
 	See for instance <a href="https://noflyclimatesci.org/">the No Fly Climate Sci initiative</a> and the <a href="https://labos1point5.org/">Labos 1.5 initiative (in French)</a>.
-	</div>
+</details>
 
-	<li><a data-toggle="collapse" data-target="#trend">Ignore the trendy topics and dive into your niche interest!</a>
-	<div id="trend" class="collapse">
+<details>
+<summary>Ignore the trendy topics and dive into your niche interest!</summary>
+
 	Conferences encourage trendy topics: it is hard to get a paper about a niche question published at a major conference.
 	The best evidence of this being wrong is the decades during which neural networks was considered a model of minor importance with little applications, which meant that it was hard to publish results in major machine learning venues.
 	Perseverance paid off, as Yann LeCun, Geoffrey Hinton and Yoshua Bengio will explain when receiving their 2019 Turing award!
-	</div>
-</ul>
+</details>
 
 
