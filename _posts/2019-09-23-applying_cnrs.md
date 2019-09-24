@@ -6,23 +6,6 @@ author:     Nathana&euml;l Fijalkow
 category:   Research
 ---
 
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  TeX: {
-    Macros: {
-      R: "{\\mathbb{R}}",
-      Q: "{\\mathbb{Q}}",
-      N: "{\\mathbb{N}}",
-      Z: "{\\mathbb{Z}}",
-      A: "{\\mathcal{A}}",
-      B: "{\\mathcal{B}}",
-      rk: "{\\text{rank}}",
-      NNrk: "{\\text{rank}_+}",
-    }
-  }
-});
-</script>
-
 <p class="intro"><span class="dropcap">T</span>his post gathers some information about applying to CNRS for a permanent researcher position (chargé de recherche, junior position, 
 or directeur de recherche, senior position).
 It includes links to my files for the two times I applied.
@@ -31,12 +14,12 @@ It includes links to my files for the two times I applied.
 **Disclaimer**: All information below are gathered through (past) experience and may not be fully accurate.
 I do work at CNRS but I do not have access to insider information.
 
-First of all, **do not censor yourself if you do not speak French**! Every year several positions are offered to non-French speak people and they become happy and successful researchers at CNRS.
+First of all, **do not censor yourself if you do not speak French**! Every year several positions are offered to non-French speaking people and they become happy and successful researchers at CNRS (learning French is not necessary even then).
 
 The official website is [here](http://www.dgdr.cnrs.fr/drhchercheurs/concoursch/default-en.htm), but you will find most relevant information [here](http://cn6.fr/), called the "section".
 They in particular announce how many positions there are, and whether there are "special" positions (called "fléchées" or "thèmes prioritaires").
 
-The whole application process is handled by about 20 computer scientists, whose expertise cover (most of) theoretical computer science (for "Section 6"). 
+The section handles the whole application process, it consists of about 20 computer scientists whose expertise cover (most of) theoretical computer science (for "Section 6"). 
 Their names is [public information](https://members.loria.fr/SPerdrix/files/cn6/#Composition).
 
 If your work is of a more applied nature, you may consider [Section 7](http://section7.cnrs.fr/), and if you are a mathematician then yours is [Section 41](http://cn.math.cnrs.fr/).
@@ -45,46 +28,55 @@ Chronologically, the "concours" goes as follows:
 * the deadline for sending your application is somewhere in the end of December / early January (they receive about 200 applications)
 * "admission à parcourir" consists of about 100 names, comes in January
 * "admis à poursuivre" comes in February, it is the selection for the interview (roughly 40 to 50 names), which are over 3 to 4 days in March in Paris
-* "admissibilité" is the ranking given by the scientific committee, a week or two after the interviews (roughly 10 to 15 names in the first list, and another 5 to 10 in the waiting list)
+* "admissibilité" is the ranking given by the scientific committee, a week or two after the interviews (roughly 25 names)
 * "admission" is the very final ranking agreed by the administrative committee, which may differ from the previous one.
-If you get there, CNRS will contact you to offer a position (congratulations!).
+If you get there, CNRS will contact you to offer you a position (congratulations!).
 
-**Labs**. You need to choose three (CNRS affiliated) labs where your research proposal fits. Officially it says up to three labs, in my understanding it is frowned upon to put only one.
+**Labs**. You need to choose three (CNRS affiliated) labs where your research proposal fits. Officially it says up to three labs, in my understanding it is frowned upon to put only one, two may be OK.
 **It is very important to visit these labs** somewhere in October / Novembre / December, meaning write to the researchers there, send your research program, and offer to give a talk.
 Each lab is asked to send a letter about which candidates they would be happy to hire. This is of course only a consultation, 
 but it is very important as it helps the section to see how you will in effect integrate the labs.
 
 **Documents**. You have to write two documents: "past" and "future". Past presents your research output so far, and Future explains which directions you would like to take if hired.
 There is no recommended format, but there are non-strict page limits (I think 6 to 10 pages).
+In my understanding, Past serves as evidence that you know what you are talking about and that you can present it to a wide audience in an accessible way.
+The most important is Future, it should be a structured research programme with short-term (a few years) and mid-term (5 to 7 years) objectives.
+I do not think anyone believes you can actually achieve these things in the time you predict. The exercise is rather to check that you can make a rational case about where your research is going.
+Blue sky talk (also known as BS) should be avoided, you should convince your reviewers that there is a technical content supporting your objectives. 
+
+Some extremes to avoid at all costs:
+* I plan to continue working on my PhD topic
+* I plan to do whatever the team is doing
+* I plan to work on a flashy new topic about which I have no expertise
 
 Here are my files (in French, sorry!):
-* [travaux effectués 2016]({{ '/docs/travaux_effectues_2016.pdf' | prepend: site.baseurl }}).
-* [projet de recherche 2016]({{ '/docs/projet_recherche_2016.pdf' | prepend: site.baseurl }}).
-* [travaux effectués 2017]({{ '/docs/travaux_effectues_2017.pdf' | prepend: site.baseurl }}).
-* [projet de recherche 2017]({{ '/docs/projet_recherche_2017.pdf' | prepend: site.baseurl }}).
+* [travaux effectués 2016]({{ '/docs/travaux_effectues_2016.pdf' | prepend: site.baseurl }})
+* [projet de recherche 2016]({{ '/docs/projet_recherche_2016.pdf' | prepend: site.baseurl }})
+* [travaux effectués 2017]({{ '/docs/travaux_effectues_2017.pdf' | prepend: site.baseurl }})
+* [projet de recherche 2017]({{ '/docs/projet_recherche_2017.pdf' | prepend: site.baseurl }})
 
-**Reviewers**. Typically each application is assigned two (three?) reviewers from the "section". 
+**Reviewers**. Typically each application is assigned two (three?) reviewers from the section. 
 **Bear in mind that they may not be fully versed in your research topics**, so both documents should contain an introduction to your research area and very little jargon.
 (On this point, opinions diverge. I have seen very technical applications getting high appreciation. My advice is the opposite.)
 
 **Conflict of interests**. Something very strategical to keep in mind. If you apply to a lab X, anyone in the section from lab X is in conflict with your application, hence cannot review it.
-This may deprive you of your (potential) best supporter, so in choosing which labs to apply to you may consider this aspect.
+This may deprive you of your (potential) best supporter, so in choosing which labs to apply to you may consider this point.
 
 **Slides**. When I applied the format was 15mn presentation of your research plus 5mn presentation of your research project, with additional 15mn questions. This may change as well.
-The interview is very constructive, they will do their best to make you feel comfortable. 
+The interview is very constructive, they will do their best to make you feel comfortable.
 Keep the following in mind: **the questions are asked by the reviewers for them to have arguments to put you on the final list**.
 In other words, the reviewers are your supporters, and they have the duration of the interview to convince the rest of the panel to hire you.
-Questions are opportunities to show your understanding and ability to discuss research at different levels, both technical and non-technical.
+Questions are opportunities for you to show your understanding and ability to discuss research at different levels, both technical and non-technical.
 
 Here are my slides (still in French...):
-* [slides 2016]({{ '/docs/FIJALKOW_CNRS_06_03.pdf' | prepend: site.baseurl }}).
-* [slides 2017]({{ '/docs/2017-02-15-CNRS/' | prepend: site.baseurl }}).
+* [slides 2016]({{ '/docs/FIJALKOW_CNRS_06_03.pdf' | prepend: site.baseurl }})
+* [slides 2017]({{ '/docs/2017-02-15-CNRS/' | prepend: site.baseurl }})
 
-**Hidden criteria**. I like to think that the following checklist is what the section is after:
-* committed: you are determined to engage in various scientific activities beyond research (includes teaching, supervising, communicating, liaising with industries)
-* independent: you can carry out research by yourself **and** with different groups of researchers, ideally nationally and internationally 
-* aware: you have a vision not only of your research interests but you can also place them inside your field and TCS in general 
-* involved: you have an understanding of the academic world (labs, grants, scientific communication, career evolution)
+**Checklist**. I like to think that the following checklist is what the section is after:
+* _committed_: you are determined to engage in various scientific activities beyond research (includes teaching, supervising, communicating, liaising with industries)
+* _independent_: you can carry out research by yourself **and** with different groups of researchers, ideally nationally and internationally 
+* _aware_: you have a vision not only of your research interests but you can also place them inside your field and TCS in general 
+* _involved_: you have an understanding of the academic world (labs, grants, scientific communication, career evolution)
 
 **Recommendation letters**. There is a limit on how many you are supposed to ask for (in my time it was 3), please check carefully on the website of the section,
 as well as the procedure for sending them out (for now, directly to the head of the section, this may change in the future!). 

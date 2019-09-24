@@ -55,7 +55,7 @@ Click on an argument to expand it.
 <summary>I want my results to be visible and quickly accessible</summary>
 
 	Put your results on <a href="http://arxiv.org/">arXiv</a>. 
-	This is will give them a wide and immediate visibility. 
+	This will give them a wide and immediate visibility. 
 	Everyone knows and uses arXiv, it is well referenced by scholar websites.
 	To strengthen that effect I often send my latest arXiv link to a few colleagues.
 </details>
@@ -105,7 +105,7 @@ Click on an argument to expand it.
 	Sign up for the daily or weekly <a href="https://arxiv.org/help/subscribe">arXiv alerting service</a> on your research interests.
 	This will be far more efficient than attending a conference for a broad coverage of the latest results.
 	
-	For more specific results and deeper discussions you want to talk directly to the relevant researchers, and this is will much more fruitful in a specialised event than in a general conference.
+	For more specific results and deeper discussions you want to talk directly to the relevant researchers, this is much easier and natural in a specialised event than in a general conference.
 	For instance, the Logic, Games, and Automata community organises every year a <a href="http://highlights-conference.org/">Highlights conference</a> where anyone can submit and everyone is accepted.
 	This great initiative already inspired a similar event in the Algorithms community. 
 	Those are the perfect places to get up to date with results in the field.
