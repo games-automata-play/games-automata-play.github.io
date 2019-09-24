@@ -65,13 +65,13 @@ Click on an argument to expand it.
 
 	This is an unfortunate truth, but this does not mean that it cannot be fought. 
 	The obstacle is just a community mindset. 
-	<br/>
+	
 	There are two things to consider here: the recognition for a specific paper, or the need to build up your CV and your place in the community. 
-	<br/>
+	
 	For the research paper although prestigious conferences surely help, this is by far not the only way to advertise your work. 
 	Researchers have enough judgment to make their own mind about your results. 
 	In my experience giving talks and discussing your results is much more effective than getting published in a top conference.
-	<br/>
+	
 	For your CV, indeed a long list of prestigious conference papers looks good.
 	But this is only a first impression, which is quickly replaced by your research interactions, ability to present your results, discuss them, relate them to others, and engage in developping new ideas.
 	In the long run the correlation between your ability to get published in top conferences and your place in the community is not that clear. 
@@ -84,18 +84,18 @@ Click on an argument to expand it.
 	This is arguably the strongest point against not submitting to conferences. 
 	In some sense, this is the same point as above, but specialised to students.
 	The question is whether students can be successfully integrated into research communities, which includes getting jobs and grants, without conference publications on their CVs.
-	<br/>
+	
 	My first point is that spending the same energy into submitting to journals rather than conferences is actually a good strategy: 
 	the outcome is better (a journal paper rather than a conference paper) and more fair, the price being that the process is slower.
-	<br/>
+	
 	It should be commonly agreed that a journal publication carries more weight than an "extended abstract" in a conference.
 	This is unfortunately not true in some minds, but this is completely irrational, and this strange bias should be fought against.
-	<br/>
+	
 	Submitting to conferences is in pratice not that much faster than journals, once we factor in the risk of getting rejected (which is higher for students!) and the random aspect of the reviewing process for conferences.
-	<br/>
+	
 	One may argue that for instance postdocs who are looking for positions need papers now.
 	I sympathise with this as I was there just a few years ago, but again: given the odds, what is better, a noisy shot at a prestigious conference or a more fair try at a journal?
-	<br/>
+	
 	My second point is that many initiatives achieve more towards integrating a student to a research community than a long list of conference publications: involving them in research projects, inviting them to scientific events, and organising visits in other research groups. 
 </details>
 
@@ -104,18 +104,19 @@ Click on an argument to expand it.
 
 	Sign up for the daily or weekly <a href="https://arxiv.org/help/subscribe">arXiv alerting service</a> on your research interests.
 	This will be far more efficient than attending a conference for a broad coverage of the latest results.
-	<br/>
+	
 	For more specific results and deeper discussions you want to talk directly to the relevant researchers, and this is will much more fruitful in a specialised event than in a general conference.
 	For instance, the Logic, Games, and Automata community organises every year a <a href="http://highlights-conference.org/">Highlights conference</a> where anyone can submit and everyone is accepted.
 	This great initiative already inspired a similar event in the Algorithms community. 
 	Those are the perfect places to get up to date with results in the field.
-	</div>
+</details>
 
-	<li><a data-toggle="collapse" data-target="#isolation">I do not want to be scientifically isolated</a>
-	<div id="isolation" class="collapse">
+<details>
+<summary>I do not want to be scientifically isolated</summary>
+
 	This argument relies on the idea that your research interactions are only or mostly through your conference publications. 
 	There are many other ways to share your research, as listed above: seminar talks, specialised workshops, week-long meetings, weeks-long research visits, and journal publications.
-	<br/>
+	
 	I am tempted to add another one: I started writing this research blog, and found that it is a useful platform for stimulating research interactions.
 </details>
 
@@ -137,7 +138,7 @@ Click on an argument to expand it.
 
 	My experiences both as author and as PC member have convinced me that the conference reviewing system is bad.
 	Although most PC members spend a lot of effort trying to evaluate articles, find expert reviewers, and select the best papers, the outcome is heavily biassed.
-	<br/>
+	
 	Another problem is that tight deadlines and high competition imply that reviewers lose their benevolence. 
 	Something is not to their taste, the presentation, outline or notations not ideal, that's a perfect reason to reject.
 	The scientific part is sometimes less important than pure presentation aspects. 
@@ -151,10 +152,10 @@ Click on an argument to expand it.
 	The first main time waste is in writing conference papers. 
 	I have spent way too much time trying to fit my research results into conference papers (page limits, style, story, take away message, and other stupid constraints). This is wrong. 
 	This is a normative approach killing creativity.
-	<br/>
+	
 	The second aspect is the time we spend as a community reviewing conference papers, which is in my opinion and experience a bad use of our time.
 	The standard of conference reviews is way below that of journals; it is commonly understood that conference reviews are not bound to check proof details or even correctness.
-	<br/>
+	
 	The time saved in not writing and reviewing conference papers can be reinvested in writing and reviewing for journals, which may also have the effect of making the journal publication process faster.
 </details>
 
@@ -168,11 +169,11 @@ Click on an argument to expand it.
 	<div id="selection" class="collapse">
 	At the heart of general prestigious conferences is an unspoken contradiction in terms: the selected papers should be <i>at the same time</i> the best results and the most accessible to a wide audience.
 	I have two issues with this.
-	<br/>
+	
 	The first is that it assumes that there is such a thing as a "result of interest to a wide audience".
 	Reading reviews and participating in PC discussions convinced me that every researcher has a different understanding of what this means: either simple, or technical, or impressive, or solving an open problem, or relating two fields, or introducing a new notion...
 	This point is in my opinion partly responsible for the random aspect of the selection process.
-	<br/>
+	
 	The second is that this implies that the best results should be accessible and of interest to a wide community.
 	This implicit idea means that PC discussions are filled with rejection arguments of the kind "the ideas are hard to grasp for someone outside of the field", "the notions seem to be very specific to the problem solved in the paper", or even "it will be very hard to present the results to a wide audience".
 	As a consequence, a simple result easy to present in a few pages becomes more valuable than a technical and difficult one.
