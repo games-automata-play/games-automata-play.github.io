@@ -134,6 +134,13 @@ Arguments in favour of submitting to journals rather than conferences.
 Click on an argument to expand it.
 
 <details>
+<summary>Consider environmental issues</summary>
+
+	Travelling around the world for a few days to present a paper is not good for the environment.
+	See for instance <a href="https://noflyclimatesci.org/">the No Fly Climate Sci initiative</a> and the <a href="https://labos1point5.org/">Labos 1.5 initiative (in French)</a>.
+</details>
+
+<details>
 <summary>Escape the unfair system of conference reviews</summary>
 
 	My experiences both as author and as PC member have convinced me that the conference reviewing system is bad.
@@ -163,10 +170,11 @@ Click on an argument to expand it.
 <summary>Beat the untenable pace of conference deadlines</summary>
 
 	This is wrong that deadlines dictate when a paper must be ready. It encourages unpolished submissions, rushed proofs, and the practice of subdividing papers.
-	</div>
+</details>
 
-	<li><a data-toggle="collapse" data-target="#selection">Break free from the random selection process of prestigious conferences</a>
-	<div id="selection" class="collapse">
+<details>
+<summary>Break free from the random selection process of prestigious conferences</summary>
+
 	At the heart of general prestigious conferences is an unspoken contradiction in terms: the selected papers should be <i>at the same time</i> the best results and the most accessible to a wide audience.
 	I have two issues with this.
 	
@@ -199,13 +207,6 @@ Click on an argument to expand it.
 
 	In some of the top general conferences I may be able to understand about 30% of the talks (rough estimates).
 	What is the point? 
-</details>
-
-<details>
-<summary>Consider environmental issues</summary>
-
-	Travelling around the world for a few days to present a paper is not good for the environment.
-	See for instance <a href="https://noflyclimatesci.org/">the No Fly Climate Sci initiative</a> and the <a href="https://labos1point5.org/">Labos 1.5 initiative (in French)</a>.
 </details>
 
 <details>
