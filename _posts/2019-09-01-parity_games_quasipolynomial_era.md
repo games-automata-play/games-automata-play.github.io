@@ -51,7 +51,8 @@ Second, the definition of separating automata requires deterministic automata, w
 is **good for small games automata**. There are no blog posts on them (yet?), so we refer to [this paper](https://link.springer.com/chapter/10.1007%2F978-3-030-17127-8_1).
 
 The first equivalence result states that separating automata and universal trees are equivalent. 
-The original proof is this result is in [this paper](https://arxiv.org/abs/1807.10546) -- it subsumes [this paper](https://arxiv.org/abs/1801.09618), which presents the generic value iteration algorithm using universal trees.
+The original proof is this result is in [[CDFJLP]](https://arxiv.org/abs/1807.10546) -- 
+it subsumes and replaces [[F.]](https://arxiv.org/abs/1801.09618), which presents the generic value iteration algorithm using universal trees.
 A conceptually simpler proof introduces and uses the notion of **universal graphs**, discussed in [this post]({{ '/blog/universal_graphs' | prepend: site.baseurl }}).
 One of the advantage of this new proof is that it applies to any positionally determined objective, as explained in [this post]({{ '/blog/separation_universal_graphs' | prepend: site.baseurl }}).
 
