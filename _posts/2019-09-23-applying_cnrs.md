@@ -40,15 +40,17 @@ but it is very important as it helps the section to see how you will in effect i
 **Academic age: CR or DR?**. CR is the junior position, DR the senior position. There are two separate competitions. 
 Typically CR positions are offered to researchers with PhD + 2/3y, and to DR with PhD + 7/12y. 
 Here I mean PhD graduation, but the official way of counting in CNRS is from the start of the PhD, so they typically hire CR about 7 years after they started their PhD.
-Especially for CR this is younger that most other countries, as CNRS is a full-time tenured research position (no teaching!).
-If you are hesitant about which track you should apply to, do not overthing it: apply to both, and the section will choose for you one of the two.
+If you are hesitant about which track you should apply to, do not overthink it: apply to both, and the section will choose for you one of the two.
 
-**Documents**. You have to write two documents: "past" and "future". Past presents your research output so far, and Future explains which directions you would like to take if hired.
+**Documents**. You have to write two documents: "past" and "future" (if I recall correctly they are called "travaux effectués" and "projet de recherche"). 
+Past presents your research output so far, and Future explains which directions you would like to take if hired.
 There is no recommended format, but there are non-strict page limits (I think 6 to 10 pages).
 In my understanding, Past serves as evidence that you know what you are talking about and that you can present it to a wide audience in an accessible way.
 The most important is Future, it should be a structured research programme with short-term (a few years) and mid-term (5 to 7 years) objectives.
-I do not think anyone believes you can actually achieve these things in the time you predict. The exercise is rather to check that you can make a rational case about where your research is going.
-Blue sky talk (also known as BS) should be avoided, you should convince your reviewers that there is a technical content supporting your objectives. 
+I do not think anyone believes you will actually achieve these things in the time you predict. The exercise is rather to show that you can make a rational case about where your research is going.
+Blue sky talk (also known as BS) should be avoided, you should convince your reviewers that there is a technical content supporting your objectives.
+
+You may consider adding a section explaining how your research programme fits in each of the lab you are applying to.
 
 Some extremes to avoid at all costs:
 * I plan to continue working on my PhD topic
@@ -100,7 +102,7 @@ It is in your best interest to fit in one of these, so you should explain in you
 Do not overdo it: if you do not fit, they will not buy your fake arguments, in which case it is better to abstain on this point.
 
 **Cross positions**. There are often positions of the form "Section X to Section Y", for instance "a computer scientist in a maths lab". 
-Look out for these, as if they are be a good fit for your profile then it's generally easier to get one of those.
+Look out for these, as if they are a good fit for your profile then it's generally easier to get one of those.
 
 ## Good luck!
 
