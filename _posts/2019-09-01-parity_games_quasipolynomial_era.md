@@ -1,5 +1,6 @@
 ---
 layout:     post
+comments:   true
 title:      Parity games, the quasipolynomial era
 date:       2019-09-01 9:00:00
 author:     Nathana&euml;l Fijalkow

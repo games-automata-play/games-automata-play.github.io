@@ -26,10 +26,10 @@ If your work is of a more applied nature, you may consider [Section 7](http://se
 
 Chronologically, the "concours" goes as follows: 
 * the deadline for sending your application is somewhere in the end of December / early January (they receive about 200 applications)
-* "admission à parcourir" consists of about 100 names, comes in January
-* "admis à poursuivre" comes in February, it is the selection for the interview (roughly 40 to 50 names), which are over 3 to 4 days in March in Paris
-* "admissibilité" is the ranking given by the scientific committee, a week or two after the interviews (roughly 25 names)
-* "admission" is the very final ranking agreed by the administrative committee, which may differ from the previous one.
+* _admission à parcourir_ consists of about 100 names, comes in January
+* _admis à poursuivre_ comes in February, it is the selection for the interview (roughly 40 to 50 names), which are over 3 to 4 days in March in Paris
+* _admissibilité_ is the ranking given by the scientific committee, a week or two after the interviews (roughly 25 names)
+* _admission_ is the very final ranking agreed by the administrative committee, which may differ from the previous one.
 If you get there, CNRS will contact you to offer you a position (congratulations!).
 
 **Labs**. You need to choose three (CNRS affiliated) labs where your research proposal fits. Officially it says up to three labs, in my understanding it is frowned upon to put only one, two may be OK.
