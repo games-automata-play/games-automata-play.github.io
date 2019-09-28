@@ -76,4 +76,6 @@ Unfortunately there are no blog posts yet on the third family of algorithms.
 * [[Parys]](https://arxiv.org/abs/1904.12446)
 * [[LSW]](https://arxiv.org/abs/1904.11810)
 
+#### Edits
+28/09: Added references, including personal communication with Marcin Jurdzi&#324;ski and Rémi Morvan.
 
