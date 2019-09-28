@@ -42,6 +42,7 @@ Everything there is to know about universal trees can be found in [this post]({{
 
 The first family of algorithms, the closest to universal trees, is value iteration algorithms.
 It is presented in [this post]({{ '/blog/value_iteration' | prepend: site.baseurl }}), and relies on the fundamental theorem for parity games presented in [this post]({{ '/blog/fundamental_theorem_parity_games' | prepend: site.baseurl }}).
+The paper [[F.]](https://arxiv.org/abs/1801.09618) presents the generic value iteration algorithm using universal trees.
 
 The second family of algorithms is described using separating automata.
 It is presented in [this post]({{ '/blog/parity_separation' | prepend: site.baseurl }}).
@@ -51,8 +52,7 @@ Second, the definition of separating automata requires deterministic automata, w
 is **good for small games automata**. There are no blog posts on them (yet?), so we refer to [this paper](https://link.springer.com/chapter/10.1007%2F978-3-030-17127-8_1).
 
 The first equivalence result states that separating automata and universal trees are equivalent. 
-The original proof is this result is in [[CDFJLP]](https://arxiv.org/abs/1807.10546) -- 
-it subsumes and replaces [[F.]](https://arxiv.org/abs/1801.09618), which presents the generic value iteration algorithm using universal trees.
+The original proof is this result is in [[CDFJLP]](https://arxiv.org/abs/1807.10546).
 A conceptually simpler proof introduces and uses the notion of **universal graphs**, discussed in [this post]({{ '/blog/universal_graphs' | prepend: site.baseurl }}).
 One of the advantage of this new proof is that it applies to any positionally determined objective, as explained in [this post]({{ '/blog/separation_universal_graphs' | prepend: site.baseurl }}).
 
@@ -60,7 +60,20 @@ Since the notion of universal graphs applies to much more objectives (said diffe
 We discuss algorithms using universal graphs for mean payoff in [this post]({{ '/blog/mean_payoff' | prepend: site.baseurl }}).
 
 Unfortunately there are no blog posts yet on the third family of algorithms.
-The implied equivalence result stating that the mentioned fixed point algorithms feature a universal tree is ongoing work, 
-with contributions of Marcin Jurdzi&#324;ski and Rémi Morvan (through personal communication).
+
+### Other references in the picture
+
+* [[CJKLS]](https://dl.acm.org/citation.cfm?doid=3055399.3055409)
+* [[BC]](https://www.mimuw.edu.pl/~bojan/upload/reduced-may-25.pdf)
+* [[Lehtinen]](https://dl.acm.org/citation.cfm?doid=3209108.3209115)
+* [[CDFJLP]](https://arxiv.org/abs/1807.10546)
+* [[FJdKSSW]](https://arxiv.org/abs/1703.01296)
+* [[Jurdzi&#324;ski]](https://link.springer.com/chapter/10.1007%2F3-540-46541-3_24)
+* [[JL]](https://arxiv.org/abs/1702.05051)
+* [[F]](https://arxiv.org/abs/1801.09618)
+* [JM] Marcin Jurdzi&#324;ski and Rémi Morvan, ongoing (personal communication)
+* [[Zielonka]](https://www.sciencedirect.com/science/article/pii/S0304397598000097?via%3Dihub)
+* [[Parys]](https://arxiv.org/abs/1904.12446)
+* [[LSW]](https://arxiv.org/abs/1904.11810)
 
 
