@@ -78,7 +78,7 @@ There exists a $(n,h)$-universal tree of size $f(n,h)$, where
 $$f(n,h) \le 2^{\lceil \log(n) \rceil} \binom{\lceil \log(n) \rceil + h - 1}{\lceil \log(n) \rceil}$$
 
 A generous upper bound on the expression above is $n^{O(\log(h))}$.
-A refined analysis reveals that the expression is polynomial in $n$ and $h$ if $h = 0(\log(n))$.
+A refined analysis reveals that the expression is polynomial in $n$ and $h$ if $h = O(\log(n))$.
 
 The construction of Jurdzi&#324;ski and Lazi&#263; yields such a tree. 
 We present here a streamlined version, which is marginally better.
@@ -168,7 +168,7 @@ One can show that
 $$\frac{f(n,h)}{g(n,h)} = O(nh)$$
 
 so there is a (reasonably small but still) gap.
-The upper bound is tight for $h = 2$ (there is a bit of work to check this), but I do not know for larger values of 
+The upper bound is tight for $h = 2$ (there is a bit of work to check this), but I do not know for larger values of $h$.
 
 > **Open question:** what is the exact size of the smallest $(n,h)$-universal tree?
 
