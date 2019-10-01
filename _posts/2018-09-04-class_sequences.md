@@ -27,6 +27,9 @@ We show that this class is robust by giving several characterisations.
 The results presented here are mostly due to Corentin Barloy, who took a summer internship in LaBRI, Bordeaux, 
 under the supervision of Nathan Lhote, Filip Mazowiecki, Vincent Penelle, and myself.
 
+**01/10/2019**: See the technical report <a href="https://arxiv.org/abs/1908.03890">A Robust Class of Linear Recurrence Sequences</a>.
+The paper has been accepted to <a href="https://www.cs.upc.edu/csl2020/">CSL'2020</a>.
+
 We consider sequences of rational numbers, as for instance the Fibonacci sequence
 $$
 0,1,1,2,3,5,8,13,\ldots
