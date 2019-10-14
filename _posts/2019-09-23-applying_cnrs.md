@@ -33,13 +33,13 @@ Chronologically, the "concours" goes as follows:
 If you get there, CNRS will contact you to offer you a position (congratulations!).
 
 **Labs**. You need to choose three (CNRS affiliated) labs where your research proposal fits. Officially it says up to three labs, in my understanding it is frowned upon to put only one, two may be OK.
-**It is very important to visit these labs** somewhere in October / Novembre / December, meaning write to the researchers there, send your research program, and offer to give a talk.
+**It is very important to contact these labs** somewhere in October / Novembre / December, meaning write to the researchers there, send your research program, and offer to give a talk.
 Each lab is asked to send a letter about which candidates they would be happy to hire. This is of course only a consultation, 
 but it is very important as it helps the section to see how you will in effect integrate the labs.
 
 **Academic age: CR or DR?**. CR is the junior position, DR the senior position. There are two separate competitions. 
 Typically CR positions are offered to researchers with PhD + 2/3y, and to DR with PhD + 7/12y. 
-Here I mean PhD graduation, but the official way of counting in CNRS is from the start of the PhD, so they typically hire CR about 7 years after they started their PhD.
+Here I mean PhD graduation, but the official way of counting in CNRS is from the start of the PhD, so they typically hire CR about 7 years after starting their PhD.
 If you are hesitant about which track you should apply to, do not overthink it: apply to both, and the section will choose for you one of the two.
 
 **Documents**. You have to write two documents: "past" and "future" (if I recall correctly they are called "travaux effectués" and "projet de recherche"). 
