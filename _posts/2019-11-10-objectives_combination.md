@@ -11,9 +11,9 @@ MathJax.Hub.Config({
   TeX: {
     Macros: {
       Parity: "{\\texttt{Parity}}",
-      SupMP: "{\\overline{\\texttt{MP}}}",
-      InfMP: "{\\underline{\\texttt{MP}}}",
-      MultMP: "{\\bigvee_i \\texttt{MP}_i}",
+      SupMP: "{\\texttt{SupMP}}",
+      InfMP: "{\\texttt{InfMP}}",
+      MultMP: "{\\bigvee_i \\texttt{InfMP}_i}",
       M: "{\\mathcal{M}}",
       A: "{\\mathcal{A}}",
       Q: "{\\mathbb{Q}}",
@@ -28,7 +28,7 @@ MathJax.Hub.Config({
 
 <p class="intro"><span class="dropcap">W</span>e investigate the use of separation automata (or equivalently, universal graphs) for combination of objectives.
 The general idea is to find ways of combining the solutions for each of the objective into one for the combination, as much as possible treating the solutions for each as black-boxes.
-In this post we sketch how to construct separating automata for disjunctions of parity and mean payoff objectives (both, with $\limsup$ and $\liminf$).</p>
+In this post we sketch two new constructions of separating automata.</p>
 
 This is joint work with Jérôme Leroux, obtained during the internship of Ashwani Anand during the summer 2019.
 
@@ -41,15 +41,15 @@ In isolation the two mean payoff objectives are equivalent, but this is no longe
 
 Our goal is to develop tools using separating automata for solving these questions.
 We refer to this [blog post]({{ '/blog/separation_universal_graphs' | prepend: site.baseurl }}) for the basic definitions.
-Typically, $n$ is the number of vertices, $m$ the number of edges, and in the context of a mean-payoff objective, $W$ is the largest weight in absolute value.
+We let $n$ denote the number of vertices, $m$ the number of edges, and in the context of a mean-payoff objective, $W$ is the largest weight in absolute value.
  
 #### A general reduction to strongly connected graphs
 Let $W$ be a (positional) objective.
 We first show that if we know separating automata for strongly connected graphs, we can use them to construct separating automata for general graphs.
 
-The idea is to construct the separating automata for the general graphs recursively, using the property that any run from the graph will eventually end up in one of the strongly connected components.
+The idea is to use the property that any path in the graph will eventually end up in a strongly connected component.
 A first naive construction consists in taking a sequence of $n$ copies of the separating automata for strongly connected graphs: 
-each copy serves as an "attempt", hoping to stabilise in the current strongle connected component. The property above ensures that $n$ attempts are enough.
+each copy serves as an "attempt", hoping to stabilise in the current strongly connected component. The property above ensures that $n$ attempts are enough.
 A finer construction observes that the total size of the strongly connected components is $n$, the number of vertices. 
 Hence we can use a "universal sequence" of separating automata for strongly connected graphs, yielding a smaller separating automaton.
 
@@ -70,18 +70,18 @@ Using the previous lemma we construct a separating automaton for $\MultMP$ for g
 
 > **Corollary:**
 There exists a separating automaton for $\MultMP$ of size $O(n \cdot k \cdot nW)$, 
-inducing an algorithm for solving these games with complexity $O(m \cdot k \cdot n^2 \cdot W)$.
+inducing an algorithm for solving these games with complexity $O(k \cdot m \cdot n^2 \cdot W)$.
 
 #### Separating automata for $\Parity \vee \InfMP$
 The objective $\Parity \vee \InfMP$ is over the colours $[1,d] \times [-W,W]$, it is satisfied is either the left component satisfies parity or the right component satisfies mean payoff.
 
-Let $\A_{\Parity}$ be a separating automaton for $\Parity$ and $\A_{\InfMP}$ a separating automaton for $\MP$.
-We construct a separating automaton $\A$ for $\Parity \vee \InfMP$, which is roughly speaking a **wreath product** of the two automata.
+Let $\A_{\Parity}$ be a separating automaton for $\Parity$ and $\A_{\InfMP}$ a separating automaton for $\InfMP$.
+We construct a separating automaton $\A$ for $\Parity \vee \InfMP$, which is (approximately) a **wreath product** of the two automata.
 
 A set of states of $\A$ is a pair of one state of $A_{\Parity}$ and one state of $\A_{\InfMP}$, plus a priority, which is the maximal priority seen since the last reset (or since the beginning).
 At each transition $\A$ simulates the automaton $\A_{\InfMP}$. 
 If this simulation fails, i.e. the automaton $\A_{\InfMP}$ rejects, then the automaton resets, which means two things:
-it simulates the automaton $\A_{\Parity}$ using the maximal priority seen since last reset, and resets the state of $\A_{\InfMP}$ to its initial state.
+it simulates one transition of the automaton $\A_{\Parity}$ by reading the maximal priority seen since last reset, and resets the state of $\A_{\InfMP}$ to its initial state.
 
 The automaton $\A$ rejects if at some point $\A_{\Parity}$ rejects. In any other case, it accepts.
 
@@ -91,6 +91,8 @@ The proof of correctness of this construction a slightly involved, but rather el
 There exists a separating automaton for $\Parity \vee \InfMP$ of size $O(d \cdot |\A_{\Parity}| \cdot |\A_{\InfMP}|)$, 
 inducing a pseudo-quasi-polynomial algorithm for solving these games.
 
+This result was obtained by a different technique in [this paper](https://arxiv.org/abs/1803.04756).
+
 ### Open problem
-We do not know how to construct separating automata for the objective $\SupMP_1 \vee \SupMp_2$, as studied in [this paper](https://arxiv.org/abs/1210.3141).
+We do not know how to construct separating automata for the objective $\SupMP_1 \vee \SupMP_2$, as studied in [this paper](https://arxiv.org/abs/1210.3141).
 
