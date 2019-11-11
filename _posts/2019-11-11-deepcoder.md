@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      DeepCoder: Learning to write programs
+title:      DeepCoder, Learning to write programs
 date:       2019-11-11 10:00:00
 author:     Nathana&euml;l Fijalkow
 category:   Program synthesis
