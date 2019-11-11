@@ -30,7 +30,7 @@ MathJax.Hub.Config({
 The general idea is to find ways of combining the solutions for each of the objective into one for the combination, as much as possible treating the solutions for each as black-boxes.
 In this post we sketch two new constructions of separating automata.</p>
 
-This is joint work with Jérôme Leroux, obtained during the internship of Ashwani Anand during the summer 2019.
+This is joint work with Jérôme Leroux, obtained during the internship of Ashwani Anand in the summer 2019.
 
 We consider games whose objectives are given as disjunctions of objectives: each edge is labelled by a pair of colours, 
 and $W_1 \vee W_2$ is the objective satisfied if either the projection on the first coordinate satisfies $W_1$ or the projection on the second coordinate satisfies $W_2$.

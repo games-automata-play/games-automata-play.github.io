@@ -6,7 +6,7 @@ author:     Nathana&euml;l Fijalkow
 category:   Program synthesis
 ---
 
-<p class="intro"><span class="dropcap">T</span>his post is a short presentation of the DeepCoder paper, which proposed in 2017 a very interesting line of attack of improving program synthesis using machine learning.</p>
+<p class="intro"><span class="dropcap">T</span>his post is a short presentation of the DeepCoder paper, which proposed in 2017 a very interesting line of attack for improving program synthesis using machine learning.</p>
 
 The DeepCoder paper can be found [here](https://arxiv.org/abs/1611.01989). It is a great source of inspiration for the DeepSynth Momentum project.
 The goal of this post is to quickly present some key ideas, as an introduction to some follow-up works of ours.
