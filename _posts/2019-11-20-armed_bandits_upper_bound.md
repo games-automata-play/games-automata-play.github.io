@@ -23,19 +23,19 @@ MathJax.Hub.Config({
 });
 </script>
 
-<p class="intro"><span class="dropcap">W</span>e present a proof that the upper confidence bound yields an (asymptotically) optimal algorithm for regret minimisation of muti-armed bandits.
-This result was proved by Auer, Cesa-Bianchi, and Fischer in [this paper](http://homes.di.unimi.it/cesa-bianchi/Pubblicazioni/ml-02.pdf). The proof is the same, with some more context and explanations.</p>
+<p class="intro"><span class="dropcap">W</span>e present a proof that the upper confidence bound yields an (asymptotically) optimal algorithm for regret minimisation of muti-armed bandits.</p>
 
-The setting is the following: there are $K$ machines, which are each given by a distribution on rewards, which here are in $[0,1]$.
-We write $i \in [1,K]$ for a bandit. Let $\mu_i$ denote the mean of the distribution for the machine $i$.
+This result was proved by Auer, Cesa-Bianchi, and Fischer in [this paper](http://homes.di.unimi.it/cesa-bianchi/Pubblicazioni/ml-02.pdf). The proof is the same, with some more context and explanations.
+
+The setting is the following: there are $K$ machines, which are each given by a distribution on rewards in $[0,1]$.
 Initially, we do not know anything except for the number $K$ of machines.
 At each time step, we can choose a machine $i$ and get a reward from $i$. 
 The goal is to **maximise the expected total payoff**, as a function of the number of steps.
-
 An algorithm selects at each time step a machine $i$ based on the rewards observed so far. 
 For the sake of clarity we will not mark the dependence on the algorithm on each random variables.
 We write:
 * $i$ is typically a machine (in $[1,K]$)
+* $\mu_i$ is the expectation of the distribution for the machine $i$
 * $t,T$ are number of steps
 * $n(i,T)$ is the number of times the machine $i$ was played in the first $T$ steps
 * $M(t)$ is the machine chosen at time step $t$
@@ -50,14 +50,14 @@ An optimal machine is one maximising the average reward $\mu$. We write $*$ for 
 The goal is to maximise
 
 $$
-\E[\sum_{t \in [1,T] X(t)]
+\E [ \sum_{t \in [1,T]} X(t) ]
 $$
 
-Equivalently, we can define the regret of an algorithm, as the difference between the optimal reward in $T$ steps,
-which is simply $\mu_* \cdot T$, and the obtained reward:
+Equivalently, we can define the regret of an algorithm 
+as the difference between the optimal reward in $T$ steps (which is simply $\mu_* \cdot T$) and the obtained reward:
 
 $$
-R = \mu_* \cdot T - \sum_{t \in [1,T] X(t)
+R = \mu_* \cdot T - \sum_{t \in [1,T]} X(t)
 $$
 
 Maximising the expected total payoff is the same as minimising the regret.
@@ -68,7 +68,7 @@ A first formalisation is to consider the asymptotic behaviour, but of course it 
 
 A very natural class of algorithms is to assign at each time step $t$ and to each machine $i$ a number $U(i,t)$, 
 and to choose at each step the machine maximising this number.
-(To be a bit specific: we first choose each machine once, to meaningfully initialise these numbers.)
+(We first choose each machine once, to meaningfully initialise these numbers. We will not take this phase into account in the later analysis.)
 
 The first naive attempt is to use $U(i,t) = \widehat{X}(i,t)$.
 The empirical reward converges towards the actual expected reward, i.e. $\lim_T \widehat{X}(i,T) = \mu_i$,
@@ -89,7 +89,8 @@ As we will explain in another blog post, this is asymptotically optimal, as prov
 ### Why the choice of $c(i,t)$?
 
 As we were discussing above, the role of $c(i,t)$ is to quantify the accuracy of the empirical reward.
-Indeed, if the machine $i$ was not played a lot of times, its emprical reward may be off by a lot, and it is therefore interesting to choose it, so $c(i,t)$ should be large.
+Indeed, if the machine $i$ was not played a lot of times, its emprical reward may be off by a lot, 
+and it is therefore interesting to choose it to increase the accuracy of the empirical reward, so $c(i,t)$ should be large.
 
 The Chernoff-Hoeffding bound gives some information on the accuracy of the empirical reward:
 
@@ -103,37 +104,35 @@ $$
 \P(\widehat{X}(i,t) \le \mu_i - c) \le \exp^{-2 c^2 n(i,t)}
 $$
 
-So, choosing $c(i,t) = \sqrt{ \frac{2 \log(t)}{n(i,t)} }$ yields bounds in $t^{-4}$, which decreases just fast enough.
+So, choosing $c(i,t) = \sqrt{ \frac{2 \log(t)}{n(i,t)} }$ implies an upper bound in $t^{-4}$, which we will see is exactly what we need.
 
 ### Proof of the logarithmic regret
 
 We first observe that the regret $R$ is equal to
 
 $$
-\sum_{i \in [1,K]} (\mu_* - \mu_i) n(i,T)
+\sum_{i \in [1,K]} (\mu_* - \mu_i) \cdot n(i,T)
 $$
 
-Indeed, $\E[\sum_{t \in [1,T]} X_t] = \sum_{i \in [1,K]} \mu_i n(i,T)$.
+Indeed, $\E[\sum_{t \in [1,T]} X_t] = \sum_{i \in [1,K]} \mu_i \cdot n(i,T)$.
 
-This means that it will be enough to upper bound $n(i,T)$ for the non-optimal machines $i$.
+This means that it will be enough to upper bound $n(i,T)$.
 
 We let $\Delta_i$ denote $\mu_* - \mu_i$.
 
-To simplify the notations, we do not account for the initial $K$ steps, which are used to initialise the rewards by playing each machine once.
-
 We fix a machine $i$. 
 Let $\ell$ to be determined later: since when the machine $i$ has been played only a few times, the empirical reward is very noisy,
-we will mostly be interested in studying the situation were it has been played at least $\ell$ times.
-For an event $A$, we write ${A}$ for the random variable with value $1$ if $A$ is realised and $0$ otherwise. 
+we will be interested in studying the situation where it has been played at least $\ell$ times.
+For an event $A$, we write $\{A\}$ for the random variable with value $1$ if $A$ is realised and $0$ otherwise. 
 
 $$
-n(i,T) \le \ell + \sum_{t \in [1,T]} {M(t) = i \wedge n(i,t-1) \ge \ell}
+n(i,T) \le \ell + \sum_{t \in [1,T]} \{M(t) = i \wedge n(i,t-1) \ge \ell\}
 $$
 
 By definition of the algorithm, for the machine $i$ to be chosen over the optimal machine $*$, we must have
 
 $$
-\widehat{X}_{*,t-1} + c_{*,t-1} \le \widehat{X}_{i,t-1} + c_{i,t-1}
+\widehat{X}_{*,t-1} + c(*,t-1) \le \widehat{X}_{i,t-1} + c(i,t-1)
 $$
 
 A fortiori,
@@ -145,21 +144,21 @@ $$
 So we get
 
 $$
-n(i,T) \le \ell + \sum_{t \ge 1} \sum_{s \in [1,t-1]} \sum_{s' \in [\ell,t-1]} { \widehat{X}_{*,s} + c(*,s) \le \widehat{X}_{i,s'} + c(i,s') }
+n(i,T) \le \ell + \sum_{t \ge 1} \sum_{s \in [1,t-1]} \sum_{s' \in [\ell,t-1]} \{ \widehat{X}_{*,s} + c(*,s) \le \widehat{X}_{i,s'} + c(i,s') \}
 $$
 
 The event $\widehat{X}_{*,s} + c(*,s) \le \widehat{X}_{i,s'} + c(i,s')$ cannot be realised if all three following events are realised:
-* $\widehat{X}_{*,s} \le \mu_* - c(*,s)$, meaning that $*$ is underapproximated
+* $\widehat{X}_{*,s} \le \mu_{*} - c(*,s)$, meaning that the optimal machine $*$ is underapproximated
 * $\widehat{X}_{i,s'} \le \mu_i + c(i,s')$, meaning that $i$ is overapproximated
 * $\mu_* < \mu_i + 2 c(i,s')$
 
 The discussion above for the Chernoff-Hoeffding bound shows that the first two events have each probability upper bounded by $t^{-4}$.
-We let $\ell = \frac{8 \log(n)}{\Delta_i^2}$.
+We let $\ell = \frac{8 \log(T)}{\Delta_i^2}$.
 For $s' \ge \ell$, the third event cannot be realised by definition of $c(i,s')$.
 
 It follows that
 
 $$
-n(i,T) \le \ell + \sum_{t \ge 1} \sum_{s \in [1,t-1]} \sum_{s' \in [\ell,t-1]} 2 t^{-4} \le \ell + \frac{\pi^2}{3}
+n(i,T) \le \ell + \sum_{t \ge 1} \sum_{s \in [1,t-1]} \sum_{s' \in [\ell,t-1]} 2 t^{-4} \le \ell + \frac{\pi^2}{3} = O(\log(T))
 $$
 
