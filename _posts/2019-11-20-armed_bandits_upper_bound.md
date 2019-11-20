@@ -161,6 +161,6 @@ For $s' \ge \ell$, the third event cannot be realised by definition of $c(i,s')$
 It follows that
 
 $$
-n(i,T) \le \ell + \sum_{t \ge 1} \sum_{s \in [1,t-1]} \sum_{s' \in [\ell,t-1]} 2 t^{-4} \le \ell + O(1) = O(\log(T))
+n(i,T) \le \ell + \sum_{t \ge 1} \sum_{s \in [1,t-1]} \sum_{s' \in [\ell,t-1]} 2 t^{-4} \le \ell + \sum_{t \ge 1} 2 t^{-2} = O(\log(T))
 $$
 
