@@ -147,10 +147,12 @@ $$
 n(i,T) \le \ell + \sum_{t \ge 1} \sum_{s \in [1,t-1]} \sum_{s' \in [\ell,t-1]} \{ \widehat{X}_{*,s} + c(*,s) \le \widehat{X}_{i,s'} + c(i,s') \}
 $$
 
-The event $\widehat{X}_{*,s} + c(*,s) \le \widehat{X}_{i,s'} + c(i,s')$ cannot be realised if all three following events are realised:
-* $\widehat{X}_{*,s} \le \mu_{*} - c(*,s)$, meaning that the optimal machine $*$ is underapproximated
-* $\widehat{X}_{i,s'} \le \mu_i + c(i,s')$, meaning that $i$ is overapproximated
-* $\mu_* < \mu_i + 2 c(i,s')$
+The event 
+$$\widehat{X}_{*,s} + c(*,s) \le \widehat{X}_{i,s'} + c(i,s')$$ 
+cannot be realised if all three following events are realised:
+* $$\widehat{X}_{*,s} \le \mu_{*} - c(*,s)$$, meaning that the optimal machine $*$ is underapproximated
+* $$\widehat{X}_{i,s'} \le \mu_i + c(i,s')$$, meaning that $i$ is overapproximated
+* $$\mu_* < \mu_i + 2 c(i,s')$$
 
 The discussion above for the Chernoff-Hoeffding bound shows that the first two events have each probability upper bounded by $t^{-4}$.
 We let $\ell = \frac{8 \log(T)}{\Delta_i^2}$.
@@ -159,6 +161,6 @@ For $s' \ge \ell$, the third event cannot be realised by definition of $c(i,s')$
 It follows that
 
 $$
-n(i,T) \le \ell + \sum_{t \ge 1} \sum_{s \in [1,t-1]} \sum_{s' \in [\ell,t-1]} 2 t^{-4} \le \ell + \frac{\pi^2}{3} = O(\log(T))
+n(i,T) \le \ell + \sum_{t \ge 1} \sum_{s \in [1,t-1]} \sum_{s' \in [\ell,t-1]} 2 t^{-4} \le \ell + O(1) = O(\log(T))
 $$
 
