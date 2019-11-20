@@ -152,7 +152,7 @@ $$\widehat{X}_{*,s} + c(*,s) \le \widehat{X}_{i,s'} + c(i,s')$$
 cannot be realised if all three following events are realised:
 * $$\widehat{X}_{*,s} \le \mu_{*} - c(*,s)$$, meaning that the optimal machine $*$ is underapproximated
 * $$\widehat{X}_{i,s'} \le \mu_i + c(i,s')$$, meaning that $i$ is overapproximated
-* $$\mu_* < \mu_i + 2 c(i,s')$$
+* $$\mu_* < \mu_i + 2 c(i,s')$$, meaning that the difference between the machine $i$ and the optimal machine $*$ is smaller than $2 c(i,s')$
 
 The discussion above for the Chernoff-Hoeffding bound shows that the first two events have each probability upper bounded by $t^{-4}$.
 We let $\ell = \frac{8 \log(T)}{\Delta_i^2}$.
