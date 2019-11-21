@@ -45,7 +45,7 @@ We write (for the sake of clarity we will not mark the dependence on the algorit
 $$\widehat{X}(i,t) = \frac{1}{n(i,T)} \sum_{t \in [1,T]} X(i,t)$$
 
 An optimal machine is one maximising the average reward $\mu$. 
-We write $*$ for this machine, so for instance its average reward is $\mu_*$.
+We write $$*$$ for this machine, so for instance its average reward is $$\mu_{*}$$.
 
 The goal is to maximise
 
