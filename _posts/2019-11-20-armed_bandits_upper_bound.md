@@ -143,30 +143,34 @@ $$
 Let us denote by $A$ the event
 
 $$
-\widehat{X}_{*,t} + c(*,t) \le \widehat{X}_{i,t} + c(i,t) \wedge n(i,t) \ge \ell
+\widehat{X}_{*,t} + c(*,t) \le \widehat{X}_{i,t} + c(i,t)\ \wedge\ n(i,t) \ge \ell
 $$
 
-Let us define three events:
+Let us define two events:
 * $$A_1 = \widehat{X}_{*,t} \le \mu_{*} - c(*,t)$$, meaning that the optimal machine $*$ is underapproximated by $$c(*,t)$$
-* $$A_2 = \widehat{X}_{i,t} \le \mu_i + c(i,t)$$, meaning that $i$ is overapproximated by $$c(i,t)$$
-* $$A_3 = \mu_* \le \mu_i + 2 c(i,t) \wedge n(i,t) \ge \ell$$, meaning that the difference between the machine $i$ and the optimal machine $*$ is smaller than $2 c(i,t)$
+* $$A_2 = \widehat{X}_{i,t} \ge \mu_i + c(i,t)$$, meaning that $i$ is overapproximated by $$c(i,t)$$
 
-We note that $$A \subseteq A_1 \vee A_2 \vee A_3$$, in other words the combination of the three events imply $A$.
-Hence the probability of $A$ is bounded from above by the sum of the probabilities of each event $A_1,A_2$, and $A_3$.
+We let $\ell = \frac{4 \log(T)}{\Delta_i^2}$, and show that this implies that
+$$A \subseteq A_1 \vee A_2.$$
 
-The discussion above for the Chernoff-Hoeffding bound shows that the first two events have each probability upper bounded by $t^{-2}$.
-
-We let $\ell = \frac{4 \log(T)}{\Delta_i^2}$, and show that the third event cannot be realised.
-Indeed, since $n(i,t) \ge \ell$, we have
+First, we have
+$$\mu_* \le \mu_i + 2 c(i,t).$$
+Indeed, for $n(i,t) \ge \ell$, we have
 $$2c(i,t) = \sqrt{\frac{4 \log(t)}{n(i,t)}} \ge \Delta_i.$$
 
-It follows that
+Assume that neither $$A_1$$ nor $$A_2$ are realised, then we have
+$$\widehat{X}_{*,t} + c(*,t) \le \mu_{*} \le \mu_i + 2 c(i,t) \le \widehat{X}_{i,t} + c(i,t),$$
+meaning that $$A$$ is not realised.
 
+It follows that the probability of $A$ is bounded from above by the sum of the probabilities of the two events $$A_1$$ and $$A_2$$.
+The discussion above for the Chernoff-Hoeffding bound shows that they have each probability upper bounded by $t^{-2}$.
+
+Thus
 $$
 n(i,T) \le \ell + \sum_{t \ge 1} 2 t^{-2} \le \frac{8 \log(T)}{\Delta_i^2} + \frac{\pi^2}{3}
 $$
 
-It follows that the regret is bounded by 
+We can conclude: the regret is bounded by 
 
 $$
 \left( \sum_{i \in [1,K]} \frac{4}{\Delta_i^2} \right) \cdot \log(T) + \frac{\pi^2}{3} = O(\log(T))
