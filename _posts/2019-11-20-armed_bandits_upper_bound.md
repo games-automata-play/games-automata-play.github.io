@@ -87,7 +87,7 @@ Another point of view is that using $U(i,t) = \widehat{X}(i,t)$ focusses on **ex
 It turns out that there is a choice of $c(i,t)$ which yields an algorithm with logarithmic regret:
 
 > **Theorem:** (Auer, Cesa-Bianchi, and Fischer 2002)
-The regret of the index policy for $c(i,t) = \sqrt{ \frac{2 \log(t)}{n(i,t)} }$ is $O(\log(T))$
+The regret of the index policy for $c(i,t) = \sqrt{ \frac{\log(t)}{n(i,t)} }$ is $O(\log(T))$
 
 We will explain in another blog post that this is asymptotically optimal, as proved by Lai and Robbins in 1985.
 
@@ -156,9 +156,9 @@ Hence the probability of $A$ is bounded from above by the sum of the probabiliti
 
 The discussion above for the Chernoff-Hoeffding bound shows that the first two events have each probability upper bounded by $t^{-2}$.
 
-We let $\ell = \frac{8 \log(T)}{\Delta_i^2}$, and show that the third event cannot be realised.
+We let $\ell = \frac{4 \log(T)}{\Delta_i^2}$, and show that the third event cannot be realised.
 Indeed, since $n(i,t) \ge \ell$, we have
-$$2c(i,t) = \sqrt{\frac{8 \log(t)}{n(i,t)}} \ge \Delta_i.$$
+$$2c(i,t) = \sqrt{\frac{4 \log(t)}{n(i,t)}} \ge \Delta_i.$$
 
 It follows that
 
@@ -167,7 +167,8 @@ n(i,T) \le \ell + \sum_{t \ge 1} 2 t^{-2} \le \frac{8 \log(T)}{\Delta_i^2} + \fr
 $$
 
 It follows that the regret is bounded by 
+
 $$
-\left( \sum_{i \in [1,K]} \frac{8}{\Delta_i^2} \right) \cdot \log(T) + \frac{\pi^2}{3} = O(\log(T))
+\left( \sum_{i \in [1,K]} \frac{4}{\Delta_i^2} \right) \cdot \log(T) + \frac{\pi^2}{3} = O(\log(T))
 $$
 
