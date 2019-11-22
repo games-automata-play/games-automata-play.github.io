@@ -25,7 +25,8 @@ MathJax.Hub.Config({
 
 <p class="intro"><span class="dropcap">W</span>e present a proof that the upper confidence bound yields an (asymptotically) optimal algorithm for regret minimisation of multi-armed bandits.</p>
 
-This result was proved by Auer, Cesa-Bianchi, and Fischer in [this paper](http://homes.di.unimi.it/cesa-bianchi/Pubblicazioni/ml-02.pdf). The proof is the same, with some more context and explanations.
+This result was proved by Auer, Cesa-Bianchi, and Fischer in [this paper](http://homes.di.unimi.it/cesa-bianchi/Pubblicazioni/ml-02.pdf). 
+The proof is essentially the same (some calculations are a bit different).
 
 The setting is the following: there are $K$ machines, which are each given by a distribution on rewards in $[0,1]$.
 Initially, we do not know anything except for the number $K$ of machines.
@@ -72,12 +73,16 @@ and to choose at each step the machine maximising this number.
 
 The first naive attempt is to use $U(i,t) = \widehat{X}(i,t)$.
 The empirical reward converges towards the actual expected reward, i.e. $\lim_T \widehat{X}(i,T) = \mu_i$,
-so this algorithm finds the optimal machine in the limit.
-The problem is that it converges very slowly: one can show that the regret is linear in $T$.
+but this does not imply that this algorithm finds the optimal machine in the limit.
+Indeed, it may choose a machine once, get a bad reward from it, and decide never to play it again.
+Consider for instance the case of two machines, the first one giving always reward $\frac{1}{2}$, and the second giving reward $0$ with probability $\frac{1}{4}$
+and $1$ with probability $\frac{3}{4}$. The second machine is optimal since $\mu_1 = \frac{1}{2}$ and $\mu_2 = \frac{3}{4}$, but if we are unlucky and the first reward given by the machine $2$ is $0$,
+then the machine $2$ will never be used again. This yields a regret which is linear in $T$.
 
-Indeed, the missing information is whether the empirical reward for machine $i$ can be considered **accurate or not**, 
-in other words whether the machine $i$ was played enough times to trust the empirical reward.
+The missing information is whether the empirical reward for machine $i$ can be considered **accurate or not**, in other words whether the machine $i$ was played enough times to trust the empirical reward.
 This leads to indices of the form $U(i,t) = \widehat{X}(i,t) + c(i,t)$, with $c(i,t)$ reflecting on the quality of the empirical reward.
+
+Another point of view is that using $U(i,t) = \widehat{X}(i,t)$ focusses on **exploitation** and does not reward **exploration**, which is precisely what $c(i,t)$ does.
 
 It turns out that there is a choice of $c(i,t)$ which yields an algorithm with logarithmic regret:
 
@@ -104,7 +109,7 @@ $$
 \P(\widehat{X}(i,t) \le \mu_i - c) \le \exp^{-2 c^2 n(i,t)}
 $$
 
-So, choosing $c(i,t) = \sqrt{ \frac{2 \log(t)}{n(i,t)} }$ implies an upper bound in $t^{-4}$, which we will see is exactly what we need.
+So, choosing $c(i,t) = \sqrt{ \frac{\log(t)}{n(i,t)} }$ implies an upper bound in $t^{-2}$, which we will see is exactly what we need.
 
 ### Proof of the logarithmic regret
 
@@ -126,41 +131,42 @@ we will be interested in studying the situation where it has been played at leas
 For an event $A$, we write $$\{A\}$$ for the random variable with value $1$ if $A$ is realised and $0$ otherwise. 
 
 $$
-n(i,T) \le \ell + \sum_{t \in [1,T]} \{M(t) = i \wedge n(i,t-1) \ge \ell\}
+n(i,T) \le \ell + \sum_{t \in [1,T]} \{M(t) = i \wedge n(i,t) \ge \ell\}
 $$
 
 By definition of the algorithm, for the machine $i$ to be chosen over the optimal machine $*$, we must have
 
 $$
-\widehat{X}_{*,t-1} + c(*,t-1) \le \widehat{X}_{i,t-1} + c(i,t-1)
+\widehat{X}_{*,t} + c(*,t) \le \widehat{X}_{i,t} + c(i,t)
 $$
 
-A fortiori,
+Let us denote by $A$ the event
 
 $$
-\min_{s \in [1,t-1]} \widehat{X}_{*,s} + c(*,s) \le \max_{s' \in [\ell,t-1]} \widehat{X}_{i,s} + c(i,s)
+\widehat{X}_{*,t} + c(*,t) \le \widehat{X}_{i,t} + c(i,t) \wedge n(i,t) \ge \ell
 $$
 
-So we get
+Let us define three events:
+* $$A_1 = \widehat{X}_{*,t} \le \mu_{*} - c(*,t)$$, meaning that the optimal machine $*$ is underapproximated by $$c(*,t)$$
+* $$A_2 = \widehat{X}_{i,t} \le \mu_i + c(i,t)$$, meaning that $i$ is overapproximated by $$c(i,t)$$
+* $$A_3 = \mu_* \le \mu_i + 2 c(i,t) \wedge n(i,t) \ge \ell$$, meaning that the difference between the machine $i$ and the optimal machine $*$ is smaller than $2 c(i,t)$
 
-$$
-n(i,T) \le \ell + \sum_{t \ge 1} \sum_{s \in [1,t-1]} \sum_{s' \in [\ell,t-1]} \{ \widehat{X}_{*,s} + c(*,s) \le \widehat{X}_{i,s'} + c(i,s') \}
-$$
+We note that $$A \subseteq A_1 \vee A_2 \vee A_3$$, in other words the combination of the three events imply $A$.
 
-The event 
-$$\widehat{X}_{*,s} + c(*,s) \le \widehat{X}_{i,s'} + c(i,s')$$ 
-cannot be realised if all three following events are realised:
-* $$\widehat{X}_{*,s} \le \mu_{*} - c(*,s)$$, meaning that the optimal machine $*$ is underapproximated
-* $$\widehat{X}_{i,s'} \le \mu_i + c(i,s')$$, meaning that $i$ is overapproximated
-* $$\mu_* < \mu_i + 2 c(i,s')$$, meaning that the difference between the machine $i$ and the optimal machine $*$ is smaller than $2 c(i,s')$
+The discussion above for the Chernoff-Hoeffding bound shows that the first two events have each probability upper bounded by $t^{-2}$.
 
-The discussion above for the Chernoff-Hoeffding bound shows that the first two events have each probability upper bounded by $t^{-4}$.
-We let $\ell = \frac{8 \log(T)}{\Delta_i^2}$.
-For $s' \ge \ell$, the third event cannot be realised by definition of $c(i,s')$.
+We let $\ell = \frac{8 \log(T)}{\Delta_i^2}$, and show that the third event cannot be realised.
+Indeed, 
+$$2c(i,t) = \sqrt{\frac{8 \log(t)}{n(i,t)}} \ge \Delta_i.$$
 
 It follows that
 
 $$
-n(i,T) \le \ell + \sum_{t \ge 1} \sum_{s \in [1,t-1]} \sum_{s' \in [\ell,t-1]} 2 t^{-4} \le \ell + \sum_{t \ge 1} 2 t^{-2} = O(\log(T))
+n(i,T) \le \ell + \sum_{t \ge 1} 2 t^{-2} \le \ell + \sum_{t \ge 1} 2 t^{-2} = \frac{8 \log(T)}{\Delta_i^2} + \frac{\pi^2}{3}
+$$
+
+It follows that the regret is bounded by 
+$$
+\left( \sum_{i \in [1,K]} \frac{8}{\Delta_i^2} \right) \cdot \log(T) + \frac{\pi^2}{3} = O(\log(T))
 $$
 
