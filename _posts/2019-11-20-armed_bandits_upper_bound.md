@@ -152,11 +152,12 @@ Let us define three events:
 * $$A_3 = \mu_* \le \mu_i + 2 c(i,t) \wedge n(i,t) \ge \ell$$, meaning that the difference between the machine $i$ and the optimal machine $*$ is smaller than $2 c(i,t)$
 
 We note that $$A \subseteq A_1 \vee A_2 \vee A_3$$, in other words the combination of the three events imply $A$.
+Hence the probability of $A$ is bounded from above by the sum of the probabilities of each event $A_1,A_2$, and $A_3$.
 
 The discussion above for the Chernoff-Hoeffding bound shows that the first two events have each probability upper bounded by $t^{-2}$.
 
 We let $\ell = \frac{8 \log(T)}{\Delta_i^2}$, and show that the third event cannot be realised.
-Indeed, 
+Indeed, since $n(i,t) \ge \ell$, we have
 $$2c(i,t) = \sqrt{\frac{8 \log(t)}{n(i,t)}} \ge \Delta_i.$$
 
 It follows that
