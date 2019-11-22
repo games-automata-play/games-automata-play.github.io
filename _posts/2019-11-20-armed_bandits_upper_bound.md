@@ -154,12 +154,12 @@ We let $\ell = \frac{4 \log(T)}{\Delta_i^2}$, and show that this implies that
 $$A \subseteq A_1 \vee A_2.$$
 
 First, we have
-$$\mu_* \le \mu_i + 2 c(i,t).$$
+$$\mu_* \ge \mu_i + 2 c(i,t).$$
 Indeed, for $n(i,t) \ge \ell$, we have
-$$2c(i,t) = \sqrt{\frac{4 \log(t)}{n(i,t)}} \ge \Delta_i.$$
+$$2c(i,t) = \sqrt{\frac{4 \log(t)}{n(i,t)}} \le \Delta_i = \mu_* - \mu_i.$$
 
-Assume that neither $$A_1$$ nor $$A_2$$ are realised, then we have
-$$\widehat{X}_{*,t} + c(*,t) \le \mu_{*} \le \mu_i + 2 c(i,t) \le \widehat{X}_{i,t} + c(i,t),$$
+We prove the contrapositive. Assume that neither $$A_1$$ nor $$A_2$$ are realised, then we have
+$$\widehat{X}_{*,t} + c(*,t) > \mu_{*} \ge \mu_i + 2 c(i,t) > \widehat{X}_{i,t} + c(i,t),$$
 meaning that $$A$$ is not realised.
 
 It follows that the probability of $A$ is bounded from above by the sum of the probabilities of the two events $$A_1$$ and $$A_2$$.
@@ -167,7 +167,7 @@ The discussion above for the Chernoff-Hoeffding bound shows that they have each 
 
 Thus
 $$
-n(i,T) \le \ell + \sum_{t \ge 1} 2 t^{-2} \le \frac{8 \log(T)}{\Delta_i^2} + \frac{\pi^2}{3}
+n(i,T) \le \ell + \sum_{t \ge 1} 2 t^{-2} \le \frac{4 \log(T)}{\Delta_i^2} + \frac{\pi^2}{3}
 $$
 
 We can conclude: the regret is bounded by 
