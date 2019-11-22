@@ -163,7 +163,7 @@ $$2c(i,t) = \sqrt{\frac{8 \log(t)}{n(i,t)}} \ge \Delta_i.$$
 It follows that
 
 $$
-n(i,T) \le \ell + \sum_{t \ge 1} 2 t^{-2} \le \ell + \sum_{t \ge 1} 2 t^{-2} = \frac{8 \log(T)}{\Delta_i^2} + \frac{\pi^2}{3}
+n(i,T) \le \ell + \sum_{t \ge 1} 2 t^{-2} \le \frac{8 \log(T)}{\Delta_i^2} + \frac{\pi^2}{3}
 $$
 
 It follows that the regret is bounded by 
