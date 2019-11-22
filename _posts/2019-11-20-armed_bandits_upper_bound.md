@@ -158,7 +158,7 @@ $$\mu_* \le \mu_i + 2 c(i,t).$$
 Indeed, for $n(i,t) \ge \ell$, we have
 $$2c(i,t) = \sqrt{\frac{4 \log(t)}{n(i,t)}} \ge \Delta_i.$$
 
-Assume that neither $$A_1$$ nor $$A_2$ are realised, then we have
+Assume that neither $$A_1$$ nor $$A_2$$ are realised, then we have
 $$\widehat{X}_{*,t} + c(*,t) \le \mu_{*} \le \mu_i + 2 c(i,t) \le \widehat{X}_{i,t} + c(i,t),$$
 meaning that $$A$$ is not realised.
 
