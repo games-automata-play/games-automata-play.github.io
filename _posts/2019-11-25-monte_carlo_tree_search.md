@@ -3,7 +3,7 @@ layout:     post
 title:      Monte Carlo Tree Search 
 date:       2019-11-25 9:00:00
 author:     Nathana&euml;l Fijalkow
-category:   Learning theory
+category:   Reinforcement learning
 ---
 
 <script type="text/x-mathjax-config">
@@ -39,7 +39,7 @@ Towards this goal we compute the function $$\val : N \to [0,1]$$ where $$N$$ is 
 defined by
 
 $$
-\val(v) = \sup_{\sigma \text{strategy of Max}} \inf_{\tau \text{strategy of Min}} \text{Outcome}_v(\sigma,\tau)
+\val(v) = \sup_{\sigma \text{ strategy of Max}} \inf_{\tau \text{ strategy of Min}} \text{Outcome}_v(\sigma,\tau)
 $$
 
 In words: $\val(v)$ is the best outcome Max can secure against any strategy of Min starting from the node $v$.
@@ -66,12 +66,11 @@ For outcomes in $[0,1]$, each node is assigned two values, $\alpha$ and $\beta$,
 The current evaluation can be used to discard suboptimal moves.
 
 Although this does lead to performance improvement in some cases, it is not enough to tackle most games.
-The natural next idea is to add randomisation using a **Monte Carlo** approach: rather than enumerating for each node all of the children,
-we randomly sample a subset of them.
-
 An approach we do not discuss here is **iterative deepening**: we fix a depth and stop the search after this depth, evaluating the plays thus far.
 This requires having an evaluation of partial plays, which may not be easy to find (for instance for Go).
 
+The natural next idea is to add randomisation using a **Monte Carlo** approach: rather than enumerating for each node all of the children,
+we randomly sample a subset of them. 
 The naive Monte Carlo approach performs (often) better than the deterministic algorithms, but the real game changer is yet to come.
 
 ### Monte Carlo search tree: the UCT algorithm
@@ -90,7 +89,7 @@ which maintains for each machine $$v'$$ an interval $$I(v',t)$$ (evolving with t
 More specifically, the definition for a child $v'$ of a node $v$ is
 
 $$
-I(v',t) = [\widehat{X}(v',t) - \sqrt{ \frac{\log(n(v,t))}{n(v',t)} }, \widehat{X}(v',t) + \sqrt{ \frac{\log(n(v,t))}{n(v',t)} }]
+I(v',t) = \left\[ \widehat{X}(v',t) - \sqrt{ \frac{\log(n(v,t))}{n(v',t)} }, \widehat{X}(v',t) + \sqrt{ \frac{\log(n(v,t))}{n(v',t)} } \right\]
 $$
 
 The term $$\widehat{X}(v',t)$$ is the empirical average outcome of the observed plays including $v'$, 
@@ -108,7 +107,7 @@ This algorithm is one of the main ingredients in the AlphaGo and AlphaGo Zero pr
 Interestingly, its theoretical properties are not very good, for a simple reason: 
 the values of $$I$$ do not (provably) accurately reflect the actual values.
 The original paper proves that the regret grows logarithmically with time (altough I could not find the original proof of this: only the short version of the paper seems to exist!).
-However, a very nice and simple example due to Coquelin and Munos (see the paper [here](https://arxiv.org/abs/1408.2028)) shows that the regret can be very very large
-because the algorithm may fail to detect optimal path if they are to be found among worse and worse paths.
+However, a very nice and simple example due to Coquelin and Munos (see the paper [here](https://arxiv.org/abs/1408.2028)) shows that the regret can be very large
+because the algorithm may fail to detect optimal path if they are to be found among worse and worse paths (and some claim this explains how Lee Seedol won one match against AlphaGo!).
 
 
