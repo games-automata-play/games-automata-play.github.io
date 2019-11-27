@@ -89,7 +89,7 @@ which maintains for each machine $$v'$$ an interval $$I(v',t)$$ (evolving with t
 More specifically, the definition for a child $v'$ of a node $v$ is
 
 $$
-I(v',t) = \left\[ \widehat{X}(v',t) - \sqrt{ \frac{\log(n(v,t))}{n(v',t)} }, \widehat{X}(v',t) + \sqrt{ \frac{\log(n(v,t))}{n(v',t)} } \right\]
+I(v',t) = [ \widehat{X}(v',t) - \sqrt{ \frac{\log(n(v,t))}{n(v',t)} }, \widehat{X}(v',t) + \sqrt{ \frac{\log(n(v,t))}{n(v',t)} } ]
 $$
 
 The term $$\widehat{X}(v',t)$$ is the empirical average outcome of the observed plays including $v'$, 
