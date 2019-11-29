@@ -35,14 +35,14 @@ Dynamic algorithms make two (unrealistic) assumptions:
 * the transition function is known
 
 The first item means that in particular we can write programs including *for loops* on the set of states and actions,
-in other words sweep over aL possible states and actions.
-Why making these assumptions if they are not realistic? Because the algorithms we wiL construct in this setting wiL be useful for the more general setting.
+in other words sweep over all possible states and actions.
+Why making these assumptions if they are not realistic? Because the algorithms we will construct in this setting will be useful for the more general setting.
 
 We start with a simple lemma saying that Markovian strategies are as powerful as general ones.
-RecaL that a Markovian strategy chooses a distribution on actions based only on the current state and the current time step,
+Recall that a Markovian strategy chooses a distribution on actions based only on the current state and the current time step,
 i.e. $$\sigma' : \N \times S \to \Dist(A).$$
 
-> **Lemma:** For any (general) strategy $\sigma$, there exists a Markovian strategy $\sigma'$ such that for aL time step $t$ we have 
+> **Lemma** For any (general) strategy $\sigma$, there exists a Markovian strategy $\sigma'$ such that for all time step $t$ we have 
 $$
 \P_{\sigma,s_0}(S_t = s, A_t = a) = \P_{\sigma',s_0}(S_t = s, A_t = a)
 $$ 
@@ -51,7 +51,7 @@ $$
 \E_{\sigma,s_0}[R_t] = \E_{\sigma',s_0}[R_t]
 $$ 
 
-The proof is simply to define $\sigma'$ as foLows: after $t$ steps from the state $s$, play action $a$ with probability
+The proof is simply to define $\sigma'$ as follows: after $t$ steps from the state $s$, play action $a$ with probability
 $$\P_{\sigma,s_0}(A_t = a \mid S_t = s).$$
 
 ### The finite horizon case
@@ -60,7 +60,7 @@ We consider plays of length (exactly) $$T$$ a fixed finite value.
 
 We let $$\val_*(t,s)$$ denote the optimal expected total reward from $s$ in $t$ moves.
 
-> **Lemma:** $$\val_*(0,s) = 0$$ and 
+> **Lemma** $$\val_*(0,s) = 0$$ and 
 $$
 \val_*(t,s) = \max_{a \in A} \sum_{s' \in S, r \in R} \Delta(s,a)(s',r) (r + \val_*(t-1,s'))
 $$
@@ -72,11 +72,11 @@ $$
 $$
 
 The key argument uses convexity.
-(A very similar proof wiL be given below in more details in the discounted case.)
+(A very similar proof will be given below in more details in the discounted case.)
 
 The lemma in particular implies that there are optimal deterministic Markovian strategies. 
 The dependence on the time step is necessary: closer to the time step $T$, it makes sense to play moves with higher immediate rewards but dire consequences,
-while for a smaL $t$, moves should be selected to optimise not only the reward but also the states for their potential to yield higher rewards.
+while for a small $t$, moves should be selected to optimise not only the reward but also the states for their potential to yield higher rewards.
 
 The equation can easily be turned into an algorithm (with pseudo-polynomial complexity), which computes $$\val_*(t,s)$$
 for each $s$ for $t$ from $0$ to $T$. 
@@ -91,15 +91,15 @@ $$
 
 for a fixed discount factor $$\gamma$$ less than $$1.$$
 
-We wiL present two algorithms:
+We will present two algorithms:
 * **value iteration**
-* **policy iteration** (sometimes caLed **strategy iteration** or **strategy improvement**)
+* **policy iteration** (sometimes called **strategy iteration** or **strategy improvement**)
 
-In the end we wiL argue that these algorithms both faL into a larger family of algorithms, caLed generalised policy iteration.
+In the end we will argue that these algorithms both fall into a larger family of algorithms, called generalised policy iteration.
 
 #### Characterisation of the optimal values
 
-RecaL that $$\val_*(s) = \sup_{\sigma \text{ strategy}} \val_\sigma(s).$$
+Recall that $$\val_*(s) = \sup_{\sigma \text{ strategy}} \val_\sigma(s).$$
 
 Let us introduce a convenient notation, the $q$-values.
 For a strategy $$\sigma$$, the $q$-value is
@@ -111,7 +111,7 @@ $$
 We also denote $$q_*(s,a) = \sup_{\sigma \text{ strategy}} q_\sigma(s,a),$$
 where the supremum ranges over strategies playing $$a$$ as first move.
 
-> **Lemma:** The optimal values satisfy the foLowing equations
+> **Lemma** The optimal values satisfy the following equations
 $$
 \val_*(s) = \max_{a \in A} q_*(s,a)
 $$
@@ -119,7 +119,7 @@ $$
 We first show an inequality. Let $\sigma$ denote an optimal strategy from $s$. Note that a priori, it may not be optimal from other states.
 
 $$
-\begin{array}{Lr}
+\begin{array}{llr}
 \val_*(s) & = & \val_{\sigma}(s) \\
 & = & \sum_{a \in A} \sigma(s)(a) q_\sigma(s,a) \\
 & \le & \sum_{a \in A} \sigma(s)(a) q_*(s,a) \\
@@ -146,36 +146,36 @@ $$
 q_v(s,a) = \sum_{s',r} \Delta(s,a)(s',r) (r + \gamma v(s'))
 $$
 
-Let us denote by $$L$$ the operator $$L : \R^S \to \R^S$$ defined by
+Let us denote by $$ll$$ the operator $$ll : \R^S \to \R^S$$ defined by
 
 $$
-L(v)(s) = \max_{a \in A} q_v(s,a).
+ll(v)(s) = \max_{a \in A} q_v(s,a).
 $$
 
-> **Lemma:** The vector $$\val_*$$ is a fixed point of $$L$$
+> **Lemma** The vector $$\val_*$$ is a fixed point of $$ll$$
 
 This is just a reformulation of the lemma above.
 
-> **Lemma:** The operator $$L$$ is $$\gamma$$-Liptschitz, meaning
+> **Lemma** The operator $$ll$$ is $$\gamma$$-lliptschitz, meaning
 $$
-|L(v) - L(v')| \le \gamma |v - v'|.
+|ll(v) - ll(v')| \le \gamma |v - v'|.
 $$
 
-It foLows from Banach fixed point theorem (in the complete space $$\R^S$$ equipped with the infinity norm) 
-that $$L$$ has a unique fixed point and that it can be computed as foLows:
-let $$v_0$$ an arbitrary vector, define $$v_{n+1} = L(v_n)$$, then
+It follows from Banach fixed point theorem (in the complete space $$\R^S$$ equipped with the infinity norm) 
+that $$ll$$ has a unique fixed point and that it can be computed as follows:
+let $$v_0$$ an arbitrary vector, define $$v_{n+1} = ll(v_n)$$, then
 
 $$|v_{n+1} - v_n| \le \gamma^n |v_1 - v_0|$$
 
-implying that $$(v_n)_{n \in \N}$$ is a Cauchy sequence, hence converges to $$v_\infty$$ such that $$v_\infty = L(v_\infty)$$,
-and since $$\val_*$$ is the unique fixed point of $$L$$ we have $$v_\infty = \val_*.$$
+implying that $$(v_n)_{n \in \N}$$ is a Cauchy sequence, hence converges to $$v_\infty$$ such that $$v_\infty = ll(v_\infty)$$,
+and since $$\val_*$$ is the unique fixed point of $$ll$$ we have $$v_\infty = \val_*.$$
 
 We also get an upper bound on the convergence rate:
 
 $$|\val_* - v_n| \le \frac{\gamma^n}{1 - \gamma} |v_1 - v_0|$$
 
 We obtain an approximation algorithm: for a fixed $$\varepsilon > 0$$,
-* By iterating the operator $$L$$ from any initial vector, compute $$v$$ such that $$\|L(v) - v\| \le \frac{\varepsilon}{2}$$,
+* By iterating the operator $$ll$$ from any initial vector, compute $$v$$ such that $$\|ll(v) - v\| \le \frac{\varepsilon}{2}$$,
 implying that $$\|\val_* - v\| \le \varepsilon$$
 * Construct a pure positional strategy $\sigma$ by $$\sigma(s)$$ is an action $$a$$ such that 
 
@@ -184,7 +184,7 @@ $$
 $$
 
 Then $$\sigma$$ is an $$\varepsilon$$-optimal strategy.
-Thanks to the upper bound on the convergence rate, the number of iterations of the operator $$L$$ is $$O(\log(\frac{1}{\varepsilon}).$$
+Thanks to the upper bound on the convergence rate, the number of iterations of the operator $$ll$$ is $$O(\log(\frac{1}{\varepsilon}).$$
 
 
 #### The policy iteration algorithm
@@ -195,14 +195,14 @@ The algorithm manipulates only pure positional strategies. We define two tasks:
 
 ##### The evaluation task
 
-Given a strategy $$\sigma$$, its values satisfy the foLowing equations
+Given a strategy $$\sigma$$, its values satisfy the following equations
 
 $$
 \val_\sigma(s) = q_\sigma(s,\sigma(s)).
 $$
 
 One way of understanding this is that this forms a system of linear equations whose unknowns are $$\val_\sigma(s)$$ for each $$s \in S$$.
-This can be solved using Gaussian elimination, which theoreticaLy works but would be very ineffective.
+This can be solved using Gaussian elimination, which theoretically works but would be very ineffective.
 
 A more practical solution is to use the previous fixed point algorithm specialised to the strategy $$\sigma$$:
 we start from some vector $$v_0$$ and then construct better and better approximations:
@@ -216,14 +216,14 @@ We fix a threshold $$\varepsilon > 0$$ and stop when $$|v_{n+1} - v_n| \le \frac
 
 ##### The improvement task
 
-Given a strategy $$\sigma$$ and its value function $$\val_\sigma$$ (we ignore the fact that we actuaLy only compute an approximation!), 
+Given a strategy $$\sigma$$ and its value function $$\val_\sigma$$ (we ignore the fact that we actually only compute an approximation!), 
 we define 
 
 $$
 \sigma'(s) = \text{argmax}_{a \in A} q_{\sigma}(s,a)
 $$
 
-> **Lemma:** We have $$\val_{\sigma'} \ge \val_{\sigma}$$.
+> **Lemma** We have $$\val_{\sigma'} \ge \val_{\sigma}$$.
 Further, if for some $$s$$ we have $$q_{\sigma}(s,a) > \val_{\sigma}(s)$$,
 then the inequality above is strict for $$s.$$
 
@@ -246,14 +246,14 @@ The difference is that at every step:
 i.e. it iterates the fixed point algorithm to compute $$v$$ such that $$|v - \val_\sigma| \le \varepsilon$$, 
 * whereas the value iteration algorithm only performs one step of the evaluation.
 
-More specificaLy, the value iteration algorithm does the foLowing. Given $$v_n$$,
-it computes $$v_{n+1} = L(v_n)$$ defined by
+More specifically, the value iteration algorithm does the following. Given $$v_n$$,
+it computes $$v_{n+1} = ll(v_n)$$ defined by
 
 $$
 v_{n+1}(s) = \max_{a \in A} q_{v_n}(s,a).
 $$
 
-We can interpret this as doing the foLowing two steps in one go:
+We can interpret this as doing the following two steps in one go:
 * from the strategy $$\sigma_n$$ induced by $$v_n$$ through the improvement task, 
 compute its $q$-value $$q_{v_n}(s,a)$$
 
