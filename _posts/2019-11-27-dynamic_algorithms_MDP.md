@@ -59,6 +59,11 @@ $$\P_{\sigma,s_0}(A_t = a \mid S_t = s).$$
 We consider plays of length (exactly) $$T$$ a fixed finite value.
 
 We let $$\val_*(t,s)$$ denote the optimal expected total reward from $s$ in $t$ moves.
+The goal is to construct an optimal strategy $$\sigma$$, i.e. maximising the expected total payoff:
+
+$$
+\val_\sigma(T,s) = \E_\sigma[ \sum_{t = 1}^T R_t ] = \val_*(T,s)
+$$
 
 > **Lemma** $$\val_*(0,s) = 0$$ and 
 $$
@@ -83,13 +88,20 @@ for each $s$ for $t$ from $0$ to $T$.
 
 ### The discounted case
 
-For the remainder of this post we consider the expected discounted payoff defined by
+For the remainder of this post we consider the discounted payoff defined by
 
 $$
-\E_\sigma [\sum_i \gamma^i R_i]
+\sum_{t \ge 1} \gamma^t R_t
 $$
 
 for a fixed discount factor $$\gamma$$ less than $$1.$$
+
+Recall that $$\val_*(s) = \sup_{\sigma \text{ strategy}} \val_\sigma(s).$$
+The goal is to construct an optimal strategy $$\sigma,$$ i.e. maximising the expected discounted payoff:
+
+$$
+\val_\sigma(s_0) = \E_{\sigma,s_0} [ \sum_{t \ge 1} \gamma^t R_t ] = \val_*(s_0)
+$$
 
 We will present two algorithms:
 * **value iteration**
@@ -99,8 +111,6 @@ In the end we will argue that these algorithms both fall into a larger family of
 
 #### Characterisation of the optimal values
 
-Recall that $$\val_*(s) = \sup_{\sigma \text{ strategy}} \val_\sigma(s).$$
-
 Let us introduce a convenient notation, the $q$-values.
 For a strategy $$\sigma$$, the $q$-value is
 
@@ -108,8 +118,7 @@ $$
 q_\sigma(s,a) = \sum_{s',r} \Delta(s,a)(s',r) (r + \gamma \val_\sigma(s'))
 $$
 
-We also denote $$q_*(s,a) = \sup_{\sigma \text{ strategy}} q_\sigma(s,a),$$
-where the supremum ranges over strategies playing $$a$$ as first move.
+We also denote $$q_*(s,a) = \sup_{\sigma \text{ strategy}} q_\sigma(s,a).$$
 
 > **Lemma** The optimal values satisfy the following equations
 $$
@@ -129,11 +138,11 @@ $$
 
 To show the converse inequality, let $a$ reaching the maximum in the term on the right hand side. 
 Let $\sigma_s$ denote an optimal strategy from $$s,$$ for each $$s.$$
-We define $\sigma$ the strategy playing first $a$, and then simulating $$\sigma_s$$ from $$s.$$
+We define $\sigma$ the strategy playing first $a$, and then simulating $$\sigma_s$$ from $$s$$ each each $$s.$$
 Then 
 
 $$
-\val_{\sigma}(s) = \sum_{s',r} \Delta(s,a)(s',r) (r + \gamma \val_{\sigma_{s'}}(s')) = q_*(s,a)
+\val_{\sigma}(s) = \sum_{s',r} \Delta(s,a)(s',r) (r + \gamma \val_{\sigma_{s'}}(s')) = \sum_{s',r} \Delta(s,a)(s',r) (r + \gamma \val_*(s')) = q_*(s,a)
 $$
 
 By definition $$\val_{\sigma}(s) \le \val_*(s)$$, so we proved the converse inequality.
@@ -153,11 +162,10 @@ $$
 L(v)(s) = \max_{a \in A} q_v(s,a).
 $$
 
-> **Lemma** The vector $$\val_*$$ is a fixed point of $$L$$
+Now the lemma above reads: 
+The vector $$\val_*$$ is a fixed point of $$L.$$
 
-This is just a reformulation of the lemma above.
-
-> **Lemma** The operator $$ll$$ is $$\gamma$$-lliptschitz, meaning for any $$v,v'$$ we have
+> **Lemma** The operator $$L$$ is $$\gamma$$-lliptschitz, meaning for any $$v,v'$$ we have
 $$
 |L(v) - L(v')| \le \gamma |v - v'|.
 $$
@@ -178,15 +186,19 @@ $$|\val_* - v_n| \le \frac{\gamma^n}{1 - \gamma} |v_1 - v_0|$$
 We obtain an approximation algorithm: for a fixed $$\varepsilon > 0$$,
 * By iterating the operator $$L$$ from any initial vector, compute $$v$$ such that $$\|L(v) - v\| \le \frac{\varepsilon}{2}$$,
 implying that $$\|\val_* - v\| \le \varepsilon$$
-* Construct a pure positional strategy $\sigma$ by $$\sigma(s)$$ is an action $$a$$ such that 
+* Construct a pure positional strategy $\sigma$: define $$\sigma(s)$$ to be an action $$a$$ such that 
 
 $$
 |v(s) - q_v(s,a)| \le \varepsilon.
 $$
 
-Then $$\sigma$$ is an $$\varepsilon$$-optimal strategy.
-Thanks to the upper bound on the convergence rate, the number of iterations of the operator $$L$$ is $$O(\log(\frac{1}{\varepsilon}).$$
+Then $$\sigma$$ is an $$\varepsilon$$-optimal strategy, meaning that 
 
+$$
+\E_{\sigma,s_0} [ \sum_{t \ge 1} \gamma^t R_t ] \ge \val_*(s_0) - \varepsilon
+$$
+
+Thanks to the upper bound on the convergence rate, the number of iterations of the operator $$L$$ is $$O(\log(\frac{1}{\varepsilon})).$$
 
 #### The policy iteration algorithm
 
@@ -213,7 +225,8 @@ v_{n+1}(s) = q_{v_n}(s,\sigma(s)).
 $$
 
 For the same reasons as above, this process converges exponentially fast towards $$\val_\sigma$$.
-We fix a threshold $$\varepsilon > 0$$ and stop when $$|v_{n+1} - v_n| \le \frac{\varepsilon}{2}.$$
+We fix a threshold $$\varepsilon > 0$$ and stop when $$|v_{n+1} - v_n| \le \frac{\varepsilon}{2},$$
+implying that $$|\val_\sigma - v_n| \le \varepsilon.$$
 
 ##### The improvement task
 
@@ -244,20 +257,18 @@ which as we have seen above implies that it is optimal.
 Let us get back to the value iteration algorithm, and observe that it also consists in alternating evaluation and improvement steps.
 The difference is that at every step:
 * the policy iteration algorithm performs a (near-)perfect evaluation of the strategy, 
-i.e. it iterates the fixed point algorithm to compute $$v$$ such that $$|v - \val_\sigma| \le \varepsilon$$, 
+i.e. it iterates the fixed point algorithm to compute $$v$$ such that $$|\val_\sigma - v| \le \varepsilon$$, 
 * whereas the value iteration algorithm only performs one step of the evaluation.
 
-More specifically, the value iteration algorithm does the following. Given $$v_n$$,
-it computes $$v_{n+1} = ll(v_n)$$ defined by
+More specifically, the value iteration algorithm does the following. 
+Given $$v_n$$ it computes $$v_{n+1} = L(v_n)$$ defined by
 
 $$
 v_{n+1}(s) = \max_{a \in A} q_{v_n}(s,a).
 $$
 
 We can interpret this as doing the following two steps in one go:
-* from the strategy $$\sigma_n$$ induced by $$v_n$$ through the improvement task, 
-compute its $q$-value $$q_{v_n}(s,a)$$
-
+* from $$v_n$$ compute the $q$-value $$q_{v_n}(s,a)$$ through one step of the evaluation task
 * construct the strategy $$\sigma_{n+1}$$ induced by $$q_{v_n}$$ through the improvement task 
 
 
