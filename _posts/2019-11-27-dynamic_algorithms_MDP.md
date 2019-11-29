@@ -39,21 +39,17 @@ in other words sweep over all possible states and actions.
 Why making these assumptions if they are not realistic? Because the algorithms we will construct in this setting will be useful for the more general setting.
 
 We start with a simple lemma saying that Markovian strategies are as powerful as general ones.
+Recall that a Markovian strategy chooses a distribution on actions based only on the current state and the current time step,
+i.e. $$\sigma' : S \times \N \to \Dist(A).$$
 
-> **Lemma:** For any (general) strategy $\sigma$, there exists a Markovian strategy $\sigma'$ such that for all $t$
-
+> **Lemma:** For any (general) strategy $\sigma$, there exists a Markovian strategy $\sigma'$ such that for all time step $t$ we have 
 $$
 \P_{\sigma,s_0}(S_t = s, A_t = a) = \P_{\sigma',s_0}(S_t = s, A_t = a)
 $$ 
-
 implying that
-
 $$
 \E_{\sigma,s_0}[R_t] = \E_{\sigma',s_0}[R_t]
 $$ 
-
-Recall that a Markovian strategy chooses a distribution on actions based only on the current state and the current time step,
-i.e. $$\sigma' : S \times \N \to \Dist(A).$$
 
 The proof is simply to define $\sigma'$ as follows: after $t$ steps from the state $s$, play action $a$ with probability
 $$\P_{\sigma,s_0}(A_t = a \mid S_t = s).$$
@@ -65,7 +61,6 @@ We consider plays of length (exactly) $T$, a fixed finite value.
 We let $$\val_*(s,t)$$ denote the optimal expected total reward from $s$ in $t$ moves.
 
 > **Lemma:** $$\val_*(0,s) = 0$$ and 
-
 $$
 \val_*(t,s) = \max_{a \in A} \sum_{s' \in S, r \in R} \Delta(s,a)(s',r) (r + \val_*(t+1,s'))
 $$
@@ -76,11 +71,11 @@ $$
 \val_\sigma(t,s) = \sum_{a \in A} \sigma(s)(a) \sum_{s' \in S,r \in \R} \Delta(s,a)(s',r) (r + \val_\sigma(t+1,s'))
 $$
 
-Then a convexity argument shows the equality above.
+Then a convexity argument shows the equality above (this argument will be detailed a bit more later).
 
 The lemma in particular implies that there are optimal deterministic Markovian strategies. 
 The dependence on the time step is necessary: closer to the time step $T$, it makes sense to play moves with higher immediate rewards but dire consequences,
-while for a small $t$, moves should be selected to optimise all the rewards to come.
+while for a small $t$, moves should be selected to optimise not only the reward but also the states for their potential to yield higher rewards.
 
 The equation can easily be turned into an algorithm (with pseudo-polynomial complexity).
 
@@ -98,14 +93,13 @@ We will present two algorithms:
 * **value iteration**
 * **policy iteration** (sometimes called **strategy iteration** or **strategy improvement**)
 
-In the end we will show that these algorithms both fall into a larger family of algorithms.
+In the end we will argue that these algorithms both fall into a larger family of algorithms.
 
 #### Characterisation of the optimal values
 
 Recall that $$\val_*(s) = \sup_{\sigma \text{ strategy}} \val_\sigma(s).$$
 
 > **Lemma:** The optimal values satisfy the following equations
-
 $$
 \val_*(s) = \max_{a \in A} \sum_{s' \in S,r \in \R} \Delta(s,a)(s',r) (r + \gamma \val_*(s'))
 $$
@@ -113,11 +107,11 @@ $$
 We first show an inequality. Let $\sigma$ denote an optimal strategy from $s$. Note that a priori, it may not be optimal from other states.
 
 $$
-\begin{array}{lll}
+\begin{array}{lllr}
 \val_*(s) & = & \val_{\sigma}(s) \\
 & = & \sum_{a \in A} \sigma(s)(a) \sum_{s' \in S,r \in \R} \Delta(s,a)(s',r) (r + \gamma \val_\sigma(s')) \\
 & \le & \sum_{a \in A} \sigma(s)(a) \sum_{s' \in S,r \in \R} \Delta(s,a)(s',r) (r + \gamma \val_*(s')) \\
-& \le & \max_{a \in A} \sum_{s' \in S,r \in \R} \Delta(s,a)(s',r) (r + \gamma \val_*(s'))
+& \le & \max_{a \in A} \sum_{s' \in S,r \in \R} \Delta(s,a)(s',r) (r + \gamma \val_*(s')) & \text{ by convexity}
 \end{array}
 $$
 
@@ -145,7 +139,6 @@ $$
 This is just a reformulation of the lemma above.
 
 > **Lemma:** The operator $$L$$ is $$\gamma$$-Liptschitz, meaning
-
 $$
 |L(v) - L(v')| \le \gamma |v - v'|.
 $$
@@ -156,9 +149,7 @@ let $$v_0$$ an arbitrary vector, define $$v_{n+1} = L(v_n)$$, then
 
 $$|v_{n+1} - v_n| \le \gamma^n |v_1 - v_0|$$
 
-implying that 
-
-$$(v_n)_{n \in \N}$$ is a Cauchy sequence, hence converges to $$v_\infty$$ such that $$v_\infty = L(v_\infty)$$,
+implying that $$(v_n)_{n \in \N}$$ is a Cauchy sequence, hence converges to $$v_\infty$$ such that $$v_\infty = L(v_\infty)$$,
 and since $$\val_*$$ is the unique fixed point of $$L$$ we have $$v_\infty = \val_*.$$
 
 We also get an upper bound on the convergence rate:
@@ -166,8 +157,8 @@ We also get an upper bound on the convergence rate:
 $$|\val_* - v_n| \le \frac{\gamma^n}{1 - \gamma} |v_1 - v_0|$$
 
 We obtain an approximation algorithm: for a fixed $$\varepsilon > 0$$,
-* By iterating the operator $$L$$ from any initial vector, compute $$v$$ such that $$|L(v) - v| \le \frac{\varepsilon}{2}$$,
-implying that $$|\val_* - v| \le \varepsilon$$
+* By iterating the operator $$L$$ from any initial vector, compute $$v$$ such that $$\|L(v) - v\| \le \frac{\varepsilon}{2}$$,
+implying that $$\|\val_* - v\| \le \varepsilon$$
 * Construct a pure positional strategy $\sigma$ by $$\sigma(s)$$ is an action $$a$$ such that 
 
 $$
@@ -214,12 +205,6 @@ $$
 \sigma'(s) = \text{argmax}_{a \in A} \sum_{s',r} \Delta(s,a)(s',r) (r + \gamma \val_\sigma(s'))
 $$
 
-> **Lemma:** We have $$\val_{\sigma'} \ge \val_{\sigma}$$.
-Further, if for some $$s$$ we have $$\sum_{s',r} \Delta(s,a)(s',r) (r + \gamma \val_\sigma(s')) > \val_{\sigma}(s)$$,
-then the inequality above is strict for $$s.$$
-
-To see that the lemma holds, we write the equations for $$\val_\sigma$$ and $$\val_{\sigma'}$$ and compare them.
-
 At this point let us introduce a notation, the $q$-values.
 For a strategy $$\sigma$$, the $q$-value is
 
@@ -232,6 +217,12 @@ So the improvement task is solved by setting
 $$
 \sigma'(s) = \text{argmax}_{a \in A} q_{\sigma}(s,a)
 $$
+
+> **Lemma:** We have $$\val_{\sigma'} \ge \val_{\sigma}$$.
+Further, if for some $$s$$ we have $$q_{\sigma}(s,a) > \val_{\sigma}(s)$$,
+then the inequality above is strict for $$s.$$
+
+To see that the lemma holds, we write the equations for $$\val_\sigma$$ and $$\val_{\sigma'}$$ and compare them.
 
 ##### The complete algorithm
 
