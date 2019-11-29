@@ -127,15 +127,16 @@ $$
 \end{array}
 $$
 
-To show the converse inequality, let $a$ reaching the maximum in the term on the right hand side. Let $\sigma'$ denote an optimal strategy from $s'$.
-We define $\sigma$ the strategy playing first $a$, and then simulating $\sigma'$ from $s'$.
+To show the converse inequality, let $a$ reaching the maximum in the term on the right hand side. 
+Let $\sigma_s$ denote an optimal strategy from $$s,$$ for each $$s.$$
+We define $\sigma$ the strategy playing first $a$, and then simulating $$\sigma_s$$ from $$s.$$
 Then 
 
 $$
-\val_{\sigma}(s) = q_{\sigma'}(s,a) = q_*(s,a)
+\val_{\sigma}(s) = \sum_{s',r} \Delta(s,a)(s',r) (r + \gamma \val_{\sigma_{s'}}(s')) = q_*(s,a)
 $$
 
-By definition $$\val_*(s) \ge \val_{\sigma}(s)$$, so we proved the converse inequality.
+By definition $$\val_{\sigma}(s) \le \val_*(s)$$, so we proved the converse inequality.
 
 #### The value iteration algorithm
 
@@ -146,36 +147,36 @@ $$
 q_v(s,a) = \sum_{s',r} \Delta(s,a)(s',r) (r + \gamma v(s'))
 $$
 
-Let us denote by $$ll$$ the operator $$ll : \R^S \to \R^S$$ defined by
+Let us denote by $$L$$ the operator $$L : \R^S \to \R^S$$ defined by
 
 $$
-ll(v)(s) = \max_{a \in A} q_v(s,a).
+L(v)(s) = \max_{a \in A} q_v(s,a).
 $$
 
-> **Lemma** The vector $$\val_*$$ is a fixed point of $$ll$$
+> **Lemma** The vector $$\val_*$$ is a fixed point of $$L$$
 
 This is just a reformulation of the lemma above.
 
-> **Lemma** The operator $$ll$$ is $$\gamma$$-lliptschitz, meaning
+> **Lemma** The operator $$ll$$ is $$\gamma$$-lliptschitz, meaning for any $$v,v'$$ we have
 $$
-|ll(v) - ll(v')| \le \gamma |v - v'|.
+|L(v) - L(v')| \le \gamma |v - v'|.
 $$
 
 It follows from Banach fixed point theorem (in the complete space $$\R^S$$ equipped with the infinity norm) 
-that $$ll$$ has a unique fixed point and that it can be computed as follows:
-let $$v_0$$ an arbitrary vector, define $$v_{n+1} = ll(v_n)$$, then
+that $$L$$ has a unique fixed point and that it can be computed as follows:
+let $$v_0$$ an arbitrary vector, define $$v_{n+1} = L(v_n)$$, then
 
 $$|v_{n+1} - v_n| \le \gamma^n |v_1 - v_0|$$
 
-implying that $$(v_n)_{n \in \N}$$ is a Cauchy sequence, hence converges to $$v_\infty$$ such that $$v_\infty = ll(v_\infty)$$,
-and since $$\val_*$$ is the unique fixed point of $$ll$$ we have $$v_\infty = \val_*.$$
+implying that $$(v_n)_{n \in \N}$$ is a Cauchy sequence, hence converges to $$v_\infty$$ such that $$v_\infty = L(v_\infty)$$,
+and since $$\val_*$$ is the unique fixed point of $$L$$ we have $$v_\infty = \val_*.$$
 
 We also get an upper bound on the convergence rate:
 
 $$|\val_* - v_n| \le \frac{\gamma^n}{1 - \gamma} |v_1 - v_0|$$
 
 We obtain an approximation algorithm: for a fixed $$\varepsilon > 0$$,
-* By iterating the operator $$ll$$ from any initial vector, compute $$v$$ such that $$\|ll(v) - v\| \le \frac{\varepsilon}{2}$$,
+* By iterating the operator $$L$$ from any initial vector, compute $$v$$ such that $$\|L(v) - v\| \le \frac{\varepsilon}{2}$$,
 implying that $$\|\val_* - v\| \le \varepsilon$$
 * Construct a pure positional strategy $\sigma$ by $$\sigma(s)$$ is an action $$a$$ such that 
 
@@ -184,7 +185,7 @@ $$
 $$
 
 Then $$\sigma$$ is an $$\varepsilon$$-optimal strategy.
-Thanks to the upper bound on the convergence rate, the number of iterations of the operator $$ll$$ is $$O(\log(\frac{1}{\varepsilon}).$$
+Thanks to the upper bound on the convergence rate, the number of iterations of the operator $$L$$ is $$O(\log(\frac{1}{\varepsilon}).$$
 
 
 #### The policy iteration algorithm
