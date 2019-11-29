@@ -40,7 +40,7 @@ Why making these assumptions if they are not realistic? Because the algorithms w
 
 We start with a simple lemma saying that Markovian strategies are as powerful as general ones.
 Recall that a Markovian strategy chooses a distribution on actions based only on the current state and the current time step,
-i.e. $$\sigma' : S \times \N \to \Dist(A).$$
+i.e. $$\sigma' : \N \times S \to \Dist(A).$$
 
 > **Lemma:** For any (general) strategy $\sigma$, there exists a Markovian strategy $\sigma'$ such that for all time step $t$ we have 
 $$
@@ -56,28 +56,30 @@ $$\P_{\sigma,s_0}(A_t = a \mid S_t = s).$$
 
 ### The finite horizon case
 
-We consider plays of length (exactly) $T$, a fixed finite value.
+We consider plays of length (exactly) $$T$$ a fixed finite value.
 
-We let $$\val_*(s,t)$$ denote the optimal expected total reward from $s$ in $t$ moves.
+We let $$\val_*(t,s)$$ denote the optimal expected total reward from $s$ in $t$ moves.
 
 > **Lemma:** $$\val_*(0,s) = 0$$ and 
 $$
-\val_*(t,s) = \max_{a \in A} \sum_{s' \in S, r \in R} \Delta(s,a)(s',r) (r + \val_*(t+1,s'))
+\val_*(t,s) = \max_{a \in A} \sum_{s' \in S, r \in R} \Delta(s,a)(s',r) (r + \val_*(t-1,s'))
 $$
 
-To see that this equation is correct, we remark that the value function for a (Markovian) strategy $\sigma$ satisfies the recursive equation:
+To see that this equation is correct, we remark that the value function for a (Markovian) strategy $$\sigma$$ satisfies the recursive equation:
 
 $$
-\val_\sigma(t,s) = \sum_{a \in A} \sigma(s)(a) \sum_{s' \in S,r \in \R} \Delta(s,a)(s',r) (r + \val_\sigma(t+1,s'))
+\val_\sigma(t,s) = \sum_{a \in A} \sigma(s)(a) \sum_{s' \in S,r \in \R} \Delta(s,a)(s',r) (r + \val_\sigma(t-1,s'))
 $$
 
-Then a convexity argument shows the equality above (this argument will be detailed a bit more later).
+The key argument uses convexity.
+(A very similar proof will be given below in more details in the discounted case.)
 
 The lemma in particular implies that there are optimal deterministic Markovian strategies. 
 The dependence on the time step is necessary: closer to the time step $T$, it makes sense to play moves with higher immediate rewards but dire consequences,
 while for a small $t$, moves should be selected to optimise not only the reward but also the states for their potential to yield higher rewards.
 
-The equation can easily be turned into an algorithm (with pseudo-polynomial complexity).
+The equation can easily be turned into an algorithm (with pseudo-polynomial complexity), which computes $$\val_*(t,s)$$
+for each $s$ for $t$ from $0$ to $T$. 
 
 ### The discounted case
 
@@ -87,21 +89,31 @@ $$
 \E_\sigma [\sum_i \gamma^i R_i]
 $$
 
-For a fixed discount factor $$\gamma$$ less than $$1.$$
+for a fixed discount factor $$\gamma$$ less than $$1.$$
 
 We will present two algorithms:
 * **value iteration**
 * **policy iteration** (sometimes called **strategy iteration** or **strategy improvement**)
 
-In the end we will argue that these algorithms both fall into a larger family of algorithms.
+In the end we will argue that these algorithms both fall into a larger family of algorithms, called generalised policy iteration.
 
 #### Characterisation of the optimal values
 
 Recall that $$\val_*(s) = \sup_{\sigma \text{ strategy}} \val_\sigma(s).$$
 
+Let us introduce a convenient notation, the $q$-values.
+For a strategy $$\sigma$$, the $q$-value is
+
+$$
+q_\sigma(s,a) = \sum_{s',r} \Delta(s,a)(s',r) (r + \gamma \val_\sigma(s'))
+$$
+
+We also denote $$q_*(s,a) = \sup_{\sigma \text{ strategy}} q_\sigma(s,a),$$
+where the supremum ranges over strategies playing $$a$$ as first move.
+
 > **Lemma:** The optimal values satisfy the following equations
 $$
-\val_*(s) = \max_{a \in A} \sum_{s' \in S,r \in \R} \Delta(s,a)(s',r) (r + \gamma \val_*(s'))
+\val_*(s) = \max_{a \in A} q_*(s,a)
 $$
 
 We first show an inequality. Let $\sigma$ denote an optimal strategy from $s$. Note that a priori, it may not be optimal from other states.
@@ -109,9 +121,9 @@ We first show an inequality. Let $\sigma$ denote an optimal strategy from $s$. N
 $$
 \begin{array}{lllr}
 \val_*(s) & = & \val_{\sigma}(s) \\
-& = & \sum_{a \in A} \sigma(s)(a) \sum_{s' \in S,r \in \R} \Delta(s,a)(s',r) (r + \gamma \val_\sigma(s')) \\
-& \le & \sum_{a \in A} \sigma(s)(a) \sum_{s' \in S,r \in \R} \Delta(s,a)(s',r) (r + \gamma \val_*(s')) \\
-& \le & \max_{a \in A} \sum_{s' \in S,r \in \R} \Delta(s,a)(s',r) (r + \gamma \val_*(s')) & \text{ by convexity}
+& = & \sum_{a \in A} \sigma(s)(a) q_\sigma(s,a) \\
+& \le & \sum_{a \in A} \sigma(s)(a) q_*(s,a) \\
+& \le & \max_{a \in A} q_*(s,a) & \text{ by convexity}
 \end{array}
 $$
 
@@ -120,7 +132,7 @@ We define $\sigma$ the strategy playing first $a$, and then simulating $\sigma'$
 Then 
 
 $$
-\val_{\sigma}(s) = \sum_{s' \in S,r \in \R} \Delta(s,a)(s',r) (r + \gamma \val_{\sigma'}(s')) = \sum_{s' \in S,r \in \R} \Delta(s,a)(s',r) (r + \gamma \val_*(s'))
+\val_{\sigma}(s) = \sum_{s' \in S,r \in \R} \Delta(s,a)(s',r) (r + \gamma \val_{\sigma'}(s')) = q_*(s,a)
 $$
 
 By definition $$\val_*(s) \ge \val_{\sigma}(s)$$, so we proved the converse inequality.
@@ -200,19 +212,6 @@ We fix a threshold $$\varepsilon > 0$$ and stop when $$|v_{n+1} - v_n| \le \frac
 
 Given a strategy $$\sigma$$ and its value function $$\val_\sigma$$ (we ignore the fact that we actually only compute an approximation!), 
 we define 
-
-$$
-\sigma'(s) = \text{argmax}_{a \in A} \sum_{s',r} \Delta(s,a)(s',r) (r + \gamma \val_\sigma(s'))
-$$
-
-At this point let us introduce a notation, the $q$-values.
-For a strategy $$\sigma$$, the $q$-value is
-
-$$
-q_\sigma(s,a) = \sum_{s',r} \Delta(s,a)(s',r) (r + \gamma \val_\sigma(s'))
-$$
-
-So the improvement task is solved by setting
 
 $$
 \sigma'(s) = \text{argmax}_{a \in A} q_{\sigma}(s,a)
