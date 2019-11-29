@@ -26,7 +26,7 @@ MathJax.Hub.Config({
 });
 </script>
 
-<p class="intro"><span class="dropcap">W</span>e present some fundamental properties of MDPs and the two families of dynamic algorithms, .</p>
+<p class="intro"><span class="dropcap">W</span>e present some fundamental properties of MDPs and the two dynamic algorithms, value iteration and policy iteration.</p>
 
 The basic notations are given in the [course outline]({{ '/blog/MDP' | prepend: site.baseurl }}).
 
