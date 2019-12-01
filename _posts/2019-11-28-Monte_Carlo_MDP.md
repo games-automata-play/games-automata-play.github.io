@@ -56,11 +56,11 @@ Here we will see that it will be useful to allow randomised strategies.
 The Monte Carlo approach makes one key assumption:
 * **finite episodes**: every play terminates whatever the choice of actions, which means reaches a state called terminal, where there are no further actions. 
 This is reasonable for most games, where a winner is eventually determined, in finite time.
+This assumption also means that whenever a terminal state is reached we can start over from the initial state again to produce a new episode.
 
 ##### The evaluation task
 
-Recall that the dynamic solution for the evaluation task was as follows.
-Given a strategy $$\sigma$$, its values satisfy the following equations
+Recall that the dynamic solution for the evaluation task was based on the following equations for a strategy $$\sigma:$$
 
 $$
 \val_\sigma(s) = q_\sigma(s,\sigma(s)) = \sum_{s',r} \Delta(s,a)(s',r) (r + \gamma \val_\sigma(s')).
@@ -71,7 +71,7 @@ The problem is that now we do not assume that we know $$\Delta(s,a),$$ so this q
 The most naive and yet effective solution is simply to sample plays according to $$\sigma$$.
 Starting from the initial state $$s_0,$$ choose the action prescribed by $$\sigma$$ and continue until reaching a terminal state.
 Repeat this operation a large number of times, say $$N$$, leading to a sample of $$N$$ plays.
-For each state $$s$$, for each play containing $$s$$ compute the total reward **from the first visit** of $$ss$$,
+For each state $$s$$, for each play containing $$s$$ compute the total reward **from the first visit** of $$s$$ in that play,
 and set $$\widehat{\val}_\sigma(s)$$ to be the average of these total rewards.
 The hat over $$\val$$ signifies that the value is **empirical**.
 
@@ -97,7 +97,7 @@ leading to the following solution for the improvement task:
 
 $$
 \sigma'(s) = 
-\begin{cases}{ll}
+\begin{cases}
 \text{argmax}_{a \in A} q_{\sigma}(s,a) & \text{ with probability } 1 - \varepsilon \\
 \text{uniform distribution on actions} & \text{ with probability } \varepsilon
 \end{cases}
@@ -111,8 +111,7 @@ Note that some states may never be visited, that's fine.
 The Monte Carlo policy iteration algorithm is: 
 starting from any strategy, apply alternatively evaluation and improvement to construct better and better strategies.
 The theoretical guarantees are slim, since unless we evaluate strategies for infinitely many times, $$\widehat{\val}_\sigma$$ may not be equal (or even close!) to $$\val_\sigma.$$
-
-
+But in practice, it works.
 
 ## The temporal difference approach
 
