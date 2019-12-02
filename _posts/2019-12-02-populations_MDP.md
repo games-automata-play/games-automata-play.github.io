@@ -96,7 +96,7 @@ Despite having spent an indecent amount of time, we (Blaise Genest, Pierre Ohlma
 It says that the problem is solved by an algorithm I studied in my PhD in a slightly different context and that we called the Markov monoid algorithm (MMA).
 The original goal of this algorithm was to (partially) solve the value 1 problem for probabilistic automata. 
 (Partially because the general problem is undecidable.) 
-Our first result was that the MMA solves the value 1 problem for probabilistic leaktight automata, see the [paper](https://arxiv.org/abs/1504.04136).
+Our first result was that the MMA solves the value 1 problem for the subclass of probabilistic leaktight automata, see the [paper](https://arxiv.org/abs/1504.04136).
 I will not define the MMA here, I refer to the paper above, see also [this blog post]({{ '/blog/boundedness' | prepend: site.baseurl }}) which constructs a similar algorithm for a different semiring.
 
 To see the connection with probabilistic automata, let us first note that syntactically MDP and probabilistic are the exact same thing. 
