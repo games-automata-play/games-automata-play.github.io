@@ -44,12 +44,12 @@ It will be clear that the exact probabilities do not matter, so for now let us s
 The question becomes: is it true that **for all** $$n \in \N,$$ (number of tokens) there exists a strategy for the controller such that **almost surely** all tokens eventually end up in $$t?$$
 
 I have been working on this question since Fall 2016 when Nathalie Bertrand came to Simons to present the original paper and proposed the stochastic setting as natural continuation.
-After about three long years of coming back at it, we (Thomas Colcombet, Pierre Ohlmann, and myself) finally made some progress and showed that the problem is decidable.
-Our paper can be found [here](https://arxiv.org/abs/1911.01195), it is naturally titled "controlling a random population".
+After about three long years of despairs and regularly coming back at it, we (Thomas Colcombet, Pierre Ohlmann, and myself) finally made some progress and showed that the problem is decidable.
+Our paper is [Controlling a random population](https://arxiv.org/abs/1911.01195).
 
 In a few words, our solution goes as follows:
-* the introduction of an intermediate problem called the **sequential flow problem** and a reduction from the general problem to (many instances of) the sequential flow problem,
-* a solution of the sequential flow problem using the max flow min cut theorem and the theory of regular cost functions.
+* we introduce an intermediate problem called the **sequential flow problem** and construct a reduction from the general problem to (many instances of) the sequential flow problem,
+* we give a solution of the sequential flow problem using the max flow min cut theorem and the theory of regular cost functions.
 
 The complexity of the algorithm we construct is not well understood, for now we only have non-elementary upper bounds. 
 Recently Corto Mascle, Mahsa Shirmohammadi, and Patrick Totzke proved that the problem is [EXPTIME-hard](https://arxiv.org/abs/1909.06420), leaving a sizable gap to be filled.
@@ -71,7 +71,7 @@ Continuing like this, we can push all tokens to $$t,$$ one by one. This process 
 We say that the expected synchronisation time is exponential.
 
 <figure>
-	<img src="{{ '/images/mdp2.png' | prepend: site.baseurl }}" alt=""> 
+	<img src="{{ '/images/mdp1.png' | prepend: site.baseurl }}" alt=""> 
 	<figcaption>A second population of MDP with polylogarithmic expected synchronisation time</figcaption>
 </figure>
 
@@ -93,22 +93,23 @@ and the expected synchronisation time is bounded by $$\log^{O(1)}(n)?$$
 Despite having spent an indecent amount of time, we (Blaise Genest, Pierre Ohlmann, myself, and some others) do not know much, but we have a very nice conjecture.
 It says that the problem is solved by an algorithm I studied in my PhD in a slightly different context and that we called the Markov monoid algorithm (MMA).
 The original goal of this algorithm was to (partially) solve the value 1 problem for probabilistic automata. 
-Partially because the general problem is undecidable. Our first result was that the MMA solves the value 1 problem for probabilistic leaktight automata, see the [paper](https://arxiv.org/abs/1504.04136).
+(Partially because the general problem is undecidable.) 
+Our first result was that the MMA solves the value 1 problem for probabilistic leaktight automata, see the [paper](https://arxiv.org/abs/1504.04136).
 I will not define the MMA here, I refer to the paper above, see also [this blog post]({{ '/blog/boundedness' | prepend: site.baseurl }}) which constructs a similar algorithm for a different semiring.
 
 To see the connection with probabilistic automata, let us first note that syntactically MDP and probabilistic are the exact same thing. 
 The difference is that with an MDP we consider strategies which make decisions (choosing an action) at each step based on the current state, while probabilistic automata read words, which can be thought of as strategies not having any information on the current state.
 
 For a word $$w \in A^*$$, we let $$P_M(w)$$ the probability that reading the word $$w$$ from $$s$$ leads to $$t.$$
-The value 1 problem asks the following question: given an MDP / PFA $$M$$, is it true that
+The value 1 problem asks the following question: given an MDP $$M$$, is it true that
 
 $$
 \forall \varepsilon > 0, \exists w \in A^*,\ P_M(w) > 1 - \varepsilon
 $$
 
-> **Conjecture:** Given an MDP / PFA $$M$$, the following are equivalent:
+> **Conjecture:** Given an MDP $$M$$, the following are equivalent:
 * The expected synchronisation time of polylogarithmic
-* For all $$\varepsilon > 0$$, there exists $$w$$ a word of length at most $$log(\frac{1}{\varepsilon})$$ such that $$P_M(w) > 1 - \varepsilon$$ 
+* For all $$\varepsilon > 0$$, there exists $$w$$ a word of length at most $$O(\log(\frac{1}{\varepsilon}))$$ such that $$P_M(w) > 1 - \varepsilon$$ 
 * The MMA answers YES
 
 We (Pierre Ohlmann and myself) know that $$\frac{2}{3}$$ of the conjecture holds: 
