@@ -50,6 +50,8 @@ The dynamic algorithms we constructed in the first part are based on solving two
 * **evaluation**: given a strategy $$\sigma$$, compute (or approximate) $$\val_\sigma$$
 * **improvement**: given a strategy $$\sigma$$ and its (approximate) value function $$\val_\sigma$$, construct an improved strategy $$\sigma'$$
 
+We will keep the general architecture of the algorithms, while adapting the solution of the two tasks to our statistical setting.
+
 In the dynamic algorithms we were only manipulating pure positional strategies. 
 Here we will see that it will be useful to allow randomised strategies.
 
@@ -74,6 +76,7 @@ Repeat this operation a large number of times, say $$N$$, leading to a sample of
 For each state $$s$$, for each play containing $$s$$ compute the total reward **from the first visit** of $$s$$ in that play,
 and set $$\widehat{\val}_\sigma(s)$$ to be the average of these total rewards.
 The hat over $$\val$$ signifies that the value is **empirical**.
+Using the equation above $$\widehat{\val}_\sigma(s)$$ induces $$\widehat{q}_\sigma.$$
 
 Note that the only design choice so far in the naive Monte Carlo approach was whether we consider each visit or only the first in a play.
 Both would lead to converging algorithms, as long as we evaluate randomised positional strategies.
