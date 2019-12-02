@@ -28,11 +28,13 @@ To this end, at each time step he chooses an action, which results is moving eac
 Who resolves the non-determinism? In the original paper, they consider the **adversarial setting** where an opponent decides how the tokens move.
 
 The decision problem is the following: is it true that **for all** $$n \in \N,$$ (number of tokens) there exists a strategy for the controller such that no matter how the adversary resolves non-determinism at each step, all tokens eventually end up in $$t?$$
-Let us formalise the notion of strategies to highlight the key difficulty that the controller must choose **the same action** for each token at a given time step, which becomes problematic when the tokens are spread around different states: a (positional) strategy is 
+Let us formalise the notion of strategies to highlight the key difficulty that the controller must choose **the same action** for each token at a given time step, which becomes problematic when the tokens are spread around different states: a strategy is 
 
 $$
-\sigma : Q^n \to A.
+\sigma : (Q^n)^* \to A,
 $$
+
+meaning given the history of all $$n$$ tokens, meaning in which state they have been, it chooses an action. Positional strategies will always be enough: $$\sigma : Q^n \to A.$$
 
 The main result of the original paper is that this problem is EXPTIME-complete, which is proved using a reduction to an exponential two-player game.
 
