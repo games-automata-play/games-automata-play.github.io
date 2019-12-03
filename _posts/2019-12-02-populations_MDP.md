@@ -34,7 +34,7 @@ $$
 \sigma : (Q^n)^* \to A,
 $$
 
-meaning given the history of all $$n$$ tokens, meaning in which state they have been, it chooses an action. Positional strategies will always be enough: $$\sigma : Q^n \to A.$$
+meaning given the history (in which state they have been along the play) of all $$n$$ tokens, it chooses an action. Positional strategies will always be enough: $$\sigma : Q^n \to A.$$
 
 The main result of the original paper is that this problem is EXPTIME-complete, which is proved using a reduction to an exponential two-player game.
 
@@ -68,9 +68,13 @@ To illustrate this question, let us analyse two simple examples.
 </figure>
 
 Let us imagine that we initially start with $$n$$ tokens in $$s.$$ We can play the action $$a$$ a certain number of times. Each action $$a$$ results in reshuffling all tokens between $$s$$ and $$q_1.$$
-Waiting long enough, there will eventually be exactly one token in $$q_1$$ and $$n-1$$ in $$s.$$ Then playing the action $$b$$ pushes the token either to $$q_l$$ or to $$q_r,$$ and depending on this outcome playing $$l$$ or $$r$$ moves that token to $$t,$$ while the $$n-1$$ other tokens quietly sit in $$s.$$ The token safely stored in $$t$$ will not be further moved. 
+Waiting long enough, there will eventually be exactly one token in $$q_1$$ and $$n-1$$ in $$s.$$ 
+(Indeed this happens with probability $$\frac{1}{2^n},$$ so in expectation it takes $$O(2^n)$$ steps.)
+Then playing the action $$b$$ pushes the token either to $$q_l$$ or to $$q_r,$$ and depending on this outcome playing $$l$$ or $$r$$ moves that token to $$t,$$ while the $$n-1$$ other tokens quietly sit in $$s.$$ The token safely stored in $$t$$ will not be further moved. Note that we could not move more than one token from $$q_1$$ to $$t$$ in this way: if we would play $$b$$ with two tokens in $$q_1,$$
+the risk would be that one token goes to $$q_l$$ and the other one to $$q_r,$$ resulting in losing one token when choosing either $$l$$ or $$r.$$ 
 Continuing like this, we can push all tokens to $$t,$$ one by one. This process takes a very long time, to be more precise exponential in $$n$$ in expectation.
 We say that the expected synchronisation time is exponential.
+
 
 <figure>
 	<img src="{{ '/images/mdp1.png' | prepend: site.baseurl }}" alt=""> 
