@@ -165,7 +165,7 @@ $$
 Now the lemma above reads: 
 The vector $$\val_*$$ is a fixed point of $$L.$$
 
-> **Lemma** The operator $$L$$ is $$\gamma$$-lliptschitz, meaning for any $$v,v'$$ we have
+> **Lemma** The operator $$L$$ is $$\gamma$$-Liptschitz, meaning for any $$v,v'$$ we have
 $$
 |L(v) - L(v')| \le \gamma |v - v'|.
 $$
@@ -183,6 +183,8 @@ We also get an upper bound on the convergence rate:
 
 $$|\val_* - v_n| \le \frac{\gamma^n}{1 - \gamma} |v_1 - v_0|$$
 
+##### The complete algorithm
+
 We obtain an approximation algorithm: for a fixed $$\varepsilon > 0$$,
 * By iterating the operator $$L$$ from any initial vector, compute $$v$$ such that $$\|L(v) - v\| \le \frac{\varepsilon}{2}$$,
 implying that $$\|\val_* - v\| \le \varepsilon$$
@@ -199,10 +201,12 @@ $$
 $$
 
 Thanks to the upper bound on the convergence rate, the number of iterations of the operator $$L$$ is $$O(\log(\frac{1}{\varepsilon})).$$
+Why is it called **value iteration**? Because it never considers any strategy, it only iterates on value functions.
+
 
 #### The policy iteration algorithm
 
-The algorithm manipulates only pure positional strategies. We define two tasks:
+This second algorithm manipulates only pure positional strategies. We define two tasks:
 * **evaluation**: given a strategy $$\sigma$$, compute (or approximate) $$\val_\sigma$$
 * **improvement**: given a strategy $$\sigma$$ and its (approximate) value function $$\val_\sigma$$, construct an improved strategy $$\sigma'$$
 
@@ -252,16 +256,14 @@ then the algorithm terminates (that is, assuming we indeed compute the value fun
 When it does so, the last strategy $\sigma$ satisfies $$\val_\sigma(s) = \max_{a \in A} q_\sigma(s,a)$$,
 which as we have seen above implies that it is optimal.
 
+Why is it called **policy iteration**? Because it iterates on strategies (policies).
+
 #### The generalised policy iteration algorithm
 
-Let us get back to the value iteration algorithm, and observe that it also consists in alternating evaluation and improvement steps.
-The difference is that at every step:
-* the policy iteration algorithm performs a (near-)perfect evaluation of the strategy, 
-i.e. it iterates the fixed point algorithm to compute $$v$$ such that $$|\val_\sigma - v| \le \varepsilon$$, 
-* whereas the value iteration algorithm only performs one step of the evaluation.
+The generalised policy iteration algorithm simply alternates between evaluation and improvements steps, possibly not performing perfect evaluations.
 
-More specifically, the value iteration algorithm does the following. 
-Given $$v_n$$ it computes $$v_{n+1} = L(v_n)$$ defined by
+Let us get back to the value iteration algorithm, and observe that in some sense it also consists in alternating evaluation and improvement steps.
+At every step, we have a value function $$v_n$$ and the algorithm computes $$v_{n+1} = L(v_n)$$ defined by
 
 $$
 v_{n+1}(s) = \max_{a \in A} q_{v_n}(s,a).
@@ -269,6 +271,7 @@ $$
 
 We can interpret this as doing the following two steps in one go:
 * from $$v_n$$ compute the $q$-value $$q_{v_n}(s,a)$$ through one step of the evaluation task
-* construct the strategy $$\sigma_{n+1}$$ induced by $$q_{v_n}$$ through the improvement task 
+* construct the value function $$v_{n+1}$$ induced by $$q_{v_n}$$ through the improvement task
 
+The main difference with policy iteration is that $$v_n$$ does not represent the values of a given strategy.
 
