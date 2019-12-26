@@ -47,7 +47,7 @@ The question becomes: is it true that **for all** $$n \in \N,$$ (number of token
 
 I have been working on this question since Fall 2016 when Nathalie Bertrand came to Simons to present the original paper and proposed the stochastic setting as natural continuation.
 After about three long years of despairs and regularly coming back at it, we (Thomas Colcombet, Pierre Ohlmann, and myself) finally made some progress and showed that the problem is decidable.
-Our paper is [Controlling a random population](https://arxiv.org/abs/1911.01195).
+Our paper is [Controlling a random population](https://arxiv.org/abs/1911.01195) (**EDIT 21/12/2019**: paper accepted in FoSSaCS'20).
 
 In a few words, our solution goes as follows:
 * we introduce an intermediate problem called the **sequential flow problem** and construct a reduction from the general problem to (many instances of) the sequential flow problem,
