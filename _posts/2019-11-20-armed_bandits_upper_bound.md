@@ -25,6 +25,8 @@ MathJax.Hub.Config({
 
 <p class="intro"><span class="dropcap">W</span>e present a proof that the upper confidence bound yields an (asymptotically) optimal algorithm for regret minimisation of multi-armed bandits.</p>
 
+**EDIT 01/01/2020**: Look at the [github repository](https://github.com/nathanael-fijalkow/Multi-Armed-Bandits) for implementations and plots of some algorithms for the multi-armed bandits.
+
 This result was proved by Auer, Cesa-Bianchi, and Fischer in [this paper](http://homes.di.unimi.it/cesa-bianchi/Pubblicazioni/ml-02.pdf). 
 The proof is essentially the same (some calculations are a bit different).
 
