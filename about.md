@@ -11,4 +11,8 @@ title: About Games automata play
 
 	<h2>Mission statement</h2>
 	**TO DO**
+
+	<h2>Other blogs of interest</h2>
+	<a href="https://epsilon-step.github.io/">epsilon-step</a> by <a href="https://guillaume-lagarde.github.io/">Guillaume Lagarde</a>
+
 </div>
