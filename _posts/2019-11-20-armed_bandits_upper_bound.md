@@ -3,7 +3,7 @@ layout:     post
 title:      The upper confidence bound (UCB) analysis for multi-armed bandits 
 date:       2019-11-20 9:00:00
 author:     Nathana&euml;l Fijalkow
-category:   Reinforcement_learning
+category:   Reinforcement learning
 ---
 
 <script type="text/x-mathjax-config">
