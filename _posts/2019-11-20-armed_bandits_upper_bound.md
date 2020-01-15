@@ -43,9 +43,9 @@ We write (for the sake of clarity we will not mark the dependence on the algorit
 * $M(t)$ is the machine chosen at time step $t$
 * $X(t)$ is the reward from the machine chosen at time step $t$
 * $X(i,t)$ is the reward of playing the machine $i$ at time step $t$; if $i$ was not chosen at time $t$, then it is $0$
-* $\widehat{X}(i,t)$ is the **empirical** reward of machine $i$ in the first $T$ steps, defined by
+* $\widehat{X}(i,T)$ is the **empirical** reward of machine $i$ in the first $T$ steps, defined by
 
-$$\widehat{X}(i,t) = \frac{1}{n(i,T)} \sum_{t \in [1,T]} X(i,t)$$
+$$\widehat{X}(i,T) = \frac{1}{n(i,T)} \sum_{t \in [1,T]} X(i,t)$$
 
 An optimal machine is one maximising the average reward $\mu$. 
 We write $$*$$ for this machine, so for instance its average reward is $$\mu_{*}$$.
@@ -91,7 +91,7 @@ It turns out that there is a choice of $c(i,t)$ which yields an algorithm with l
 > **Theorem:** (Auer, Cesa-Bianchi, and Fischer 2002)
 The regret of the index policy for $c(i,t) = \sqrt{ \frac{\log(t)}{n(i,t)} }$ is $O(\log(T))$
 
-We will explain in another blog post that this is asymptotically optimal, as proved by Lai and Robbins in 1985.
+This is asymptotically optimal as proved by Lai and Robbins in 1985.
 
 ### Why the choice of $c(i,t)$?
 
