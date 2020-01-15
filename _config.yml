@@ -14,7 +14,7 @@ paginate: 20
 navigation:
  - title: Research
    url: /index.html
- - title: Reinforcement learning course
+ - title: Reinforcement learning
    url: /RL
  - title: By categories
    url: /category
