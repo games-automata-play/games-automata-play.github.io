@@ -5,7 +5,7 @@ date:       2019-03-25 9:00:00
 author:     Nathana&euml;l Fijalkow
 category:   
 - Parity games
-- research
+- Research
 ---
 
 <script type="text/x-mathjax-config">

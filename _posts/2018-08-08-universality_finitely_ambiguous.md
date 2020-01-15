@@ -5,7 +5,7 @@ date:       2018-08-08 10:00:00
 author:     Ritam Raha and Nathana&euml;l Fijalkow
 category:   
 - Automata
-- research
+- Research
 ---
 
 <script type="text/x-mathjax-config">

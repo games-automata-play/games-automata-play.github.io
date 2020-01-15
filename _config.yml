@@ -15,7 +15,7 @@ navigation:
  - title: Research posts
    url: /index.html
  - title: Reinforcement learning course
-   url: /RL
+   url: /RL.md
  - title: By categories
    url: /category
  - title: About

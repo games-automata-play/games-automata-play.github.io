@@ -6,7 +6,7 @@ author:     Nathana&euml;l Fijalkow
 category:   
 - Weighted automata
 - Learning theory
-- research
+- Research
 ---
 
 <script type="text/x-mathjax-config">

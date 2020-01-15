@@ -5,7 +5,7 @@ date:       2018-08-03 9:00:00
 author:     Nathana&euml;l Fijalkow
 category:   
 - Games
-- research
+- Research
 ---
 
 <script type="text/x-mathjax-config">

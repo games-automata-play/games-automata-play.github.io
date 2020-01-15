@@ -5,7 +5,7 @@ date:       2019-03-26 9:00:00
 author:     Nathana&euml;l Fijalkow
 category:   
 - Learning theory
-- research
+- Research
 ---
 
 <p class="intro"><span class="dropcap">W</span>e state and prove the equivalence between PAC-learnability, finite VC dimension, and the existence of compression schemes.</p>

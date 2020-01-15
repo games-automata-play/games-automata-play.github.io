@@ -3,7 +3,7 @@ layout:     post
 title:      Applying to CNRS
 date:       2019-09-23 9:00:00
 author:     Nathana&euml;l Fijalkow
-category:   research
+category:   Research
 ---
 
 <p class="intro"><span class="dropcap">T</span>his post gathers some information about applying to CNRS for a permanent researcher position (chargé de recherche, junior position, 

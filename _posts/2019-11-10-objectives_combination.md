@@ -5,7 +5,7 @@ date:       2019-11-10 10:00:00
 author:     Ashwani Anand and Nathana&euml;l Fijalkow
 category:   
 - Automata
-- research
+- Research
 ---
 
 <script type="text/x-mathjax-config">

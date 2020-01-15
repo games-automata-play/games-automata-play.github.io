@@ -10,6 +10,10 @@ category:   Automata
 MathJax.Hub.Config({
   TeX: {
     Macros: {
+      Parity: "{\\texttt{Parity}}",
+      MP: "{\\texttt{MP}}",
+      SupMP: "{\\overline{\\texttt{MP}}}",
+      InfMP: "{\\underline{\\texttt{MP}}}",
       M: "{\\mathcal{M}}",
       A: "{\\mathcal{A}}",
       Q: "{\\mathbb{Q}}",
@@ -34,10 +38,6 @@ MathJax.Hub.Config({
       Multmpp: "{\\texttt{MP}\\vee\\texttt{P}}",
       Multmpmps: "{\\Supmp\\vee\\Supmp}",
       Multmpmpi: "{\\Infmp\\vee\\Infmp}",
-      mp: "{\\texttt{MP}}",
-      Supmp: "{\\overline{\\texttt{MP}}}",
-      Infmp: "{\\underline{\\texttt{MP}}}",
-      Parity: "{\\texttt{P}}",
       Multlang: "{W_1\\vee W_2\\vee\\ldots\\vee W_k}",
       Multkmp: "{\\Infmp_1\\vee\\Infmp_2\\vee\\ldots\\vee\\Infmp_d}",
       Multkp: "{\\Parity_1\\vee\\Parity_2\\vee\\ldots\\vee\\Parity_d}",
@@ -48,38 +48,57 @@ MathJax.Hub.Config({
 });
 </script>
 
-<p class="intro"><span class="dropcap">W</span>e solve 2-player games on graphs with disjunctive combinations of parity and mean payoff objectives(both, with $\limsup$ and $\liminf$), which we denote as $W_1\vee W_2\vee\ldots\vee W_d$, where $W_is$ are Parity or Mean payoff. </p>
+<p class="intro"><span class="dropcap">W</span>e investigate the use of separation automata for combination of objectives.
+The general idea is to find ways of combining the solutions for each of the objective into one for the combination, as much as possible treating the solutions for each as black-boxes.
+In this post we sketch how to construct separating automata for disjunctions of parity and mean payoff objectives (both, with $\limsup$ and $\liminf$).</p>
 
-### Notations
-Given a game $\Game=(\A, d, c, W)$, where $\A$ is a 2-player(Adam and Eve) arena, d is the dimention of the game, c is the coloring function which assigns to each edge a d dimentional vector of a finite set of colors $\Cc$ and $W$ is the winning condition, i.e. $W\subseteq \Cc^d$, which Eve has to ensure. The question we want to ask is the following:
-<center>Given a vertex $v_0$, can Eve ensure the winning condition $W$ from $v_0$?</center>
-By $\Parity, \Supmp$ and $\Infmp$, we denote Parity, Mean payoff with $\limsup$ and Mean payoff with $\liminf$, respectively. A run $r$ satisfies $W_1\vee W_2\vee\ldots\vee W_d$ if $\exists 1\leq i\leq d$, such that $\pi_i(r)$ satisfies $W_i$, where $\pi_i$ is the projection funtion in the $i^{th}$ dimension.
+This is joint work with Jérôme Leroux, obtained during the internship of Ashwani Anand.
 
-We use the [universal graphs/separation]({{ '/blog/separation_universal_graphs' | prepend: site.baseurl }}) approach to solve to problem.
+We consider games whose objectives are given as disjunctions of objectives: each edge is labelled by a pair of colours, 
+and $W_1 \vee W_2$ is the objective satisfied if either the projection on the first coordinate satisfies $W_1$ or the projection on the second coordinate satisfies $W_2$.
 
-> **Theorem:**
-* There exists a universal graph of size $dn\log n$, for the winning objective $\Multkmp$.
-* There exists a separating automata of size $\|\Amp\|\cdot \|\Ap\|\cdot p$, for the winning objective $\Multmpp$, where $p$ is the maximum color in $\Cc$, $\Ap$ and $\Amp$ are $(n,\Parity)$ and $(n,\mp)$ separating automata, respectively.
-* There exists a separating automata of size $\|\Amp\|^{k_1}\cdot (\|\Ap\|\cdot p)^{k_2}$ for the winning condition $\Infmp_1\vee\Infmp_2\vee\ldots\Infmp_{k_1}\vee\Parity_1\vee\Parity_2\vee\ldots\Parity_{k_2}$.
-* There exists a separating automata of size $(\|\Ap\|\cdot p)^d$ for the winning objective $\Multkp$.
+We consider combinations of the following objectives: $\Parity$, and the two variants of mean payoff: $\SupMP$ and $\InfMP$.
+The first says that the supremum limit of the averages is non-negative, and the second uses the infimum limit.
+In isolation the two mean payoff objectives are equivalent, but this is no longer the case when combining them for instance with a parity objective.
 
-#### Universal graph for $\Multkmp$
-For this case, we use the following lemmas.
+Our goal is to develop tools using separating automata for solving these questions.
+We refer to this [blog post]({{ '/blog/separation_universal_graphs' | prepend: site.baseurl }}) for the basic definitions.
+The typical result we would like to obtain is: assume that $A_1$ is a separating automaton for $W_1$ and $A_2$ a separating automaton for $W_2$,
+we construct a new automaton $A$ based on $A_1$ and $A_2$ (if possible, as black-boxes) which is a separating automaton for $W_1 \vee W_2$.
+
+#### A general reduction to strongly connected graphs
+Let $W$ be a (positional) prefix-independent objective.
+We first show that if we know universal graphs for strongly connected graphs, we can use them to construct universal graphs for general graphs.
+Let us make the definitions more precise. We recall the definition of universal graphs.
+
+> **Definition:** A (deterministic) automaton over $C^\omega$ is **$(n,W)$-separating** if all accepting words satisfy $W$ and 
+it accepts all paths of graphs of size $n$ satisfying $W$.
+
+A (deterministic) automaton over $C^\omega$ is **$(n,W)$-SC-separating** if all accepting words satisfy $W$ and 
+it accepts all paths of strongly connected graphs of size $n$ satisfying $W$.
+
+The key remark is that any path in a graph ends up in a strongly connected component, and goes through at most $n$ such components.
+Hence a first naive construction is to construct a sequence of $n$ copies of a $(n,W)$-SC-separating automaton.
+This can be refined by observing that the total size of the components is $n$ and using a "universal sequence" approach.
+
+#### A separating automaton for disjunctions of $\InfMP$
 > **Lemma:**
-For any winning objective $W$ , if we have a $(n, W )−$universal graphs $UG_{SCC}(n)$ for stongly connected graphs of size $n$, we can construct a $(n, W )−$universal graph $UG_{gen} (n)$ for general graphs.
+Given a strongly connected graph $G$, 
+if $G$ satisfies a disjunction of objectives $\InfMP$, then it satisfies one of them.
 
-The idea is to construct the universal graph for the general graphs recursively, using the property that any run from the graph will eventually end up in one of the strongly connected components.
+The proof is that if the graph does not satisfy any of the individual $\InfMP$, then we find a sequence of cycles in the graph, with one bad cycle for each objective.
+Iterating these cycles yields a path which does not satisfy any of the objective, hence the goal does not satisfy the disjunction.
 
-> **Lemma:**
-Given a strongly connected graph $G$, $G\models \Multkmp\implies G\models \mp_i$ for some $i$.
+Note that this lemma does not hold for $\SupMP$.
 
-If for no component does the graph satisfy $\Infmp$, we can find a sequence of cycles in the graph, on iterating which we can get a path in $G$ which does not satisfy $\Infmp$.
+Now, assume we have $A_i$ an $(n,\InfMP_i)$-SC-separating automaton for each $i$.
+Thanks to the lemma above, the disjoint union of the $A_i$'s yield an $(n,\bigvee_i \InfMP_i)$-SC-separating automaton.
+The construction above turns it into an $(n,\bigvee_i \InfMP_i)$-separating automaton.
 
-$UG_{SCC}(n)$ consists of $k$ disjoint copies, $G_1 , G_2 ,\cdots G_d$ , of $(n, \mp)−$universal graph $UG_{\mp}$. In the $i^{th}$ copy, replace the labelling $a \in C$ on each edge by all the vectors in $C_1 \times C_2 \times C_{i−1} \times {a} \times C_{i+1} \cdots C_k.$ And now using the previous lemma we construct the universal graph for $\Multkmp$ for general graphs.
+#### A separating automaton for $\InfMP \vee \Parity$
 
-Note that this construction does not work when we have Mean Payoff objectives with $\limsup$, because the second lemma is not valid in this case.
+CONTINUE HERE!!!!!!!!!!!!!!!
 
-#### Separating automata for $\Multmpp$
 The intuition is to run a word $w \in (C \times C)^{\omega}$ on both $\A_{\Parity}$ and $\A_{\mp}$ simulataneously, i.e. first co-ordinate on $\A_{\mp}$ and second on $\A_{\Parity}$. We store in a control state the maximum we priority we have seen till now in the second co-ordinate of the word. When $\A_{\mp}$ rejects the word, we take the transition with the stored max priority in $\A_{\Parity}$, and reset $\A_{\mp}$ to initial state, and continue like above. The word is rejected if $\A_{\Parity}$ can not make a move when $\A_{\mp}$ rejects. The word is accepted if the above mentioned procedure never stops. 
 
 Now, to show that proof of correctness, we use the following lemma.
@@ -108,3 +127,11 @@ This concludes the proof of the theorem. As a corollary, we obtain the following
 
 ### Open problem
 * However [this paper](https://arxiv.org/abs/1210.3141) gives an algorithm to solve games with the objective $ \Supmp_1\vee\Supmp_2\vee\ldots\Supmp_k $, we could not find a way to solve it using separating automata technique. We could not do it even for 2-dimensional case.
+
+
+> **Theorem:**
+* There exists a universal graph of size $dn\log n$, for the winning objective $\Multkmp$.
+* There exists a separating automata of size $\|\Amp\|\cdot \|\Ap\|\cdot p$, for the winning objective $\Multmpp$, where $p$ is the maximum color in $\Cc$, $\Ap$ and $\Amp$ are $(n,\Parity)$ and $(n,\mp)$ separating automata, respectively.
+* There exists a separating automata of size $\|\Amp\|^{k_1}\cdot (\|\Ap\|\cdot p)^{k_2}$ for the winning condition $\Infmp_1\vee\Infmp_2\vee\ldots\Infmp_{k_1}\vee\Parity_1\vee\Parity_2\vee\ldots\Parity_{k_2}$.
+* There exists a separating automata of size $(\|\Ap\|\cdot p)^d$ for the winning objective $\Multkp$.
+

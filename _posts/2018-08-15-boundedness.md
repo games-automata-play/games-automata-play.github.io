@@ -5,7 +5,7 @@ date:       2018-08-15 10:00:00
 author:     Nathana&euml;l Fijalkow
 category:   
 - Weighted automata
-- research
+- Research
 ---
 
 <script type="text/x-mathjax-config">

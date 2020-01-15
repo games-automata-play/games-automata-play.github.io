@@ -8,19 +8,21 @@ title: Games automata play
   <ul class="posts noList">
 
 {% for category in site.categories | reversed %}
-  <li><h2><span class="description">{{ category | first }}</span></h2>
-    <ul>
-    {% for posts in category %}
-      {% for post in posts %}
-	{% if post.url %} 
-        <span class="date">{{ post.date | date: '%B %d, %Y' }}</span>
-        <h3><a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h3>
-        <p class="description">{% if post.description %}{{ post.description | strip_html | truncate: 250 }}{% else %}{{ post.content | strip_html | truncate: 250 }}{% endif %}</p>
-        {% endif %}
+  {% if post.category != "D" %}
+    <li><h2><span class="description">{{ category | first }}</span></h2>
+      <ul>
+      {% for posts in category %}
+        {% for post in posts %}
+	  {% if post.url %} 
+          <span class="date">{{ post.date | date: '%B %d, %Y' }}</span>
+          <h3><a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h3>
+          <p class="description">{% if post.description %}{{ post.description | strip_html | truncate: 250 }}{% else %}{{ post.content | strip_html | truncate: 250 }}{% endif %}</p>
+          {% endif %}
+        {% endfor %}
       {% endfor %}
-    {% endfor %}
-    </ul>
-  </li>
+      </ul>
+    </li>
+  {% endif %}
 {% endfor %}
 
   </ul>
