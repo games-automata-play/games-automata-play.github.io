@@ -3,7 +3,9 @@ layout:     post
 title:      The fundamental theorem of statistical learning 
 date:       2018-04-02 9:00:00
 author:     Nathana&euml;l Fijalkow
-category:   Learning theory
+category:   
+- Learning theory
+- research
 ---
 
 <p class="intro"><span class="dropcap">W</span>e state and prove the fundamental theorem of statistical learning, which says that a class of functions is learnable

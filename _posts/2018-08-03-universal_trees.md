@@ -3,7 +3,9 @@ layout:     post
 title:      Universal trees
 date:       2018-08-03 9:00:00
 author:     Nathana&euml;l Fijalkow
-category:   Parity games
+category:   
+- Parity games
+- research
 ---
 
 <script type="text/x-mathjax-config">

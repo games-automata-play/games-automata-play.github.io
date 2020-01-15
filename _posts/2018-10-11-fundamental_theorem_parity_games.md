@@ -3,7 +3,9 @@ layout:     post
 title:      The fundamental theorem of parity games 
 date:       2018-10-11 9:00:00
 author:     Nathana&euml;l Fijalkow
-category:   Parity games
+category:   
+- Parity games
+- research
 ---
 
 <script type="text/x-mathjax-config">

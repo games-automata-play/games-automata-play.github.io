@@ -3,7 +3,9 @@ layout:     post
 title:      DeepCoder, Learning to write programs
 date:       2019-11-11 10:00:00
 author:     Nathana&euml;l Fijalkow
-category:   Program synthesis
+category:   
+- Program synthesis
+- research
 ---
 
 <p class="intro"><span class="dropcap">T</span>his post is a short presentation of the DeepCoder paper, which proposed in 2017 a very interesting line of attack for improving program synthesis using machine learning.</p>

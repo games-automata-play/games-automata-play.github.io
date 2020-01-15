@@ -3,7 +3,9 @@ layout:     post
 title:      Mean payoff games and universal graphs 
 date:       2019-02-10 9:00:00
 author:     Nathana&euml;l Fijalkow
-category:   Parity games
+category:   
+- Parity games
+- research
 ---
 
 <script type="text/x-mathjax-config">

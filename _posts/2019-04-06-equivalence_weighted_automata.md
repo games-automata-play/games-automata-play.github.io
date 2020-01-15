@@ -3,7 +3,9 @@ layout:     post
 title:      A polynomial time algorithm for the equivalence problem of weighted automata 
 date:       2019-04-06 9:00:00
 author:     Nathana&euml;l Fijalkow
-category:   Weighted automata
+category:   
+- Weighted automata
+- research
 ---
 
 <script type="text/x-mathjax-config">

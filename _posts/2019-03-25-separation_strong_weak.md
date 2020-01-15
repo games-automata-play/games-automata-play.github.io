@@ -3,7 +3,9 @@ layout:     post
 title:      Strong and weak separating automata 
 date:       2019-03-25 9:00:00
 author:     Nathana&euml;l Fijalkow
-category:   Parity games
+category:   
+- Parity games
+- research
 ---
 
 <script type="text/x-mathjax-config">

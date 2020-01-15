@@ -3,7 +3,9 @@ layout:     post
 title:      Generalized reachability games
 date:       2018-08-03 9:00:00
 author:     Nathana&euml;l Fijalkow
-category:   Games
+category:   
+- Games
+- research
 ---
 
 <script type="text/x-mathjax-config">

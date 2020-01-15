@@ -3,7 +3,9 @@ layout:     post
 title:      The complexity of solving games with combination of objectives
 date:       2019-11-10 10:00:00
 author:     Ashwani Anand and Nathana&euml;l Fijalkow
-category:   Automata
+category:   
+- Automata
+- research
 ---
 
 <script type="text/x-mathjax-config">

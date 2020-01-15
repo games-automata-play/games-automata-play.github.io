@@ -3,7 +3,9 @@ layout:     post
 title:      Boundedness for (min,plus)-automata 
 date:       2018-08-15 10:00:00
 author:     Nathana&euml;l Fijalkow
-category:   Weighted automata
+category:   
+- Weighted automata
+- research
 ---
 
 <script type="text/x-mathjax-config">

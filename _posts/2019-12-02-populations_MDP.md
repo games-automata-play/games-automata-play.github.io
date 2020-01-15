@@ -3,7 +3,9 @@ layout:     post
 title:      Populations of Markov decision processes, what we know and an open question 
 date:       2019-12-02 9:00:00
 author:     Nathana&euml;l Fijalkow
-category:   Games
+category:   
+- Games
+- research
 ---
 
 <script type="text/x-mathjax-config">

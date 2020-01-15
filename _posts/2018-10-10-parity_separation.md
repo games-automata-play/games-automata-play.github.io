@@ -3,7 +3,9 @@ layout:     post
 title:      Separation for parity games
 date:       2018-10-10 9:00:00
 author:     Nathana&euml;l Fijalkow
-category:   Parity games
+category:   
+- Parity games
+- research
 ---
 
 <script type="text/x-mathjax-config">

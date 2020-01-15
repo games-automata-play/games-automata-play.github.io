@@ -3,7 +3,9 @@ layout:     post
 title:      Minimising weighted tree automata and context-free grammars 
 date:       2018-10-19 9:00:00
 author:     Nathana&euml;l Fijalkow
-category:   Weighted automata
+category:   
+- Weighted automata
+- research
 ---
 
 <script type="text/x-mathjax-config">

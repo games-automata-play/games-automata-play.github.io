@@ -3,7 +3,9 @@ layout:     post
 title:      Value iteration for parity games
 date:       2018-08-10 9:00:00
 author:     Nathana&euml;l Fijalkow
-category:   Parity games
+category:   
+- Parity games
+- research
 ---
 
 <script type="text/x-mathjax-config">
