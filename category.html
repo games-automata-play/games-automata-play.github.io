@@ -8,7 +8,7 @@ title: Games automata play
   <ul class="posts noList">
 
 {% for category in site.categories | reversed %}
-  {% if category != "Research" %}
+  {% if category != Research %}
     <li><h2><span class="description">{{ category | first }}</span></h2>
       <ul>
       {% for posts in category %}
