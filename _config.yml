@@ -12,7 +12,7 @@ gems: [jekyll-paginate]
 paginate: 20
 
 navigation:
- - title: Research posts
+ - title: Research
    url: /index.html
  - title: Reinforcement learning course
    url: /RL
