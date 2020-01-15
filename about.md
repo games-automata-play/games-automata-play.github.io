@@ -9,9 +9,6 @@ title: About Games automata play
 	<p class="intro">Maintained by <a href="http://nathanael-fijalkow.github.io/">Nathana&euml;l Fijalkow</a>.</p>
 	<p>The name is due to <a href="http://www.dcs.warwick.ac.uk/~mju/">Marcin Jurdzi&#324;ski</a> and <a href="https://www.youtube.com/watch?v=TXrTp1160tY&feature=youtu.be">Dolly Parton</a>.</p>
 
-	<h2>Mission statement</h2>
-	**TO DO**
-
 	<h2>Other blogs of interest</h2>
 	<a href="https://epsilon-step.github.io/">epsilon-step</a> by <a href="https://guillaume-lagarde.github.io/">Guillaume Lagarde</a>
 

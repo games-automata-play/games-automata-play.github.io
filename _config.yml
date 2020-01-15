@@ -12,15 +12,17 @@ gems: [jekyll-paginate]
 paginate: 20
 
 navigation:
- - title: Home
+ - title: Research posts
    url: /index.html
+ - title: Reinforcement learning course
+   url: /RL
  - title: By categories
    url: /category
  - title: About
    url: /about
 
 social:
-   github: 
+   github: https://github.com/nathanael-fijalkow
    twitter: 
    facebook: 
    email: nathanael.fijalkow@labri.fr
