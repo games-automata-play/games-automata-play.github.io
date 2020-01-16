@@ -7,7 +7,7 @@ title: Games automata play
   <h1 class="pageTitle">Reinforcement learning</h1>
 
   <ul class="posts noList">
-    {% for post in site.posts | reversed %}
+    {% for post in site.posts reversed %}
       {% if post.category == "Reinforcement learning" %}
         <li>
           <h3><a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h3>
