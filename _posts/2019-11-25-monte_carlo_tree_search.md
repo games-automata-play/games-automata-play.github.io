@@ -26,7 +26,7 @@ MathJax.Hub.Config({
 
 <p class="intro"><span class="dropcap">W</span>e present the Monte Carlo tree search algorithm for finding an optimal strategy in a two-player game.</p>
 
-**EDIT 26/12/2019**: I implemented the Monte Carlo tree search algorithm (and some others) for solving Tic-Tac-Toe, see the [github repository](https://github.com/nathanael-fijalkow/TicTacToe_RL).
+There is an accompanying github repository for implementations of some [algorithms solving Tic-Tac-Toe](https://github.com/nathanael-fijalkow/TicTacToe_RL).
 
 The setting we consider is two-player (called Max and Min) games played on a tree, with perfect imperfect and turn-based moves.
 Adding random moves or simulatenous moves (also called concurrent) would not make the question much more complicated (but at the price of heavier notations).
