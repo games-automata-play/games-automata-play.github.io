@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Reinforcement learning course, part 1, dynamic algorithms
+title:      Part 2, Markov decision processes and dynamic algorithms
 date:       2019-11-27 9:00:00
 author:     Nathana&euml;l Fijalkow
 category:   Reinforcement learning

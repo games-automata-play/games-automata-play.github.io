@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Reinforcement learning course, part 2, Monte Carlo approaches, temporal differences, and off-policy learning
+title:      Part 3, Monte Carlo approaches, temporal differences, and off-policy learning
 date:       2019-11-28 9:00:00
 author:     Nathana&euml;l Fijalkow
 category:   Reinforcement learning
