@@ -48,7 +48,7 @@ $$F_\ell = (1\qquad 0) \cdot \left( \begin{array}{cc} 1 & 1 \\ 1 & 0 \end{array}
 The two properties of LRS we rely on are:
 > **Theorem:**
 * The $\ell$-th term of an LRS of order $k$ can be computed in time $O(\log(\ell) \cdot k^3)$
-* Two LRS of order at most $k$ are equal if and only if they agree on the first $k$ terms
+* Two LRS of order at most $k$ are equal if and only if they agree on the first $2k$ terms
 
 These two properties are well known and best proved using an algebraic point of view.
 
