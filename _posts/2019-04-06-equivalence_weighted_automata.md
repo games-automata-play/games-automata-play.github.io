@@ -46,7 +46,8 @@ $$\A(a_1 \cdots a_n) = \alpha \cdot \underbrace{\Delta(a_1) \cdots \Delta(a_n)}_
 Probabilistic automata are a special case of weighted automata.
 
 > **Theorem:** (Schützenberger '61)
-The following problem can be solved in polynomial time: given two weighted automata $\A$ and $\B$, determine whether $\A = \B$, meaning for all words $w \in \Sigma^*$, we have $\A(w) = \B(w)$.
+The following problem can be solved in polynomial time: given two weighted automata $\A$ and $\B$ **over a field**, 
+determine whether $\A = \B$, meaning for all words $w \in \Sigma^*$, we have $\A(w) = \B(w)$.
 
 As evidence that this is an important theorem, it has been rediscovered a number of times. 
 The techniques described here are close to the original ones, which where about minimising weighted automata.
