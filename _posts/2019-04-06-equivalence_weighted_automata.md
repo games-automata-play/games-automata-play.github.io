@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      A polynomial time algorithm for the equivalence problem of weighted automata 
+title:      A polynomial time algorithm for the equivalence problem of weighted automata over a field
 date:       2019-04-06 9:00:00
 author:     Nathana&euml;l Fijalkow
 category:   
@@ -25,7 +25,14 @@ MathJax.Hub.Config({
 });
 </script>
 
-<p class="intro"><span class="dropcap">W</span>e present an algebraic algorithm solving the equivalence problem for weighted automata (in particular probabilistic automata) in polynomial time.</p>
+<p class="intro"><span class="dropcap">W</span>e present an algebraic algorithm solving the equivalence problem for weighted automata over a field (in particular probabilistic automata) in polynomial time.</p>
+
+#### Edits
+29/03/2020: Clarified the model to avoid a terminology clash
+
+We consider weighted automata over an arbitrary semiring. The key assmuption in this post is that the semiring is a field. For simplicity we will use the reals $$\R$$, but everything readily extends to any field.
+The algorithm does not extend to semirings which are not fields, for instance it is well known that for the semiring $$(\N,\min,+)$$, the equivalence problem is undecidable.
+
 
 A formal series (here over the reals) is a function $$\Sigma^* \to \R$$.
 For recognising formal series we use weighted automata: 
