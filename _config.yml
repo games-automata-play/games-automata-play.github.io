@@ -16,6 +16,8 @@ navigation:
    url: /index.html
  - title: Reinforcement learning
    url: /RL
+ - title: Statistical learning
+   url: /ML
  - title: By categories
    url: /category
  - title: About
