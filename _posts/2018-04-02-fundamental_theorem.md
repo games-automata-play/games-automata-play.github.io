@@ -38,44 +38,61 @@ This is a simple application of Markov's inequality: $$P(X \ge a) \le \frac{E[X]
 $$P(X \ge \frac{1}{8}) = 1 - P(X \le \frac{1}{8})
 = 1 - P(1 - X \ge \frac{7}{8})
 \ge 1 - \frac{E[1 - X]}{\frac{7}{8}}
-= 1 - \frac{8}{7} (1 - E[X])
+= 1 - \frac{8}{7} \left(1 - E[X] \right)
 = \frac{8}{7} E[X] - \frac{1}{7}
 \ge \frac{8}{7} \frac{1}{4} - \frac{1}{7}
 = \frac{1}{7}$$
 
 We write $U$ for the uniform distribution over $Y$.
 
-An algorithm is a function $A$ taking as input the labelled samples and outputting $$A(S,f) : Y \to \left\{0,1\right\}$$.
-We show that any algorithm fails on at least one function. To this end we draw a function uniformly at random,
-and show that on expectations the algorithm cannot do too well.
+An algorithm is a function $A$ taking as input the labelled samples $S_f$ and outputting $$A(S_f) : Y \to \left\{0,1\right\}$$.
+Let us say that the algorithm **fails** on $f$ if 
+
+$$P_{S \sim U^m} \left( L_{U,f}(A(S_f)) \ge \frac{1}{8} \right) \ge \frac{1}{7}$$.
+
+Thanks to the lemma above, it is enough to show that 
+
+$$E_{S \sim U^m} \left[ L_{U,f}(A(S_f)) \right] \right] \ge \frac{1}{4}$$.
+
+We show that any algorithm fails on at least one target function $f$.
+To this end we draw a function $f$ uniformly at random, and show that the expectation of failing is at least $\frac{1}{4}$,
+implying that there indeed exists a function $f$ on which the algorithm fails.
 
 > **Lemma:**
 In the following quantity, we draw a function $$f : Y \to \left\{0,1\right\}$$ uniformly at random.
-$$E_f \left[ E_{S \sim U^m} \left[ L_{U,f}(A(S,f)) \right] \right] \ge \frac{1}{4}$$.
+$$E_f \left[ E_{S \sim U^m} \left[ L_{U,f}(A(S_f)) \right] \right] \ge \frac{1}{4}$$.
 
 **Proof:**
-Recall that $$L_{U,f}(A(S,f))$$ is defined by
-$$E_{x \sim U} [L_f(A(S,f),x)]$$.
+Recall that $$L_{U,f}(A(S_f))$$ is defined by
+$$E_{x \sim U} [L_f(A(S_f),x)]$$.
 
-We lower bound it by 
+We write the following case distinction: either $x \in S$ or $x \notin S$.
 
-$$\underbrace{P_{x \sim U} (x \notin S)}_{\ge \frac{1}{2}} \cdot E_{x \sim U} \left[ A(S,f)(x) \neq f(x) \mid x \notin S \right]$$.
+$$E_{x \sim U} [L_f(A(S_f),x)]
+= P_{x \sim U} (x \notin S) \cdot E_{x \sim U} \left[ A(S_f)(x) \neq f(x) \mid x \notin S \right]
++ P_{x \sim U} (x \in S) \cdot E_{x \sim U} \left[ A(S_f)(x) \neq f(x) \mid x \in S \right]
+$$.
 
-We plug in the second term and remark that 
+Intuitively, in the case where $x \in S$ the algorithm should not err, it is reasonable to think that $A(S_f)(x) = f(x)$.
+However if $x \notin S$, then the algorithm can only guess the value of $f(x)$. Hence we focus on the first term, lower bounding the second by $0$:
 
-$$E_f \left[ E_{S \sim U^m} \left[ E_{x \sim U} \left[ A(S,f)(x) \neq f(x) \mid x \notin S \right] \right] \right] = \frac{1}{2}$$,
+$$E_{x \sim U} [L_f(A(S_f),x)]
+\ge P_{x \sim U} (x \notin S) \cdot E_{x \sim U} \left[ A(S_f)(x) \neq f(x) \mid x \notin S \right]
+$$.
 
-since for $x \notin S$ the value of $f(x)$ is either $1$ or $0$ each with probability $\frac{1}{2}$.
+We make two observations:
+* $P_{x \sim U} (x \notin S) \ge \frac{1}{2}$: indeed $U$ is the uniform distribution over $2m$ elements, and $S$ is an iid sample of $m$ elements, hence with probability at least half $x$ does not belong to the samples
+* $E_f \left[ E_{S \sim U^m} \left[ E_{x \sim U} \left[ A(S_f)(x) \neq f(x) \mid x \notin S \right] \right] \right] = \frac{1}{2}$$: 
+indeed for $x \notin S$ the value of $f(x)$ is either $1$ or $0$ each with probability $\frac{1}{2}$ since $f$ is drawn uniformly at random.
 
 This concludes the proof of this lemma.
-
 
 We now wrap up the proof of the no free lunch theorem.
 Fix an algorithm $A$.
 It follows from the second lemma that there exists a function $f$ such that 
-$$E_{S \sim U^m} \left[ L_{U,f}(A(S,f)) \right] \ge \frac{1}{4}$$.
+$$E_{S \sim U^m} \left[ L_{U,f}(A(S_f)) \right] \ge \frac{1}{4}$$.
 Thanks to the first lemma, we obtain
-$$P_{S \sim U^m} \left( L_{U,f}(A(S,f)) \ge \frac{1}{8} \right) \ge \frac{1}{7}$$.
+$$P_{S \sim U^m} \left( L_{U,f}(A(S_f)) \ge \frac{1}{8} \right) \ge \frac{1}{7}$$.
 
 ## Converse implication: finite VC dimension implies PAC-learnability
 
@@ -100,6 +117,11 @@ The proof of analytical and relies on Hoeffding's inequality.
 See [p39/40 of the Foundations of Machine Learning book](https://cs.nyu.edu/~mohri/mlbook) for a proof.
 
 
+Combining these two results yields
+
+$$R_H(m) = O( \sqrt{ \frac{\log(m)}{m} })$$
+
+In particular it goes to $0$ as $m$ goes to infinity.
 
 
 
@@ -136,19 +158,17 @@ This quantity is smaller than $$2 R_H(2m)$$, which concludes the proof of this l
 
 #### Proof wrap up
 
-We now combine this with Massart's Theorem (see the [previous post]({{ '/blog/VC' | prepend: site.baseurl }})),
-yielding 
-$$E_{S \sim D^m} \left[ |L_{D,f}(h) - L_{S,f}(h) | \right] \le 2 \sqrt{\frac{\log(\pi_H(2m))}{m}}$$.
-
 It follows using Markov's inequality that for $\delta > 0$,
-$$P_{S \sim D^m} \left( |L_{D,f}(h) - L_{S,f}(h) | \le \frac{2}{\delta} \sqrt{\frac{\log(\pi_H(2m))}{m}} \right) \le 1 - \delta$$.
 
-Thanks to Sauer's lemma, $\pi_H(2m)$ grows polynomially in $m$ (since $d$ is constant), so given $\varepsilon > 0$ and $\delta > 0$, one can choose $m$
-such that $$\frac{2}{\delta} \sqrt{\frac{\log(\pi_H(2m))}{m}} \le \varepsilon$$.
+$$P_{S \sim D^m} \left( |L_{D,f}(h) - L_{S,f}(h) | \le \frac{2}{\delta} R_H(2m) \right) \le 1 - \delta$$.
+
+Thanks to the discussion above (using Sauer's Lemma and Massart's Theorem) we know that $$R_H(2m)$$ converges to $0$ when $m$ goes to infinity.
+So there exists some $m$ (which depend on $\varepsilon$ and $\delta$) such that 
+
+$$P_{S \sim D^m} \left( |L_{D,f}(h) - L_{S,f}(h) | \le \varepsilon \right) \le 1 - \delta$$.
 
 An Empirical Risk Minimisation (ERM) algorithm is one that outputs an hypothesis exactly matching the training set, 
-i.e. such that $L_{S,f}(A(S,f)) = 0$.
-
+i.e. such that $L_{S,f}(A(S_f)) = 0$.
 Hence what we proved is that any ERM algorithm ensures 
 $$P_{S \sim D^m} \left( L_{D,f}(h) \le \varepsilon \right) \le 1 - \delta$$
 for $m$ chosen as above.
