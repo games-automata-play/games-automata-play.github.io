@@ -110,7 +110,7 @@ The following theorem relates the Rademacher complexity to the growth function:
 > **Massart's Theorem:**
 $$R_H(m) \le \sqrt{\frac{2 \log(\pi_H(m))}{m}}$$.
 
-The proof of analytical and relies on Hoeffding's inequality.
+The proof is analytical and relies on Hoeffding's inequality.
 See [p39/40 of the Foundations of Machine Learning book](https://cs.nyu.edu/~mohri/mlbook) for a proof.
 
 
