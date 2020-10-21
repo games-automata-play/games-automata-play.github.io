@@ -160,12 +160,12 @@ This quantity is smaller than $$2 R_H(2m)$$, which concludes the proof of this l
 
 It follows using Markov's inequality that for $\delta > 0$,
 
-$$P_{S \sim D^m} \left( |L_{D,f}(h) - L_{S,f}(h) | \le \frac{2}{\delta} R_H(2m) \right) \le 1 - \delta$$.
+$$P_{S \sim D^m} \left( L_{D,f}(h) - L_{S,f}(h) \le \frac{2}{\delta} R_H(2m) \right) \le 1 - \delta$$.
 
 Thanks to the discussion above (using Sauer's Lemma and Massart's Theorem) we know that $$R_H(2m)$$ converges to $0$ when $m$ goes to infinity.
 So there exists some $m$ (which depend on $\varepsilon$ and $\delta$) such that 
 
-$$P_{S \sim D^m} \left( |L_{D,f}(h) - L_{S,f}(h) | \le \varepsilon \right) \le 1 - \delta$$.
+$$P_{S \sim D^m} \left( L_{D,f}(h) - L_{S,f}(h) \le \varepsilon \right) \le 1 - \delta$$.
 
 An Empirical Risk Minimisation (ERM) algorithm is one that outputs an hypothesis exactly matching the training set, 
 i.e. such that $L_{S,f}(A(S_f)) = 0$.
