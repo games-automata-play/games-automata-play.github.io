@@ -79,7 +79,7 @@ $$.
 
 We make two observations:
 * $P_{x \sim U} (x \notin S) \ge \frac{1}{2}$: indeed $U$ is the uniform distribution over $2m$ elements, and $S$ is an iid sample of $m$ elements, hence with probability at least half $x$ does not belong to the samples
-* $E_f \left[ E_{S \sim U^m} \left[ E_{x \sim U} \left[ A(S_f)(x) \neq f(x) \mid x \notin S \right] \right] \right] = \frac{1}{2}$$: 
+* $E_f \left[ E_{S \sim U^m} \left[ E_{x \sim U} \left[ A(S_f)(x) \neq f(x) \mid x \notin S \right] \right] \right] = \frac{1}{2}$: 
 indeed for $x \notin S$ the value of $f(x)$ is either $1$ or $0$ each with probability $\frac{1}{2}$ since $f$ is drawn uniformly at random.
 
 This concludes the proof of this lemma.
