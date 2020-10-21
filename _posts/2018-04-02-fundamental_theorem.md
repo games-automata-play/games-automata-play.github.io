@@ -119,7 +119,7 @@ See [p39/40 of the Foundations of Machine Learning book](https://cs.nyu.edu/~moh
 
 Combining these two results yields
 
-$$R_H(m) = O( \sqrt{ \frac{\log(m)}{m} })$$
+$$R_H(m) = O\left( \sqrt{ \frac{\log(m)}{m} } \right)$$
 
 In particular it goes to $0$ as $m$ goes to infinity.
 
