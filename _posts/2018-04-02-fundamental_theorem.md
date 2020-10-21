@@ -21,18 +21,27 @@ We prove that if $H$ has infinite VC dimension, then it is not PAC-learnable, wh
 
 Fix $m$. Assume that $H$ has infinite VC dimension, in particular it has dimension at least $2m$, so there exists $Y$ of size $2m$ which is shattered by $H$.
 Recall that to be PAC-learnable, there must exist an algorithm working against any distributions of the inputs. 
-Here we will restrict ourselves with the uniform distribution over $Y$, so in particular we can only consider hypotheses $$h : Y \to \left\{0,1\right\}$$.
+Here we will restrict ourselves to the uniform distribution over $Y$, so in particular we can only consider hypotheses $$h : Y \to \left\{0,1\right\}$$.
 
 We will show the following: if we are given $m$ samples, then there is no way that with high probability an algorithm can correctly pick an almost correct function.
-More precisely, we show that any algorithm fails on a proportion at least $\frac{1}{8}$ of the inputs with probability at least $\frac{1}{7}$.
+The intuitive reason is that the correct function can be any function $$h : Y \to \left\{0,1\right\}$$ and $Y$ has size $2m$: using $m$ samples we only get (at most) half of the inputs.
 
+We show that for any algorithm there exists a target function for which the algorithm fails on a proportion at least $\frac{1}{8}$ of the inputs with probability at least $\frac{1}{7}$.
 These strange constants come from the following lemma.
 
 > **Lemma:**
 Let $X$ be a random variable taking values in $[0,1]$ such that $$E[X] \ge \frac{1}{4}$$.
 Then $$P(X \ge \frac{1}{8}) \ge \frac{1}{7}$$.
 
-This is a simple application of Markov's inequality: $$P(X \ge a) \le \frac{E[X]}{a}$$, with double complementation.
+This is a simple application of Markov's inequality: $$P(X \ge a) \le \frac{E[X]}{a}$$, with double complementation:
+
+$$P(X \ge \frac{1}{8}) = 1 - P(X \le \frac{1}{8})
+= 1 - P(1 - X \ge \frac{7}{8})
+\ge 1 - \frac{E[1 - X]}{\frac{7}{8}}
+= 1 - \frac{8}{7} (1 - E[X])
+= \frac{8}{7} E[X] - \frac{1}{7}
+\ge \frac{8}{7} \frac{1}{4} - \frac{1}{7}
+= \frac{1}{7}$$
 
 We write $U$ for the uniform distribution over $Y$.
 
@@ -81,6 +90,18 @@ $$\tau_H(m) \le \sum_{i = 0}^d \binom{m}{i} = O(m^d)$$.
 There are different proofs of Sauer's lemma, some of them are very beautiful.
 My favourite is [the second one in this lecture notes](https://www.cse.buffalo.edu/~hungngo/classes/2010/711/lectures/sauer.pdf).
 Note that it is a purely combinatorial statement.
+
+The following theorem relates the Rademacher complexity to the growth function:
+
+> **Massart's Theorem:**
+$$R_H(m) \le \sqrt{\frac{2 \log(\pi_H(m))}{m}}$$.
+
+The proof of analytical and relies on Hoeffding's inequality.
+See [p39/40 of the Foundations of Machine Learning book](https://cs.nyu.edu/~mohri/mlbook) for a proof.
+
+
+
+
 
 The main technical piece of work to be done is to obtain generalization bounds using Rademacher complexity.
 What is a generalization bound? It's an inequality relating the empirical loss, i.e. $L_{S,f}(h)$, and the actual loss, i.e. $L_{D,f}(h)$.
