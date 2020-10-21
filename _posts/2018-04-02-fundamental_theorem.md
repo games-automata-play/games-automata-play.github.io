@@ -68,12 +68,9 @@ $$E_{x \sim U} [L_f(A(S_f),x)]$$.
 
 We write the following case distinction: either $x \in S$ or $x \notin S$.
 
-$$E_{x \sim U} [L_f(A(S_f),x)]
-= P_{x \sim U} (x \notin S) \cdot E_{x \sim U} \left[ A(S_f)(x) \neq f(x) \mid x \notin S \right]
-+ P_{x \sim U} (x \in S) \cdot E_{x \sim U} \left[ A(S_f)(x) \neq f(x) \mid x \in S \right]
-$$.
+$$E_{x \sim U} [L_f(A(S_f),x)] = P_{x \sim U} (x \notin S) \cdot E_{x \sim U} \left[ A(S_f)(x) \neq f(x) \mid x \notin S \right] + P_{x \sim U} (x \in S) \cdot E_{x \sim U} \left[ A(S_f)(x) \neq f(x) \mid x \in S \right]$$.
 
-Intuitively, in the case where $x \in S$ the algorithm should not err, it is reasonable to think that $A(S_f)(x) = f(x)$.
+Intuitively, in the case where $x \in S$ the algorithm should not err, it is reasonable to think that $A(S_f)(x) = f(x)$, because the algorithm has access to the value $f(x)$ since $x \in S$.
 However if $x \notin S$, then the algorithm can only guess the value of $f(x)$. Hence we focus on the first term, lower bounding the second by $0$:
 
 $$E_{x \sim U} [L_f(A(S_f),x)]
