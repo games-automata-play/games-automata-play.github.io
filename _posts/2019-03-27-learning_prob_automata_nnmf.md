@@ -3,10 +3,7 @@ layout:     post
 title:      Weighted automata and matrix factorisations
 date:       2019-03-26 9:00:00
 author:     Nathana&euml;l Fijalkow
-category: 
-- Weighted automata
-- Learning theory
-- Research
+category:   Learning theory
 ---
 
 <script type="text/x-mathjax-config">

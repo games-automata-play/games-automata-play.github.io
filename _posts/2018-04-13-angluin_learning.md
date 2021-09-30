@@ -3,10 +3,7 @@ layout:     post
 title:      Angluin's style learning for weighted automata 
 date:       2018-04-13 9:00:00
 author:     Nathana&euml;l Fijalkow
-category:   
-- Weighted automata
-- Learning theory
-- Research
+category:   Learning theory
 ---
 
 <script type="text/x-mathjax-config">
