@@ -84,20 +84,11 @@ Autour des années 1970 - 1980, deux approches logiques différentes ont émerg�
 d'un côté la synthèse déductive, issue des travaux de Manna et Waldinger (et inspirée de ceux de Burstall et Darrington), et de l'autre la synthèse inductive, dont on peut trouver les origines dans les travaux de Winston.
 L'induction est la construction de règles générales à partir d'exemples spécifiques. 
 A l'inverse, la déduction est l'application de règles générales pour dériver des conclusions à partir d'exemples.
-Ces deux manières de penser ont servi de fondements théoriques pour de nombreuses expérimentations autour de la synthèse de programme.
-
-Par exemple, le logiciel [Pygmalion](https://apps.dtic.mil/sti/citations/ADA016811) a été developpé en 1975 en se basant sur des principes de raisonnements inductifs.
-L'objectif était de programmer à partir d'exemples, en remplaçant les concepts habituels de la programmation (variables, structures de données) par des visualisations interactives.
-Pygmalion est un ancêtre des langages graphiques, qui ont donné lieu aux interfaces graphiques que nous utilisons quotidiennement pour interagir avec des machines.
-La figure ci-dessous (crédit : Pygmalion) représente l'exécution d'un programme calculant la factorielle de 6. L'utilisateur décrit les opérations nécessaires et décrit l'exécution du programme sur un ou plusieurs exemples afin de synthétiser le programme.
-
-<p align="center">
-<img src="/images/Pygmalion.png" alt="Présentation de Pygmalion, crédit Pygmalion" width="400"/>
-</p>
+Ces deux manières de penser ont servi de fondements théoriques pour la synthèse de programme.
 
 ## La synthèse de programme au 21ème siècle
 
-Pour mieux comprendre l'état de la recherche actuelle, dressons un rapide panorama des techniques utilisées, à travers deux aspects : le choix du langage, et l'algorithme de recherche.
+Pour mieux comprendre l'état de la recherche actuelle, dressons un rapide panorama des techniques utilisées, à travers trois aspects : le choix du langage, la spécification, et l'algorithme de recherche.
 
 ### Le choix du langage
 
@@ -138,6 +129,41 @@ Pour cette raison, les représentations formelles décrites ci-dessus sont diffi
 De fait, l'outil Copilot, dont l'objectif est de générer du code dans des langages génériques tels que Python, considère un programme simplement comme un bloc de texte, ignorant sa structure.
 En effet, Codex, le logiciel derrière Copilot et développé par OpenAI, est issu du modèle GPT3 dont l'objectif initial est de faire du traitement de langues naturelles, et en particulier de la traduction.
 Ce n'est que récemment qu'OpenAI a exploré l'idée d'utiliser les architectures de réseaux de neurones manipulant des langues naturelles (français, anglais,...) pour d'autres langues, à savoir les langages de programmation !
+
+### La spécification
+
+Une fois le choix du langage effectué, se pose celui de la spécification : comment l'utilisateur peut-il décrire le programme ? 
+
+<p align="center">
+<a href="https://www.commitstrip.com/fr/2016/08/25/a-very-comprehensive-and-precise-spec/?"><img src="/images/Strip-Les-specs-cest-du-code-650-final.jpg" alt="Qu'est-ce qu'une spécification, crédit CommitStrip" width="400"/></a>
+</p>
+
+L'image ci-dessous (crédit : CommitStrip) illustre bien la difficulté : la spécification doit être à la fois complète et précise, tout en étant facile à formuler par l'utilisateur.
+La situation n'est pas aussi désespérée : dans de nombreuses applications des spécifications incomplètes sont souvent suffisantes.
+
+Plusieurs types de spécifications ont été étudiées :
+* La plus simple, et peut-être la plus naturelle, est de donner quelques exemples. Si le programme doit réaliser une fonction, à savoir calculer quelque chose sur une entrée, alors une poignée de paires entrées / sorties permet souvent de décrire un programme de manière assez précise. Ce cadre est appelé Programmation par l'exemple ("programming by example" en anglais), et a été popularisé par FlashFill (décrit ci-dessus).
+* Un raffinement de la programmation par l'exemple est la programmation par la démonstration : ici il s'agit de décrire l'exécution du programmes sur une poignée d'exemples. 
+Prenons un exemple concret : si l'on veut décrire la fonction factorielle, on peut soit donner quelques exemples : 3! = 6 et 4! = 24, mais on peut être plus précis et décrire le calcul qui a amené à ce résultat,
+ici 3! = 3 * 2 et 4! = 4 * 3 * 2.
+* Si l'on souhaite donner une spécification complète et précise, mais pas opérationnelle, on utilise des formalismes logiques. Considérons l'exemple du programme qui trie une liste d'entiers par ordre croissant, par exemple SORT([4,2,5,1]) = [1,2,4,5].
+Sa spécification logique pourrait s'écrire comme suit, en notant l1 la liste en entrée et l2 la liste en sortie :
+	* la liste l2 est une permutation de la liste l1 : pour tout i, il existe j tel que l2[i] = l1[j],
+	et pour tout i, il existe j tel que l1[i] = l2[j],
+	* la liste en sortie est triée, à savoir pour i < j, on a l[i] < l[j].
+Comme on le voit sur cet exemple, la spécification logique, bien que complète et précise, ne donne pas directement l'algorithme : elle décrit seulement ce qu'il doit faire.
+De fait, il y a encore beaucoup de travail à réaliser pour passer de la spécification à l'algorithme !
+* Une autre possibilité est de décrire le programme en langue naturelle : c'est ce que fait Copilot.
+Dans l'exemple donné tout au début de cet article, ce que le programme doit faire en décrit en anglais.
+L'avantage est indéniablement que c'est la manière la plus facile pour l'utilisateur de donner une spécification. Mais ce type de spécification peut être très imprécis !
+* De nombreuses approches de spécifications graphiques ont été développées. 
+Par exemple, le logiciel [Pygmalion](https://apps.dtic.mil/sti/citations/ADA016811) a été écrit en 1975 avec pour objectif de programmer à partir d'exemples, en remplaçant les concepts habituels de la programmation (variables, structures de données) par des visualisations interactives.
+Pygmalion est un ancêtre des langages graphiques, qui ont donné lieu aux interfaces graphiques que nous utilisons quotidiennement pour interagir avec des machines.
+La figure ci-dessous (crédit : Pygmalion) représente l'exécution d'un programme calculant la factorielle de 6. L'utilisateur décrit les opérations nécessaires et décrit l'exécution du programme sur un ou plusieurs exemples afin de synthétiser le programme.
+
+<p align="center">
+<img src="/images/Pygmalion.png" alt="Présentation de Pygmalion, crédit Pygmalion" width="400"/>
+</p>
 
 ### L'algorithme de recherche
 
