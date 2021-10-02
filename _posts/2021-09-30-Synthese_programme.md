@@ -116,7 +116,7 @@ et des variables l1 et l2, qui sont les entrées du programme.
 Le même programme est représenté par un arbre (à gauche) et de manière plus classique par une suite de primitives (à droite).
 
 <p align="center">
-<img src="/images/tree_string.png" alt="Un programme représenté par un arbre (à gauche) ou par une suite de primitives (à droite)" width="400"/>
+<img src="/images/tree_string.png" alt="Un programme représenté par un arbre (à gauche) ou par une suite de primitives (à droite)" width="70%"/>
 </p>
 
 Ainsi en construisant un DSL (langage de programmation) réduit à son minimum et utilisant une syntaxe épurée, on obtient un précieux levier algorithmique permettant de raisonner sur les programmes, mettant à profit des dizaines d'années de recherche sur les langages de programmation et les langages formels (ici, grammaires hors-contexte).
@@ -135,24 +135,27 @@ Ce n'est que récemment qu'OpenAI a exploré l'idée d'utiliser les architecture
 Une fois le choix du langage effectué, se pose celui de la spécification : comment l'utilisateur peut-il décrire le programme ? 
 
 <p align="center">
-<a href="https://www.commitstrip.com/fr/2016/08/25/a-very-comprehensive-and-precise-spec/?"><img src="/images/Strip-Les-specs-cest-du-code-650-final.jpg" alt="Qu'est-ce qu'une spécification, crédit CommitStrip" width="400"/></a>
+<a href="https://www.commitstrip.com/fr/2016/08/25/a-very-comprehensive-and-precise-spec/?"><img src="/images/Strip-Les-specs-cest-du-code-650-final.jpg" alt="Qu'est-ce qu'une spécification, crédit CommitStrip" width="70%"/></a>
 </p>
 
 L'image ci-dessous (crédit : CommitStrip) illustre bien la difficulté : la spécification doit être à la fois complète et précise, tout en étant facile à formuler par l'utilisateur.
 La situation n'est pas aussi désespérée : dans de nombreuses applications des spécifications incomplètes sont souvent suffisantes.
 
 Plusieurs types de spécifications ont été étudiées :
-* La plus simple, et peut-être la plus naturelle, est de donner quelques exemples. Si le programme doit réaliser une fonction, à savoir calculer quelque chose sur une entrée, alors une poignée de paires entrées / sorties permet souvent de décrire un programme de manière assez précise. Ce cadre est appelé Programmation par l'exemple ("programming by example" en anglais), et a été popularisé par FlashFill (décrit ci-dessus).
-* Un raffinement de la programmation par l'exemple est la programmation par la démonstration : ici il s'agit de décrire l'exécution du programmes sur une poignée d'exemples. 
+* La plus simple est de donner quelques exemples. Si le programme doit réaliser une fonction, à savoir calculer quelque chose sur une entrée, alors une poignée de paires entrées / sorties permet souvent de décrire un programme de manière assez précise. Ce cadre est appelé Programmation par l'exemple ("programming by example" en anglais), et a été popularisé par FlashFill (décrit ci-dessus).
+Bien que très naturel, ce type de spécification est très incomplet : il peut exister beaucoup de programmes respectant les quelques exemples donnés, mais qui ne font pas du tout ce que l'utilisateur avait en tête !
+* Un raffinement de la programmation par l'exemple est la programmation par la démonstration : ici il s'agit de décrire l'exécution du programme sur une poignée d'exemples. 
 Prenons un exemple concret : si l'on veut décrire la fonction factorielle, on peut soit donner quelques exemples : 3! = 6 et 4! = 24, mais on peut être plus précis et décrire le calcul qui a amené à ce résultat,
 ici 3! = 3 * 2 et 4! = 4 * 3 * 2.
-* Si l'on souhaite donner une spécification complète et précise, mais pas opérationnelle, on utilise des formalismes logiques. Considérons l'exemple du programme qui trie une liste d'entiers par ordre croissant, par exemple SORT([4,2,5,1]) = [1,2,4,5].
+On voit que c'est plus précis, et donc plus facile de synthétiser un programme à partir d'une telle démonstration. Par le même mouvement, c'est plus compliqué pour un utilisateur à décrire !
+* Si l'on souhaite donner une spécification complète et précise, mais pas opérationnelle, on utilise des formalismes logiques. Considérons l'exemple du programme qui trie une liste d'entiers par ordre croissant, par exemple sur la liste d'entrée [4,2,5,1], le programme retourne [1,2,4,5].
 Sa spécification logique pourrait s'écrire comme suit, en notant l1 la liste en entrée et l2 la liste en sortie :
 	* la liste l2 est une permutation de la liste l1 : pour tout i, il existe j tel que l2[i] = l1[j],
 	et pour tout i, il existe j tel que l1[i] = l2[j],
 	* la liste en sortie est triée, à savoir pour i < j, on a l[i] < l[j].
+
 Comme on le voit sur cet exemple, la spécification logique, bien que complète et précise, ne donne pas directement l'algorithme : elle décrit seulement ce qu'il doit faire.
-De fait, il y a encore beaucoup de travail à réaliser pour passer de la spécification à l'algorithme !
+De fait, il y a encore beaucoup de travail pour passer de la spécification à l'algorithme !
 * Une autre possibilité est de décrire le programme en langue naturelle : c'est ce que fait Copilot.
 Dans l'exemple donné tout au début de cet article, ce que le programme doit faire en décrit en anglais.
 L'avantage est indéniablement que c'est la manière la plus facile pour l'utilisateur de donner une spécification. Mais ce type de spécification peut être très imprécis !
