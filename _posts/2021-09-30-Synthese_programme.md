@@ -138,7 +138,7 @@ Une fois le choix du langage effectué, se pose celui de la spécification : com
 <a href="https://www.commitstrip.com/fr/2016/08/25/a-very-comprehensive-and-precise-spec/?"><img src="/images/Strip-Les-specs-cest-du-code-650-final.jpg" alt="Qu'est-ce qu'une spécification, crédit CommitStrip" width="70%"/></a>
 </p>
 
-L'image ci-dessous (crédit : CommitStrip) illustre bien la difficulté : la spécification doit être à la fois complète et précise, tout en étant facile à formuler par l'utilisateur.
+L'image ci-dessus (crédit : CommitStrip) illustre bien la difficulté : la spécification doit être à la fois complète et précise, tout en étant facile à formuler par l'utilisateur.
 La situation n'est pas aussi désespérée : dans de nombreuses applications des spécifications incomplètes sont souvent suffisantes.
 
 Plusieurs types de spécifications ont été étudiées :
@@ -152,7 +152,7 @@ On voit que c'est plus précis, et donc plus facile de synthétiser un programme
 Sa spécification logique pourrait s'écrire comme suit, en notant l1 la liste en entrée et l2 la liste en sortie :
 	* la liste l2 est une permutation de la liste l1 : pour tout i, il existe j tel que l2[i] = l1[j],
 	et pour tout i, il existe j tel que l1[i] = l2[j],
-	* la liste en sortie est triée, à savoir pour i < j, on a l[i] < l[j].
+	* la liste en sortie est triée : pour tout i < j, on a l[i] < l[j].
 
 Comme on le voit sur cet exemple, la spécification logique, bien que complète et précise, ne donne pas directement l'algorithme : elle décrit seulement ce qu'il doit faire.
 De fait, il y a encore beaucoup de travail pour passer de la spécification à l'algorithme !

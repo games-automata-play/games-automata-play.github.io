@@ -61,7 +61,7 @@ We define the following sequence of sets in $\R^Q$:
 $$
 \begin{array}{lll}
   u \in X_0 & \Longleftrightarrow & \alpha \cdot u = 0 \\
-  u \in X_{k+1} & \Longleftrightarrow & u \in X_k \text{ and for all } a \in \Sigma,\ u \cdot \Delta(a) \in X_k.
+  u \in X_{k+1} & \Longleftrightarrow & u \in X_k \text{ and for all } a \in \Sigma,\ \Delta(a) \cdot u \in X_k.
 \end{array}
 $$
 
