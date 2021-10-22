@@ -80,19 +80,19 @@ The final step is to check whether $\eta$ belongs to $X$.
 
 The core of the algorithm relies on polynomially calls (specifically, at most $Q$) to the following task: 
 given a matrix $M$ in $\R^{Q \times Q}$ and a basis for a vector space $V$, 
-compute a basis for the vector space $\set{u \mid u \cdot M \in V}$,
+compute a basis for the vector space $\set{u \mid M \cdot u \in V}$,
 which can be performed in polynomial time.
 
 Indeed, let $M$ be the matrix with $\Sigma + 1$ blocks each of dimension $Q \times Q$:
 the first one is the identity, and for each $a \in A$ a block equal to $\Delta(a)$.
 By construction 
-$X_{k+1} = \set{u : u \cdot M \in X_k^{1 + \Sigma}}$.
+$X_{k+1} = \set{u : M \cdot u \in X_k^{1 + \Sigma}}$.
 
 We proceed to the proof of the proposition. The first two items are easy to see, so we focus on the remaining three.
 
-* This is a symbolic argument, better understood using the remark that $X_{k+1} = \set{u \mid u \cdot M \in X_k^p}$, for some matrix $M$ and some $p$ in $\N$.
+* This is a symbolic argument, better understood using the remark that $X_{k+1} = \set{u \mid M \cdot u \in X_k^p}$, for some matrix $M$ and some $p$ in $\N$.
 Assume that $X_{k+1} = X_k$. We already know that $X_{k+1} \supseteq X_{k+2}$, so we prove the converse implication.
-Let $u$ in $X_{k+1}$, since $X_{k+1} = X_k$ we have that $u$ is in $X_k$, so by definition $u \cdot M$ is in $X_{k+1}^p$, which means that $u$ is in $X_{k+2}$.
+Let $u$ in $X_{k+1}$, since $X_{k+1} = X_k$ we have that $u$ is in $X_k$, so by definition $M \cdot u$ is in $X_{k+1}^p$, which means that $u$ is in $X_{k+2}$.
 * This is a dimension argument: the sequence $(\text{dim}(X_k))_{k \in \N}$ is non-increasing, takes values in $[0,Q-1]$, and stabilises as soon as it hits twice the same value.
 Note that we **do** need the property above saying that once the same value is hit twice then the sequence stabilises. 
 There is a special place in hell for people who forget to state (and prove) that property.
