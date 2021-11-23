@@ -30,8 +30,10 @@ C'est tellement intuitif et simple d'utilisation que le concept a été repris p
 
 * La modélisation est l'étape consistant à abstraire un système réel (un pendule, un serveur, une colonie de fourmis) en un modèle mathématique.
 Au cours de la modélisation, on distingue deux aspects : la structure du modèle, qui décrit la dépendance entre les différentes composantes du système, et ses paramètres numériques. Les méthodes d'apprentissage automatique supposent une structure donnée et infèrent les paramètres. Par exemple, le problème de la régression linéaire suppose qu'il existe une droite (c'est la structure) correspondant à un échantillon de points dans le plan, et cherchent les paramètres de cette droite, à savoir pente et ordonnée à l'origine. 
-La synthèse de programme permet d'apprendre la structure du modèle sous la forme d'un programme probabiliste, généralisant de nombreux modèles utilisés en apprentissage automatique.
+La synthèse de programme permet d'apprendre la structure d'un modèle mathématique sous la forme d'un programme probabiliste, généralisant de nombreux modèles utilisés en apprentissage automatique.
 L'outil académique [PSketch](https://dx.doi.org/10.1145/2737924.2737982) montre la portée de cette approche : à partir d'échantillons numériques d'un système réel, il produit une structure de modèle représentant au mieux les dépendances observées du système. 
+Prenons l'exemple de prédictions aux échecs : étant donné le classement [ELO](https://fr.wikipedia.org/wiki/Classement_Elo) de deux joueurs, comment prédire le résultat d'un match entre ces deux joueurs ? Notons $R_A$ et $R_B$ les deux valeurs reflétant le niveau des joueurs, le système ELO prédit que le joueur A gagne avec probabilité $$\frac{10^{R_A / 400}}{10^{R_A / 400} + 10^{R_B / 400}}$$. Quelle étrange formule ! Grâce à la synthèse de programmes, on peut déterminer par exemple que la formule $$\frac{10^{C * R_A}}{10^{C * R_A} + 10^{C * R_B}}$$ permet de prédire correctement de nombreux matches passés, pour une constante $C$. 
+Il reste ensuite à déterminer la constante $C$, grâce à des techniques d'apprentissage automatique.
 
 * Les environnements de développement (EDI, ou IDE en anglais pour "integrated development environment") sont des ensembles d'outils facilitant la production de code. Il existe plusieurs applications de la synthèse de programme dans ce sens : la "super-optimisation" de code, qui permet de remplacer un code par un autre plus efficace, ou la réparation de code, qui modifie un code existant pour en enlever des bugs potentiels. En 2021 OpenAI a annoncé la sortie d'un outil allant encore plus loin : [Copilot](https://copilot.github.com/) est présenté comme un compagnon de programmation capable d'écrire lui-même une partie du code.
 Copilot peut lire des spécifications en langue naturelle et en proposer une implémentation, comme illustré ci-dessous (crédit : Copilot) : la spécification est donnée par l'utilisateur en vert sous la forme d'une DOCSTRING, et Copilot propose l'implémentation qui suit.
@@ -125,7 +127,7 @@ La trame peut contenir des omissions de différentes natures : des constantes à
 L'argument est le suivant : bien qu'il soit compliqué d'écrire le programme tout entier, il est en général facile d'en décrire la structure, et cela peut grandement faciliter la synthèse de programme en restreignant considérablement l'ensemble des programmes potentiels.
 
 La syntaxe de langages de programmation courants et génériques tels que Python est très complexe, puisqu'elle doit être suffisamment flexible pour être utilisable par le programmeur quelle que soit la tâche.
-Pour cette raison, les représentations formelles décrites ci-dessus sont difficiles à mettre en oeuvre.
+Pour cette raison, les représentations formelles décrites ci-dessus sont difficiles à mettre en pratique.
 De fait, l'outil Copilot, dont l'objectif est de générer du code dans des langages génériques tels que Python, considère un programme simplement comme un bloc de texte, ignorant sa structure.
 En effet, Codex, le logiciel derrière Copilot et développé par OpenAI, est issu du modèle GPT3 dont l'objectif initial est de faire du traitement de langues naturelles, et en particulier de la traduction.
 Ce n'est que récemment qu'OpenAI a exploré l'idée d'utiliser les architectures de réseaux de neurones manipulant des langues naturelles (français, anglais,...) pour d'autres langues, à savoir les langages de programmation !
@@ -170,7 +172,7 @@ La figure ci-dessous (crédit : Pygmalion) représente l'exécution d'un program
 
 ### L'algorithme de recherche
 
-Le coeur algorithmique de la synthèse de programme est un problème de recherche : étant donné un ensemble de programmes, comment trouver dans cet ensemble un programme satisfaisant notre spécification ?
+Le défi algorithmique de la synthèse de programme est un problème de recherche : étant donné un ensemble de programmes, comment trouver dans cet ensemble un programme satisfaisant notre spécification ?
 Nous présentons ici les trois approches les plus importantes.
 
 #### Énumération
