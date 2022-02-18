@@ -24,15 +24,15 @@ Commençons par une petite sélection non-exhaustive de succès récents :
 * Les logiciels d'éditions de tableurs, dont Microsoft Excel ou LibreOffice Calc, permettent d'effectuer des tâches avancées de traitement de données par l'écriture de macros. Une macro est un court programme, par exemple une suite d'instructions tenant sur une ligne, écrit dans un langage de programmation spécifique. Peu d'utilisateurs maîtrisent ces langages de macros, et l'abondance de questions très basiques sur les forums dédiés atteste de la difficulté pour l'utilisateur lambda d'écrire des macros.
 Le logiciel [FlashFill](https://support.microsoft.com/fr-fr/office/utilisation-du-remplissage-instantan%C3%A9-dans-excel-3f9bcf1e-db93-4890-94a0-1578341f73f7 "FlashFill") a été développé par Microsoft Research, et intégré à Microsoft Excel depuis sa version 2013.
 Il automatise la conception de macros : il suffit de donner un ou plusieurs exemples et de demander à FlashFill de trouver, ou plutôt synthétiser, la macro correspondante. 
-C'est tellement intuitif et simple d'utilisation que le concept a été repris par Google en 2020 : [SmartFill](https://workspaceupdates.googleblog.com/2020/10/smart-fill-google-sheets-automate-data-entry.html) est l'équivalent de Flashfill dans Google Sheets, comme illustré dans la figure animée ci-dessous (crédit : Google).
+C'est tellement intuitif et simple d'utilisation que le concept a été repris par Google en 2020 : [SmartFill](https://workspaceupdates.googleblog.com/2020/10/smart-fill-google-sheets-automate-data-entry.html) est l'équivalent de Flashfill dans Google Sheets, comme illustré dans la figure animée ci-dessous.
 <figure>
     <img src="{{ '/images/smartfill-in-sheets.gif' | prepend: site.baseurl }}" alt=""> 
-    <figcaption>Présentation de SmartFill</figcaption>
+    <figcaption>Présentation de SmartFill, crédit : Google</figcaption>
 </figure>
 
 * La modélisation est l'étape consistant à abstraire un système réel (un pendule, un serveur, une colonie de fourmis) en un modèle mathématique.
 Au cours de la modélisation, on distingue deux aspects : la structure du modèle, qui décrit la dépendance entre les différentes composantes du système, et ses paramètres numériques. Les méthodes d'apprentissage automatique supposent une structure donnée et cherchent les paramètres. Par exemple, le problème de la régression linéaire suppose qu'il existe une droite (c'est la structure) correspondant à un échantillon de points dans le plan, et cherchent les paramètres de cette droite, à savoir pente et ordonnée à l'origine. 
-L'illustration ci-dessous montre le processus d'apprentissage du modèle (une droite) sur les données (crédit : TowardsDataScience).
+L'illustration ci-dessous montre le processus d'apprentissage du modèle (une droite) sur les données.
 La synthèse de programme permet d'apprendre la structure d'un modèle mathématique sous la forme d'un programme, généralisant de nombreux modèles utilisés en apprentissage automatique.
 <figure>
     <img src="{{ '/images/linear_regression.gif' | prepend: site.baseurl }}" alt=""> 
@@ -42,10 +42,10 @@ Prenons un exemple de modélisation, la prédictions aux échecs : étant donné
 D'où vient cette formule ? Elle est issue d'un modèle mathématique, qui peut être plus ou moins fidèle à la réalité. La synthèse de programmes permet de générer une telle formule directement à partir des statistiques existantes, c'est ce que fait par exemple l'outil académique [PSketch](https://dx.doi.org/10.1145/2737924.2737982) : à partir d'échantillons numériques du système, il produit une formule représentant au mieux les observations. 
 
 * Les environnements de développement (EDI, ou IDE en anglais pour "integrated development environment") sont des ensembles d'outils facilitant la production de code. Il existe plusieurs applications de la synthèse de programme dans ce sens : la "super-optimisation" de code, qui permet de remplacer un code par un autre plus efficace, ou la réparation de code, qui modifie un code existant pour en enlever des bugs potentiels. En 2021 OpenAI a annoncé la sortie d'un outil allant encore plus loin : [Copilot](https://copilot.github.com/) est présenté comme un compagnon de programmation capable d'écrire lui-même une partie du code.
-Copilot peut lire des spécifications en langue naturelle et en proposer une implémentation, comme illustré ci-dessous (crédit : Copilot) : la spécification est donnée par l'utilisateur en vert sous la forme d'un commentaire en anglais (DOCSTRING), et Copilot propose l'implémentation qui suit.
+Copilot peut lire des spécifications en langue naturelle et en proposer une implémentation, comme illustré ci-dessous : la spécification est donnée par l'utilisateur en vert sous la forme d'un commentaire en anglais (DOCSTRING), et Copilot propose l'implémentation qui suit.
 <figure>
     <img src="{{ '/images/copilot.png' | prepend: site.baseurl }}" alt=""> 
-    <figcaption>Présentation de Copilot par Github, crédit Github</figcaption>
+    <figcaption>Présentation de Copilot par Github, crédit Github Copilot</figcaption>
 </figure>
 
 Cette courte liste d'applications récentes de la synthèse de programme est loin d'être exhaustive : ce [survol](https://www.nowpublishers.com/article/Details/PGL-010) récent décrit d'autres applications. 
@@ -156,7 +156,7 @@ Une fois le choix du langage effectué, se pose celui de la spécification : com
     <figcaption>Qu'est-ce qu'une spécification, crédit CommitStrip</figcaption>
 </figure>
 
-L'image ci-dessus (crédit : CommitStrip) illustre bien la difficulté : la spécification doit être à la fois complète et précise, tout en étant facile à formuler par l'utilisateur.
+L'image ci-dessus illustre bien la difficulté : la spécification doit être à la fois complète et précise, tout en étant facile à formuler par l'utilisateur.
 La situation n'est pas aussi désespérée : dans de nombreuses applications des spécifications incomplètes sont souvent suffisantes.
 
 Plusieurs types de spécifications ont été étudiées :
@@ -180,7 +180,7 @@ L'avantage est indéniablement que c'est la manière la plus facile pour l'utili
 * De nombreuses approches de spécifications graphiques ont été développées. 
 Par exemple, le logiciel [Pygmalion](https://apps.dtic.mil/sti/citations/ADA016811) a été écrit en 1975 avec pour objectif de programmer à partir d'exemples, en remplaçant les concepts habituels de la programmation (variables, structures de données) par des visualisations interactives.
 Pygmalion est un ancêtre des langages graphiques, qui ont donné lieu aux interfaces graphiques que nous utilisons quotidiennement pour interagir avec des machines.
-La figure ci-dessous (crédit : Pygmalion) représente l'exécution d'un programme calculant la factorielle de 6. L'utilisateur décrit les opérations nécessaires et décrit l'exécution du programme sur un ou plusieurs exemples afin de synthétiser le programme.
+La figure ci-dessous représente l'exécution d'un programme calculant la factorielle de 6. L'utilisateur décrit les opérations nécessaires et décrit l'exécution du programme sur un ou plusieurs exemples afin de synthétiser le programme.
 
 <figure>
     <img src="{{ '/images/Pygmalion.png' | prepend: site.baseurl }}" alt="" width="70%"> 
