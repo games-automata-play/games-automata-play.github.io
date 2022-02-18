@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      L'avènement de la synthèse de programme
-date:       2022-02-18 9:00:00
+date:       2022-01-18 9:00:00
 author:     Nathana&euml;l Fijalkow
 category:   
 - Research
