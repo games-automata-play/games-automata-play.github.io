@@ -25,20 +25,28 @@ Commençons par une petite sélection non-exhaustive de succès récents :
 Le logiciel [FlashFill](https://support.microsoft.com/fr-fr/office/utilisation-du-remplissage-instantan%C3%A9-dans-excel-3f9bcf1e-db93-4890-94a0-1578341f73f7 "FlashFill") a été développé par Microsoft Research, et intégré à Microsoft Excel depuis sa version 2013.
 Il automatise la conception de macros : il suffit de donner un ou plusieurs exemples et de demander à FlashFill de trouver, ou plutôt synthétiser, la macro correspondante. 
 C'est tellement intuitif et simple d'utilisation que le concept a été repris par Google en 2020 : [SmartFill](https://workspaceupdates.googleblog.com/2020/10/smart-fill-google-sheets-automate-data-entry.html) est l'équivalent de Flashfill dans Google Sheets, comme illustré dans la figure animée ci-dessous (crédit : Google).
-![Présentation de SmartFill](images/smartfill-in-sheets.gif)
+<figure>
+    <img src="{{ '/images/smartfill-in-sheets.gif' | prepend: site.baseurl }}" alt=""> 
+    <figcaption>Présentation de SmartFill</figcaption>
+</figure>
 
 * La modélisation est l'étape consistant à abstraire un système réel (un pendule, un serveur, une colonie de fourmis) en un modèle mathématique.
 Au cours de la modélisation, on distingue deux aspects : la structure du modèle, qui décrit la dépendance entre les différentes composantes du système, et ses paramètres numériques. Les méthodes d'apprentissage automatique supposent une structure donnée et cherchent les paramètres. Par exemple, le problème de la régression linéaire suppose qu'il existe une droite (c'est la structure) correspondant à un échantillon de points dans le plan, et cherchent les paramètres de cette droite, à savoir pente et ordonnée à l'origine. 
 L'illustration ci-dessous montre le processus d'apprentissage du modèle (une droite) sur les données (crédit : TowardsDataScience).
 La synthèse de programme permet d'apprendre la structure d'un modèle mathématique sous la forme d'un programme, généralisant de nombreux modèles utilisés en apprentissage automatique.
-![Illustration de régression linéaire, crédit TowardsDataScience](images/linear_regression.gif)
+<figure>
+    <img src="{{ '/images/linear_regression.gif' | prepend: site.baseurl }}" alt=""> 
+    <figcaption>Illustration de régression linéaire, crédit TowardsDataScience</figcaption>
+</figure>
 Prenons un exemple de modélisation, la prédictions aux échecs : étant donné le classement [ELO](https://fr.wikipedia.org/wiki/Classement_Elo) de deux joueurs, comment prédire le résultat d'un match entre ces deux joueurs $A$ et $B$? Notons $R_A$ et $R_B$ les deux valeurs reflétant le niveau des joueurs, le système ELO prédit que le joueur A gagne avec probabilité $$\frac{10^{R_A / 400}}{10^{R_A / 400} + 10^{R_B / 400}}$$. 
 D'où vient cette formule ? Elle est issue d'un modèle mathématique, qui peut être plus ou moins fidèle à la réalité. La synthèse de programmes permet de générer une telle formule directement à partir des statistiques existantes, c'est ce que fait par exemple l'outil académique [PSketch](https://dx.doi.org/10.1145/2737924.2737982) : à partir d'échantillons numériques du système, il produit une formule représentant au mieux les observations. 
 
 * Les environnements de développement (EDI, ou IDE en anglais pour "integrated development environment") sont des ensembles d'outils facilitant la production de code. Il existe plusieurs applications de la synthèse de programme dans ce sens : la "super-optimisation" de code, qui permet de remplacer un code par un autre plus efficace, ou la réparation de code, qui modifie un code existant pour en enlever des bugs potentiels. En 2021 OpenAI a annoncé la sortie d'un outil allant encore plus loin : [Copilot](https://copilot.github.com/) est présenté comme un compagnon de programmation capable d'écrire lui-même une partie du code.
 Copilot peut lire des spécifications en langue naturelle et en proposer une implémentation, comme illustré ci-dessous (crédit : Copilot) : la spécification est donnée par l'utilisateur en vert sous la forme d'un commentaire en anglais (DOCSTRING), et Copilot propose l'implémentation qui suit.
-
-![Présentation de Copilot par Github, crédit Github](images/copilot.png)
+<figure>
+    <img src="{{ '/images/copilot.png' | prepend: site.baseurl }}" alt=""> 
+    <figcaption>Présentation de Copilot par Github, crédit Github</figcaption>
+</figure>
 
 Cette courte liste d'applications récentes de la synthèse de programme est loin d'être exhaustive : ce [survol](https://www.nowpublishers.com/article/Details/PGL-010) récent décrit d'autres applications. 
 Il y a deux choses à retenir : 
@@ -102,7 +110,10 @@ En synthèse de programme il est très courant d'utiliser des langages que l'on 
 L'étude des langages de programmation nous a appris qu'il est souvent utile de voir un programme comme un arbre ("abstract syntax tree", ou AST, en anglais), et de représenter l'ensemble des programmes à l'aide d'une grammaire hors-contexte. 
 Cet [article d'Interstices](https://interstices.info/naissance-des-langages-de-programmation/) développe l'utilisation des grammaires hors-contexte pour les langages de programmations.
 
-![Une grammaire hors-contexte (cadre en haut à gauche) et l'arbre des dérivations](images/grammar.png)
+<figure>
+    <img src="{{ '/images/grammar.png' | prepend: site.baseurl }}" alt=""> 
+    <figcaption>Une grammaire hors-contexte (cadre en haut à gauche) et l'arbre des dérivations</figcaption>
+</figure>
 
 <!-- Le cadre en haut à gauche représente la grammaire : elle est donnée par un ensemble de règles, qui sont des règles de réécriture. Pour chaque non-terminal (S et T), il peut être développé en le remplaçant par un symbole (f, g, a, ou b) ainsi qu'un certain nombre de non-terminaux.
 Chaque symbole a une arité, c'est le nombre de non-terminaux utilisés : f est d'arité 2, g d'arité 1, et a et b d'arité 0.
@@ -120,9 +131,10 @@ L'exemple ci-dessous rend les choses plus concrètes : les symboles sont des pri
 
 Le même programme est représenté par un arbre (à gauche) et de manière plus classique par une suite de primitives (à droite).
 
-<p align="center">
-<img src="/images/tree_string.png" alt="Un programme représenté par un arbre (à gauche) ou par une suite de primitives (à droite)" width="70%"/>
-</p>
+<figure>
+    <img src="{{ '/images/tree_string.png' | prepend: site.baseurl }}" alt="" width="70%"> 
+    <figcaption>Un programme représenté par un arbre (à gauche) ou par une suite de primitives (à droite)</figcaption>
+</figure>
 
 Ainsi en construisant un DSL (langage de programmation) réduit à son minimum et utilisant une syntaxe épurée, on obtient un précieux levier algorithmique permettant de raisonner sur les programmes, mettant à profit des dizaines d'années de recherche sur les langages de programmation et les langages formels (ici, grammaires hors-contexte).
 C'est dans ce contexte qu'est née une des idées qui a révolutionné la synthèse de programme ces dix ou quinze dernières années, due à Armando Solar-Lezama et communément appelée le "sketching" : en plus de la spécification, l'utilisateur décrit une trame (un "sketch") du programme.
@@ -139,9 +151,10 @@ Ce n'est que récemment qu'OpenAI a exploré l'idée d'utiliser les architecture
 
 Une fois le choix du langage effectué, se pose celui de la spécification : comment l'utilisateur peut-il décrire le programme ? 
 
-<p align="center">
-<a href="https://www.commitstrip.com/fr/2016/08/25/a-very-comprehensive-and-precise-spec/?"><img src="/images/Strip-Les-specs-cest-du-code-650-final.jpg" alt="Qu'est-ce qu'une spécification, crédit CommitStrip" width="70%"/></a>
-</p>
+<figure>
+    <img src="{{ '/images/Strip-Les-specs-cest-du-code-650-final.jpg' | prepend: site.baseurl }}" alt="" width="70%"> 
+    <figcaption>Qu'est-ce qu'une spécification, crédit CommitStrip</figcaption>
+</figure>
 
 L'image ci-dessus (crédit : CommitStrip) illustre bien la difficulté : la spécification doit être à la fois complète et précise, tout en étant facile à formuler par l'utilisateur.
 La situation n'est pas aussi désespérée : dans de nombreuses applications des spécifications incomplètes sont souvent suffisantes.
@@ -169,9 +182,10 @@ Par exemple, le logiciel [Pygmalion](https://apps.dtic.mil/sti/citations/ADA0168
 Pygmalion est un ancêtre des langages graphiques, qui ont donné lieu aux interfaces graphiques que nous utilisons quotidiennement pour interagir avec des machines.
 La figure ci-dessous (crédit : Pygmalion) représente l'exécution d'un programme calculant la factorielle de 6. L'utilisateur décrit les opérations nécessaires et décrit l'exécution du programme sur un ou plusieurs exemples afin de synthétiser le programme.
 
-<p align="center">
-<img src="/images/Pygmalion.png" alt="Présentation de Pygmalion, crédit Pygmalion" width="400"/>
-</p>
+<figure>
+    <img src="{{ '/images/Pygmalion.png' | prepend: site.baseurl }}" alt="" width="70%"> 
+    <figcaption>Présentation de Pygmalion, crédit Pygmalion</figcaption>
+</figure>
 
 ### L'algorithme de recherche
 
@@ -214,7 +228,10 @@ Par exemple, imaginons un programme manipulant des listes d'entiers : la figure 
 Le programme que l'on cherche fait la chose suivante : il extrait le plus petit entier positif $n$ de la liste d'entrée (pour cela, il la trie avec SORT, enlève les entiers négatifs avec FILTER, et prend le premier élément avec HEAD), et retourne la liste triée privée des $n$ premiers éléments avec DROP.
 Dans l'exemple donné à droite, le plus petit entier positif de la liste d'entrée est 3, donc la liste en sortie est celle en entrée triée et privée des trois premiers éléments.
 
-![Un exemple de programme dans le DSL de DeepCoder](images/Deepcoder.png)
+<figure>
+    <img src="{{ '/images/Deepcoder.png' | prepend: site.baseurl }}" alt=""> 
+    <figcaption>Un exemple de programme dans le DSL de DeepCoder</figcaption>
+</figure>
 
 La question est : quelle information peut-on obtenir du programme en regardant la paire entrée / sortie ?
 En observant que tous les éléments de la liste de sortie apparaissent dans la liste d'entrées, mais qu'il n'en reste qu'une partie, on subodore que la liste ait été triée par la primitive SORT, et que la primitive FILTER a été utilisée. 
